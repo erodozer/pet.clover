@@ -9,3 +9,5 @@
 position = Vector2( 0, 32 )
 
 [node name="UIControls" parent="." instance=ExtResource( 1 )]
+
+[connection signal="action_pressed" from="UIControls" to="Scene" method="_on_UIControls_action_pressed"]
