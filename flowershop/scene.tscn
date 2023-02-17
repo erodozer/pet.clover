@@ -1,0 +1,40 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://flowershop/foreground_lightson.png" type="Texture" id=1]
+[ext_resource path="res://flowershop/background_lightson.png" type="Texture" id=2]
+[ext_resource path="res://flowershop/pet_idle_0.png" type="Texture" id=3]
+[ext_resource path="res://flowershop/foreground_lights_01.png" type="Texture" id=4]
+[ext_resource path="res://flowershop/foreground_lightsoff.png" type="Texture" id=5]
+[ext_resource path="res://flowershop/foreground_lights_02.png" type="Texture" id=6]
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 4 ), ExtResource( 6 ), ExtResource( 5 ) ],
+"loop": false,
+"name": "lights",
+"speed": 8.0
+} ]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+} ]
+
+[node name="ShopScene" type="Node2D"]
+
+[node name="Background" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+centered = false
+
+[node name="Foreground" type="AnimatedSprite" parent="."]
+frames = SubResource( 2 )
+animation = "lights"
+centered = false
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 79, 58 )
+frames = SubResource( 1 )
+animation = "idle"

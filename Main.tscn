@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://ui/UiControls.tscn" type="PackedScene" id=1]
+[ext_resource path="res://flowershop/scene.tscn" type="PackedScene" id=2]
+
+[node name="Main" type="Node"]
+
+[node name="Scene" parent="." instance=ExtResource( 2 )]
+position = Vector2( 0, 32 )
+
+[node name="UIControls" parent="." instance=ExtResource( 1 )]
