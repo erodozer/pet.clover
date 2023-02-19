@@ -19,6 +19,7 @@ config/icon="res://icon.png"
 IntegerResolutionHandler="*res://addons/integer_resolution_handler/integer_resolution_handler.gd"
 GameState="*res://GameState.gd"
 SceneManager="*res://addons/godot-ssm/SceneManager.tscn"
+NoClick="*res://ui/NoClick.tscn"
 
 [display]
 

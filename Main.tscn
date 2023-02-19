@@ -1,7 +1,11 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://scenes/flowershop/scene.tscn" type="PackedScene" id=2]
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node
+
+func _ready():
+	SceneManager.change_scene(\"flowershop\")
+"
 
 [node name="Main" type="Node"]
-
-[node name="Scene" parent="." instance=ExtResource( 2 )]
+script = SubResource( 1 )
