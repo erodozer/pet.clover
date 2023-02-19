@@ -1,0 +1,194 @@
+[gd_scene load_steps=30 format=2]
+
+[ext_resource path="res://scenes/flowershop/environment/foreground_lightson.png" type="Texture" id=1]
+[ext_resource path="res://scenes/flowershop/environment/background_lightson.png" type="Texture" id=2]
+[ext_resource path="res://scenes/flowershop/environment/background_lights_01.png" type="Texture" id=3]
+[ext_resource path="res://scenes/flowershop/environment/background_lightsoff.png" type="Texture" id=4]
+[ext_resource path="res://pet/pet_idle_1.png" type="Texture" id=5]
+[ext_resource path="res://scenes/flowershop/environment/foreground_lights_01.png" type="Texture" id=6]
+[ext_resource path="res://pet/pet_idle_3.png" type="Texture" id=7]
+[ext_resource path="res://scenes/flowershop/environment/background_lights_02.png" type="Texture" id=8]
+[ext_resource path="res://pet/pet_idle_0.png" type="Texture" id=9]
+[ext_resource path="res://pet/pet_idle_2.png" type="Texture" id=10]
+[ext_resource path="res://pet/pet_walk_2.png" type="Texture" id=11]
+[ext_resource path="res://pet/pet_walk_1.png" type="Texture" id=12]
+[ext_resource path="res://scenes/flowershop/environment/foreground_lightsoff.png" type="Texture" id=13]
+[ext_resource path="res://scenes/flowershop/environment/foreground_lights_02.png" type="Texture" id=14]
+[ext_resource path="res://pet/manuka.png" type="Texture" id=15]
+[ext_resource path="res://scenes/flowershop/scene.gd" type="Script" id=16]
+[ext_resource path="res://scenes/flowershop/ui/controls/UiControls.tscn" type="PackedScene" id=17]
+
+[sub_resource type="SpriteFrames" id=12]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 8 ), ExtResource( 4 ) ],
+"loop": false,
+"name": "lights_off",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 4 ), ExtResource( 8 ), ExtResource( 3 ), ExtResource( 2 ) ],
+"loop": false,
+"name": "lights_on",
+"speed": 8.0
+} ]
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 6 ), ExtResource( 14 ), ExtResource( 13 ) ],
+"loop": false,
+"name": "lights_off",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 13 ), ExtResource( 14 ), ExtResource( 6 ), ExtResource( 1 ) ],
+"loop": false,
+"name": "lights_on",
+"speed": 8.0
+} ]
+
+[sub_resource type="Gradient" id=10]
+offsets = PoolRealArray( 0.246377, 1 )
+colors = PoolColorArray( 0.335938, 1, 0, 1, 1, 0.984375, 0, 0 )
+
+[sub_resource type="GradientTexture" id=11]
+gradient = SubResource( 10 )
+
+[sub_resource type="Curve" id=5]
+min_value = -200.0
+max_value = 200.0
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.317391, 145.455 ), 0.0, 0.0, 0, 0, Vector2( 0.773913, -130.909 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=6]
+curve = SubResource( 5 )
+
+[sub_resource type="Curve" id=7]
+max_value = 2.0
+_data = [ Vector2( 0, 1.72727 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.945454 ), -4.29798, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=8]
+curve = SubResource( 7 )
+
+[sub_resource type="ParticlesMaterial" id=9]
+emission_shape = 1
+emission_sphere_radius = 3.0
+flag_disable_z = true
+gravity = Vector3( 0, -20, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel_curve = SubResource( 6 )
+scale_curve = SubResource( 8 )
+color_ramp = SubResource( 11 )
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 9 ), ExtResource( 5 ), ExtResource( 10 ), ExtResource( 5 ), ExtResource( 9 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ), ExtResource( 12 ), ExtResource( 9 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "walk",
+"speed": 5.0
+} ]
+
+[sub_resource type="Animation" id=13]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=14]
+resource_name = "idle"
+length = 1.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ -8.0, -12.0, -6.0, -8.0 ]
+}
+
+[node name="ShopScene" type="Node2D"]
+script = ExtResource( 16 )
+
+[node name="ShopView" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Background" type="AnimatedSprite" parent="ShopView"]
+frames = SubResource( 12 )
+animation = "lights_on"
+frame = 3
+centered = false
+
+[node name="Foreground" type="AnimatedSprite" parent="ShopView"]
+frames = SubResource( 2 )
+animation = "lights_on"
+frame = 3
+centered = false
+
+[node name="Camera2D" type="Camera2D" parent="ShopView"]
+position = Vector2( 80, 40 )
+current = true
+
+[node name="Fox" type="Node2D" parent="ShopView"]
+unique_name_in_owner = true
+position = Vector2( 81, 75 )
+
+[node name="Stinky" type="Node2D" parent="ShopView/Fox"]
+visible = false
+modulate = Color( 1, 1, 1, 0.411765 )
+show_behind_parent = true
+position = Vector2( 79, 58 )
+
+[node name="Particles" type="Particles2D" parent="ShopView/Fox/Stinky"]
+amount = 16
+process_material = SubResource( 9 )
+
+[node name="Particles2" type="Particles2D" parent="ShopView/Fox/Stinky"]
+position = Vector2( -10, 0 )
+amount = 16
+process_material = SubResource( 9 )
+
+[node name="Particles3" type="Particles2D" parent="ShopView/Fox/Stinky"]
+position = Vector2( 7, 0 )
+amount = 16
+process_material = SubResource( 9 )
+
+[node name="Sprite" type="AnimatedSprite" parent="ShopView/Fox"]
+position = Vector2( 0, -19 )
+frames = SubResource( 1 )
+animation = "walk"
+playing = true
+
+[node name="Manuka" type="Sprite" parent="ShopView/Fox"]
+texture = ExtResource( 15 )
+offset = Vector2( -26, -14 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ShopView/Fox/Manuka"]
+autoplay = "idle"
+anims/RESET = SubResource( 13 )
+anims/idle = SubResource( 14 )
+
+[node name="LeftBound" type="Node2D" parent="ShopView"]
+unique_name_in_owner = true
+position = Vector2( 54, 75 )
+
+[node name="RightBound" type="Node2D" parent="ShopView"]
+unique_name_in_owner = true
+position = Vector2( 104, 75 )
+
+[node name="UIControls" parent="." instance=ExtResource( 17 )]

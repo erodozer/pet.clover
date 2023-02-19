@@ -11,11 +11,14 @@ config_version=4
 [application]
 
 config/name="clover.tamagotchi"
+run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 IntegerResolutionHandler="*res://addons/integer_resolution_handler/integer_resolution_handler.gd"
+GameState="*res://GameState.gd"
+SceneManager="*res://addons/godot-ssm/SceneManager.tscn"
 
 [display]
 
@@ -25,6 +28,7 @@ window/size/width=160
 window/size/height=144
 window/size/test_width=800
 window/size/test_height=600
+window/stretch/mode="viewport"
 window/stretch/aspect="keep"
 
 [editor_plugins]
