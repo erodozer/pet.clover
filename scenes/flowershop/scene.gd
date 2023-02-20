@@ -43,7 +43,9 @@ func _bathe():
 	set_process(true)
 	NoClick.visible = false
 	
-	GameState.stats.dirty = 0.0
+	GameState.stats = {
+		"dirty": 0.0
+	}
 	next_action()
 	
 func _drop_food(food_type = "nuggie"):
@@ -82,7 +84,6 @@ func _drop_food(food_type = "nuggie"):
 		fox, "position:x", destination, 2.0
 	)
 	
-	
 	var facing_dest = sign(fox.position.x - destination)
 	sprite.scale.x = facing_dest
 	sprite.play("walk")
@@ -99,6 +100,12 @@ func _drop_food(food_type = "nuggie"):
 	food.position = Vector2(-1000, -1000)
 	
 	# TODO add food effect
+	var now = Time.get_unix_time_from_system()
+	GameState.stats = {
+		"hungry": GameState.stats.hungry + 50.0,
+	}
+	GameState.timers[GameState.ActionType.Eat] = now + 60.0
+	
 	set_process(true)
 	NoClick.visible = false
 	

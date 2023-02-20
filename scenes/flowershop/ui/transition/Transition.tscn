@@ -5,8 +5,6 @@
 [sub_resource type="GDScript" id=4]
 script/source = "extends Control
 
-onready var anim = get_node(\"AnimationPlayer\")
-
 func fade_in():
 	var tween = create_tween()
 	

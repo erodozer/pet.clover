@@ -11,6 +11,7 @@ func _ready():
 	for button in get_node("%Controls").get_children():
 		button.connect("pressed", self, "_on_button_press", [button])
 	clock.connect("pressed", self, "_on_clock_toggled")
+	GameState.connect("stats_changed", self, "_update_stats")
 
 func _on_button_press(button):
 	emit_signal("action_pressed", button.name.to_lower(), button.pressed)
@@ -26,3 +27,6 @@ func set_hint_text(text):
 		label.text = "Clover"
 	else:
 		label.text = text
+
+func _update_stats(stats):
+	get_node("%HoneyCounter").text = "%0d" % int(stats.honey)

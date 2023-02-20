@@ -8,6 +8,7 @@
 [node name="Clock" type="Button"]
 margin_right = 20.0
 margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
 mouse_default_cursor_shape = 2
 custom_styles/hover = SubResource( 1 )
 custom_styles/pressed = SubResource( 1 )
