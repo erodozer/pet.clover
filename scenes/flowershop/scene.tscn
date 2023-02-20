@@ -40,7 +40,7 @@ animations = [ {
 
 [sub_resource type="Gradient" id=10]
 offsets = PoolRealArray( 0.246377, 1 )
-colors = PoolColorArray( 0.670588, 0.580392, 0.478431, 1, 0.478431, 0.196078, 0.262745, 1 )
+colors = PoolColorArray( 0.533333, 0.282353, 0.172549, 1, 0.670588, 0.580392, 0.478431, 1 )
 
 [sub_resource type="GradientTexture" id=11]
 gradient = SubResource( 10 )
@@ -188,7 +188,8 @@ script = ExtResource( 27 )
 [node name="Sprite" type="AnimatedSprite" parent="ShopView/Fox"]
 position = Vector2( 0, -19 )
 frames = ExtResource( 5 )
-animation = "sleep"
+animation = "idle"
+frame = 1
 playing = true
 
 [node name="Dirty" type="Node2D" parent="ShopView/Fox"]
@@ -241,6 +242,7 @@ material = SubResource( 15 )
 position = Vector2( 105, -39 )
 frames = ExtResource( 18 )
 animation = "nuggie"
+frame = 4
 playing = true
 script = ExtResource( 28 )
 
@@ -263,7 +265,6 @@ position = Vector2( 81, 75 )
 [node name="Sprite" type="AnimatedSprite" parent="WashScene/Fox"]
 position = Vector2( 0, -19 )
 frames = SubResource( 16 )
-frame = 2
 playing = true
 
 [node name="Manuka" type="Sprite" parent="WashScene/Fox"]

@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/flowershop/ui/clock/Clock.gd" type="Script" id=1]
 [ext_resource path="res://scenes/flowershop/ui/clock/clock.png" type="Texture" id=2]
+[ext_resource path="res://scenes/flowershop/ui/clock/m_0.png" type="Texture" id=3]
+[ext_resource path="res://scenes/flowershop/ui/clock/h_0.png" type="Texture" id=4]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -21,20 +23,14 @@ script = ExtResource( 1 )
 position = Vector2( 10, 10 )
 texture = ExtResource( 2 )
 
-[node name="Minute" type="Line2D" parent="Clock"]
+[node name="Minute" type="Sprite" parent="."]
 unique_name_in_owner = true
-points = PoolVector2Array( 0, 0, 0, -6 )
-width = 1.2
-default_color = Color( 0.0588235, 0.0352941, 0.0352941, 1 )
+position = Vector2( 1, 1 )
+texture = ExtResource( 3 )
+centered = false
 
-[node name="Hour" type="Line2D" parent="Clock"]
+[node name="Hour" type="Sprite" parent="."]
 unique_name_in_owner = true
-points = PoolVector2Array( 0, 0, 0, -4.4 )
-width = 1.5
-default_color = Color( 0.0588235, 0.0352941, 0.0352941, 1 )
-
-[node name="Second" type="Line2D" parent="Clock"]
-unique_name_in_owner = true
-points = PoolVector2Array( 0, 0, 0, -6.5 )
-width = 1.0
-default_color = Color( 0.760784, 0.0431373, 0.0431373, 1 )
+position = Vector2( 1, 1 )
+texture = ExtResource( 4 )
+centered = false

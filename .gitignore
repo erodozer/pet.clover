@@ -10,3 +10,6 @@ export_presets.cfg
 # ignore krita metafiles
 *-autosave.*
 *.*~
+
+# ignore build files
+bin/

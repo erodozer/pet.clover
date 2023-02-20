@@ -138,6 +138,7 @@ margin_right = 88.0
 margin_bottom = 78.0
 
 [node name="Age" type="Label" parent="GridContainer/PanelContainer4"]
+unique_name_in_owner = true
 modulate = Color( 0.0588235, 0.0352941, 0.0352941, 1 )
 margin_left = 4.0
 margin_top = 4.0

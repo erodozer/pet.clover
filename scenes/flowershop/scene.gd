@@ -39,8 +39,6 @@ func _ready():
 	food.left_bound = left
 	food.right_bound = right
 	
-	randomize()
-	
 func _show_stats():
 	# pause processing while bathing
 	NoClick.visible = true
@@ -77,6 +75,8 @@ func _bathe():
 	# pause processing while bathing
 	NoClick.visible = true
 	
+	fox.pause = true
+	
 	yield(get_node("Transition").fade_in(), "completed")
 	get_node("WashScene").visible = true
 	get_node("ShopView").visible = false
@@ -97,22 +97,25 @@ func _bathe():
 	
 	# pause processing while lookin for food
 	NoClick.visible = false
-	
-	fox.next_action()
+	fox.pause = false
 	
 func _drop_food(food_type = "nuggie"):
 	# pause processing while lookin for food
 	NoClick.visible = true
 	
+	fox.pause = true
 	food.food_type = food_type
 	yield(food.drop(), "completed")
-	
-	if fox.performing_action:
-		yield(fox, "action_completed")
-		
-	yield(fox.move_to(food.position), "completed")
+	yield(fox.move_to(food.position, 30.0), "completed")
 	yield(food.eat(), "completed")
+	fox.pause = false
 	
 	NoClick.visible = false
-	fox.next_action()
 
+func _process(_delta):
+	if GameState.now() > GameState.next_update_at:
+		GameState.execute_turn()
+	
+	if GameState.is_dead():
+		GameState.restart()
+		SceneManager.change_scene("flowershop")

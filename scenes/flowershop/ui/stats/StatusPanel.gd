@@ -8,8 +8,6 @@ func _update_stats(stats):
 	
 	# determine mood	
 	var mood = "Happy"
-	if stats.happy < 30.0:
-		mood = "Upset"
 	if stats.dirty > 50.0:
 		mood = "Stinky"
 	if stats.boredom < 30.0:
@@ -18,14 +16,18 @@ func _update_stats(stats):
 		mood = "Tired"
 	if stats.hungry < 30.0:
 		mood = "Hungry"
-	if stats.weight < 8.0:
+	if stats.weight < 7.0:
 		mood = "Malnurished"
-	if stats.sick > 50.0:
+	if stats.sick > 75.0:
 		mood = "Sick"
 	
 	get_node("%Mood").text = mood
 
 	get_node("%Weight").text = "%.1f lbs" % stats.weight
 	get_node("%LifeMeter").value = inverse_lerp(0.0, 100.0, stats.hungry) * 5.0
-	get_node("%HappyMeter").value = inverse_lerp(0.0, 100.0, stats.happy) * 5.0
-	
+	get_node("%HappyMeter").value = inverse_lerp(0.0, 100.0, stats.honey_score()) * 5.0
+	get_node("%Age").text = "%02dd %02dh %02dm" % [
+		int(stats.age / 86400.0), # days
+		int(stats.age / 3600.0) % 24, # hours
+		int(stats.age / 60.0) % 60, # minutes
+	]

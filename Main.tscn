@@ -4,6 +4,8 @@
 script/source = "extends Node
 
 func _ready():
+	randomize()
+	
 	SceneManager.change_scene(\"flowershop\")
 "
 

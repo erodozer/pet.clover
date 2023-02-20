@@ -2,6 +2,7 @@ extends Node
 
 # number of seconds between turns
 const UPDATE_FREQ = 1.0
+const SAVE_FREQ = 60.0  # limit autosave frequency so we don't wear out drives
 
 var timers = {
 	"eat": 0,
@@ -10,23 +11,39 @@ var timers = {
 	"medicine": 0,
 } setget _update_timers
 var next_update_at = 0
+var save_sync = 0
+var death_timer = 0
 
 var stats = {
 	"hungry": 100.0,
-	"weight": 10.0,
-	"boredom": 50.0,
+	"weight": 12.4,
+	"boredom": 0.0,
 	"dirty": 0.0,
 	"happy": 100.0,
 	"sick": 0.0,
 	"tired": 0.0,
 	"honey": 0.0,
 	"is_asleep": false,
+	"age": 0.0,
 } setget _update_stats
 
 var lights_on = true
 
 signal stats_changed(stats)
 signal timers_changed(timers)
+
+func _ready():
+	var save_game = File.new()
+	if not save_game.file_exists("user://clover.save"):
+		return # no save yet
+	
+	save_game.open("user://clover.save", File.READ)
+	# save files are a single line json
+	var data = parse_json(save_game.get_line())
+	save_game.close()
+	
+	self.stats = data.stats
+	self.timers = data.timers
 
 func now() -> float:
 	return Time.get_unix_time_from_system()
@@ -36,6 +53,7 @@ func can_act(action):
 		return true
 	
 	var next_allowed: float = timers.get(action, 999999999.0)
+	
 	return now() > next_allowed
 
 func _update_stats(change):
@@ -44,13 +62,14 @@ func _update_stats(change):
 		"weight": clamp(change.get("weight", stats.weight), 5.0, 25.0),
 		"boredom": clamp(change.get("boredom", stats.boredom), 0.0, 100.0),
 		"dirty": clamp(change.get("dirty", stats.dirty), 0.0, 100.0),
-		"happy": clamp(change.get("happy", stats.happy), 0.0, 100.0),
 		"tired": clamp(change.get("tired", stats.tired), 0.0, 100.0),
 		"sick": clamp(change.get("sick", stats.sick), 0.0, 100.0),
 		"honey": clamp(change.get("honey", stats.honey), 0.0, 99999.0),
+		"age": max(0.0, change.get("age", stats.age)),
 		"is_asleep": change.get("is_asleep", stats.is_asleep),
 	}
 	emit_signal("stats_changed", stats)
+	save_data()
 	
 func _update_timers(change):
 	timers = {
@@ -60,6 +79,23 @@ func _update_timers(change):
 		"medicine": change.get("medicine", timers.medicine),
 	}
 	emit_signal("timers_changed", timers)
+	save_data()
+
+func save_data():
+	if now() < save_sync:
+		return
+	
+	var save_game = File.new()
+	save_game.open("user://clover.save", File.WRITE)
+	save_game.store_line(
+		to_json({
+			"stats": stats,
+			"timers": timers,
+		})
+	)
+	save_game.close()
+	
+	save_sync = now() + SAVE_FREQ
 
 func execute_turn():
 	var change = stats.duplicate()
@@ -69,45 +105,33 @@ func execute_turn():
 	change.boredom += 0.8
 	change.tired += 0.2
 	
-	# keep fed
-	if stats.hungry < 40:
-		change.weight -= 0.1
-	if stats.hungry < 30:
-		change.happy -= 1.0
-	if stats.hungry > 70:
-		change.happy += 1.0
-	
 	# increase weight when overfed
 	if stats.hungry > 150.0:
-		change.weight += 0.1
+		change.weight += 0.01
 	elif stats.hungry > 220.0:
-		change.weight += 0.15
+		change.weight += 0.02
+	# lose weight when starving
+	elif stats.hungry < 40:
+		change.weight -= 0.01
 	
-	if stats.weight < 7.0:
-		change.happy -= 1.0
-	if stats.weight > 20.0:
-		change.happy -= 1.0
-	elif stats.weight > 16.0:
-		change.happy -= 0.5
-		
-	if stats.tired > 70.0 and lights_on:
-		change.happy -= 1.0
-	if stats.tired < 20:
-		change.happy += 1.0
-	if stats.tired > 30 and not lights_on:
+	# go to bed when lights off and tired
+	if stats.tired > 45 and not lights_on:
 		change.is_asleep = true
 		
-	if stats.sick > 70.0:
-		change.happy -= 4.0
+	# become tired when feeling sick
+	if stats.sick > 50.0:
 		change.tired += 4.0
-		change.weight -= 0.1
 		
+	# cover tiredness and sickness by sleeping
 	if stats.is_asleep:
 		change.tired -= 3.0
 		change.sick -= 1.0
+		
+		# wake up if lights are on
 		if lights_on:
 			stats.is_asleep = false
 		
+	# get sick from not being clean
 	if stats.dirty > 70.0:
 		change.sick += 1.0
 	elif stats.dirty > 90.0:
@@ -115,30 +139,87 @@ func execute_turn():
 	elif stats.dirty < 20.0:
 		change.sick -= 1.0
 	
-	# the fox likes to be stinky
-	if stats.dirty > 30.0:
-		change.happy += 1.0
-	# but not too stinky
-	elif stats.dirty > 70.0:
-		change.happy -= 1.0
-		
-	# calculate honey gain
-	var honey_score = 10.0
-	# produce based on happiness
-	honey_score *= inverse_lerp(0.0, 100.0, stats.happy)
-	# produce less honey when unhealthy weight
-	if stats.weight < 9.0:
-		honey_score -= 5.0 * inverse_lerp(5.0, 9.0, clamp(stats.weight, 5.0, 9.0))
-	elif stats.weight > 15.0:
-		honey_score -= 5.0 * inverse_lerp(15.0, 25.0, clamp(stats.weight, 15.0, 25.0))
-	# no production when sick
-	honey_score *= 0.0 if change.sick > 70 else 1.0
-	change.honey += honey_score
+	var score = honey_score()
+	change.honey += score
+	
+	change.age += UPDATE_FREQ
+	
+	next_update_at = now() + UPDATE_FREQ
+	
+	# punish the fox for not producing honey
+	if score <= 1.0 and death_timer <= 0:
+		death_timer = now() + 300
+	elif score > 1.0:
+		death_timer = 0
 	
 	self.stats = change
+	
+func honey_score():
+	# calculate honey gain based on overall health/happiness
+	var happy = 10.0
+	
+	# the fox likes to be stinky
+	if stats.dirty > 30.0:
+		happy += 1.0
+	# but not too stinky
+	elif stats.dirty > 70.0:
+		happy -= 1.0
+		
+	# produce less honey when unhealthy weight
+	if stats.weight < 9.0:
+		happy -= 1.0
+	elif stats.weight > 15.0:
+		happy -= 1.0
+	elif stats.weight < 7.0:
+		happy -= 2.0
+	
+	# produce significantly less when sick
+	if stats.sick > 75.0:
+		happy -= 6.0
+		
+	# not happy if lights are on while tired
+	if stats.tired > 70 and lights_on:
+		happy -= 1.0
+	# scared of dark
+	elif stats.tired < 20 and not lights_on:
+		happy -= 0.5
+	# very happy when well rested
+	elif stats.tired < 20:
+		happy += 2.0
+	
+	# happy when sleeping
+	if stats.is_asleep:
+		happy += 0.5
+	
+	# keep fed
+	if stats.hungry < 30:
+		happy -= 1.0
+	elif stats.hungry > 70:
+		happy += 1.0
+		
+	return clamp(happy, 0.0, 15.0)
+	
+func is_dead():
+	return death_timer and now() > death_timer
+	
+func reset():
+	timers = {
+		"eat": 0,
+		"bathe": 0,
+		"play": 0,
+		"medicine": 0,
+	}
+	next_update_at = 0
 
-func _process(_delta):
-	var now = Time.get_unix_time_from_system()
-	if now > next_update_at:
-		execute_turn()
-		next_update_at = now + UPDATE_FREQ
+	stats = {
+		"hungry": 100.0,
+		"weight": 12.4,
+		"boredom": 0.0,
+		"dirty": 0.0,
+		"happy": 100.0,
+		"sick": 0.0,
+		"tired": 0.0,
+		"honey": 0.0,
+		"is_asleep": false,
+		"age": 0.0,
+	}
