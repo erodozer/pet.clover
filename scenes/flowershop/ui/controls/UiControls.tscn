@@ -16,8 +16,8 @@
 [ext_resource path="res://ui/scroll.gdshader" type="Shader" id=14]
 [ext_resource path="res://scenes/flowershop/ui/stats/honey_drop.png" type="Texture" id=15]
 [ext_resource path="res://scenes/flowershop/ui/controls/tiled_bg.png" type="Texture" id=16]
-[ext_resource path="res://scenes/flowershop/ui/stats/heart.png" type="Texture" id=17]
 [ext_resource path="res://ui/fonts/Minimum.ttf" type="DynamicFontData" id=18]
+[ext_resource path="res://scenes/flowershop/ui/icons/back.png" type="Texture" id=19]
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_bottom = 0.0
@@ -138,7 +138,6 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -30.0
-margin_bottom = 4.0
 theme = ExtResource( 1 )
 custom_styles/panel = SubResource( 2 )
 
@@ -146,7 +145,7 @@ custom_styles/panel = SubResource( 2 )
 show_behind_parent = true
 material = SubResource( 3 )
 margin_right = 160.0
-margin_bottom = 34.0
+margin_bottom = 30.0
 texture = ExtResource( 16 )
 stretch_mode = 2
 
@@ -260,110 +259,14 @@ texture = ExtResource( 7 )
 [node name="border" parent="BottomPanel/Controls/Mail" index="2"]
 show_behind_parent = false
 
-[node name="Status" type="MarginContainer" parent="BottomPanel"]
+[node name="Back" parent="BottomPanel/Controls" instance=ExtResource( 13 )]
 visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-custom_constants/margin_right = 4
-custom_constants/margin_top = 2
-custom_constants/margin_left = 4
-custom_constants/margin_bottom = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="BottomPanel/Status"]
-margin_left = 4.0
-margin_top = 2.0
-margin_right = 156.0
-margin_bottom = 32.0
+[node name="icon_off" parent="BottomPanel/Controls/Back" index="0"]
+texture = ExtResource( 19 )
 
-[node name="HBoxContainer" type="HBoxContainer" parent="BottomPanel/Status/VBoxContainer"]
-margin_right = 152.0
-margin_bottom = 12.0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="BottomPanel/Status/VBoxContainer/HBoxContainer"]
-margin_right = 81.0
-margin_bottom = 12.0
-
-[node name="Label" type="Label" parent="BottomPanel/Status/VBoxContainer/HBoxContainer/HBoxContainer"]
-modulate = Color( 0.0588235, 0.0352941, 0.0352941, 1 )
-margin_right = 29.0
-margin_bottom = 12.0
-text = "Life"
-
-[node name="PanelContainer" type="PanelContainer" parent="BottomPanel/Status/VBoxContainer/HBoxContainer/HBoxContainer"]
-margin_left = 33.0
-margin_right = 81.0
-margin_bottom = 12.0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="BottomPanel/Status/VBoxContainer/HBoxContainer/HBoxContainer/PanelContainer"]
-margin_left = 1.0
-margin_right = 47.0
-margin_bottom = 12.0
-
-[node name="TextureRect" type="TextureRect" parent="BottomPanel/Status/VBoxContainer/HBoxContainer/HBoxContainer/PanelContainer/HBoxContainer"]
-margin_right = 6.0
-margin_bottom = 12.0
-texture = ExtResource( 17 )
-stretch_mode = 4
-
-[node name="TextureRect2" type="TextureRect" parent="BottomPanel/Status/VBoxContainer/HBoxContainer/HBoxContainer/PanelContainer/HBoxContainer"]
-margin_left = 10.0
-margin_right = 16.0
-margin_bottom = 12.0
-texture = ExtResource( 17 )
-stretch_mode = 4
-
-[node name="TextureRect3" type="TextureRect" parent="BottomPanel/Status/VBoxContainer/HBoxContainer/HBoxContainer/PanelContainer/HBoxContainer"]
-margin_left = 20.0
-margin_right = 26.0
-margin_bottom = 12.0
-texture = ExtResource( 17 )
-stretch_mode = 4
-
-[node name="TextureRect4" type="TextureRect" parent="BottomPanel/Status/VBoxContainer/HBoxContainer/HBoxContainer/PanelContainer/HBoxContainer"]
-margin_left = 30.0
-margin_right = 36.0
-margin_bottom = 12.0
-texture = ExtResource( 17 )
-stretch_mode = 4
-
-[node name="TextureRect5" type="TextureRect" parent="BottomPanel/Status/VBoxContainer/HBoxContainer/HBoxContainer/PanelContainer/HBoxContainer"]
-margin_left = 40.0
-margin_right = 46.0
-margin_bottom = 12.0
-texture = ExtResource( 17 )
-stretch_mode = 4
-
-[node name="Label2" type="Label" parent="BottomPanel/Status/VBoxContainer/HBoxContainer"]
-modulate = Color( 0.0588235, 0.0352941, 0.0352941, 1 )
-margin_left = 85.0
-margin_right = 109.0
-margin_bottom = 12.0
-text = "fun"
-
-[node name="Label3" type="Label" parent="BottomPanel/Status/VBoxContainer/HBoxContainer"]
-modulate = Color( 0.0588235, 0.0352941, 0.0352941, 1 )
-margin_left = 113.0
-margin_right = 145.0
-margin_bottom = 12.0
-text = "body"
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="BottomPanel/Status/VBoxContainer"]
-margin_top = 16.0
-margin_right = 152.0
-margin_bottom = 28.0
-
-[node name="Label" type="Label" parent="BottomPanel/Status/VBoxContainer/HBoxContainer2"]
-modulate = Color( 0.0588235, 0.0352941, 0.0352941, 1 )
-margin_right = 24.0
-margin_bottom = 12.0
-text = "age"
-
-[node name="Label2" type="Label" parent="BottomPanel/Status/VBoxContainer/HBoxContainer2"]
-modulate = Color( 0.0588235, 0.0352941, 0.0352941, 1 )
-margin_left = 28.0
-margin_right = 74.0
-margin_bottom = 12.0
-text = "weight"
+[node name="icon_on" parent="BottomPanel/Controls/Back" index="1"]
+texture = ExtResource( 19 )
 
 [editable path="BottomPanel/Controls/Food"]
 [editable path="BottomPanel/Controls/Light"]
@@ -373,3 +276,4 @@ text = "weight"
 [editable path="BottomPanel/Controls/Health"]
 [editable path="BottomPanel/Controls/Gift"]
 [editable path="BottomPanel/Controls/Mail"]
+[editable path="BottomPanel/Controls/Back"]

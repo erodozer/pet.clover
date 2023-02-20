@@ -1,17 +1,12 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://scenes/flowershop/environment/foreground_lightson.png" type="Texture" id=1]
 [ext_resource path="res://scenes/flowershop/environment/background_lightson.png" type="Texture" id=2]
 [ext_resource path="res://scenes/flowershop/environment/background_lights_01.png" type="Texture" id=3]
 [ext_resource path="res://scenes/flowershop/environment/background_lightsoff.png" type="Texture" id=4]
-[ext_resource path="res://pet/pet_idle_1.png" type="Texture" id=5]
+[ext_resource path="res://pet/frames.tres" type="SpriteFrames" id=5]
 [ext_resource path="res://scenes/flowershop/environment/foreground_lights_01.png" type="Texture" id=6]
-[ext_resource path="res://pet/pet_idle_3.png" type="Texture" id=7]
 [ext_resource path="res://scenes/flowershop/environment/background_lights_02.png" type="Texture" id=8]
-[ext_resource path="res://pet/pet_idle_0.png" type="Texture" id=9]
-[ext_resource path="res://pet/pet_idle_2.png" type="Texture" id=10]
-[ext_resource path="res://pet/pet_walk_2.png" type="Texture" id=11]
-[ext_resource path="res://pet/pet_walk_1.png" type="Texture" id=12]
 [ext_resource path="res://scenes/flowershop/environment/foreground_lightsoff.png" type="Texture" id=13]
 [ext_resource path="res://scenes/flowershop/environment/foreground_lights_02.png" type="Texture" id=14]
 [ext_resource path="res://pet/manuka.png" type="Texture" id=15]
@@ -26,6 +21,10 @@
 [ext_resource path="res://ui/outline2D.gdshader" type="Shader" id=24]
 [ext_resource path="res://pet/pet_bath_1.png" type="Texture" id=25]
 [ext_resource path="res://scenes/flowershop/environment/background_bath.png" type="Texture" id=26]
+[ext_resource path="res://scenes/flowershop/Fox.gd" type="Script" id=27]
+[ext_resource path="res://scenes/flowershop/FoodDrop.gd" type="Script" id=28]
+[ext_resource path="res://scenes/flowershop/ui/stats/heart.png" type="Texture" id=29]
+[ext_resource path="res://ui/ui_theme.tres" type="Theme" id=30]
 
 [sub_resource type="SpriteFrames" id=12]
 animations = [ {
@@ -38,19 +37,6 @@ animations = [ {
 "loop": false,
 "name": "lights_on",
 "speed": 8.0
-} ]
-
-[sub_resource type="SpriteFrames" id=1]
-animations = [ {
-"frames": [ ExtResource( 9 ), ExtResource( 5 ), ExtResource( 10 ), ExtResource( 5 ), ExtResource( 9 ), ExtResource( 7 ) ],
-"loop": true,
-"name": "idle",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 9 ), ExtResource( 12 ), ExtResource( 9 ), ExtResource( 11 ) ],
-"loop": true,
-"name": "walk",
-"speed": 5.0
 } ]
 
 [sub_resource type="Gradient" id=10]
@@ -175,9 +161,7 @@ tracks/0/keys = {
 [node name="ShopScene" type="Node2D" groups=["scene"]]
 script = ExtResource( 16 )
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 80, 40 )
-current = true
+[node name="UIControls" parent="." instance=ExtResource( 17 )]
 
 [node name="ShopView" type="Node2D" parent="."]
 unique_name_in_owner = true
@@ -191,11 +175,12 @@ centered = false
 [node name="Fox" type="Node2D" parent="ShopView"]
 unique_name_in_owner = true
 position = Vector2( 81, 75 )
+script = ExtResource( 27 )
 
 [node name="Sprite" type="AnimatedSprite" parent="ShopView/Fox"]
 position = Vector2( 0, -19 )
-frames = SubResource( 1 )
-animation = "walk"
+frames = ExtResource( 5 )
+animation = "sit"
 frame = 3
 playing = true
 
@@ -227,6 +212,14 @@ autoplay = "idle"
 anims/RESET = SubResource( 13 )
 anims/idle = SubResource( 14 )
 
+[node name="FollowCamera" type="Camera2D" parent="ShopView/Fox"]
+offset = Vector2( 0, -35 )
+current = true
+limit_left = 0
+limit_right = 160
+limit_smoothed = true
+editor_draw_limits = true
+
 [node name="LeftBound" type="Node2D" parent="ShopView"]
 unique_name_in_owner = true
 position = Vector2( 54, 75 )
@@ -241,7 +234,9 @@ material = SubResource( 15 )
 position = Vector2( 105, -39 )
 frames = ExtResource( 18 )
 animation = "nuggie"
+frame = 6
 playing = true
+script = ExtResource( 28 )
 
 [node name="Foreground" type="AnimatedSprite" parent="ShopView"]
 frames = SubResource( 2 )
@@ -262,7 +257,7 @@ position = Vector2( 81, 75 )
 [node name="Sprite" type="AnimatedSprite" parent="WashScene/Fox"]
 position = Vector2( 0, -19 )
 frames = SubResource( 16 )
-frame = 4
+frame = 7
 playing = true
 
 [node name="Manuka" type="Sprite" parent="WashScene/Fox"]
@@ -276,6 +271,112 @@ anims/idle = SubResource( 18 )
 
 [node name="Transition" parent="." instance=ExtResource( 21 )]
 
-[node name="UIControls" parent="." instance=ExtResource( 17 )]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="StatusPanel" type="PanelContainer" parent="CanvasLayer"]
+unique_name_in_owner = true
+margin_left = 160.0
+margin_top = 32.0
+margin_right = 256.0
+margin_bottom = 147.0
+theme = ExtResource( 30 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/StatusPanel"]
+margin_left = 3.0
+margin_top = 4.0
+margin_right = 92.0
+margin_bottom = 111.0
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/StatusPanel/VBoxContainer"]
+margin_right = 89.0
+margin_bottom = 14.0
+
+[node name="Label" type="Label" parent="CanvasLayer/StatusPanel/VBoxContainer/HBoxContainer3"]
+modulate = Color( 0.0588235, 0.0352941, 0.0352941, 1 )
+margin_top = 1.0
+margin_right = 32.0
+margin_bottom = 13.0
+text = "Life"
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/StatusPanel/VBoxContainer/HBoxContainer3"]
+margin_left = 36.0
+margin_right = 89.0
+margin_bottom = 14.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/StatusPanel/VBoxContainer/HBoxContainer3/PanelContainer"]
+margin_left = 3.0
+margin_top = 4.0
+margin_right = 49.0
+margin_bottom = 10.0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/StatusPanel/VBoxContainer/HBoxContainer3/PanelContainer/HBoxContainer"]
+margin_right = 6.0
+margin_bottom = 6.0
+texture = ExtResource( 29 )
+stretch_mode = 4
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/StatusPanel/VBoxContainer/HBoxContainer3/PanelContainer/HBoxContainer"]
+margin_left = 10.0
+margin_right = 16.0
+margin_bottom = 6.0
+texture = ExtResource( 29 )
+stretch_mode = 4
+
+[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/StatusPanel/VBoxContainer/HBoxContainer3/PanelContainer/HBoxContainer"]
+margin_left = 20.0
+margin_right = 26.0
+margin_bottom = 6.0
+texture = ExtResource( 29 )
+stretch_mode = 4
+
+[node name="TextureRect4" type="TextureRect" parent="CanvasLayer/StatusPanel/VBoxContainer/HBoxContainer3/PanelContainer/HBoxContainer"]
+margin_left = 30.0
+margin_right = 36.0
+margin_bottom = 6.0
+texture = ExtResource( 29 )
+stretch_mode = 4
+
+[node name="TextureRect5" type="TextureRect" parent="CanvasLayer/StatusPanel/VBoxContainer/HBoxContainer3/PanelContainer/HBoxContainer"]
+margin_left = 40.0
+margin_right = 46.0
+margin_bottom = 6.0
+texture = ExtResource( 29 )
+stretch_mode = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/StatusPanel/VBoxContainer"]
+margin_top = 18.0
+margin_right = 89.0
+margin_bottom = 30.0
+
+[node name="Label2" type="Label" parent="CanvasLayer/StatusPanel/VBoxContainer/HBoxContainer"]
+modulate = Color( 0.0588235, 0.0352941, 0.0352941, 1 )
+margin_right = 26.0
+margin_bottom = 12.0
+text = "fun"
+
+[node name="Label3" type="Label" parent="CanvasLayer/StatusPanel/VBoxContainer/HBoxContainer"]
+modulate = Color( 0.0588235, 0.0352941, 0.0352941, 1 )
+margin_left = 30.0
+margin_right = 66.0
+margin_bottom = 12.0
+text = "body"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/StatusPanel/VBoxContainer"]
+margin_top = 34.0
+margin_right = 89.0
+margin_bottom = 46.0
+
+[node name="Label" type="Label" parent="CanvasLayer/StatusPanel/VBoxContainer/HBoxContainer2"]
+modulate = Color( 0.0588235, 0.0352941, 0.0352941, 1 )
+margin_right = 27.0
+margin_bottom = 12.0
+text = "age"
+
+[node name="Label2" type="Label" parent="CanvasLayer/StatusPanel/VBoxContainer/HBoxContainer2"]
+modulate = Color( 0.0588235, 0.0352941, 0.0352941, 1 )
+margin_left = 31.0
+margin_right = 83.0
+margin_bottom = 12.0
+text = "weight"
 
 [connection signal="action_pressed" from="UIControls" to="." method="_on_UIControls_action_pressed"]

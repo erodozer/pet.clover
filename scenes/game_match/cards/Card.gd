@@ -14,7 +14,6 @@ func _set_card_shape(value):
 	if not is_inside_tree():
 		return
 	front.texture = load("res://scenes/game_match/cards/%s.png" % value)
-	
 
 func _toggled(pressed):
 	var tween = create_tween()

@@ -13,6 +13,16 @@ func _ready():
 	clock.connect("pressed", self, "_on_clock_toggled")
 	GameState.connect("stats_changed", self, "_update_stats")
 
+func show_back():
+	for button in get_node("%Controls").get_children():
+		button.visible = false
+	get_node("%Controls/Back").visible = true
+	
+func show_menu():
+	for button in get_node("%Controls").get_children():
+		button.visible = true
+	get_node("%Controls/Back").visible = false
+
 func _on_button_press(button):
 	emit_signal("action_pressed", button.name.to_lower(), button.pressed)
 

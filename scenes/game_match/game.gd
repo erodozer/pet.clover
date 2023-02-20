@@ -1,6 +1,7 @@
 extends Node
 
 onready var cards = get_node("%Cards").get_children()
+onready var fox = get_node("%Fox")
 
 var selected = [null, null]
 var started = false
@@ -62,14 +63,17 @@ func _on_flip(show, card):
 	if not selected[1]:
 		return
 		
-	NoClick.visible = true
-	yield(get_tree().create_timer(1.0), "timeout")
 		
 	turns += 1
 	
 	if selected[0].shape == selected[1].shape:
 		matches += 1
+		fox.play("yelp")
+		yield(fox, "animation_finished")
+		fox.play("sit")
 	else:
+		NoClick.visible = true
+		yield(get_tree().create_timer(0.8), "timeout")
 		selected[0].set_pressed(false)
 		selected[1].set_pressed(false)
 		selected[0].disabled = false
@@ -84,9 +88,31 @@ func _on_flip(show, card):
 	NoClick.visible = false
 	
 	if matches == len(cards) / 2:
+		yield(get_tree().create_timer(0.8), "timeout")
 		game_finished()
 		
 func game_finished():
+	var score = 100.0
+	if turns > 15:
+		score = 10.0
+	elif turns > 10:
+		score = 20.0
+	elif turns > 8:
+		score = 40.0
+	elif turns > 6:
+		score = 60.0
+	elif turns > matches:
+		score = 100.0
+	elif turns == matches:
+		score = 150.0
+	
+	GameState.stats = {
+		# boredom goes down relative to speed of success
+		"boredom": GameState.stats.boredom - score,
+		# also grand bonus Honey as a prize
+		"honey": GameState.stats.honey + score * 10,
+	}
+	
 	SceneManager.change_scene("flowershop")
 
 func _swap(a: Control, b: Control):
