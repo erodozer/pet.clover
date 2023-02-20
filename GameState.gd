@@ -99,10 +99,12 @@ func execute_turn():
 		if lights_on:
 			stats.is_asleep = false
 		
-	if stats.dirty > 40.0:
+	if stats.dirty > 70.0:
 		change.sick += 1.0
-	elif stats.dirty > 70.0:
-		change.sick += 2.0
+	elif stats.dirty > 90.0:
+		change.sick += 3.0
+	elif stats.dirty < 20.0:
+		change.sick -= 1.0
 	
 	# the fox likes to be stinky
 	if stats.dirty > 30.0:

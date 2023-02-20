@@ -16,9 +16,9 @@ shader_param/speed_y = null
 [sub_resource type="DynamicFont" id=5]
 font_data = ExtResource( 7 )
 
-[sub_resource type="StyleBoxTexture" id=4]
-content_margin_left = 3.0
-content_margin_right = 4.0
+[sub_resource type="StyleBoxTexture" id=19]
+content_margin_left = 4.0
+content_margin_right = 5.0
 content_margin_top = 4.0
 content_margin_bottom = 4.0
 texture = ExtResource( 5 )
@@ -40,8 +40,8 @@ Label/constants/shadow_offset_x = 0
 Label/constants/shadow_offset_y = 0
 Label/fonts/font = SubResource( 5 )
 Label/styles/normal = null
-Panel/styles/panel = SubResource( 4 )
-PanelContainer/styles/panel = SubResource( 4 )
+Panel/styles/panel = SubResource( 19 )
+PanelContainer/styles/panel = SubResource( 19 )
 
 [node name="MatchGame" type="Node" groups=["scene"]]
 script = ExtResource( 1 )
