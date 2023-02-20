@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://ui/ui_theme.tres" type="Theme" id=1]
 [ext_resource path="res://scenes/flowershop/ui/icons/light_off.png" type="Texture" id=2]
@@ -16,8 +16,11 @@
 [ext_resource path="res://ui/scroll.gdshader" type="Shader" id=14]
 [ext_resource path="res://scenes/flowershop/ui/stats/honey_drop.png" type="Texture" id=15]
 [ext_resource path="res://scenes/flowershop/ui/controls/tiled_bg.png" type="Texture" id=16]
+[ext_resource path="res://scenes/flowershop/ui/icons/food_off.png" type="Texture" id=17]
 [ext_resource path="res://ui/fonts/Minimum.ttf" type="DynamicFontData" id=18]
 [ext_resource path="res://scenes/flowershop/ui/icons/back.png" type="Texture" id=19]
+[ext_resource path="res://scenes/flowershop/ui/icons/bath_off.png" type="Texture" id=20]
+[ext_resource path="res://scenes/flowershop/ui/icons/game_off.png" type="Texture" id=21]
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_bottom = 0.0
@@ -157,6 +160,11 @@ margin_right = 151.0
 margin_bottom = 24.0
 
 [node name="Food" parent="BottomPanel/Controls" instance=ExtResource( 13 )]
+toggle_mode = false
+bind_to_timer = "eat"
+
+[node name="icon_off" parent="BottomPanel/Controls/Food" index="0"]
+texture = ExtResource( 17 )
 
 [node name="Light" parent="BottomPanel/Controls" instance=ExtResource( 13 )]
 margin_left = 16.0
@@ -172,10 +180,12 @@ texture = ExtResource( 8 )
 [node name="Game" parent="BottomPanel/Controls" instance=ExtResource( 13 )]
 margin_left = 32.0
 margin_right = 47.0
+toggle_mode = false
+bind_to_timer = "play"
 
 [node name="icon_off" parent="BottomPanel/Controls/Game" index="0"]
 show_behind_parent = false
-texture = ExtResource( 5 )
+texture = ExtResource( 21 )
 
 [node name="icon_on" parent="BottomPanel/Controls/Game" index="1"]
 show_behind_parent = false
@@ -187,6 +197,8 @@ show_behind_parent = false
 [node name="Cure" parent="BottomPanel/Controls" instance=ExtResource( 13 )]
 margin_left = 48.0
 margin_right = 63.0
+toggle_mode = false
+bind_to_timer = "medicine"
 
 [node name="icon_off" parent="BottomPanel/Controls/Cure" index="0"]
 show_behind_parent = false
@@ -202,10 +214,12 @@ show_behind_parent = false
 [node name="Bath" parent="BottomPanel/Controls" instance=ExtResource( 13 )]
 margin_left = 64.0
 margin_right = 79.0
+toggle_mode = false
+bind_to_timer = "bathe"
 
 [node name="icon_off" parent="BottomPanel/Controls/Bath" index="0"]
 show_behind_parent = false
-texture = ExtResource( 9 )
+texture = ExtResource( 20 )
 
 [node name="icon_on" parent="BottomPanel/Controls/Bath" index="1"]
 show_behind_parent = false
@@ -217,6 +231,7 @@ show_behind_parent = false
 [node name="Health" parent="BottomPanel/Controls" instance=ExtResource( 13 )]
 margin_left = 80.0
 margin_right = 95.0
+toggle_mode = false
 
 [node name="icon_off" parent="BottomPanel/Controls/Health" index="0"]
 show_behind_parent = false
@@ -232,6 +247,7 @@ show_behind_parent = false
 [node name="Gift" parent="BottomPanel/Controls" instance=ExtResource( 13 )]
 margin_left = 96.0
 margin_right = 111.0
+toggle_mode = false
 
 [node name="icon_off" parent="BottomPanel/Controls/Gift" index="0"]
 show_behind_parent = false
@@ -247,6 +263,7 @@ show_behind_parent = false
 [node name="Mail" parent="BottomPanel/Controls" instance=ExtResource( 13 )]
 margin_left = 131.0
 margin_right = 146.0
+toggle_mode = false
 
 [node name="icon_off" parent="BottomPanel/Controls/Mail" index="0"]
 show_behind_parent = false
@@ -261,6 +278,7 @@ show_behind_parent = false
 
 [node name="Back" parent="BottomPanel/Controls" instance=ExtResource( 13 )]
 visible = false
+toggle_mode = false
 
 [node name="icon_off" parent="BottomPanel/Controls/Back" index="0"]
 texture = ExtResource( 19 )

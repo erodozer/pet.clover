@@ -8,6 +8,8 @@ var performing_action = false
 var left_bound
 var right_bound
 
+onready var sprite = get_node("Sprite")
+
 func _ready():
 	GameState.connect("stats_changed", self, "_update_stats")
 	
@@ -17,8 +19,6 @@ func _update_stats(stats):
 func move_to(target: Vector2):
 	# move clover over to the point on the floor
 	var tween = create_tween()
-	
-	var sprite = get_node("Sprite")
 	
 	var facing = sign(position.x - target.x)
 	var destination = target.x + (30 * sign(facing))
@@ -43,14 +43,24 @@ func _wander():
 	yield(move_to(Vector2(next, 0.0)), "completed")
 	
 func _rest():
-	return
+	sprite.play("sleep")
+	sprite.scale.x = 1.0
+	yield(get_tree(), "idle_frame")
+
+func _sick():
+	sprite.play("sick")
+	sprite.scale.x = 1.0
+	yield(get_tree(), "idle_frame")
 	
 func next_action():
 	var now = Time.get_unix_time_from_system()
 	pacing = now + rand_range(5, 15)
+	performing_action = true
 	
 	if GameState.stats.is_asleep:
 		yield(_rest(), "completed")
+	elif GameState.stats.sick > 50.0:
+		yield(_sick(), "completed")
 	else:
 		yield(_wander(), "completed")
 	

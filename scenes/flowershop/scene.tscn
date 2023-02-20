@@ -188,8 +188,7 @@ script = ExtResource( 27 )
 [node name="Sprite" type="AnimatedSprite" parent="ShopView/Fox"]
 position = Vector2( 0, -19 )
 frames = ExtResource( 5 )
-animation = "sit"
-frame = 3
+animation = "sleep"
 playing = true
 
 [node name="Dirty" type="Node2D" parent="ShopView/Fox"]
@@ -242,7 +241,6 @@ material = SubResource( 15 )
 position = Vector2( 105, -39 )
 frames = ExtResource( 18 )
 animation = "nuggie"
-frame = 6
 playing = true
 script = ExtResource( 28 )
 

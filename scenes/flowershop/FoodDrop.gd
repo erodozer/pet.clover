@@ -32,9 +32,10 @@ func eat():
 	yield(self, "animation_finished")
 	position = Vector2(-1000, -1000)
 
-	var now = Time.get_unix_time_from_system()
 	GameState.stats = {
 		"hungry": GameState.stats.hungry + FOODS[food_type].hungry,
 	}
-	GameState.action_timers[GameState.ActionType.Eat] = now + FOODS[food_type].cooldown
-	
+	GameState.timers = {
+		"eat": GameState.now() + FOODS[food_type].cooldown
+	}
+

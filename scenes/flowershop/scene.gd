@@ -14,14 +14,15 @@ func _on_UIControls_action_pressed(action_type, is_pressed):
 				get_node("%ShopView/Background").play("lights_off")
 		"food":
 			_drop_food()
-		"medicine":
+		"cure":
 			GameState.stats = {
 				"sick": 0.0
 			}
-			var now = Time.get_unix_time_from_system()
 			# medicine should not be allowed frequent usage
 			# to encourage you to properly take care of the fox
-			GameState.action_timers[GameState.ActionType.Medicine] = now + 300
+			GameState.timers = {
+				"medicine": GameState.now() + 1800
+			}
 		"bath":
 			_bathe()
 		"game":
@@ -84,8 +85,9 @@ func _bathe():
 	GameState.stats = {
 		"dirty": 0.0
 	}
-	var now = Time.get_unix_time_from_system()
-	GameState.action_timers[GameState.ActionType.Bathe] = now + 30.0
+	GameState.timers = {
+		"bathe": GameState.now() + 180 # 3 minutes cooldown
+	}
 	
 	yield(get_tree().create_timer(3.0), "timeout")
 	yield(get_node("Transition").fade_in(), "completed")

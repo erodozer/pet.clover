@@ -112,6 +112,9 @@ func game_finished():
 		# also grand bonus Honey as a prize
 		"honey": GameState.stats.honey + score * 10,
 	}
+	GameState.timers = {
+		"play": GameState.now() + 300,
+	}
 	
 	SceneManager.change_scene("flowershop")
 

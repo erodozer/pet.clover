@@ -3,19 +3,12 @@ extends Node
 # number of seconds between turns
 const UPDATE_FREQ = 1.0
 
-enum ActionType {
-	Eat,
-	Bathe,
-	Play,
-	Medicine
-}
-
-var action_timers = {
-	ActionType.Eat: 0,
-	ActionType.Bathe: 0,
-	ActionType.Play: 0,
-	ActionType.Medicine: 0,
-}
+var timers = {
+	"eat": 0,
+	"bathe": 0,
+	"play": 0,
+	"medicine": 0,
+} setget _update_timers
 var next_update_at = 0
 
 var stats = {
@@ -33,10 +26,17 @@ var stats = {
 var lights_on = true
 
 signal stats_changed(stats)
+signal timers_changed(timers)
+
+func now() -> float:
+	return Time.get_unix_time_from_system()
 
 func can_act(action):
-	var next_allowed: int = action_timers.get(action, 999999999)
-	return Time.get_unix_time_from_system() > next_allowed
+	if not action:
+		return true
+	
+	var next_allowed: float = timers.get(action, 999999999.0)
+	return now() > next_allowed
 
 func _update_stats(change):
 	stats = {
@@ -51,6 +51,15 @@ func _update_stats(change):
 		"is_asleep": change.get("is_asleep", stats.is_asleep),
 	}
 	emit_signal("stats_changed", stats)
+	
+func _update_timers(change):
+	timers = {
+		"eat": change.get("eat", timers.eat),
+		"bathe": change.get("bathe", timers.bathe),
+		"play": change.get("play", timers.play),
+		"medicine": change.get("medicine", timers.medicine),
+	}
+	emit_signal("timers_changed", timers)
 
 func execute_turn():
 	var change = stats.duplicate()
