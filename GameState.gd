@@ -50,7 +50,7 @@ func now() -> float:
 	return Time.get_unix_time_from_system()
 
 func can_act(action):
-	if not action:
+	if not (action in timers):
 		return true
 	
 	if stats.is_asleep:
