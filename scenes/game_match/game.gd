@@ -1,9 +1,11 @@
 extends Node
 
+const PICK_COUNT = 2
+
 onready var cards = get_node("%Cards").get_children()
 onready var fox = get_node("%Fox")
 
-var selected = [null, null]
+var selected = []
 var started = false
 
 var turns = 0
@@ -14,13 +16,13 @@ func _ready():
 		i.connect("toggled", self, "_on_flip", [i])
 
 func _start():
-	yield(get_tree().create_timer(2.0), "timeout")
+	NoClick.visible = true
+	yield(get_tree().create_timer(1.0), "timeout")
 	
 	randomize()
 	
 	for i in cards:
 		i.set_pressed(true)  # show all the cards
-		i.disabled = true
 		
 	yield(get_tree().create_timer(3.0), "timeout")
 	
@@ -43,8 +45,7 @@ func _start():
 		
 	started = true
 	
-	for i in cards:
-		i.disabled = false
+	NoClick.visible = false
 		
 func _on_flip(show, card):
 	if not started:
@@ -53,38 +54,36 @@ func _on_flip(show, card):
 	if not show:
 		return
 		
-	card.disabled = true
+	selected.append(card)
 		
-	if not selected[0]:
-		selected[0] = card
-	else:
-		selected[1] = card
-		
-	if not selected[1]:
+	if len(selected) < PICK_COUNT:
 		return
-		
 		
 	turns += 1
 	
-	if selected[0].shape == selected[1].shape:
+	var target_shape = selected[0].shape
+	var matched = true
+	for i in selected:
+		matched = i.shape == target_shape
+	
+	NoClick.visible = true
+		
+	if matched:
 		matches += 1
 		fox.play("yelp")
 		yield(fox, "animation_finished")
 		fox.play("sit")
 	else:
-		NoClick.visible = true
 		yield(get_tree().create_timer(0.8), "timeout")
-		selected[0].set_pressed(false)
-		selected[1].set_pressed(false)
-		selected[0].disabled = false
-		selected[1].disabled = false
+		for i in selected:
+			i.set_pressed(false)
 		
-	selected[0] = null
-	selected[1] = null
+	selected = []
 	
 	get_node("%MatchCount").text = "%02d" % matches
 	get_node("%TurnCount").text = "%02d" % turns
 	
+	yield(get_tree().create_timer(0.3), "timeout")
 	NoClick.visible = false
 	
 	if matches == len(cards) / 2:

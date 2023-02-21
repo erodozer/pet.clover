@@ -16,6 +16,8 @@ func _set_card_shape(value):
 	front.texture = load("res://scenes/game_match/cards/%s.png" % value)
 
 func _toggled(pressed):
+	disabled = pressed # prevent double flipping
+
 	var tween = create_tween()
 	
 	tween.tween_property(self, "rect_scale:x", 0.0, 0.1).from(1.0)
