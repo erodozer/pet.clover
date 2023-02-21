@@ -13,10 +13,10 @@ shader = ExtResource( 6 )
 shader_param/speed_x = 1.0
 shader_param/speed_y = null
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=7]
 font_data = ExtResource( 7 )
 
-[sub_resource type="StyleBoxTexture" id=19]
+[sub_resource type="StyleBoxTexture" id=8]
 content_margin_left = 4.0
 content_margin_right = 5.0
 content_margin_top = 4.0
@@ -38,10 +38,10 @@ Label/constants/line_spacing = 0
 Label/constants/shadow_as_outline = 0
 Label/constants/shadow_offset_x = 0
 Label/constants/shadow_offset_y = 0
-Label/fonts/font = SubResource( 5 )
+Label/fonts/font = SubResource( 7 )
 Label/styles/normal = null
-Panel/styles/panel = SubResource( 19 )
-PanelContainer/styles/panel = SubResource( 19 )
+Panel/styles/panel = SubResource( 8 )
+PanelContainer/styles/panel = SubResource( 8 )
 
 [node name="MatchGame" type="Node" groups=["scene"]]
 script = ExtResource( 1 )
@@ -167,5 +167,5 @@ unique_name_in_owner = true
 position = Vector2( 80, 124 )
 frames = ExtResource( 4 )
 animation = "sit"
-frame = 3
+frame = 1
 playing = true
