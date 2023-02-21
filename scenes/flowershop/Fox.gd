@@ -9,8 +9,6 @@ onready var dirty = get_node("Dirty")
 var tween: SceneTreeTween
 var pause = false setget set_paused
 
-var is_sick = false
-var is_asleep = false
 var next_action = 0
 
 func _ready():
@@ -19,17 +17,11 @@ func _ready():
 func _update_stats(stats):
 	dirty.visible = false
 	
-	if stats.is_asleep and not is_asleep:
+	if stats.is_asleep:
 		_rest()
-	elif stats.sick > 75.0 and not is_sick:
+	elif stats.sick > 75.0:
 		_sick()
-	elif stats.sick < 75.0 and is_sick:
-		is_sick = false
-		_wander()
-	elif not stats.is_asleep and is_asleep:
-		is_asleep = false
-		_wander()
-	if not is_asleep and not is_sick:
+	else:
 		dirty.visible = stats.dirty > 50.0
 
 func set_paused(value = false):
@@ -72,12 +64,10 @@ func _wander():
 func _rest():
 	sprite.play("sleep")
 	sprite.scale.x = 1.0
-	is_asleep = true
 
 func _sick():
 	sprite.play("sick")
 	sprite.scale.x = 1.0
-	is_sick = true
 	
 func _process(_delta):
 	if pause:

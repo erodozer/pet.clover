@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://ui/ui_theme.tres" type="Theme" id=1]
 [ext_resource path="res://scenes/flowershop/ui/icons/light_off.png" type="Texture" id=2]
@@ -6,7 +6,6 @@
 [ext_resource path="res://scenes/flowershop/ui/icons/gift.png" type="Texture" id=4]
 [ext_resource path="res://scenes/flowershop/ui/icons/game.png" type="Texture" id=5]
 [ext_resource path="res://scenes/flowershop/ui/icons/medicine.png" type="Texture" id=6]
-[ext_resource path="res://scenes/flowershop/ui/icons/mail.png" type="Texture" id=7]
 [ext_resource path="res://scenes/flowershop/ui/icons/light.png" type="Texture" id=8]
 [ext_resource path="res://scenes/flowershop/ui/icons/bath.png" type="Texture" id=9]
 [ext_resource path="res://scenes/flowershop/ui/controls/UiControls.gd" type="Script" id=10]
@@ -246,9 +245,8 @@ texture = ExtResource( 3 )
 show_behind_parent = false
 
 [node name="Gift" parent="BottomPanel/Controls" instance=ExtResource( 13 )]
-visible = false
-margin_left = 96.0
-margin_right = 111.0
+margin_left = 127.0
+margin_right = 142.0
 toggle_mode = false
 
 [node name="icon_off" parent="BottomPanel/Controls/Gift" index="0"]
@@ -260,23 +258,6 @@ show_behind_parent = false
 texture = ExtResource( 4 )
 
 [node name="border" parent="BottomPanel/Controls/Gift" index="2"]
-show_behind_parent = false
-
-[node name="Mail" parent="BottomPanel/Controls" instance=ExtResource( 13 )]
-visible = false
-margin_left = 131.0
-margin_right = 146.0
-toggle_mode = false
-
-[node name="icon_off" parent="BottomPanel/Controls/Mail" index="0"]
-show_behind_parent = false
-texture = ExtResource( 7 )
-
-[node name="icon_on" parent="BottomPanel/Controls/Mail" index="1"]
-show_behind_parent = false
-texture = ExtResource( 7 )
-
-[node name="border" parent="BottomPanel/Controls/Mail" index="2"]
 show_behind_parent = false
 
 [node name="Back" parent="BottomPanel/Controls" instance=ExtResource( 13 )]
@@ -296,5 +277,4 @@ texture = ExtResource( 19 )
 [editable path="BottomPanel/Controls/Bath"]
 [editable path="BottomPanel/Controls/Health"]
 [editable path="BottomPanel/Controls/Gift"]
-[editable path="BottomPanel/Controls/Mail"]
 [editable path="BottomPanel/Controls/Back"]

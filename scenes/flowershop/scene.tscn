@@ -189,7 +189,7 @@ script = ExtResource( 27 )
 position = Vector2( 0, -19 )
 frames = ExtResource( 5 )
 animation = "idle"
-frame = 1
+frame = 3
 playing = true
 
 [node name="Dirty" type="Node2D" parent="ShopView/Fox"]
@@ -242,7 +242,7 @@ material = SubResource( 15 )
 position = Vector2( 105, -39 )
 frames = ExtResource( 18 )
 animation = "nuggie"
-frame = 4
+frame = 2
 playing = true
 script = ExtResource( 28 )
 
@@ -265,6 +265,7 @@ position = Vector2( 81, 75 )
 [node name="Sprite" type="AnimatedSprite" parent="WashScene/Fox"]
 position = Vector2( 0, -19 )
 frames = SubResource( 16 )
+frame = 5
 playing = true
 
 [node name="Manuka" type="Sprite" parent="WashScene/Fox"]

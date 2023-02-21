@@ -9,8 +9,9 @@ var timers = {
 	"bathe": 0,
 	"play": 0,
 	"medicine": 0,
+	"update": now(),
 } setget _update_timers
-var next_update_at = 0
+
 var save_sync = 0
 var death_timer = 0
 
@@ -52,8 +53,10 @@ func can_act(action):
 	if not action:
 		return true
 	
+	if stats.is_asleep:
+		return false
+		
 	var next_allowed: float = timers.get(action, 999999999.0)
-	
 	return now() > next_allowed
 
 func _update_stats(change):
@@ -69,7 +72,6 @@ func _update_stats(change):
 		"is_asleep": change.get("is_asleep", stats.is_asleep),
 	}
 	emit_signal("stats_changed", stats)
-	save_data()
 	
 func _update_timers(change):
 	timers = {
@@ -77,9 +79,9 @@ func _update_timers(change):
 		"bathe": change.get("bathe", timers.bathe),
 		"play": change.get("play", timers.play),
 		"medicine": change.get("medicine", timers.medicine),
+		"update": change.get("update", timers.update),
 	}
 	emit_signal("timers_changed", timers)
-	save_data()
 
 func save_data():
 	if now() < save_sync:
@@ -100,10 +102,10 @@ func save_data():
 func execute_turn():
 	var change = stats.duplicate()
 	
-	change.hungry -= 1.0
-	change.dirty += 0.5
-	change.boredom += 0.8
-	change.tired += 0.2
+	change.hungry -= 0.05
+	change.dirty += 0.05
+	change.boredom += 0.005
+	change.tired += 0.01
 	
 	# increase weight when overfed
 	if stats.hungry > 150.0:
@@ -117,10 +119,8 @@ func execute_turn():
 	# go to bed when lights off and tired
 	if stats.tired > 45 and not lights_on:
 		change.is_asleep = true
-		
-	# become tired when feeling sick
-	if stats.sick > 50.0:
-		change.tired += 4.0
+	if stats.sick > 30 and not lights_on:
+		change.is_asleep = true
 		
 	# cover tiredness and sickness by sleeping
 	if stats.is_asleep:
@@ -129,7 +129,9 @@ func execute_turn():
 		
 		# wake up if lights are on
 		if lights_on:
-			stats.is_asleep = false
+			change.is_asleep = false
+	elif stats.sick > 50.0:
+		change.tired += 4.0
 		
 	# get sick from not being clean
 	if stats.dirty > 70.0:
@@ -144,8 +146,6 @@ func execute_turn():
 	
 	change.age += UPDATE_FREQ
 	
-	next_update_at = now() + UPDATE_FREQ
-	
 	# punish the fox for not producing honey
 	if score <= 1.0 and death_timer <= 0:
 		death_timer = now() + 300
@@ -153,25 +153,28 @@ func execute_turn():
 		death_timer = 0
 	
 	self.stats = change
+	self.timers = {
+		"update": now() + UPDATE_FREQ
+	}
 	
 func honey_score():
 	# calculate honey gain based on overall health/happiness
 	var happy = 10.0
 	
 	# the fox likes to be stinky
-	if stats.dirty > 30.0:
-		happy += 1.0
 	# but not too stinky
-	elif stats.dirty > 70.0:
-		happy -= 1.0
+	if stats.dirty > 70.0:
+		happy -= 2.0
+	elif stats.dirty > 30.0:
+		happy += 1.0
 		
 	# produce less honey when unhealthy weight
-	if stats.weight < 9.0:
-		happy -= 1.0
+	if stats.weight < 7.0:
+		happy -= 2.0
+	elif stats.weight < 9.0:
+		happy -= 0.5
 	elif stats.weight > 15.0:
 		happy -= 1.0
-	elif stats.weight < 7.0:
-		happy -= 2.0
 	
 	# produce significantly less when sick
 	if stats.sick > 75.0:
@@ -179,7 +182,7 @@ func honey_score():
 		
 	# not happy if lights are on while tired
 	if stats.tired > 70 and lights_on:
-		happy -= 1.0
+		happy -= 3.0
 	# scared of dark
 	elif stats.tired < 20 and not lights_on:
 		happy -= 0.5
@@ -193,9 +196,14 @@ func honey_score():
 	
 	# keep fed
 	if stats.hungry < 30:
-		happy -= 1.0
-	elif stats.hungry > 70:
+		happy -= 3.0
+	elif stats.hungry > 80:
 		happy += 1.0
+		
+	if stats.boredom > 80:
+		happy -= 4.0
+	elif stats.boredom > 40:
+		happy -= 2.0
 		
 	return clamp(happy, 0.0, 15.0)
 	
@@ -203,15 +211,15 @@ func is_dead():
 	return death_timer and now() > death_timer
 	
 func reset():
-	timers = {
+	self.timers = {
 		"eat": 0,
 		"bathe": 0,
 		"play": 0,
 		"medicine": 0,
+		"update": now() + UPDATE_FREQ,
 	}
-	next_update_at = 0
 
-	stats = {
+	self.stats = {
 		"hungry": 100.0,
 		"weight": 12.4,
 		"boredom": 0.0,
@@ -223,3 +231,7 @@ func reset():
 		"is_asleep": false,
 		"age": 0.0,
 	}
+
+func _process(_delta):
+	# autosave
+	save_data()

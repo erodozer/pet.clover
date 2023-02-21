@@ -57,7 +57,7 @@ modulate = Color( 0.0588235, 0.0352941, 0.0352941, 1 )
 margin_top = 1.0
 margin_right = 23.0
 margin_bottom = 12.0
-text = "Life"
+text = "Food"
 
 [node name="PanelContainer" type="PanelContainer" parent="GridContainer"]
 margin_left = 31.0
@@ -81,7 +81,7 @@ modulate = Color( 0.0588235, 0.0352941, 0.0352941, 1 )
 margin_top = 19.0
 margin_right = 23.0
 margin_bottom = 30.0
-text = "Fun"
+text = "Mood"
 
 [node name="PanelContainer2" type="PanelContainer" parent="GridContainer"]
 margin_left = 31.0
@@ -152,7 +152,7 @@ modulate = Color( 0.0588235, 0.0352941, 0.0352941, 1 )
 margin_top = 86.0
 margin_right = 23.0
 margin_bottom = 97.0
-text = "Mood"
+text = "Status"
 
 [node name="PanelContainer5" type="PanelContainer" parent="GridContainer"]
 margin_left = 31.0

@@ -1,17 +1,15 @@
 extends Node2D
 
+const BATH_COOLDOWN = 120.0  # 2 minutes
+const CURE_COOLDOWN = 1800.0 # 30 minute
+
 onready var fox = get_node("%Fox")
 onready var food = get_node("%FoodDrop")
 
 func _on_UIControls_action_pressed(action_type, is_pressed):
 	match action_type:
 		"light":
-			if is_pressed:
-				get_node("%ShopView/Foreground").play("lights_on")
-				get_node("%ShopView/Background").play("lights_on")
-			else:
-				get_node("%ShopView/Foreground").play("lights_off")
-				get_node("%ShopView/Background").play("lights_off")
+			_toggle_lights(is_pressed)
 		"food":
 			_drop_food()
 		"cure":
@@ -21,7 +19,7 @@ func _on_UIControls_action_pressed(action_type, is_pressed):
 			# medicine should not be allowed frequent usage
 			# to encourage you to properly take care of the fox
 			GameState.timers = {
-				"medicine": GameState.now() + 1800
+				"medicine": GameState.now() + CURE_COOLDOWN
 			}
 		"bath":
 			_bathe()
@@ -38,6 +36,11 @@ func _ready():
 	fox.right_bound = right
 	food.left_bound = left
 	food.right_bound = right
+	
+	# backfill processing for while the player was away
+	var catch_up = clamp((GameState.now() - GameState.timers.update) / float(GameState.UPDATE_FREQ), 0, 300.0)
+	for _i in range(catch_up):
+		GameState.execute_turn()
 	
 func _show_stats():
 	# pause processing while bathing
@@ -70,6 +73,21 @@ func _show_stats():
 	NoClick.visible = false
 	ui.show_menu()
 	
+func _toggle_lights(lights_on):
+	# pause processing while bathing
+	NoClick.visible = true
+	if lights_on:
+		get_node("%ShopView/Foreground").play("lights_on")
+		get_node("%ShopView/Background").play("lights_on")
+	else:
+		get_node("%ShopView/Foreground").play("lights_off")
+		get_node("%ShopView/Background").play("lights_off")
+	
+	yield(get_tree().create_timer(1.5), "timeout")
+	# pause processing while bathing
+	NoClick.visible = false
+
+	GameState.lights_on = lights_on
 	
 func _bathe():
 	# pause processing while bathing
@@ -86,7 +104,7 @@ func _bathe():
 		"dirty": 0.0
 	}
 	GameState.timers = {
-		"bathe": GameState.now() + 180 # 3 minutes cooldown
+		"bathe": GameState.now() + BATH_COOLDOWN
 	}
 	
 	yield(get_tree().create_timer(3.0), "timeout")
@@ -113,9 +131,9 @@ func _drop_food(food_type = "nuggie"):
 	NoClick.visible = false
 
 func _process(_delta):
-	if GameState.now() > GameState.next_update_at:
+	if GameState.now() > GameState.timers.update:
 		GameState.execute_turn()
 	
 	if GameState.is_dead():
-		GameState.restart()
+		GameState.reset()
 		SceneManager.change_scene("flowershop")
