@@ -42,4 +42,5 @@ func _on_focus_exited():
 	show_behind_parent = true
 
 func _process(_delta):
-	set_disabled(not GameState.can_act(bind_to_timer))
+	if bind_to_timer != "None":
+		set_disabled(not GameState.can_act(bind_to_timer))

@@ -32,7 +32,7 @@ var lights_on = true
 
 var unlocks = {
 	"game.plinko": false
-}
+} setget _update_unlocks
 
 signal stats_changed(stats)
 signal timers_changed(timers)
@@ -47,9 +47,9 @@ func _ready():
 	var data = parse_json(save_game.get_line())
 	save_game.close()
 	
-	self.stats = data.stats
-	self.timers = data.timers
-	self.unlocks = data.unlocks
+	self.stats = data.get("stats", {})
+	self.timers = data.get("timers", {})
+	self.unlocks = data.get("unlocks", {})
 
 func now() -> float:
 	return Time.get_unix_time_from_system()
@@ -63,6 +63,12 @@ func can_act(action):
 		
 	var next_allowed: float = timers.get(action, 999999999.0)
 	return now() > next_allowed
+
+func _update_unlocks(change):
+	unlocks = {
+		"bath.soap": change.get("bath.soap", false),
+		"game.plinko": change.get("game.plinko", false),
+	}
 
 func _update_stats(change):
 	stats = {
@@ -216,27 +222,29 @@ func honey_score():
 func is_dead():
 	return death_timer and now() > death_timer
 	
-func reset(timers = true, stats = true, hard = false):
-	timers = {
-		"eat": 0,
-		"bathe": 0,
-		"play": 0,
-		"medicine": 0,
-		"update": now() + UPDATE_FREQ,
-	}
+func reset(reset_timers = true, reset_stats = true, hard = false):
+	if reset_timers:
+		timers = {
+			"eat": 0,
+			"bathe": 0,
+			"play": 0,
+			"medicine": 0,
+			"update": now() + UPDATE_FREQ,
+		}
 
-	stats = {
-		"hungry": 100.0,
-		"weight": 12.4,
-		"boredom": 0.0,
-		"dirty": 0.0,
-		"happy": 100.0,
-		"sick": 0.0,
-		"tired": 0.0,
-		"honey": 0.0,
-		"is_asleep": false,
-		"age": 0.0,
-	}
+	if reset_stats:
+		stats = {
+			"hungry": 100.0,
+			"weight": 12.4,
+			"boredom": 0.0,
+			"dirty": 0.0,
+			"happy": 100.0,
+			"sick": 0.0,
+			"tired": 0.0,
+			"honey": 0.0,
+			"is_asleep": false,
+			"age": 0.0,
+		}
 	
 	if hard:
 		unlocks = {}

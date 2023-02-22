@@ -1,5 +1,6 @@
 [gd_resource type="Theme" load_steps=12 format=2]
 
+[ext_resource path="res://ui/panel.png" type="Texture" id=1]
 [ext_resource path="res://ui/fonts/SymphonyoftheNightfont.ttf" type="DynamicFontData" id=2]
 
 [sub_resource type="DynamicFont" id=5]
@@ -52,15 +53,12 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 anti_aliasing = false
 
-[sub_resource type="StreamTexture" id=11]
-load_path = "res://.import/panel.png-d3676b5c1f2d2bf24fb3738c9f3c4916.stex"
-
 [sub_resource type="StyleBoxTexture" id=4]
 content_margin_left = 3.0
 content_margin_right = 4.0
 content_margin_top = 4.0
 content_margin_bottom = 4.0
-texture = SubResource( 11 )
+texture = ExtResource( 1 )
 region_rect = Rect2( 0, 0, 16, 16 )
 margin_left = 3.0
 margin_right = 3.0

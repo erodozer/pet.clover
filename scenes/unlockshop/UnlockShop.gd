@@ -97,9 +97,9 @@ func _on_BuyButton_pressed():
 	}
 	
 	match item.flag:
-		"restart.cooldowns":
+		"reset.cooldowns":
 			GameState.reset(true, false, false)
-		"restart.game":
+		"reset.game":
 			GameState.reset(true, true, true)
 			SceneManager.change_scene("flowershop")
 		_:

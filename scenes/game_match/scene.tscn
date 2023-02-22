@@ -167,4 +167,5 @@ unique_name_in_owner = true
 position = Vector2( 80, 124 )
 frames = ExtResource( 4 )
 animation = "sit"
+frame = 1
 playing = true
