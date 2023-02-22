@@ -14,10 +14,10 @@ func _ready():
 func _process(delta):
 	if Input.is_mouse_button_pressed(BUTTON_LEFT):
 		var mouse_pos = get_viewport().get_mouse_position().x
-		if mouse_pos <= 80 and fox.position.x > 20:
+		if mouse_pos < fox.position.x - 2 and fox.position.x > 20:
 			fox.position.x -= 40 * delta
 			fox.scale.x = 1
-		elif mouse_pos > 80 and fox.position.x < 140:
+		elif mouse_pos > fox.position.x + 2 and fox.position.x < 140:
 			fox.position.x += 40 * delta
 			fox.scale.x = -1
 			
@@ -51,15 +51,15 @@ func game_finished():
 	SceneManager.change_scene("flowershop")
 
 func spawn_ball():
-	if balls_left <= 0:
+	balls_left -= 1
+	if balls_left < 0:
 		game_finished()
 		return
 		
 	remove_child(ball)
 	ball.sleeping = true
 	yield(get_tree(), "physics_frame")
-	balls_left -= 1
-	get_node("%BallCount").text = "%02d" % (balls_left + 1)
+	get_node("%BallCount").text = "%02d" % balls_left
 	ball.linear_velocity = Vector2(0,0)
 	ball.position = Vector2(rand_range(20, 140), rand_range(-50, -90))
 	yield(get_tree().create_timer(1.0), "timeout")

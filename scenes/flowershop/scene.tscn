@@ -242,7 +242,7 @@ material = SubResource( 15 )
 position = Vector2( 105, -39 )
 frames = ExtResource( 18 )
 animation = "nuggie"
-frame = 2
+frame = 4
 playing = true
 script = ExtResource( 28 )
 
@@ -265,7 +265,7 @@ position = Vector2( 81, 75 )
 [node name="Sprite" type="AnimatedSprite" parent="WashScene/Fox"]
 position = Vector2( 0, -19 )
 frames = SubResource( 16 )
-frame = 5
+frame = 3
 playing = true
 
 [node name="Manuka" type="Sprite" parent="WashScene/Fox"]

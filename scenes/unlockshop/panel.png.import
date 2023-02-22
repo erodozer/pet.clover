@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/panel.png-d3676b5c1f2d2bf24fb3738c9f3c4916.stex"
+path="res://.import/panel.png-81bd9c00e4fa64610b5af204b393b388.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/flowershop/ui/button/panel.png"
-dest_files=[ "res://.import/panel.png-d3676b5c1f2d2bf24fb3738c9f3c4916.stex" ]
+source_file="res://scenes/unlockshop/panel.png"
+dest_files=[ "res://.import/panel.png-81bd9c00e4fa64610b5af204b393b388.stex" ]
 
 [params]
 

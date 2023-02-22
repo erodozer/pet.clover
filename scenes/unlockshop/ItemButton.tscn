@@ -1,0 +1,58 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://ui/fonts/Minimum.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://ui/fonts/EarlyGameBoySTD.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=5]
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=4]
+extra_spacing_bottom = -2
+font_data = ExtResource( 1 )
+
+[node name="Button" type="Button"]
+margin_right = 152.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 145, 20 )
+focus_mode = 0
+mouse_default_cursor_shape = 2
+toggle_mode = true
+shortcut_in_tooltip = false
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+custom_constants/margin_right = 4
+custom_constants/margin_top = 4
+custom_constants/margin_left = 4
+custom_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 148.0
+margin_bottom = 16.0
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+margin_right = 110.0
+margin_bottom = 12.0
+size_flags_horizontal = 3
+size_flags_vertical = 5
+custom_fonts/font = SubResource( 5 )
+text = "Plinko"
+valign = 1
+
+[node name="Price" type="Label" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+margin_left = 114.0
+margin_right = 144.0
+margin_bottom = 12.0
+rect_min_size = Vector2( 30, 0 )
+size_flags_vertical = 5
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 4 )
+text = "40000"
+align = 2
+valign = 1

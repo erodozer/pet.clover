@@ -4,7 +4,7 @@
 [ext_resource path="res://scenes/game_match/cards/Card.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/game_match/background.png" type="Texture" id=3]
 [ext_resource path="res://pet/frames.tres" type="SpriteFrames" id=4]
-[ext_resource path="res://scenes/flowershop/ui/button/panel.png" type="Texture" id=5]
+[ext_resource path="res://ui/panel.png" type="Texture" id=5]
 [ext_resource path="res://ui/scroll.gdshader" type="Shader" id=6]
 [ext_resource path="res://ui/fonts/EarlyGameBoySTD.ttf" type="DynamicFontData" id=7]
 
@@ -167,5 +167,4 @@ unique_name_in_owner = true
 position = Vector2( 80, 124 )
 frames = ExtResource( 4 )
 animation = "sit"
-frame = 1
 playing = true

@@ -2,14 +2,14 @@
 
 [ext_resource path="res://ui/scroll.gdshader" type="Shader" id=1]
 [ext_resource path="res://ui/fonts/EarlyGameBoySTD.ttf" type="DynamicFontData" id=2]
-[ext_resource path="res://scenes/flowershop/ui/button/panel.png" type="Texture" id=3]
-[ext_resource path="res://scenes/game_match/background.png" type="Texture" id=4]
+[ext_resource path="res://scenes/game_match/background.png" type="Texture" id=3]
+[ext_resource path="res://ui/panel.png" type="Texture" id=4]
 [ext_resource path="res://scenes/game_plinko/ball.png" type="Texture" id=5]
 [ext_resource path="res://scenes/game_plinko/peg.png" type="Texture" id=6]
-[ext_resource path="res://pet/frames.tres" type="SpriteFrames" id=7]
-[ext_resource path="res://scenes/game_plinko/game.gd" type="Script" id=8]
-[ext_resource path="res://scenes/game_plinko/bucket_walk_1.png" type="Texture" id=9]
-[ext_resource path="res://scenes/game_plinko/bucket_walk_0.png" type="Texture" id=10]
+[ext_resource path="res://scenes/game_plinko/bucket_walk_0.png" type="Texture" id=7]
+[ext_resource path="res://scenes/game_plinko/bucket_walk_1.png" type="Texture" id=8]
+[ext_resource path="res://pet/frames.tres" type="SpriteFrames" id=9]
+[ext_resource path="res://scenes/game_plinko/game.gd" type="Script" id=10]
 
 [sub_resource type="ShaderMaterial" id=20]
 shader = ExtResource( 1 )
@@ -24,7 +24,7 @@ content_margin_left = 4.0
 content_margin_right = 5.0
 content_margin_top = 4.0
 content_margin_bottom = 4.0
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 region_rect = Rect2( 0, 0, 16, 16 )
 margin_left = 3.0
 margin_right = 3.0
@@ -55,12 +55,12 @@ radius = 4.3
 
 [sub_resource type="SpriteFrames" id=34]
 animations = [ {
-"frames": [ ExtResource( 10 ) ],
+"frames": [ ExtResource( 7 ) ],
 "loop": true,
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 10 ), ExtResource( 9 ) ],
+"frames": [ ExtResource( 7 ), ExtResource( 8 ) ],
 "loop": true,
 "name": "walk",
 "speed": 5.0
@@ -101,13 +101,13 @@ extents = Vector2( 100, 10 )
 extents = Vector2( 100, 7 )
 
 [node name="Plinko" type="Node" groups=["scene"]]
-script = ExtResource( 8 )
+script = ExtResource( 10 )
 
 [node name="Background" type="TextureRect" parent="."]
 material = SubResource( 20 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 4 )
+texture = ExtResource( 3 )
 expand = true
 stretch_mode = 2
 
@@ -182,9 +182,8 @@ texture = ExtResource( 5 )
 unique_name_in_owner = true
 position = Vector2( 80, 146 )
 z_index = 1
-frames = ExtResource( 7 )
+frames = ExtResource( 9 )
 animation = "idle"
-frame = 4
 playing = true
 offset = Vector2( 8, 0 )
 

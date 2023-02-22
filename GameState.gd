@@ -30,6 +30,10 @@ var stats = {
 
 var lights_on = true
 
+var unlocks = {
+	"game.plinko": false
+}
+
 signal stats_changed(stats)
 signal timers_changed(timers)
 
@@ -45,6 +49,7 @@ func _ready():
 	
 	self.stats = data.stats
 	self.timers = data.timers
+	self.unlocks = data.unlocks
 
 func now() -> float:
 	return Time.get_unix_time_from_system()
@@ -93,6 +98,7 @@ func save_data():
 		to_json({
 			"stats": stats,
 			"timers": timers,
+			"unlocks": unlocks,
 		})
 	)
 	save_game.close()
@@ -210,8 +216,8 @@ func honey_score():
 func is_dead():
 	return death_timer and now() > death_timer
 	
-func reset():
-	self.timers = {
+func reset(timers = true, stats = true, hard = false):
+	timers = {
 		"eat": 0,
 		"bathe": 0,
 		"play": 0,
@@ -219,7 +225,7 @@ func reset():
 		"update": now() + UPDATE_FREQ,
 	}
 
-	self.stats = {
+	stats = {
 		"hungry": 100.0,
 		"weight": 12.4,
 		"boredom": 0.0,
@@ -231,6 +237,9 @@ func reset():
 		"is_asleep": false,
 		"age": 0.0,
 	}
+	
+	if hard:
+		unlocks = {}
 
 func _process(_delta):
 	# autosave

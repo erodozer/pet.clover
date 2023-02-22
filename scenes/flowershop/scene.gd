@@ -24,10 +24,11 @@ func _on_UIControls_action_pressed(action_type, is_pressed):
 		"bath":
 			_bathe()
 		"game":
-			# hard code to match game for now
-			SceneManager.change_scene("game_match")
+			_game()
 		"health":
 			_show_stats()
+		"gift":
+			SceneManager.change_scene("unlockshop")
 	
 func _ready():
 	var left = get_node("%LeftBound").position.x
@@ -88,7 +89,18 @@ func _toggle_lights(lights_on):
 	NoClick.visible = false
 
 	GameState.lights_on = lights_on
+
+func _game():
+	var games = ["game_match"]
 	
+	# add unlockable games
+	if GameState.unlocks.get("game.plinko", false):
+		games.append("game_plinko")
+		
+	var game = games[randi() % len(games)]
+	
+	SceneManager.change_scene(game)
+
 func _bathe():
 	# pause processing while bathing
 	NoClick.visible = true
@@ -100,9 +112,16 @@ func _bathe():
 	get_node("ShopView").visible = false
 	yield(get_node("Transition").fade_out(), "completed")
 
-	GameState.stats = {
-		"dirty": 0.0
-	}
+	# better soap completely cleans the fox
+	if GameState.unlocks.get("bath.soap", false):
+		GameState.stats = {
+			"dirty": 0.0,
+		}
+	else:
+		GameState.stats = {
+			"dirty": GameState.stats.dirty - 40,
+		}
+	
 	GameState.timers = {
 		"bathe": GameState.now() + BATH_COOLDOWN
 	}
