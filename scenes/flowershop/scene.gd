@@ -6,6 +6,19 @@ const CURE_COOLDOWN = 1800.0 # 30 minute
 onready var fox = get_node("%Fox")
 onready var food = get_node("%FoodDrop")
 
+func _on_TwitchIntegration_chat_command(action):
+	match action:
+		"lights off":
+			_toggle_lights(false)
+		"lights on":
+			_toggle_lights(true)
+		"food", "give food":
+			_drop_food()
+		"bath", "bathe", "wash":
+			_bathe()
+		"heal", "cure", "give medicine":
+			_give_medicine()
+		
 func _on_UIControls_action_pressed(action_type, is_pressed):
 	match action_type:
 		"light":
@@ -13,14 +26,7 @@ func _on_UIControls_action_pressed(action_type, is_pressed):
 		"food":
 			_drop_food()
 		"cure":
-			GameState.stats = {
-				"sick": 0.0
-			}
-			# medicine should not be allowed frequent usage
-			# to encourage you to properly take care of the fox
-			GameState.timers = {
-				"medicine": GameState.now() + CURE_COOLDOWN
-			}
+			_give_medicine()
 		"bath":
 			_bathe()
 		"game":
@@ -102,6 +108,9 @@ func _game():
 	SceneManager.change_scene(game)
 
 func _bathe():
+	if not GameState.can_act("bathe"):
+		return
+	
 	# pause processing while bathing
 	NoClick.visible = true
 	
@@ -136,7 +145,23 @@ func _bathe():
 	NoClick.visible = false
 	fox.pause = false
 	
+func _give_medicine():
+	if not GameState.can_act("medicine"):
+		return
+		
+	GameState.stats = {
+		"sick": 0.0
+	}
+	# medicine should not be allowed frequent usage
+	# to encourage you to properly take care of the fox
+	GameState.timers = {
+		"medicine": GameState.now() + CURE_COOLDOWN
+	}
+	
 func _drop_food(food_type = "nuggie"):
+	if not GameState.can_act("eat"):
+		return
+		
 	# pause processing while lookin for food
 	NoClick.visible = true
 	
@@ -156,3 +181,4 @@ func _process(_delta):
 	if GameState.is_dead():
 		GameState.reset()
 		SceneManager.change_scene("flowershop")
+
