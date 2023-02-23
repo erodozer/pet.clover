@@ -6,7 +6,14 @@ const CURE_COOLDOWN = 1800.0 # 30 minute
 onready var fox = get_node("%Fox")
 onready var food = get_node("%FoodDrop")
 
+# barriers around twitch chat to prevent
+# processing too many commands or simultaneous commands
+var accepting_actions = true
+
 func _on_TwitchIntegration_chat_command(action):
+	if not accepting_actions:
+		return
+		
 	match action:
 		"lights off":
 			_toggle_lights(false)
@@ -50,6 +57,7 @@ func _ready():
 		GameState.execute_turn()
 	
 func _show_stats():
+	accepting_actions = false
 	# pause processing while bathing
 	NoClick.visible = true
 
@@ -79,8 +87,10 @@ func _show_stats():
 	yield(tween, "finished")
 	NoClick.visible = false
 	ui.show_menu()
+	accepting_actions = true
 	
 func _toggle_lights(lights_on):
+	accepting_actions = false
 	# pause processing while bathing
 	NoClick.visible = true
 	if lights_on:
@@ -95,8 +105,10 @@ func _toggle_lights(lights_on):
 	NoClick.visible = false
 
 	GameState.lights_on = lights_on
+	accepting_actions = true
 
 func _game():
+	accepting_actions = false
 	var games = ["game_match"]
 	
 	# add unlockable games
@@ -111,6 +123,7 @@ func _bathe():
 	if not GameState.can_act("bathe"):
 		return
 	
+	accepting_actions = false
 	# pause processing while bathing
 	NoClick.visible = true
 	
@@ -144,11 +157,13 @@ func _bathe():
 	# pause processing while lookin for food
 	NoClick.visible = false
 	fox.pause = false
+	accepting_actions = true
 	
 func _give_medicine():
 	if not GameState.can_act("medicine"):
 		return
 		
+	accepting_actions = false
 	GameState.stats = {
 		"sick": 0.0
 	}
@@ -157,11 +172,13 @@ func _give_medicine():
 	GameState.timers = {
 		"medicine": GameState.now() + CURE_COOLDOWN
 	}
+	accepting_actions = true
 	
 func _drop_food(food_type = "nuggie"):
 	if not GameState.can_act("eat"):
 		return
 		
+	accepting_actions = false
 	# pause processing while lookin for food
 	NoClick.visible = true
 	
@@ -173,6 +190,7 @@ func _drop_food(food_type = "nuggie"):
 	fox.pause = false
 	
 	NoClick.visible = false
+	accepting_actions = true
 
 func _process(_delta):
 	if GameState.now() > GameState.timers.update:
@@ -181,4 +199,3 @@ func _process(_delta):
 	if GameState.is_dead():
 		GameState.reset()
 		SceneManager.change_scene("flowershop")
-

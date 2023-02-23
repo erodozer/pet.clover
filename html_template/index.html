@@ -35,7 +35,6 @@
                 const url = (window.location != window.parent.location)
                     ? document.referrer
                     : document.location.href;
-                console.log(url);
                 const twitchChannel = new URLSearchParams(url.substring(url.indexOf('?'))).get('twitch');
 
                 if (!twitchChannel) {
