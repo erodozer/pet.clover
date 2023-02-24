@@ -12,7 +12,7 @@ func _update_stats(stats):
 		mood = "Hungry"
 	if stats.weight < 7.0:
 		mood = "Malnurished"
-	if stats.boredom < 30.0:
+	if stats.boredom > 70.0:
 		mood = "Bored"
 	if stats.dirty > 50.0:
 		mood = "Stinky"
