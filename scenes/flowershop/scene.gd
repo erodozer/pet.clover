@@ -27,6 +27,9 @@ func _on_TwitchIntegration_chat_command(action):
 			_give_medicine()
 		
 func _on_UIControls_action_pressed(action_type, is_pressed):
+	if not accepting_actions:
+		return
+		
 	match action_type:
 		"light":
 			_toggle_lights(is_pressed)
@@ -114,6 +117,8 @@ func _game():
 	# add unlockable games
 	if GameState.unlocks.get("game.plinko", false):
 		games.append("game_plinko")
+	if GameState.unlocks.get("game.hilo", false):
+		games.append("game_hilo")
 		
 	var game = games[randi() % len(games)]
 	

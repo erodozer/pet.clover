@@ -1,0 +1,162 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://ui/fonts/EarlyGameBoySTD.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://ui/scroll.gdshader" type="Shader" id=2]
+[ext_resource path="res://scenes/game_hilo/game.gd" type="Script" id=3]
+[ext_resource path="res://scenes/game_match/background.png" type="Texture" id=4]
+[ext_resource path="res://scenes/game_hilo/cards/Card.tscn" type="PackedScene" id=5]
+[ext_resource path="res://pet/frames.tres" type="SpriteFrames" id=6]
+[ext_resource path="res://ui/ui_theme.tres" type="Theme" id=7]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 2 )
+shader_param/speed_x = 1.0
+shader_param/speed_y = null
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 1 )
+
+[sub_resource type="Theme" id=3]
+Label/colors/font_color = Color( 0, 0, 0, 1 )
+Label/colors/font_color_shadow = Color( 0, 0, 0, 1 )
+Label/colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+Label/constants/line_spacing = 0
+Label/constants/shadow_as_outline = 0
+Label/constants/shadow_offset_x = 0
+Label/constants/shadow_offset_y = 0
+Label/fonts/font = SubResource( 2 )
+Label/styles/normal = null
+
+[node name="HiLo" type="Node" groups=["scene"]]
+script = ExtResource( 3 )
+
+[node name="Background" type="TextureRect" parent="."]
+material = SubResource( 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 2
+
+[node name="Cards" type="Control" parent="."]
+unique_name_in_owner = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_top = -15.0
+margin_bottom = -15.0
+
+[node name="TheirCard" parent="Cards" instance=ExtResource( 5 )]
+unique_name_in_owner = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -32.0
+margin_top = -29.0
+margin_right = -10.0
+margin_bottom = 2.0
+
+[node name="YourCard" parent="Cards" instance=ExtResource( 5 )]
+unique_name_in_owner = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 7.0
+margin_top = -29.0
+margin_right = 29.0
+margin_bottom = 2.0
+
+[node name="Control" type="Control" parent="."]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = 18.0
+margin_bottom = 18.0
+theme = ExtResource( 7 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = SubResource( 3 )
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/HBoxContainer"]
+margin_left = 8.0
+margin_right = 88.0
+margin_bottom = 12.0
+
+[node name="Label" type="Label" parent="Control/HBoxContainer/HBoxContainer"]
+margin_right = 56.0
+margin_bottom = 12.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/shadow_offset_y = 1
+text = "Correct"
+
+[node name="MatchCount" type="Label" parent="Control/HBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+margin_left = 60.0
+margin_right = 80.0
+margin_bottom = 12.0
+rect_min_size = Vector2( 20, 0 )
+text = "00"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control/HBoxContainer"]
+margin_left = 92.0
+margin_right = 152.0
+margin_bottom = 12.0
+
+[node name="Label" type="Label" parent="Control/HBoxContainer/HBoxContainer2"]
+margin_right = 40.0
+margin_bottom = 12.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/shadow_offset_y = 1
+text = "Cards"
+
+[node name="TurnCount" type="Label" parent="Control/HBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+margin_left = 44.0
+margin_right = 60.0
+margin_bottom = 12.0
+rect_min_size = Vector2( 16, 0 )
+text = "00"
+
+[node name="Guesses" type="HBoxContainer" parent="Control"]
+unique_name_in_owner = true
+visible = false
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = -16.0
+margin_right = -16.0
+margin_bottom = 3.0
+alignment = 1
+
+[node name="High" type="Button" parent="Control/Guesses"]
+margin_right = 62.0
+margin_bottom = 19.0
+focus_mode = 0
+size_flags_horizontal = 3
+enabled_focus_mode = 0
+text = "High"
+
+[node name="Low" type="Button" parent="Control/Guesses"]
+margin_left = 66.0
+margin_right = 128.0
+margin_bottom = 19.0
+focus_mode = 0
+size_flags_horizontal = 3
+enabled_focus_mode = 0
+text = "Low"
+
+[node name="Fox" type="AnimatedSprite" parent="."]
+unique_name_in_owner = true
+position = Vector2( 80, 124 )
+frames = ExtResource( 6 )
+animation = "sit"
+playing = true

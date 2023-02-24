@@ -5,12 +5,12 @@ extends Control
 # how small and simple this app is, might
 # as well keep it hard coded as a dictionary
 const UNLOCKS = [
-#	{
-#		"flag": "game.hilo",
-#		"name": "High-Low",
-#		"price": 25000,
-#		"description": "Play High-Low with Clover"
-#	},
+	{
+		"flag": "game.hilo",
+		"name": "High-Low",
+		"price": 25000,
+		"description": "Play High-Low with Clover"
+	},
 #	{
 #		"flag": "food.burger",
 #		"name": "Burger",
