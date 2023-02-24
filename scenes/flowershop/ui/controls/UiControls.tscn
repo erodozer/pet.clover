@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://ui/ui_theme.tres" type="Theme" id=1]
 [ext_resource path="res://scenes/flowershop/ui/icons/light_off.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://scenes/flowershop/ui/icons/gift.png" type="Texture" id=4]
 [ext_resource path="res://scenes/flowershop/ui/icons/game.png" type="Texture" id=5]
 [ext_resource path="res://scenes/flowershop/ui/icons/medicine.png" type="Texture" id=6]
+[ext_resource path="res://scenes/flowershop/ui/icons/fries.png" type="Texture" id=7]
 [ext_resource path="res://scenes/flowershop/ui/icons/light.png" type="Texture" id=8]
 [ext_resource path="res://scenes/flowershop/ui/icons/bath.png" type="Texture" id=9]
 [ext_resource path="res://scenes/flowershop/ui/controls/UiControls.gd" type="Script" id=10]
@@ -21,6 +22,8 @@
 [ext_resource path="res://scenes/flowershop/ui/icons/bath_off.png" type="Texture" id=20]
 [ext_resource path="res://scenes/flowershop/ui/icons/game_off.png" type="Texture" id=21]
 [ext_resource path="res://scenes/flowershop/ui/icons/medicine_off.png" type="Texture" id=22]
+[ext_resource path="res://scenes/flowershop/ui/icons/nuggie.png" type="Texture" id=23]
+[ext_resource path="res://scenes/flowershop/ui/icons/soju.png" type="Texture" id=24]
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_bottom = 0.0
@@ -268,6 +271,50 @@ texture = ExtResource( 19 )
 [node name="icon_on" parent="BottomPanel/Controls/Back" index="1"]
 texture = ExtResource( 19 )
 
+[node name="Nuggie" parent="BottomPanel/Controls" instance=ExtResource( 13 )]
+visible = false
+margin_left = 32.0
+margin_right = 47.0
+toggle_mode = false
+bind_to_timer = "eat"
+submenu = "food"
+
+[node name="icon_off" parent="BottomPanel/Controls/Nuggie" index="0"]
+texture = ExtResource( 17 )
+
+[node name="icon_on" parent="BottomPanel/Controls/Nuggie" index="1"]
+texture = ExtResource( 23 )
+
+[node name="Fries" parent="BottomPanel/Controls" instance=ExtResource( 13 )]
+visible = false
+margin_left = 48.0
+margin_right = 63.0
+toggle_mode = false
+bind_to_timer = "eat"
+submenu = "food"
+unlockable = "food.fries"
+
+[node name="icon_off" parent="BottomPanel/Controls/Fries" index="0"]
+texture = ExtResource( 17 )
+
+[node name="icon_on" parent="BottomPanel/Controls/Fries" index="1"]
+texture = ExtResource( 7 )
+
+[node name="Soju" parent="BottomPanel/Controls" instance=ExtResource( 13 )]
+visible = false
+margin_left = 64.0
+margin_right = 79.0
+toggle_mode = false
+bind_to_timer = "eat"
+submenu = "food"
+unlockable = "food.soju"
+
+[node name="icon_off" parent="BottomPanel/Controls/Soju" index="0"]
+texture = ExtResource( 17 )
+
+[node name="icon_on" parent="BottomPanel/Controls/Soju" index="1"]
+texture = ExtResource( 24 )
+
 [editable path="BottomPanel/Controls/Food"]
 [editable path="BottomPanel/Controls/Light"]
 [editable path="BottomPanel/Controls/Game"]
@@ -276,3 +323,6 @@ texture = ExtResource( 19 )
 [editable path="BottomPanel/Controls/Health"]
 [editable path="BottomPanel/Controls/Gift"]
 [editable path="BottomPanel/Controls/Back"]
+[editable path="BottomPanel/Controls/Nuggie"]
+[editable path="BottomPanel/Controls/Fries"]
+[editable path="BottomPanel/Controls/Soju"]

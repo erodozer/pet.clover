@@ -103,6 +103,7 @@ tracks/0/keys = {
 script = ExtResource( 16 )
 
 [node name="UIControls" parent="." instance=ExtResource( 17 )]
+unique_name_in_owner = true
 
 [node name="StatusPanel" parent="UIControls" instance=ExtResource( 7 )]
 unique_name_in_owner = true
@@ -137,8 +138,8 @@ unique_name_in_owner = true
 material = SubResource( 15 )
 position = Vector2( 105, -39 )
 frames = ExtResource( 18 )
-animation = "nuggie"
-frame = 7
+animation = "fries:eat"
+frame = 5
 playing = true
 script = ExtResource( 28 )
 
@@ -161,6 +162,7 @@ position = Vector2( 81, 75 )
 [node name="Sprite" type="AnimatedSprite" parent="WashScene/Fox"]
 position = Vector2( 0, -19 )
 frames = SubResource( 16 )
+frame = 4
 playing = true
 
 [node name="Manuka" type="Sprite" parent="WashScene/Fox"]

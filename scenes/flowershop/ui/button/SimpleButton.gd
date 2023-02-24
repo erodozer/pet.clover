@@ -5,6 +5,8 @@ onready var off_icon = get_node("icon_off")
 onready var on_icon = get_node("icon_on")
 
 export(String, "None", "eat", "bathe", "play", "medicine") var bind_to_timer = "None"
+export(String, "None", "food", "game", "stats") var submenu = "None"
+export(String) var unlockable
 
 func _ready():
 	connect("focus_entered", self, "_on_focus_entered")
@@ -43,4 +45,4 @@ func _on_focus_exited():
 
 func _process(_delta):
 	if bind_to_timer != "None":
-		set_disabled(not GameState.can_act(bind_to_timer))
+		set_disabled(not GameState.can_act(bind_to_timer, unlockable))

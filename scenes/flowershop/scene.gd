@@ -5,6 +5,7 @@ const CURE_COOLDOWN = 1800.0 # 30 minute
 
 onready var fox = get_node("%Fox")
 onready var food = get_node("%FoodDrop")
+onready var menu = get_node("%UIControls")
 
 # barriers around twitch chat to prevent
 # processing too many commands or simultaneous commands
@@ -20,7 +21,7 @@ func _on_TwitchIntegration_chat_command(action):
 		"lights on":
 			_toggle_lights(true)
 		"food", "give food":
-			_drop_food()
+			_drop_food("nuggie")
 		"bath", "bathe", "wash":
 			_bathe()
 		"heal", "cure", "give medicine":
@@ -67,7 +68,7 @@ func _show_stats():
 	var ui = get_node("UIControls")
 	var camera = fox.get_node("FollowCamera") as Camera2D
 	
-	ui.show_back()
+	ui.show_submenu("stats")
 	var panel = get_node("%StatusPanel")
 	var tween = create_tween()
 	tween.parallel().tween_property(panel, "rect_position:x", 64.0, 0.3)
@@ -179,11 +180,27 @@ func _give_medicine():
 	}
 	accepting_actions = true
 	
-func _drop_food(food_type = "nuggie"):
+func _drop_food(food_type = null):
 	if not GameState.can_act("eat"):
 		return
 		
 	accepting_actions = false
+	
+	if not food_type:
+		food_type = "nuggie"
+		if GameState.unlocks.get("food.fries", false) or \
+		  GameState.unlocks.get("food.soju", false):
+			menu.show_submenu("food")
+			var result = yield(menu, "action_pressed")
+			var action = result[0]
+			
+			if action == "back":
+				menu.show_menu()
+				accepting_actions = true
+				return
+			food_type = action
+			menu.show_menu()
+			
 	# pause processing while lookin for food
 	NoClick.visible = true
 	

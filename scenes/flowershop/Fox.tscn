@@ -71,7 +71,6 @@ script = ExtResource( 2 )
 position = Vector2( 0, -19 )
 frames = ExtResource( 3 )
 animation = "walk"
-frame = 2
 playing = true
 
 [node name="Dirty" type="Node2D" parent="."]

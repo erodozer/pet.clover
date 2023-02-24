@@ -13,14 +13,16 @@ func _ready():
 	clock.connect("pressed", self, "_on_clock_toggled")
 	GameState.connect("stats_changed", self, "_update_stats")
 
-func show_back():
+func show_submenu(submenu):
 	for button in get_node("%Controls").get_children():
-		button.visible = false
+		button.visible = button.submenu == submenu and \
+			(not button.unlockable or GameState.unlocks.get(button.unlockable))
+		
 	get_node("%Controls/Back").visible = true
 	
 func show_menu():
 	for button in get_node("%Controls").get_children():
-		button.visible = true
+		button.visible = button.submenu == "None"
 	get_node("%Controls/Back").visible = false
 
 func _on_button_press(button):

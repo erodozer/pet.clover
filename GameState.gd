@@ -30,9 +30,7 @@ var stats = {
 
 var lights_on = true
 
-var unlocks = {
-	"game.plinko": false
-} setget _update_unlocks
+var unlocks = {} setget _update_unlocks
 
 signal stats_changed(stats)
 signal timers_changed(timers)
@@ -54,11 +52,14 @@ func _ready():
 func now() -> float:
 	return Time.get_unix_time_from_system()
 
-func can_act(action):
+func can_act(action, unlockable = null):
 	if not (action in timers):
 		return true
 	
 	if stats.is_asleep:
+		return false
+		
+	if unlockable and not unlocks.get(unlockable, false):
 		return false
 		
 	var next_allowed: float = timers.get(action, 999999999.0)
@@ -66,8 +67,11 @@ func can_act(action):
 
 func _update_unlocks(change):
 	unlocks = {
-		"bath.soap": change.get("bath.soap", false),
-		"game.plinko": change.get("game.plinko", false),
+		"bath.soap": change.get("bath.soap", unlocks.get("bath.soap", false)),
+		"game.plinko": change.get("game.plinko", unlocks.get("game.plinko", false)),
+		"game.hilo": change.get("game.hilo", unlocks.get("game.hilo", false)),
+		"food.fries": change.get("food.fries", unlocks.get("food.fries", false)),
+		"food.soju": change.get("food.soju", unlocks.get("food.soju", false)),
 	}
 
 func _update_stats(change):

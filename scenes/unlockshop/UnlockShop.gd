@@ -11,12 +11,12 @@ const UNLOCKS = [
 		"price": 25000,
 		"description": "Play High-Low with Clover"
 	},
-#	{
-#		"flag": "food.burger",
-#		"name": "Burger",
-#		"price": 30000,
-#		"description": "Juicy burger, fattens up the fox quickly."
-#	},
+	{
+		"flag": "food.fries",
+		"name": "F. Fries",
+		"price": 30000,
+		"description": "A large order of fries.  Fattens up the fox quickly."
+	},
 #	{
 #		"flag": "food.ramen",
 #		"name": "Ramen",
@@ -35,12 +35,12 @@ const UNLOCKS = [
 		"price": 40000,
 		"description": "Sometimes Clover will want to play Plinko with you"
 	},
-#	{
-#		"flag": "food.boba",
-#		"name": "Matcha Boba",
-#		"price": 60000,
-#		"description": "Give Clover a treat. Not filling, but improves mood"
-#	},
+	{
+		"flag": "food.soju",
+		"name": "Y. Soju",
+		"price": 60000,
+		"description": "Give Clover a treat. Not filling, but improves mood"
+	},
 #	{
 #		"flag": "game.gacha",
 #		"name": "Gacha",
@@ -103,7 +103,9 @@ func _on_BuyButton_pressed():
 			GameState.reset(true, true, true)
 			SceneManager.change_scene("flowershop")
 		_:
-			GameState.unlocks.set(item.flag, true)
+			GameState.unlocks = {
+				item.flag: true,
+			}
 			
 	select_item(true, item)
 
