@@ -70,7 +70,7 @@ script = ExtResource( 2 )
 [node name="Sprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, -19 )
 frames = ExtResource( 3 )
-animation = "walk"
+animation = "idle"
 playing = true
 
 [node name="Dirty" type="Node2D" parent="."]

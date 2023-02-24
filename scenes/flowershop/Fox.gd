@@ -57,9 +57,8 @@ func _wander():
 	# move action
 	var next = rand_range(left_bound, right_bound)
 	
-	yield(move_to(Vector2(next, 0.0)), "completed")
-	
 	next_action = GameState.now() + rand_range(2.0, 10.0)
+	move_to(Vector2(next, 0.0))
 	
 func _rest():
 	sprite.play("sleep")
@@ -81,6 +80,4 @@ func _process(_delta):
 	elif GameState.now() < next_action:
 		return
 	
-	set_process(false)
-	yield(_wander(), "completed")
-	set_process(true)
+	_wander()
