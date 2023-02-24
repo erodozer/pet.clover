@@ -280,7 +280,7 @@ bind_to_timer = "eat"
 submenu = "food"
 
 [node name="icon_off" parent="BottomPanel/Controls/Nuggie" index="0"]
-texture = ExtResource( 17 )
+texture = null
 
 [node name="icon_on" parent="BottomPanel/Controls/Nuggie" index="1"]
 texture = ExtResource( 23 )
@@ -295,7 +295,7 @@ submenu = "food"
 unlockable = "food.fries"
 
 [node name="icon_off" parent="BottomPanel/Controls/Fries" index="0"]
-texture = ExtResource( 17 )
+texture = null
 
 [node name="icon_on" parent="BottomPanel/Controls/Fries" index="1"]
 texture = ExtResource( 7 )
@@ -310,7 +310,7 @@ submenu = "food"
 unlockable = "food.soju"
 
 [node name="icon_off" parent="BottomPanel/Controls/Soju" index="0"]
-texture = ExtResource( 17 )
+texture = null
 
 [node name="icon_on" parent="BottomPanel/Controls/Soju" index="1"]
 texture = ExtResource( 24 )

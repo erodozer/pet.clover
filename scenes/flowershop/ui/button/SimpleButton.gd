@@ -17,7 +17,8 @@ func _ready():
 func set_disabled(disabled):
 	off_icon.visible = disabled
 	on_icon.visible = not disabled
-	
+	mouse_default_cursor_shape = CURSOR_ARROW if disabled else CURSOR_POINTING_HAND
+	focus_mode = FOCUS_NONE if disabled else FOCUS_ALL
 	.set_disabled(disabled)
 	
 func _toggled(button_pressed):
@@ -28,7 +29,8 @@ func _toggled(button_pressed):
 	on_icon.visible = button_pressed
 
 func _on_mouse_entered():
-	grab_focus()
+	if not disabled:
+		grab_focus()
 
 func _on_mouse_exited():
 	if has_focus():
