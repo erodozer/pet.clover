@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://ui/ui_theme.tres" type="Theme" id=1]
 [ext_resource path="res://scenes/flowershop/ui/icons/light_off.png" type="Texture" id=2]
@@ -24,6 +24,7 @@
 [ext_resource path="res://scenes/flowershop/ui/icons/medicine_off.png" type="Texture" id=22]
 [ext_resource path="res://scenes/flowershop/ui/icons/nuggie.png" type="Texture" id=23]
 [ext_resource path="res://scenes/flowershop/ui/icons/soju.png" type="Texture" id=24]
+[ext_resource path="res://scenes/flowershop/ui/icons/details.png" type="Texture" id=25]
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_bottom = 0.0
@@ -315,6 +316,19 @@ texture = null
 [node name="icon_on" parent="BottomPanel/Controls/Soju" index="1"]
 texture = ExtResource( 24 )
 
+[node name="Details" parent="BottomPanel/Controls" instance=ExtResource( 13 )]
+visible = false
+margin_left = 25.0
+margin_right = 40.0
+toggle_mode = false
+submenu = "stats"
+
+[node name="icon_off" parent="BottomPanel/Controls/Details" index="0"]
+texture = null
+
+[node name="icon_on" parent="BottomPanel/Controls/Details" index="1"]
+texture = ExtResource( 25 )
+
 [editable path="BottomPanel/Controls/Food"]
 [editable path="BottomPanel/Controls/Light"]
 [editable path="BottomPanel/Controls/Game"]
@@ -326,3 +340,4 @@ texture = ExtResource( 24 )
 [editable path="BottomPanel/Controls/Nuggie"]
 [editable path="BottomPanel/Controls/Fries"]
 [editable path="BottomPanel/Controls/Soju"]
+[editable path="BottomPanel/Controls/Details"]

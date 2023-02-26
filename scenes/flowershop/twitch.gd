@@ -5,6 +5,7 @@ signal chat_command(action)
 
 var eventBus
 var _cb
+var connected = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -20,4 +21,18 @@ func _ready():
 	
 func handle_chat_action(args):
 	var command = args[0]
-	emit_signal("chat_command", command)
+	var type = command.type
+	var data = command.data
+	# print("message received { type: %s, data: %s }" % [type, data])
+	
+	if not connected and type != "connect":
+		return
+	elif not connected and type == "connect":
+		GameState.TWITCH_ENABLED = true
+		connected = true
+		print("Twitch connected to Godot, adjusting gameplay.")
+		return
+	
+	match type:
+		"chat":
+			emit_signal("chat_command", data)

@@ -32,6 +32,8 @@ var lights_on = true
 
 var unlocks = {} setget _update_unlocks
 
+var TWITCH_ENABLED = false
+
 signal stats_changed(stats)
 signal timers_changed(timers)
 
@@ -76,7 +78,7 @@ func _update_unlocks(change):
 
 func _update_stats(change):
 	stats = {
-		"hungry": clamp(change.get("hungry", stats.hungry), 0.0, 300.0),
+		"hungry": clamp(change.get("hungry", stats.hungry), 0.0, 200.0),
 		"weight": clamp(change.get("weight", stats.weight), 5.0, 25.0),
 		"boredom": clamp(change.get("boredom", stats.boredom), 0.0, 100.0),
 		"dirty": clamp(change.get("dirty", stats.dirty), 0.0, 100.0),
@@ -118,44 +120,58 @@ func save_data():
 func execute_turn():
 	var change = stats.duplicate()
 	
-	change.hungry -= 0.05
-	change.dirty += 0.05
-	change.boredom += 0.005
-	change.tired += 0.01
+	if TWITCH_ENABLED and stats.is_asleep:
+		change.hungry -= 0.05
+		change.dirty += 0.01
+		change.boredom = 0.0
+		change.tired += 0.0
+	elif TWITCH_ENABLED:
+		change.hungry -= 0.4
+		change.dirty += 0.15
+		change.boredom = 0.0
+		change.tired += 0.04
+	elif stats.is_asleep:
+		change.hungry -= 0.05
+		change.dirty += 0.05
+		change.boredom += 0.0
+		change.tired += 0.0
+	else:
+		change.hungry -= 0.15
+		change.dirty += 0.08
+		change.boredom += 0.1
+		change.tired += 0.03
 	
 	# increase weight when overfed
 	if stats.hungry > 150.0:
 		change.weight += 0.01
-	elif stats.hungry > 220.0:
-		change.weight += 0.02
 	# lose weight when starving
 	elif stats.hungry < 40:
 		change.weight -= 0.01
+		
+	# cover tiredness and sickness by sleeping
+	if stats.is_asleep:
+		change.tired -= 0.4
+		change.sick -= 0.2
+		
+		# wake up if lights are on
+		if lights_on:
+			change.is_asleep = false
+	elif stats.sick > 50.0:
+		change.tired += 0.1
+		
+	# get sick from not being clean
+	if stats.dirty > 70.0:
+		change.sick += 0.2
+	elif stats.dirty > 90.0:
+		change.sick += 0.4
+	elif stats.dirty < 20.0:
+		change.sick -= 0.2
 	
 	# go to bed when lights off and tired
 	if stats.tired > 45 and not lights_on:
 		change.is_asleep = true
 	if stats.sick > 30 and not lights_on:
 		change.is_asleep = true
-		
-	# cover tiredness and sickness by sleeping
-	if stats.is_asleep:
-		change.tired -= 3.0
-		change.sick -= 1.0
-		
-		# wake up if lights are on
-		if lights_on:
-			change.is_asleep = false
-	elif stats.sick > 50.0:
-		change.tired += 4.0
-		
-	# get sick from not being clean
-	if stats.dirty > 70.0:
-		change.sick += 1.0
-	elif stats.dirty > 90.0:
-		change.sick += 3.0
-	elif stats.dirty < 20.0:
-		change.sick -= 1.0
 	
 	var score = honey_score()
 	change.honey += score

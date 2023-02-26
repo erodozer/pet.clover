@@ -27,12 +27,23 @@
         <script>
             const bridge = {
                 listeners: [],
+                queue: [],  // hold a queue of messages until there are listeners
                 listen(cb) {
                     bridge.listeners.push(cb);
+                    bridge._process();
                 },
                 send(message){
-                    for (let i of bridge.listeners) {
-                        i(message);
+                    bridge.queue.unshift(message);
+                    bridge._process();
+                },
+                _process() {
+                    if (bridge.listeners.length > 0) {
+                        while (bridge.queue.length > 0) {
+                            const m = bridge.queue.pop()
+                            for (let i of bridge.listeners) {
+                                i(m);
+                            }
+                        }
                     }
                 }
             };
@@ -65,11 +76,19 @@
                     options: { debug: false },
                     channels: [ twitchChannel ],
                 });
-                client.connect().catch(console.error);
+                client.connect().then(() => {
+                    window.GODOT_BRIDGE.send({
+                        type: 'connect',
+                        data: null,
+                    })
+                }).catch(console.error);
                 client.on('message', (channel, tags, message, self) => {
                     if(self) return;
                     if(message.toLowerCase().startsWith('!pet')) {
-                        window.GODOT_BRIDGE.send(message.substr(4).trim());
+                        window.GODOT_BRIDGE.send({
+                            type: 'chat',
+                            data: message.substr(4).trim(),
+                        });
                     }
                 });
             });

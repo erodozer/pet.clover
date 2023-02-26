@@ -78,7 +78,12 @@ func _show_stats():
 	yield(tween, "finished")
 	NoClick.visible = false
 	
-	yield(ui, "action_pressed")
+	while true:
+		var action = yield(ui, "action_pressed")
+		if action[0] == "back":
+			break
+		elif action[0] == "details":
+			panel.toggle_details()
 	
 	# pause processing while bathing
 	NoClick.visible = true
@@ -92,6 +97,7 @@ func _show_stats():
 	NoClick.visible = false
 	ui.show_menu()
 	accepting_actions = true
+	panel.toggle_details(false)
 	
 func _toggle_lights(lights_on):
 	accepting_actions = false
