@@ -59,6 +59,8 @@ func _ready():
 	var catch_up = clamp((GameState.now() - GameState.timers.update) / float(GameState.UPDATE_FREQ), 0, 300.0)
 	for _i in range(catch_up):
 		GameState.execute_turn()
+		
+	Twitch.connect("chat_command", self, "_on_TwitchIntegration_chat_command")
 	
 func _show_stats():
 	accepting_actions = false

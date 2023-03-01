@@ -20,6 +20,7 @@ IntegerResolutionHandler="*res://addons/integer_resolution_handler/integer_resol
 GameState="*res://GameState.gd"
 SceneManager="*res://addons/godot-ssm/SceneManager.tscn"
 NoClick="*res://ui/NoClick.tscn"
+Twitch="*res://twitch.gd"
 
 [debug]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://scenes/flowershop/environment/foreground_lightson.png" type="Texture" id=1]
 [ext_resource path="res://scenes/flowershop/environment/background_lightson.png" type="Texture" id=2]
@@ -8,7 +8,6 @@
 [ext_resource path="res://scenes/flowershop/environment/foreground_lights_01.png" type="Texture" id=6]
 [ext_resource path="res://scenes/flowershop/ui/stats/StatusPanel.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/flowershop/environment/background_lights_02.png" type="Texture" id=8]
-[ext_resource path="res://scenes/flowershop/twitch.gd" type="Script" id=9]
 [ext_resource path="res://scenes/flowershop/environment/foreground_lightsoff.png" type="Texture" id=13]
 [ext_resource path="res://scenes/flowershop/environment/foreground_lights_02.png" type="Texture" id=14]
 [ext_resource path="res://pet/manuka.png" type="Texture" id=15]
@@ -162,7 +161,7 @@ position = Vector2( 81, 75 )
 [node name="Sprite" type="AnimatedSprite" parent="WashScene/Fox"]
 position = Vector2( 0, -19 )
 frames = SubResource( 16 )
-frame = 4
+frame = 6
 playing = true
 
 [node name="Manuka" type="Sprite" parent="WashScene/Fox"]
@@ -176,8 +175,4 @@ anims/idle = SubResource( 18 )
 
 [node name="Transition" parent="." instance=ExtResource( 21 )]
 
-[node name="TwitchIntegration" type="Node" parent="."]
-script = ExtResource( 9 )
-
 [connection signal="action_pressed" from="UIControls" to="." method="_on_UIControls_action_pressed"]
-[connection signal="chat_command" from="TwitchIntegration" to="." method="_on_TwitchIntegration_chat_command"]
