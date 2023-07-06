@@ -1,0 +1,12 @@
+[
+	{
+		"git": "erodozer/tmi.gd"
+	},
+	{
+		"git": "erodozer/godot-addons",
+		"include": [
+			"simple-scene-manager",
+			"godash"
+		]
+	}
+]

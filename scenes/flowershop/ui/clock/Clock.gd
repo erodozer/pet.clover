@@ -1,7 +1,7 @@
 extends Button
 
-onready var minute_hand = get_node("%Minute")
-onready var hour_hand = get_node("%Hour")
+@onready var minute_hand = get_node("%Minute")
+@onready var hour_hand = get_node("%Hour")
 
 func _ready():
 	_update_time()

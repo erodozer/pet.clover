@@ -2,8 +2,8 @@ extends Node
 
 const PICK_COUNT = 2
 
-onready var cards = get_node("%Cards").get_children()
-onready var fox = get_node("%Fox")
+@onready var cards = get_node("%Cards").get_children()
+@onready var fox = get_node("%Fox")
 
 var selected = []
 var started = false
@@ -13,23 +13,23 @@ var matches = 0
 
 func _ready():
 	for i in cards:
-		i.connect("toggled", self, "_on_flip", [i])
+		i.connect("toggled", Callable(self, "_on_flip").bind(i))
 
 func _start():
 	NoClick.visible = true
-	yield(get_tree().create_timer(1.0), "timeout")
+	await get_tree().create_timer(1.0).timeout
 	
 	randomize()
 	
 	for i in cards:
 		i.set_pressed(true)  # show all the cards
 		
-	yield(get_tree().create_timer(3.0), "timeout")
+	await get_tree().create_timer(3.0).timeout
 	
 	for i in cards:
 		i.set_pressed(false)  # show all the cards
 	
-	yield(get_tree().create_timer(0.5), "timeout")
+	await get_tree().create_timer(0.5).timeout
 	
 	# start swapping cards
 	var swaps = 10 + randi() % 30
@@ -40,7 +40,7 @@ func _start():
 		if a == b:
 			continue
 			
-		yield(_swap(cards[a], cards[b]), "completed")
+		await _swap(cards[a], cards[b])
 		swaps -= 1
 		
 	started = true
@@ -71,10 +71,10 @@ func _on_flip(show, card):
 	if matched:
 		matches += 1
 		fox.play("yelp")
-		yield(fox, "animation_finished")
+		await fox.animation_finished
 		fox.play("sit")
 	else:
-		yield(get_tree().create_timer(0.8), "timeout")
+		await get_tree().create_timer(0.8).timeout
 		for i in selected:
 			i.set_pressed(false)
 		
@@ -83,11 +83,11 @@ func _on_flip(show, card):
 	get_node("%MatchCount").text = "%02d" % matches
 	get_node("%TurnCount").text = "%02d" % turns
 	
-	yield(get_tree().create_timer(0.3), "timeout")
+	await get_tree().create_timer(0.3).timeout
 	NoClick.visible = false
 	
 	if matches == len(cards) / 2:
-		yield(get_tree().create_timer(0.8), "timeout")
+		await get_tree().create_timer(0.8).timeout
 		game_finished()
 		
 func game_finished():
@@ -120,14 +120,14 @@ func game_finished():
 func _swap(a: Control, b: Control):
 	var tween = create_tween()
 	
-	tween.parallel().tween_property(a, "rect_position", b.rect_position, 0.2)\
+	tween.parallel().tween_property(a, "position", b.position, 0.2)\
 		.set_ease(Tween.EASE_IN_OUT)\
 		.set_trans(Tween.TRANS_QUAD)
-	tween.parallel().tween_property(b, "rect_position", a.rect_position, 0.2)\
+	tween.parallel().tween_property(b, "position", a.position, 0.2)\
 		.set_ease(Tween.EASE_IN_OUT)\
 		.set_trans(Tween.TRANS_QUAD)
 	b.show_behind_parent = true
 	
-	yield(tween, "finished")
+	await tween.finished
 
 	b.show_behind_parent = false

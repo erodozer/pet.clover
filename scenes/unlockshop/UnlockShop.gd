@@ -7,13 +7,13 @@ extends Control
 const UNLOCKS = [
 	{
 		"flag": "game.hilo",
-		"name": "High-Low",
+		"name": "High Low",
 		"price": 25000,
 		"description": "Play High-Low with Clover"
 	},
 	{
 		"flag": "food.fries",
-		"name": "F. Fries",
+		"name": "F Fries",
 		"price": 30000,
 		"description": "A large order of fries.  Fattens up the fox quickly."
 	},
@@ -37,7 +37,7 @@ const UNLOCKS = [
 	},
 	{
 		"flag": "food.soju",
-		"name": "Y. Soju",
+		"name": "Y Soju",
 		"price": 60000,
 		"description": "Give Clover a treat. Not filling, but improves mood"
 	},
@@ -65,18 +65,18 @@ var group = ButtonGroup.new()
 
 func _ready():
 	for i in UNLOCKS:
-		var btn = preload("./ItemButton.tscn").instance()
+		var btn = preload("./ItemButton.tscn").instantiate()
 		btn.set_meta("item", i)
-		btn.group = group
-		btn.connect("toggled", self, "select_item", [i])
+		btn.button_group = group
+		btn.connect("toggled", Callable(self, "select_item").bind(i))
 		get_node("%Unlockables").add_child(btn)
 		btn.get_node("%Label").text = i.name
 		btn.get_node("%Price").text = "%d" % i.price
 		
-	GameState.connect("stats_changed", self, "_update_money")
+	GameState.connect("stats_changed", Callable(self, "_update_money"))
 	_update_money(GameState.stats)
 	
-	get_node("%Unlockables").get_child(0).pressed = true
+	get_node("%Unlockables").get_child(0).button_pressed = true
 	
 func _update_money(stats):
 	var honey = stats.honey

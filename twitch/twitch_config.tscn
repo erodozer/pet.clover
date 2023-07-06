@@ -1,0 +1,59 @@
+[gd_scene load_steps=3 format=3 uid="uid://bp2l4iy86r03u"]
+
+[ext_resource type="Theme" uid="uid://cbtikk3125tem" path="res://twitch/config_theme.tres" id="1_2yw6a"]
+[ext_resource type="Script" path="res://twitch/twitch.gd" id="1_qgaqw"]
+
+[node name="TwitchConfig" type="Window"]
+disable_3d = true
+msaa_2d = 1
+gui_snap_controls_to_pixels = false
+title = "Twitch Integration"
+initial_position = 2
+size = Vector2i(300, 140)
+visible = false
+transient = true
+unresizable = true
+content_scale_mode = 1
+theme = ExtResource("1_2yw6a")
+script = ExtResource("1_qgaqw")
+
+[node name="ColorRect" type="PanelContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+text = "Twitch Channel Name"
+
+[node name="TwitchChannel" type="LineEdit" parent="ColorRect/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+
+[node name="ConnectButton" type="Button" parent="ColorRect/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Link"
+
+[node name="DisconnectButton" type="Button" parent="ColorRect/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Unlink"
+
+[node name="ConnectionStatus" type="Label" parent="ColorRect/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Disconnected"
+
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]
+[connection signal="pressed" from="ColorRect/VBoxContainer/HBoxContainer/ConnectButton" to="." method="_on_connect_button_pressed"]
+[connection signal="pressed" from="ColorRect/VBoxContainer/HBoxContainer/DisconnectButton" to="." method="_on_disconnect_button_pressed"]

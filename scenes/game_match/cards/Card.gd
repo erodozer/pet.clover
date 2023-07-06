@@ -1,9 +1,9 @@
 extends Button
 
-export(String, "square", "circle", "star", "triangle") var shape = "square" setget _set_card_shape
+@export var shape = "square": set = _set_card_shape
 
-onready var front = get_node("%Front")
-onready var back = get_node("%Back")
+@onready var front = get_node("%Front")
+@onready var back = get_node("%Back")
 
 func _ready():
 	front.texture = load("res://scenes/game_match/cards/%s.png" % shape)
@@ -20,14 +20,14 @@ func _toggled(pressed):
 
 	var tween = create_tween()
 	
-	tween.tween_property(self, "rect_scale:x", 0.0, 0.1).from(1.0)
+	tween.tween_property(self, "scale:x", 0.0, 0.1).from(1.0)
 	
-	yield(tween, "finished")
+	await tween.finished
 	
 	front.visible = pressed
 	back.visible = not pressed
 	
 	tween = create_tween()
-	tween.tween_property(self, "rect_scale:x", 1.0, 0.1).from(0.0)
+	tween.tween_property(self, "scale:x", 1.0, 0.1).from(0.0)
 	
-	yield(tween, "finished")
+	await tween.finished

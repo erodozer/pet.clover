@@ -6,21 +6,21 @@
 ;   [section] ; section goes between []
 ;   param=value ; assign values to parameters
 
-config_version=4
+config_version=5
 
 [application]
 
 config/name="Pet The Fox"
 run/main_scene="res://Main.tscn"
+config/features=PackedStringArray("4.1")
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/show_image=false
 config/icon="res://icon.png"
 
 [autoload]
 
-IntegerResolutionHandler="*res://addons/integer_resolution_handler/integer_resolution_handler.gd"
 GameState="*res://GameState.gd"
-SceneManager="*res://addons/godot-ssm/SceneManager.tscn"
 NoClick="*res://ui/NoClick.tscn"
-Twitch="*res://twitch.gd"
 
 [debug]
 
@@ -28,21 +28,22 @@ gdscript/warnings/return_value_discarded=false
 
 [display]
 
+window/size/viewport_width=160
+window/size/viewport_height=144
+window/size/window_width_override=800
+window/size/window_height_override=600
+window/subwindows/embed_subwindows=false
+window/stretch/mode="viewport"
 window/integer_resolution_handler/base_width=160
 window/integer_resolution_handler/base_height=144
-window/size/width=160
-window/size/height=144
-window/size/test_width=800
-window/size/test_height=600
-window/stretch/mode="viewport"
-window/stretch/aspect="keep"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/integer_resolution_handler/plugin.cfg" )
+enabled=PackedStringArray()
 
 [gui]
 
+fonts/dynamic_fonts/use_oversampling=false
 common/drop_mouse_on_gui_input_disabled=true
 
 [importer_defaults]
@@ -75,8 +76,13 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method="gl_compatibility"
+textures/default_filters/use_nearest_mipmap_filter=true
+textures/decals/filter=2
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)
+2d/snap/snap_2d_vertices_to_pixel=true
+environment/defaults/default_environment="res://default_env.tres"
 quality/intended_usage/framebuffer_allocation=0
 quality/intended_usage/framebuffer_allocation.mobile=1
 2d/snapping/use_gpu_pixel_snap=true
-environment/default_clear_color=Color( 0, 0, 0, 1 )
-environment/default_environment="res://default_env.tres"

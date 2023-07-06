@@ -1,56 +1,83 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=12 format=3 uid="uid://g71xw0hneqtu"]
 
-[ext_resource path="res://scenes/flowershop/ui/icons/food.png" type="Texture" id=1]
-[ext_resource path="res://scenes/flowershop/ui/button/SimpleButton.gd" type="Script" id=2]
-[ext_resource path="res://scenes/flowershop/ui/button/icon_2.png" type="Texture" id=3]
-[ext_resource path="res://scenes/flowershop/ui/button/icon_1.png" type="Texture" id=4]
-[ext_resource path="res://scenes/flowershop/ui/button/icon_0.png" type="Texture" id=5]
+[ext_resource type="Texture2D" uid="uid://dno0u50xp0qnn" path="res://scenes/flowershop/ui/icons/food.png" id="1"]
+[ext_resource type="Script" path="res://scenes/flowershop/ui/button/SimpleButton.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://bpj60jt8rmttc" path="res://scenes/flowershop/ui/button/icon_2.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://ccu72mg08x0l2" path="res://scenes/flowershop/ui/button/icon_1.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://btdfqdyr8xe8b" path="res://scenes/flowershop/ui/button/icon_0.png" id="5"]
 
-[sub_resource type="StyleBoxEmpty" id=5]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xehc8"]
 
-[sub_resource type="SpriteFrames" id=6]
-animations = [ {
-"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hwv8u"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vlr5x"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o0xue"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6xfyj"]
+
+[sub_resource type="SpriteFrames" id="6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5")
+}],
 "loop": false,
-"name": "off",
+"name": &"off",
 "speed": 24.0
 }, {
-"frames": [ ExtResource( 5 ), ExtResource( 4 ), ExtResource( 3 ) ],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3")
+}],
 "loop": false,
-"name": "on",
+"name": &"on",
 "speed": 24.0
-} ]
+}]
 
 [node name="Food" type="Button"]
 show_behind_parent = true
-margin_right = 15.0
-margin_bottom = 15.0
-rect_min_size = Vector2( 15, 15 )
+custom_minimum_size = Vector2(15, 15)
+offset_right = 15.0
+offset_bottom = 15.0
 mouse_default_cursor_shape = 2
-custom_styles/hover = SubResource( 5 )
-custom_styles/pressed = SubResource( 5 )
-custom_styles/focus = SubResource( 5 )
-custom_styles/disabled = SubResource( 5 )
-custom_styles/normal = SubResource( 5 )
+theme_override_styles/normal = SubResource("StyleBoxEmpty_xehc8")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_hwv8u")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_vlr5x")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_o0xue")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6xfyj")
 toggle_mode = true
 shortcut_in_tooltip = false
-script = ExtResource( 2 )
+flat = true
+script = ExtResource("2")
 
-[node name="icon_off" type="Sprite" parent="."]
+[node name="icon_off" type="Sprite2D" parent="."]
 show_behind_parent = true
-position = Vector2( -1, -1 )
-texture = ExtResource( 1 )
+position = Vector2(-1, -1)
+texture = ExtResource("1")
 centered = false
 
-[node name="icon_on" type="Sprite" parent="."]
+[node name="icon_on" type="Sprite2D" parent="."]
 show_behind_parent = true
-position = Vector2( -1, -1 )
-texture = ExtResource( 1 )
+position = Vector2(-1, -1)
+texture = ExtResource("1")
 centered = false
 
-[node name="border" type="AnimatedSprite" parent="."]
+[node name="border" type="AnimatedSprite2D" parent="."]
 show_behind_parent = true
-position = Vector2( -3, -3 )
-frames = SubResource( 6 )
-animation = "on"
+position = Vector2(-3, -3)
+sprite_frames = SubResource("6")
+animation = &"on"
 centered = false

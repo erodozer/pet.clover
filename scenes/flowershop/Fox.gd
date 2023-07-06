@@ -3,16 +3,16 @@ extends Node2D
 var left_bound
 var right_bound
 
-onready var sprite = get_node("Sprite")
-onready var dirty = get_node("Dirty")
+@onready var sprite = get_node("Sprite2D")
+@onready var dirty = get_node("Dirty")
 
-var tween: SceneTreeTween
-var pause = false setget set_paused
+var tween: Tween
+var pause = false: set = set_paused
 
 var next_action = 0
 
 func _ready():
-	GameState.connect("stats_changed", self, "_update_stats")
+	GameState.connect("stats_changed", Callable(self, "_update_stats"))
 	
 func _update_stats(stats):
 	dirty.visible = false
@@ -49,22 +49,26 @@ func move_to(target: Vector2, padding = 0):
 	sprite.play("walk")
 	
 	# wait for clover to get to the food
-	yield(tween, "finished")
+	await tween.finished
 	sprite.scale.x = facing
 	sprite.play("idle")
 	
 func _wander():
 	# move action
-	var next = rand_range(left_bound, right_bound)
+	var next = randf_range(left_bound, right_bound)
 	
-	next_action = GameState.now() + rand_range(2.0, 10.0)
+	next_action = GameState.now() + randf_range(2.0, 10.0)
 	move_to(Vector2(next, 0.0))
 	
 func _rest():
+	if pause:
+		return
 	sprite.play("sleep")
 	sprite.scale.x = 1.0
 
 func _sick():
+	if pause:
+		return
 	sprite.play("sick")
 	sprite.scale.x = 1.0
 	

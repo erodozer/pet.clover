@@ -1,13 +1,35 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=8 format=3 uid="uid://bfpqbgb4s444m"]
 
-[sub_resource type="GDScript" id=1]
-script/source = "extends Node
+[ext_resource type="PackedScene" uid="uid://dfpyhauugxath" path="res://addons/simple-scene-manager/SceneManager.tscn" id="1_7e46e"]
+[ext_resource type="PackedScene" uid="uid://cmfr6463oc3to" path="res://addons/twitch/tmi.tscn" id="2_u2l37"]
+[ext_resource type="Script" path="res://addons/twitch/models/credentials.gd" id="3_6uk6a"]
+[ext_resource type="PackedScene" uid="uid://dkaal7dxlbvqy" path="res://scenes/flowershop/scene.tscn" id="4_ilass"]
+[ext_resource type="PackedScene" uid="uid://bp2l4iy86r03u" path="res://twitch/twitch_config.tscn" id="4_pk1io"]
+[ext_resource type="Texture2D" uid="uid://dl8n7hbuaqrlf" path="res://ui/transition/dot.png" id="5_qb2ks"]
 
-func _ready():
-	randomize()
-	
-	SceneManager.change_scene(\"flowershop\")
-"
+[sub_resource type="Resource" id="Resource_5gym7"]
+script = ExtResource("3_6uk6a")
+channel = ""
+bot_id = ""
+user_id = ""
+broadcaster_user_id = ""
+client_id = ""
+client_secret = ""
+token = ""
+refresh_token = ""
 
-[node name="Main" type="Node"]
-script = SubResource( 1 )
+[node name="SceneManager" instance=ExtResource("1_7e46e")]
+
+[node name="Twitch" parent="." index="0" instance=ExtResource("2_u2l37")]
+unique_name_in_owner = true
+credentials = SubResource("Resource_5gym7")
+
+[node name="TwitchConfig" parent="Twitch" index="6" instance=ExtResource("4_pk1io")]
+unique_name_in_owner = true
+
+[node name="Fader" parent="Transition" index="0"]
+texture = ExtResource("5_qb2ks")
+
+[node name="ShopScene" parent="Scene" index="0" instance=ExtResource("4_ilass")]
+
+[connection signal="command" from="Twitch" to="Scene/ShopScene" method="_on_twitch_command"]

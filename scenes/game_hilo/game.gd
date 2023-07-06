@@ -1,6 +1,6 @@
 extends Node
 
-onready var fox = get_node("%Fox")
+@onready var fox = get_node("%Fox")
 
 var started = false
 
@@ -12,7 +12,7 @@ signal guessed(direction)
 func _ready():
 	randomize()
 	for i in get_node("%Guesses").get_children():
-		i.connect("pressed", self, "_on_flip", [i])
+		i.connect("pressed", Callable(self, "_on_flip").bind(i))
 	get_node("%TurnCount").text = "%02d" % turns
 	get_node("%MatchCount").text = "%02d" % matches
 
@@ -21,10 +21,10 @@ func _start():
 	
 func _game():
 	while turns > 0:
-		yield(get_tree().create_timer(0.5), "timeout")
-		get_node("%TheirCard").pressed = false
-		get_node("%YourCard").pressed = false
-		yield(get_tree().create_timer(0.3), "timeout")
+		await get_tree().create_timer(0.5).timeout
+		get_node("%TheirCard").button_pressed = false
+		get_node("%YourCard").button_pressed = false
+		await get_tree().create_timer(0.3).timeout
 		
 		var their_card = randi() % 10
 		var your_card = randi() % 10
@@ -32,20 +32,20 @@ func _game():
 		get_node("%TheirCard").number = their_card + 1
 		get_node("%YourCard").number = your_card + 1
 		
-		get_node("%TheirCard").pressed = true
+		get_node("%TheirCard").button_pressed = true
 		
 		get_node("%Guesses").visible = true
-		var d = yield(self, "guessed")
+		var d = await self.guessed
 		get_node("%Guesses").visible = false
 		
-		get_node("%YourCard").pressed = true
+		get_node("%YourCard").button_pressed = true
 		
-		yield(get_tree().create_timer(0.5), "timeout")
+		await get_tree().create_timer(0.5).timeout
 		
 		if (d == "high" and your_card > their_card) or \
 		   (d == "low" and your_card < their_card):
 			fox.play("yelp")
-			yield(fox, "animation_finished")
+			await fox.animation_finished
 			fox.play("sit")
 			matches += 1
 			
@@ -54,7 +54,7 @@ func _game():
 		get_node("%TurnCount").text = "%02d" % turns
 		get_node("%MatchCount").text = "%02d" % matches
 	
-	yield(get_tree().create_timer(1.5), "timeout")
+	await get_tree().create_timer(1.5).timeout
 	game_finished()
 	
 func _on_flip(card):

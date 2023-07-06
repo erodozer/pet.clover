@@ -4,13 +4,13 @@ var show_details = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	GameState.connect("stats_changed", self, "_update_stats")
+	GameState.connect("stats_changed", Callable(self, "_update_stats"))
 
-func toggle_details(show = null):
-	if show == null:
+func toggle_details(active = null):
+	if active == null:
 		show_details = !show_details
 	else:
-		show_details = show
+		show_details = active
 	get_node("%BasicDisplay").visible = not show_details
 	get_node("%DetailedDisplay").visible = show_details
 

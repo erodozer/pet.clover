@@ -10,7 +10,7 @@ var timers = {
 	"play": 0,
 	"medicine": 0,
 	"update": now(),
-} setget _update_timers
+} : set = _update_timers
 
 var save_sync = 0
 var death_timer = 0
@@ -26,11 +26,11 @@ var stats = {
 	"honey": 0.0,
 	"is_asleep": false,
 	"age": 0.0,
-} setget _update_stats
+} : set = _update_stats
 
 var lights_on = true
 
-var unlocks = {} setget _update_unlocks
+var unlocks = {}: set = _update_unlocks
 
 var TWITCH_ENABLED = false
 
@@ -38,13 +38,14 @@ signal stats_changed(stats)
 signal timers_changed(timers)
 
 func _ready():
-	var save_game = File.new()
-	if not save_game.file_exists("user://clover.save"):
+	if not FileAccess.file_exists("user://clover.save"):
 		return # no save yet
 	
-	save_game.open("user://clover.save", File.READ)
+	var save_game = FileAccess.open("user://clover.save", FileAccess.READ)
 	# save files are a single line json
-	var data = parse_json(save_game.get_line())
+	var test_json_conv = JSON.new()
+	test_json_conv.parse(save_game.get_line())
+	var data = test_json_conv.get_data()
 	save_game.close()
 	
 	self.stats = data.get("stats", {})
@@ -104,10 +105,9 @@ func save_data():
 	if now() < save_sync:
 		return
 	
-	var save_game = File.new()
-	save_game.open("user://clover.save", File.WRITE)
+	var save_game = FileAccess.open("user://clover.save", FileAccess.WRITE)
 	save_game.store_line(
-		to_json({
+		JSON.stringify({
 			"stats": stats,
 			"timers": timers,
 			"unlocks": unlocks,
@@ -123,12 +123,12 @@ func execute_turn():
 	if TWITCH_ENABLED and stats.is_asleep:
 		change.hungry -= 0.05
 		change.dirty += 0.01
-		change.boredom = 0.0
+		change.boredom += 0.0
 		change.tired += 0.0
 	elif TWITCH_ENABLED:
-		change.hungry -= 0.4
-		change.dirty += 0.15
-		change.boredom = 0.0
+		change.hungry -= 0.28
+		change.dirty += 0.13
+		change.boredom += 0.03
 		change.tired += 0.04
 	elif stats.is_asleep:
 		change.hungry -= 0.05
@@ -272,3 +272,4 @@ func reset(reset_timers = true, reset_stats = true, hard = false):
 func _process(_delta):
 	# autosave
 	save_data()
+	

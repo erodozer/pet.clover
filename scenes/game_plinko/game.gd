@@ -1,7 +1,7 @@
 extends Node
 
-onready var fox = get_node("%Fox")
-onready var ball = get_node("%Ball")
+@onready var fox = get_node("%Fox")
+@onready var ball = get_node("%Ball")
 
 const BALLS_TOTAL = 3
 
@@ -12,7 +12,7 @@ func _ready():
 	spawn_ball()
 
 func _process(delta):
-	if Input.is_mouse_button_pressed(BUTTON_LEFT):
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		var mouse_pos = get_viewport().get_mouse_position().x
 		if mouse_pos < fox.position.x - 2 and fox.position.x > 20:
 			fox.position.x -= 40 * delta
@@ -23,14 +23,14 @@ func _process(delta):
 			
 		if fox.animation != "walk":
 			fox.play("walk")
-			fox.get_node("Bucket/Sprite").play("walk")
+			fox.get_node("Bucket/Sprite2D").play("walk")
 			
 	elif fox.animation != "idle":
 		fox.play("idle")
-		fox.get_node("Bucket/Sprite").play("idle")
+		fox.get_node("Bucket/Sprite2D").play("idle")
 
 func game_finished():
-	yield(get_tree().create_timer(3.0), "timeout")
+	await get_tree().create_timer(3.0).timeout
 	
 	var score = clamp(inverse_lerp(0, BALLS_TOTAL, balls_caught) * 100.0, 20, 100)
 	
@@ -58,11 +58,11 @@ func spawn_ball():
 		
 	remove_child(ball)
 	ball.sleeping = true
-	yield(get_tree(), "physics_frame")
+	await get_tree().physics_frame
 	get_node("%BallCount").text = "%02d" % balls_left
 	ball.linear_velocity = Vector2(0,0)
-	ball.position = Vector2(rand_range(20, 140), rand_range(-50, -90))
-	yield(get_tree().create_timer(1.0), "timeout")
+	ball.position = Vector2(randf_range(20, 140), randf_range(-50, -90))
+	await get_tree().create_timer(1.0).timeout
 	ball.sleeping = false
 	add_child(ball)
 	

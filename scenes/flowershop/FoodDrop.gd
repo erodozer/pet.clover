@@ -1,4 +1,4 @@
-extends AnimatedSprite
+extends AnimatedSprite2D
 
 const FOODS = {
 	"nuggie": {
@@ -7,38 +7,46 @@ const FOODS = {
 	},
 	"fries": {
 		"hungry": 150.0,
-		"cooldown": 40.0
+		"cooldown": 40.0,
+		"unlock": "food.fries"
 	},
 	"soju": {
 		"hungry": 25.0,
 		"boredom": -25.0,
-		"cooldown": 20.0
+		"cooldown": 20.0,
+		"unlock": "food.soju"
 	}
 }
 
-export var food_type = "nuggie"
+@export var food_type = "nuggie"
 
 var left_bound
 var right_bound
 
 func drop():
+	var flag = FOODS[food_type].get("unlock")
+	if flag and not GameState.unlocks.get(flag):
+		await get_tree().process_frame
+		return false
+		
 	var tween = create_tween()
 	play("%s" % food_type)
-	material.set_shader_param("width", 1)
+	material.set_shader_parameter("width", 1)
 
-	var next_pos = rand_range(left_bound, right_bound)
+	var next_pos = randf_range(left_bound, right_bound)
 	
 	tween.tween_property(self, "position", Vector2(next_pos, 62), 2.0)\
 		.from(Vector2(next_pos, -24))\
 		.set_trans(Tween.TRANS_LINEAR)
 	
-	yield(tween, "finished")
+	await tween.finished
+	return true
 	
 func eat():
-	material.set_shader_param("width", 0)
+	material.set_shader_parameter("width", 0)
 	play("%s:eat" % food_type)
 	
-	yield(self, "animation_finished")
+	await self.animation_finished
 	position = Vector2(-1000, -1000)
 
 	GameState.stats = {

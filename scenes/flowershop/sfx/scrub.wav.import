@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/scrub.wav-cc0a188b3248d1ca617245873b74ba78.sample"
+type="AudioStreamWAV"
+uid="uid://bg7ghk3rny7j3"
+path="res://.godot/imported/scrub.wav-cc0a188b3248d1ca617245873b74ba78.sample"
 
 [deps]
 
 source_file="res://scenes/flowershop/sfx/scrub.wav"
-dest_files=[ "res://.import/scrub.wav-cc0a188b3248d1ca617245873b74ba78.sample" ]
+dest_files=["res://.godot/imported/scrub.wav-cc0a188b3248d1ca617245873b74ba78.sample"]
 
 [params]
 

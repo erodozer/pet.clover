@@ -1,58 +1,69 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=3 uid="uid://cpoy3vi87f7ib"]
 
-[ext_resource path="res://ui/fonts/Minimum.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://ui/fonts/EarlyGameBoySTD.ttf" type="DynamicFontData" id=2]
+[ext_resource type="FontFile" uid="uid://cu56gylq7usm7" path="res://ui/fonts/Minimum.ttf" id="1"]
+[ext_resource type="Theme" uid="uid://bfmrdx6ah36lt" path="res://ui/ui_theme.tres" id="1_h205k"]
+[ext_resource type="FontFile" uid="uid://3heiwkvujho0" path="res://ui/fonts/EarlyGameBoySTD.ttf" id="2"]
 
-[sub_resource type="DynamicFont" id=5]
-font_data = ExtResource( 2 )
+[sub_resource type="LabelSettings" id="LabelSettings_m3j2g"]
+font = ExtResource("2")
+font_color = Color(0, 0, 0, 1)
 
-[sub_resource type="DynamicFont" id=4]
-extra_spacing_bottom = -2
-font_data = ExtResource( 1 )
+[sub_resource type="FontFile" id="4"]
+fallbacks = Array[Font]([ExtResource("1")])
+face_index = null
+embolden = null
+transform = null
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 
 [node name="Button" type="Button"]
-margin_right = 152.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 145, 20 )
+texture_filter = 1
+custom_minimum_size = Vector2(145, 20)
+offset_right = 152.0
+offset_bottom = 20.0
 focus_mode = 0
 mouse_default_cursor_shape = 2
+theme = ExtResource("1_h205k")
 toggle_mode = true
 shortcut_in_tooltip = false
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
-custom_constants/margin_right = 4
-custom_constants/margin_top = 4
-custom_constants/margin_left = 4
-custom_constants/margin_bottom = 4
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
-margin_left = 4.0
-margin_top = 4.0
-margin_right = 148.0
-margin_bottom = 16.0
+layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
-margin_right = 110.0
-margin_bottom = 12.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
-custom_fonts/font = SubResource( 5 )
 text = "Plinko"
-valign = 1
+label_settings = SubResource("LabelSettings_m3j2g")
+vertical_alignment = 1
+justification_flags = 160
 
 [node name="Price" type="Label" parent="MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
-margin_left = 114.0
-margin_right = 144.0
-margin_bottom = 12.0
-rect_min_size = Vector2( 30, 0 )
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
 size_flags_vertical = 5
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = SubResource( 4 )
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("4")
 text = "40000"
-align = 2
-valign = 1
+horizontal_alignment = 2
+vertical_alignment = 1

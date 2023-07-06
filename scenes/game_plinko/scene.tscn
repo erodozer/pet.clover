@@ -1,455 +1,467 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=28 format=3 uid="uid://ddmydicggypot"]
 
-[ext_resource path="res://ui/scroll.gdshader" type="Shader" id=1]
-[ext_resource path="res://ui/fonts/EarlyGameBoySTD.ttf" type="DynamicFontData" id=2]
-[ext_resource path="res://scenes/game_match/background.png" type="Texture" id=3]
-[ext_resource path="res://ui/panel.png" type="Texture" id=4]
-[ext_resource path="res://scenes/game_plinko/ball.png" type="Texture" id=5]
-[ext_resource path="res://scenes/game_plinko/peg.png" type="Texture" id=6]
-[ext_resource path="res://scenes/game_plinko/bucket_walk_0.png" type="Texture" id=7]
-[ext_resource path="res://scenes/game_plinko/bucket_walk_1.png" type="Texture" id=8]
-[ext_resource path="res://pet/frames.tres" type="SpriteFrames" id=9]
-[ext_resource path="res://scenes/game_plinko/game.gd" type="Script" id=10]
+[ext_resource type="Shader" path="res://ui/scroll.gdshader" id="1"]
+[ext_resource type="FontFile" uid="uid://3heiwkvujho0" path="res://ui/fonts/EarlyGameBoySTD.ttf" id="2"]
+[ext_resource type="Texture2D" uid="uid://st2lqyxx0u6x" path="res://scenes/game_match/background.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://df8hw8q5hoxpk" path="res://ui/panel.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://c1r6hwy43w8pn" path="res://scenes/game_plinko/ball.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://tdhk2gooh12p" path="res://scenes/game_plinko/peg.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://4r6aj7a546u1" path="res://scenes/game_plinko/bucket_walk_0.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://b2fu40ukoi4ti" path="res://scenes/game_plinko/bucket_walk_1.png" id="8"]
+[ext_resource type="SpriteFrames" path="res://pet/frames.tres" id="9"]
+[ext_resource type="Script" path="res://scenes/game_plinko/game.gd" id="10"]
 
-[sub_resource type="ShaderMaterial" id=20]
-shader = ExtResource( 1 )
-shader_param/speed_x = 1.0
-shader_param/speed_y = null
+[sub_resource type="ShaderMaterial" id="20"]
+shader = ExtResource("1")
+shader_parameter/speed_x = 1.0
+shader_parameter/speed_y = null
 
-[sub_resource type="DynamicFont" id=5]
-font_data = ExtResource( 2 )
+[sub_resource type="FontFile" id="5"]
+fallbacks = Array[Font]([ExtResource("2")])
+face_index = null
+embolden = null
+transform = null
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 
-[sub_resource type="StyleBoxTexture" id=19]
+[sub_resource type="StyleBoxTexture" id="19"]
 content_margin_left = 4.0
-content_margin_right = 5.0
 content_margin_top = 4.0
+content_margin_right = 5.0
 content_margin_bottom = 4.0
-texture = ExtResource( 4 )
-region_rect = Rect2( 0, 0, 16, 16 )
-margin_left = 3.0
-margin_right = 3.0
-margin_top = 3.0
-margin_bottom = 3.0
+texture = ExtResource("4")
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
+region_rect = Rect2(0, 0, 16, 16)
 
-[sub_resource type="Theme" id=21]
-Label/colors/font_color = Color( 0, 0, 0, 1 )
-Label/colors/font_color_shadow = Color( 0, 0, 0, 1 )
-Label/colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+[sub_resource type="Theme" id="21"]
+Label/colors/font_color = Color(0, 0, 0, 1)
+Label/colors/font_color_shadow = Color(0, 0, 0, 1)
+Label/colors/font_outline_modulate = Color(0, 0, 0, 1)
 Label/constants/line_spacing = 0
 Label/constants/shadow_as_outline = 0
 Label/constants/shadow_offset_x = 0
 Label/constants/shadow_offset_y = 0
-Label/fonts/font = SubResource( 5 )
+Label/fonts/font = SubResource("5")
 Label/styles/normal = null
-Panel/styles/panel = SubResource( 19 )
-PanelContainer/styles/panel = SubResource( 19 )
+Panel/styles/panel = SubResource("19")
+PanelContainer/styles/panel = SubResource("19")
 
-[sub_resource type="PhysicsMaterial" id=31]
+[sub_resource type="PhysicsMaterial" id="31"]
 friction = 0.5
 bounce = 0.8
 
-[sub_resource type="CircleShape2D" id=26]
+[sub_resource type="CircleShape2D" id="26"]
 radius = 4.3
 
-[sub_resource type="SpriteFrames" id=34]
-animations = [ {
-"frames": [ ExtResource( 7 ) ],
+[sub_resource type="SpriteFrames" id="34"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7")
+}],
 "loop": true,
-"name": "idle",
+"name": &"idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 7 ), ExtResource( 8 ) ],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8")
+}],
 "loop": true,
-"name": "walk",
+"name": &"walk",
 "speed": 5.0
-} ]
+}]
 
-[sub_resource type="PhysicsMaterial" id=22]
+[sub_resource type="PhysicsMaterial" id="22"]
 absorbent = true
 
-[sub_resource type="SegmentShape2D" id=23]
-b = Vector2( 0, 15 )
+[sub_resource type="SegmentShape2D" id="23"]
+b = Vector2(0, 15)
 
-[sub_resource type="SegmentShape2D" id=24]
-a = Vector2( 0, -1 )
-b = Vector2( 0, 13 )
+[sub_resource type="SegmentShape2D" id="24"]
+a = Vector2(0, -1)
+b = Vector2(0, 13)
 
-[sub_resource type="RectangleShape2D" id=25]
-extents = Vector2( 1, 1 )
+[sub_resource type="RectangleShape2D" id="25"]
+size = Vector2(1, 1)
 
-[sub_resource type="PhysicsMaterial" id=27]
+[sub_resource type="PhysicsMaterial" id="27"]
 friction = 0.65
 bounce = 0.41
 
-[sub_resource type="SegmentShape2D" id=28]
-b = Vector2( 0, 400 )
+[sub_resource type="SegmentShape2D" id="28"]
+b = Vector2(0, 400)
 
-[sub_resource type="CircleShape2D" id=30]
+[sub_resource type="CircleShape2D" id="30"]
 radius = 4.0
 
-[sub_resource type="PhysicsMaterial" id=32]
+[sub_resource type="PhysicsMaterial" id="32"]
 rough = true
 bounce = 1.0
 absorbent = true
 
-[sub_resource type="RectangleShape2D" id=29]
-extents = Vector2( 100, 10 )
+[sub_resource type="RectangleShape2D" id="29"]
+size = Vector2(100, 10)
 
-[sub_resource type="RectangleShape2D" id=33]
-extents = Vector2( 100, 7 )
+[sub_resource type="RectangleShape2D" id="33"]
+size = Vector2(100, 7)
 
 [node name="Plinko" type="Node" groups=["scene"]]
-script = ExtResource( 10 )
+script = ExtResource("10")
 
 [node name="Background" type="TextureRect" parent="."]
-material = SubResource( 20 )
+material = SubResource("20")
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 3 )
-expand = true
-stretch_mode = 2
+texture = ExtResource("3")
+expand_mode = 1
+stretch_mode = 1
 
 [node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_top = 32.0
-margin_bottom = 32.0
-theme = SubResource( 21 )
+offset_top = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("21")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control/HBoxContainer"]
-margin_left = 13.0
-margin_right = 75.0
-margin_bottom = 12.0
+layout_mode = 2
 
 [node name="Label" type="Label" parent="Control/HBoxContainer/HBoxContainer"]
-margin_right = 38.0
-margin_bottom = 12.0
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-custom_constants/shadow_offset_x = 1
-custom_constants/shadow_offset_y = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
 text = "Balls"
 
 [node name="BallCount" type="Label" parent="Control/HBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
-margin_left = 42.0
-margin_right = 62.0
-margin_bottom = 12.0
-rect_min_size = Vector2( 20, 0 )
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
 text = "00"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Control/HBoxContainer"]
-margin_left = 79.0
-margin_right = 147.0
-margin_bottom = 12.0
+layout_mode = 2
 
 [node name="Label" type="Label" parent="Control/HBoxContainer/HBoxContainer2"]
-margin_right = 48.0
-margin_bottom = 12.0
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-custom_constants/shadow_offset_x = 1
-custom_constants/shadow_offset_y = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
 text = "Caught"
 
 [node name="CatchCount" type="Label" parent="Control/HBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
-margin_left = 52.0
-margin_right = 68.0
-margin_bottom = 12.0
-rect_min_size = Vector2( 16, 0 )
+custom_minimum_size = Vector2(16, 0)
+layout_mode = 2
 text = "00"
 
 [node name="Ball" type="RigidBody2D" parent="."]
 unique_name_in_owner = true
-position = Vector2( 82, -55 )
+position = Vector2(82, -55)
 collision_layer = 5
-physics_material_override = SubResource( 31 )
+physics_material_override = SubResource("31")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
-shape = SubResource( 26 )
+shape = SubResource("26")
 
-[node name="Sprite" type="Sprite" parent="Ball"]
-texture = ExtResource( 5 )
+[node name="Sprite2D" type="Sprite2D" parent="Ball"]
+texture = ExtResource("5")
 
-[node name="Fox" type="AnimatedSprite" parent="."]
+[node name="Fox" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
-position = Vector2( 80, 146 )
 z_index = 1
-frames = ExtResource( 9 )
-animation = "idle"
-playing = true
-offset = Vector2( 8, 0 )
+position = Vector2(80, 146)
+sprite_frames = ExtResource("9")
+animation = &"idle"
+offset = Vector2(8, 0)
 
 [node name="Bucket" type="Node2D" parent="Fox"]
-position = Vector2( 0, -17 )
+position = Vector2(0, -17)
 
-[node name="Sprite" type="AnimatedSprite" parent="Fox/Bucket"]
-position = Vector2( 0, 1 )
-frames = SubResource( 34 )
-animation = "idle"
-playing = true
+[node name="Sprite2D" type="AnimatedSprite2D" parent="Fox/Bucket"]
+position = Vector2(0, 1)
+sprite_frames = SubResource("34")
+animation = &"idle"
 
 [node name="BucketWalls" type="StaticBody2D" parent="Fox/Bucket"]
-physics_material_override = SubResource( 22 )
+physics_material_override = SubResource("22")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Fox/Bucket/BucketWalls"]
-position = Vector2( -7, -8 )
-shape = SubResource( 23 )
+position = Vector2(-7, -8)
+shape = SubResource("23")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Fox/Bucket/BucketWalls"]
-position = Vector2( 7, -8 )
-shape = SubResource( 23 )
+position = Vector2(7, -8)
+shape = SubResource("23")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Fox/Bucket/BucketWalls"]
-position = Vector2( -6, 7 )
+position = Vector2(-6, 7)
 rotation = -1.5708
-shape = SubResource( 24 )
+shape = SubResource("24")
 
 [node name="BucketCatch" type="Area2D" parent="Fox/Bucket"]
-position = Vector2( 0, 1 )
+position = Vector2(0, 1)
 collision_layer = 2
 collision_mask = 4
-space_override = 3
 linear_damp = 30.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Fox/Bucket/BucketCatch"]
-shape = SubResource( 25 )
+shape = SubResource("25")
 
 [node name="Board" type="StaticBody2D" parent="."]
-physics_material_override = SubResource( 27 )
+physics_material_override = SubResource("27")
 
 [node name="Wall2" type="CollisionShape2D" parent="Board"]
-position = Vector2( 160, -220 )
-shape = SubResource( 28 )
+position = Vector2(160, -220)
+shape = SubResource("28")
 
 [node name="Wall" type="CollisionShape2D" parent="Board"]
-position = Vector2( 0, -220 )
-shape = SubResource( 28 )
+position = Vector2(0, -220)
+shape = SubResource("28")
 
 [node name="Peg" type="CollisionShape2D" parent="Board"]
-position = Vector2( 21, 20 )
-shape = SubResource( 30 )
+position = Vector2(21, 20)
+shape = SubResource("30")
 
-[node name="Sprite" type="Sprite" parent="Board/Peg"]
-position = Vector2( 1, 1 )
-texture = ExtResource( 6 )
+[node name="Sprite2D" type="Sprite2D" parent="Board/Peg"]
+position = Vector2(1, 1)
+texture = ExtResource("6")
 
 [node name="Peg2" type="CollisionShape2D" parent="Board"]
-position = Vector2( 51, 20 )
-shape = SubResource( 30 )
+position = Vector2(51, 20)
+shape = SubResource("30")
 
-[node name="Sprite" type="Sprite" parent="Board/Peg2"]
-position = Vector2( 1, 1 )
-texture = ExtResource( 6 )
+[node name="Sprite2D" type="Sprite2D" parent="Board/Peg2"]
+position = Vector2(1, 1)
+texture = ExtResource("6")
 
 [node name="Peg3" type="CollisionShape2D" parent="Board"]
-position = Vector2( 81, 20 )
-shape = SubResource( 30 )
+position = Vector2(81, 20)
+shape = SubResource("30")
 
-[node name="Sprite" type="Sprite" parent="Board/Peg3"]
-position = Vector2( 1, 1 )
-texture = ExtResource( 6 )
+[node name="Sprite2D" type="Sprite2D" parent="Board/Peg3"]
+position = Vector2(1, 1)
+texture = ExtResource("6")
 
 [node name="Peg4" type="CollisionShape2D" parent="Board"]
-position = Vector2( 111, 20 )
-shape = SubResource( 30 )
+position = Vector2(111, 20)
+shape = SubResource("30")
 
-[node name="Sprite" type="Sprite" parent="Board/Peg4"]
-position = Vector2( 1, 1 )
-texture = ExtResource( 6 )
+[node name="Sprite2D" type="Sprite2D" parent="Board/Peg4"]
+position = Vector2(1, 1)
+texture = ExtResource("6")
 
 [node name="Peg5" type="CollisionShape2D" parent="Board"]
-position = Vector2( 141, 20 )
-shape = SubResource( 30 )
+position = Vector2(141, 20)
+shape = SubResource("30")
 
-[node name="Sprite" type="Sprite" parent="Board/Peg5"]
-position = Vector2( 1, 1 )
-texture = ExtResource( 6 )
+[node name="Sprite2D" type="Sprite2D" parent="Board/Peg5"]
+position = Vector2(1, 1)
+texture = ExtResource("6")
 
 [node name="Peg6" type="CollisionShape2D" parent="Board"]
-position = Vector2( 21, 95 )
-shape = SubResource( 30 )
+position = Vector2(21, 95)
+shape = SubResource("30")
 
-[node name="Sprite" type="Sprite" parent="Board/Peg6"]
-position = Vector2( 1, 1 )
-texture = ExtResource( 6 )
+[node name="Sprite2D" type="Sprite2D" parent="Board/Peg6"]
+position = Vector2(1, 1)
+texture = ExtResource("6")
 
 [node name="Peg7" type="CollisionShape2D" parent="Board"]
-position = Vector2( 51, 95 )
-shape = SubResource( 30 )
+position = Vector2(51, 95)
+shape = SubResource("30")
 
-[node name="Sprite" type="Sprite" parent="Board/Peg7"]
-position = Vector2( 1, 1 )
-texture = ExtResource( 6 )
+[node name="Sprite2D" type="Sprite2D" parent="Board/Peg7"]
+position = Vector2(1, 1)
+texture = ExtResource("6")
 
 [node name="Peg8" type="CollisionShape2D" parent="Board"]
-position = Vector2( 81, 95 )
-shape = SubResource( 30 )
+position = Vector2(81, 95)
+shape = SubResource("30")
 
-[node name="Sprite" type="Sprite" parent="Board/Peg8"]
-position = Vector2( 1, 1 )
-texture = ExtResource( 6 )
+[node name="Sprite2D" type="Sprite2D" parent="Board/Peg8"]
+position = Vector2(1, 1)
+texture = ExtResource("6")
 
 [node name="Peg9" type="CollisionShape2D" parent="Board"]
-position = Vector2( 111, 95 )
-shape = SubResource( 30 )
+position = Vector2(111, 95)
+shape = SubResource("30")
 
-[node name="Sprite" type="Sprite" parent="Board/Peg9"]
-position = Vector2( 1, 1 )
-texture = ExtResource( 6 )
+[node name="Sprite2D" type="Sprite2D" parent="Board/Peg9"]
+position = Vector2(1, 1)
+texture = ExtResource("6")
 
 [node name="Peg10" type="CollisionShape2D" parent="Board"]
-position = Vector2( 141, 95 )
-shape = SubResource( 30 )
+position = Vector2(141, 95)
+shape = SubResource("30")
 
-[node name="Sprite" type="Sprite" parent="Board/Peg10"]
-position = Vector2( 1, 1 )
-texture = ExtResource( 6 )
+[node name="Sprite2D" type="Sprite2D" parent="Board/Peg10"]
+position = Vector2(1, 1)
+texture = ExtResource("6")
 
 [node name="Peg11" type="CollisionShape2D" parent="Board"]
-position = Vector2( 36, 76 )
-shape = SubResource( 30 )
+position = Vector2(36, 76)
+shape = SubResource("30")
 
-[node name="Sprite" type="Sprite" parent="Board/Peg11"]
-position = Vector2( 1, 1 )
-texture = ExtResource( 6 )
+[node name="Sprite2D" type="Sprite2D" parent="Board/Peg11"]
+position = Vector2(1, 1)
+texture = ExtResource("6")
 
 [node name="Peg12" type="CollisionShape2D" parent="Board"]
-position = Vector2( 66, 76 )
-shape = SubResource( 30 )
+position = Vector2(66, 76)
+shape = SubResource("30")
 
-[node name="Sprite" type="Sprite" parent="Board/Peg12"]
-position = Vector2( 1, 1 )
-texture = ExtResource( 6 )
+[node name="Sprite2D" type="Sprite2D" parent="Board/Peg12"]
+position = Vector2(1, 1)
+texture = ExtResource("6")
 
 [node name="Peg13" type="CollisionShape2D" parent="Board"]
-position = Vector2( 96, 76 )
-shape = SubResource( 30 )
+position = Vector2(96, 76)
+shape = SubResource("30")
 
-[node name="Sprite" type="Sprite" parent="Board/Peg13"]
-position = Vector2( 1, 1 )
-texture = ExtResource( 6 )
+[node name="Sprite2D" type="Sprite2D" parent="Board/Peg13"]
+position = Vector2(1, 1)
+texture = ExtResource("6")
 
 [node name="Peg14" type="CollisionShape2D" parent="Board"]
-position = Vector2( 126, 76 )
-shape = SubResource( 30 )
+position = Vector2(126, 76)
+shape = SubResource("30")
 
-[node name="Sprite" type="Sprite" parent="Board/Peg14"]
-position = Vector2( 1, 1 )
-texture = ExtResource( 6 )
+[node name="Sprite2D" type="Sprite2D" parent="Board/Peg14"]
+position = Vector2(1, 1)
+texture = ExtResource("6")
 
 [node name="Peg15" type="CollisionShape2D" parent="Board"]
-position = Vector2( 36, 40 )
-shape = SubResource( 30 )
+position = Vector2(36, 40)
+shape = SubResource("30")
 
-[node name="Sprite" type="Sprite" parent="Board/Peg15"]
-position = Vector2( 1, 1 )
-texture = ExtResource( 6 )
+[node name="Sprite2D" type="Sprite2D" parent="Board/Peg15"]
+position = Vector2(1, 1)
+texture = ExtResource("6")
 
 [node name="Peg16" type="CollisionShape2D" parent="Board"]
-position = Vector2( 66, 40 )
-shape = SubResource( 30 )
+position = Vector2(66, 40)
+shape = SubResource("30")
 
-[node name="Sprite" type="Sprite" parent="Board/Peg16"]
-position = Vector2( 1, 1 )
-texture = ExtResource( 6 )
+[node name="Sprite2D" type="Sprite2D" parent="Board/Peg16"]
+position = Vector2(1, 1)
+texture = ExtResource("6")
 
 [node name="Peg17" type="CollisionShape2D" parent="Board"]
-position = Vector2( 96, 40 )
-shape = SubResource( 30 )
+position = Vector2(96, 40)
+shape = SubResource("30")
 
-[node name="Sprite" type="Sprite" parent="Board/Peg17"]
-position = Vector2( 1, 1 )
-texture = ExtResource( 6 )
+[node name="Sprite2D" type="Sprite2D" parent="Board/Peg17"]
+position = Vector2(1, 1)
+texture = ExtResource("6")
 
 [node name="Peg18" type="CollisionShape2D" parent="Board"]
-position = Vector2( 126, 40 )
-shape = SubResource( 30 )
+position = Vector2(126, 40)
+shape = SubResource("30")
 
-[node name="Sprite" type="Sprite" parent="Board/Peg18"]
-position = Vector2( 1, 1 )
-texture = ExtResource( 6 )
+[node name="Sprite2D" type="Sprite2D" parent="Board/Peg18"]
+position = Vector2(1, 1)
+texture = ExtResource("6")
 
 [node name="Peg19" type="CollisionShape2D" parent="Board"]
-position = Vector2( 21, 58 )
-shape = SubResource( 30 )
+position = Vector2(21, 58)
+shape = SubResource("30")
 
-[node name="Sprite" type="Sprite" parent="Board/Peg19"]
-position = Vector2( 1, 1 )
-texture = ExtResource( 6 )
+[node name="Sprite2D" type="Sprite2D" parent="Board/Peg19"]
+position = Vector2(1, 1)
+texture = ExtResource("6")
 
 [node name="Peg20" type="CollisionShape2D" parent="Board"]
-position = Vector2( 51, 58 )
-shape = SubResource( 30 )
+position = Vector2(51, 58)
+shape = SubResource("30")
 
-[node name="Sprite" type="Sprite" parent="Board/Peg20"]
-position = Vector2( 1, 1 )
-texture = ExtResource( 6 )
+[node name="Sprite2D" type="Sprite2D" parent="Board/Peg20"]
+position = Vector2(1, 1)
+texture = ExtResource("6")
 
 [node name="Peg21" type="CollisionShape2D" parent="Board"]
-position = Vector2( 81, 58 )
-shape = SubResource( 30 )
+position = Vector2(81, 58)
+shape = SubResource("30")
 
-[node name="Sprite" type="Sprite" parent="Board/Peg21"]
-position = Vector2( 1, 1 )
-texture = ExtResource( 6 )
+[node name="Sprite2D" type="Sprite2D" parent="Board/Peg21"]
+position = Vector2(1, 1)
+texture = ExtResource("6")
 
 [node name="Peg22" type="CollisionShape2D" parent="Board"]
-position = Vector2( 111, 58 )
-shape = SubResource( 30 )
+position = Vector2(111, 58)
+shape = SubResource("30")
 
-[node name="Sprite" type="Sprite" parent="Board/Peg22"]
-position = Vector2( 1, 1 )
-texture = ExtResource( 6 )
+[node name="Sprite2D" type="Sprite2D" parent="Board/Peg22"]
+position = Vector2(1, 1)
+texture = ExtResource("6")
 
 [node name="Peg23" type="CollisionShape2D" parent="Board"]
-position = Vector2( 141, 58 )
-shape = SubResource( 30 )
+position = Vector2(141, 58)
+shape = SubResource("30")
 
-[node name="Sprite" type="Sprite" parent="Board/Peg23"]
-position = Vector2( 1, 1 )
-texture = ExtResource( 6 )
+[node name="Sprite2D" type="Sprite2D" parent="Board/Peg23"]
+position = Vector2(1, 1)
+texture = ExtResource("6")
 
 [node name="Floor" type="StaticBody2D" parent="."]
-physics_material_override = SubResource( 32 )
+physics_material_override = SubResource("32")
 
 [node name="Floor" type="CollisionShape2D" parent="Floor"]
-position = Vector2( 80, 175 )
-shape = SubResource( 29 )
+position = Vector2(80, 175)
+shape = SubResource("29")
 
 [node name="FloorCatch" type="Area2D" parent="."]
-position = Vector2( 80, 160 )
+position = Vector2(80, 160)
 collision_layer = 2
 collision_mask = 4
-space_override = 3
 linear_damp = 1000.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FloorCatch"]
-shape = SubResource( 33 )
+shape = SubResource("33")
 
 [node name="Inputs" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 1
 
 [node name="MoveLeft" type="Control" parent="Inputs"]
+custom_minimum_size = Vector2(60, 0)
+anchors_preset = 0
 anchor_bottom = 1.0
-rect_min_size = Vector2( 60, 0 )
 mouse_default_cursor_shape = 2
 
 [node name="MoveRight" type="Control" parent="Inputs"]
+custom_minimum_size = Vector2(60, 0)
+anchors_preset = 0
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -60.0
-margin_bottom = 144.0
-rect_min_size = Vector2( 60, 0 )
+offset_left = -60.0
+offset_bottom = 144.0
 mouse_default_cursor_shape = 2
 
 [connection signal="body_entered" from="Fox/Bucket/BucketCatch" to="." method="_on_BucketCatch_body_entered"]

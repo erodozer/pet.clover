@@ -5,5 +5,6 @@ uniform float speed_x;
 uniform float speed_y;
 
 void fragment () {
-	COLOR = texture(TEXTURE, vec2(UV.x + TIME * speed_x, UV.y + TIME * speed_y));
+	vec2 scale = mod(vec2(TIME * speed_x, TIME * speed_y), 1.0f);
+	COLOR = texture(TEXTURE, vec2(UV.x + scale.x, UV.y + scale.y));
 }
