@@ -1,10 +1,10 @@
 [gd_resource type="Theme" load_steps=11 format=3 uid="uid://bfmrdx6ah36lt"]
 
-[ext_resource type="FontFile" uid="uid://ossjr40b5ax6" path="res://ui/fonts/SymphonyoftheNightfont.ttf" id="2"]
-[ext_resource type="StyleBox" uid="uid://dwah4gfye68fp" path="res://ui/panel.tres" id="3_fdk5f"]
+[ext_resource type="FontFile" uid="uid://ossjr40b5ax6" path="res://ui/fonts/SymphonyoftheNightfont.ttf" id="1_r1d34"]
+[ext_resource type="StyleBox" uid="uid://dwah4gfye68fp" path="res://ui/panel.tres" id="2_16ksv"]
 
 [sub_resource type="FontFile" id="5"]
-fallbacks = Array[Font]([ExtResource("2")])
+fallbacks = Array[Font]([ExtResource("1_r1d34")])
 face_index = null
 embolden = null
 transform = null
@@ -107,8 +107,8 @@ Label/constants/shadow_offset_x = 0
 Label/constants/shadow_offset_y = 0
 Label/fonts/font = SubResource("5")
 Label/styles/normal = null
-Panel/styles/panel = ExtResource("3_fdk5f")
-PanelContainer/styles/panel = ExtResource("3_fdk5f")
+Panel/styles/panel = ExtResource("2_16ksv")
+PanelContainer/styles/panel = ExtResource("2_16ksv")
 ScrollContainer/styles/bg = null
 VScrollBar/icons/decrement = null
 VScrollBar/icons/decrement_highlight = null

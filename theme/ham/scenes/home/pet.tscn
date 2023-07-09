@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cejmdirswwh15"]
+
+[ext_resource type="PackedScene" uid="uid://dbq16g4ghgxw6" path="res://scenes/home/pet/PetBase.tscn" id="1_uhatf"]
+[ext_resource type="SpriteFrames" uid="uid://b681768c6hkug" path="res://theme/ham/pet/frames.tres" id="2_0bcv0"]
+
+[node name="Pet" instance=ExtResource("1_uhatf")]
+
+[node name="Sprite2D" parent="." index="0"]
+sprite_frames = ExtResource("2_0bcv0")

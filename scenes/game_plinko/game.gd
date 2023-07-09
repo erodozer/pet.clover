@@ -48,7 +48,7 @@ func game_finished():
 		"play": GameState.now() + 300, # 5 minutes
 	}
 	
-	SceneManager.change_scene("flowershop")
+	SceneManager.change_scene("home")
 
 func spawn_ball():
 	balls_left -= 1

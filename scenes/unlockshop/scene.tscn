@@ -3,12 +3,12 @@
 [ext_resource type="Theme" uid="uid://bfmrdx6ah36lt" path="res://ui/ui_theme.tres" id="1"]
 [ext_resource type="FontFile" uid="uid://cu56gylq7usm7" path="res://ui/fonts/Minimum.ttf" id="2"]
 [ext_resource type="Shader" path="res://ui/scroll.gdshader" id="3"]
-[ext_resource type="Texture2D" uid="uid://c2q4hdkscev71" path="res://scenes/flowershop/ui/stats/honey_drop.png" id="4"]
-[ext_resource type="Texture2D" uid="uid://dsdtq1sgpro7c" path="res://scenes/flowershop/ui/controls/tiled_bg.png" id="5"]
-[ext_resource type="Texture2D" uid="uid://bjwbgisv8ipyv" path="res://scenes/flowershop/ui/icons/back.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://c2q4hdkscev71" path="res://scenes/home/ui/stats/honey_drop.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://dsdtq1sgpro7c" path="res://theme/fox/ui/tiled_hud.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://bjwbgisv8ipyv" path="res://scenes/home/ui/icons/back.png" id="6"]
 [ext_resource type="Script" path="res://scenes/unlockshop/UnlockShop.gd" id="7"]
 [ext_resource type="Texture2D" uid="uid://p7ybyhakw5kv" path="res://scenes/unlockshop/panel.png" id="8"]
-[ext_resource type="PackedScene" uid="uid://g71xw0hneqtu" path="res://scenes/flowershop/ui/button/SimpleButton.tscn" id="9"]
+[ext_resource type="PackedScene" uid="uid://g71xw0hneqtu" path="res://scenes/home/ui/button/SimpleButton.tscn" id="9"]
 
 [sub_resource type="ShaderMaterial" id="5"]
 shader = ExtResource("3")

@@ -1,0 +1,66 @@
+[gd_resource type="Resource" script_class="FoodResource" load_steps=14 format=3 uid="uid://c6cp08mibk1my"]
+
+[ext_resource type="Texture2D" uid="uid://dut1l6gipjrfy" path="res://theme/fox/food/nuggie/nuggie_0.png" id="1_4kgdw"]
+[ext_resource type="Script" path="res://food/FoodResource.gd" id="1_v2ig0"]
+[ext_resource type="Texture2D" uid="uid://do5mbptfdi680" path="res://theme/fox/food/nuggie/icon.png" id="1_wys14"]
+[ext_resource type="Texture2D" uid="uid://0ekaj4qhhjqj" path="res://theme/fox/food/nuggie/nuggie_1.png" id="2_37jyj"]
+[ext_resource type="Texture2D" uid="uid://d1f6kr7u2sd87" path="res://theme/fox/food/nuggie/nuggie_2.png" id="3_0fbrx"]
+[ext_resource type="Texture2D" uid="uid://5jf82gaet1vk" path="res://theme/fox/food/nuggie/nuggie_3.png" id="4_xporg"]
+[ext_resource type="Texture2D" uid="uid://dpm3gpq4mx4et" path="res://theme/fox/food/nuggie/nuggie_4.png" id="5_qb33e"]
+[ext_resource type="Texture2D" uid="uid://dvb4toow1ixpd" path="res://theme/fox/food/nuggie/nuggie_5.png" id="6_h4ucq"]
+[ext_resource type="Texture2D" uid="uid://3fxw45tcluh7" path="res://theme/fox/food/nuggie/nuggie_eat_0.png" id="7_p3ke1"]
+[ext_resource type="Texture2D" uid="uid://dmyoyuc0cn14p" path="res://theme/fox/food/nuggie/nuggie_eat_1.png" id="8_krkxi"]
+[ext_resource type="Texture2D" uid="uid://biml3gnieo2ju" path="res://theme/fox/food/nuggie/nuggie_eat_2.png" id="9_hk7dp"]
+[ext_resource type="Texture2D" uid="uid://2v381s45e7np" path="res://theme/fox/food/nuggie/nuggie_eat_3.png" id="10_6ko5c"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l6mjv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_4kgdw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_37jyj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_0fbrx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_xporg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_qb33e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_h4ucq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_p3ke1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_krkxi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_hk7dp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_6ko5c")
+}],
+"loop": true,
+"name": &"eat",
+"speed": 2.0
+}]
+
+[resource]
+script = ExtResource("1_v2ig0")
+hungry = 50.0
+boredom = 0.0
+cooldown = 30.0
+unlock = ""
+icon = ExtResource("1_wys14")
+animation = SubResource("SpriteFrames_l6mjv")

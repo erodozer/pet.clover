@@ -1,0 +1,62 @@
+[gd_resource type="Resource" script_class="FoodResource" load_steps=13 format=3 uid="uid://ctqga4653okkg"]
+
+[ext_resource type="Texture2D" uid="uid://cvnbyff22jrn" path="res://theme/fox/food/soju/soju_0.png" id="1_175mu"]
+[ext_resource type="Script" path="res://food/FoodResource.gd" id="1_bmf3l"]
+[ext_resource type="Texture2D" uid="uid://dw7tfvd4yfflh" path="res://theme/fox/food/soju/soju_1.png" id="2_k60sg"]
+[ext_resource type="Texture2D" uid="uid://u00htr286gws" path="res://theme/fox/food/soju/soju_2.png" id="3_bnnww"]
+[ext_resource type="Texture2D" uid="uid://rrb54dwnr18o" path="res://theme/fox/food/soju/soju_3.png" id="4_gmcby"]
+[ext_resource type="Texture2D" uid="uid://d1t11fkips78c" path="res://theme/fox/food/soju/soju_4.png" id="5_cibjw"]
+[ext_resource type="Texture2D" uid="uid://b2a3fsxvdsj7m" path="res://theme/fox/food/soju/soju_eat_1.png" id="6_yt661"]
+[ext_resource type="Texture2D" uid="uid://jm054fqyq54r" path="res://theme/fox/food/soju/soju_eat_2.png" id="7_l7ccr"]
+[ext_resource type="Texture2D" uid="uid://cg7esaohcir1t" path="res://theme/fox/food/soju/soju_eat_3.png" id="8_tesah"]
+[ext_resource type="Texture2D" uid="uid://c0nqxb5u76wfb" path="res://theme/fox/food/soju/soju_eat_4.png" id="9_p4g8n"]
+[ext_resource type="Texture2D" uid="uid://buoajuflje7b0" path="res://theme/fox/food/soju/icon.png" id="10_u6wyo"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g13pj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_175mu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_k60sg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_bnnww")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_gmcby")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_cibjw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_yt661")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_l7ccr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_tesah")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_p4g8n")
+}],
+"loop": true,
+"name": &"eat",
+"speed": 4.0
+}]
+
+[resource]
+script = ExtResource("1_bmf3l")
+hungry = 25.0
+boredom = -25.0
+cooldown = 20.0
+unlock = "food.soju"
+icon = ExtResource("10_u6wyo")
+animation = SubResource("SpriteFrames_g13pj")

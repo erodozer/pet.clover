@@ -1,0 +1,102 @@
+[gd_scene load_steps=8 format=3 uid="uid://dbq16g4ghgxw6"]
+
+[ext_resource type="Script" path="res://scenes/home/pet/Pet.gd" id="1_d3eim"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7xgrd"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"sick",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"sit",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"sleep",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"study",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"yelp",
+"speed": 8.0
+}]
+
+[sub_resource type="Gradient" id="10"]
+offsets = PackedFloat32Array(0.246377, 1)
+colors = PackedColorArray(0.533333, 0.282353, 0.172549, 1, 0.670588, 0.580392, 0.478431, 1)
+
+[sub_resource type="GradientTexture2D" id="11"]
+gradient = SubResource("10")
+
+[sub_resource type="Curve" id="7"]
+max_value = 2.0
+_data = [Vector2(0, 1.72727), 0.0, 0.0, 0, 0, Vector2(1, 0.945454), -4.29798, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="8"]
+curve = SubResource("7")
+
+[sub_resource type="ParticleProcessMaterial" id="9"]
+emission_shape = 1
+emission_sphere_radius = 3.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("8")
+color_ramp = SubResource("11")
+
+[node name="Pet" type="Node2D"]
+unique_name_in_owner = true
+process_mode = 3
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(81, 75)
+script = ExtResource("1_d3eim")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -19)
+sprite_frames = SubResource("SpriteFrames_7xgrd")
+animation = &"idle"
+
+[node name="Dirty" type="Node2D" parent="."]
+visible = false
+position = Vector2(2, -4)
+
+[node name="Particles" type="GPUParticles2D" parent="Dirty"]
+position = Vector2(-3, 0)
+amount = 16
+process_material = SubResource("9")
+
+[node name="Particles2" type="GPUParticles2D" parent="Dirty"]
+position = Vector2(-14, 0)
+amount = 16
+process_material = SubResource("9")
+
+[node name="Particles3" type="GPUParticles2D" parent="Dirty"]
+position = Vector2(9, 0)
+amount = 16
+process_material = SubResource("9")
+
+[node name="FollowCamera" type="Camera2D" parent="."]
+offset = Vector2(0, -35)
+limit_left = 0
+limit_right = 160
+limit_smoothed = true
+editor_draw_limits = true

@@ -33,25 +33,29 @@ var lights_on = true
 var unlocks = {}: set = _update_unlocks
 
 var TWITCH_ENABLED = false
+var THEME = "ham"
 
 signal stats_changed(stats)
 signal timers_changed(timers)
 
-func _ready():
-	if not FileAccess.file_exists("user://clover.save"):
-		return # no save yet
-	
-	var save_game = FileAccess.open("user://clover.save", FileAccess.READ)
-	# save files are a single line json
-	var test_json_conv = JSON.new()
-	test_json_conv.parse(save_game.get_line())
-	var data = test_json_conv.get_data()
-	save_game.close()
-	
-	self.stats = data.get("stats", {})
-	self.timers = data.get("timers", {})
-	self.unlocks = data.get("unlocks", {})
 
+
+func _ready():
+	if FileAccess.file_exists("user://pet.save"):
+		var save_game = FileAccess.open("user://pet.save", FileAccess.READ)
+		# save files are a single line json
+		var test_json_conv = JSON.new()
+		test_json_conv.parse(save_game.get_line())
+		var data = test_json_conv.get_data()
+		save_game.close()
+		
+		self.stats = data.get("stats", {})
+		self.timers = data.get("timers", {})
+		self.unlocks = data.get("unlocks", {})
+		
+	await get_tree().process_frame
+	SceneManager.change_scene("home")
+	
 func now() -> float:
 	return Time.get_unix_time_from_system()
 

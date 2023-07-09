@@ -1,8 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=5 format=3]
 
-[ext_resource path="res://scenes/game_match/cards/circle.png" type="Texture2D" id=1]
-[ext_resource path="res://scenes/game_match/cards/card_back.png" type="Texture2D" id=2]
-[ext_resource path="res://scenes/game_match/cards/Card.gd" type="Script" id=3]
+[ext_resource type="Texture2D" uid="uid://b0hd4ahmi5fsn" path="res://scenes/game_match/cards/circle.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://cnjt2i2sefdvb" path="res://theme/fox/game_match/card_back.png" id="2"]
+[ext_resource type="Script" path="res://scenes/game_match/cards/Card.gd" id="3"]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 

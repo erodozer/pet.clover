@@ -1,0 +1,59 @@
+[gd_scene load_steps=7 format=3 uid="uid://bv46ilktqwvii"]
+
+[ext_resource type="PackedScene" uid="uid://dbq16g4ghgxw6" path="res://scenes/home/pet/PetBase.tscn" id="1_54871"]
+[ext_resource type="Texture2D" uid="uid://b8euciit3mbak" path="res://theme/fox/pet/manuka.png" id="2_15c71"]
+[ext_resource type="SpriteFrames" uid="uid://dvsf10nj0d0in" path="res://theme/fox/pet/frames.tres" id="2_d8j4u"]
+
+[sub_resource type="Animation" id="13"]
+length = 0.001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="14"]
+resource_name = "idle"
+length = 1.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [-8.0, -12.0, -6.0, -8.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2j4q8"]
+_data = {
+"RESET": SubResource("13"),
+"idle": SubResource("14")
+}
+
+[node name="Pet" instance=ExtResource("1_54871")]
+
+[node name="Sprite2D" parent="." index="0"]
+sprite_frames = ExtResource("2_d8j4u")
+
+[node name="Manuka" type="Sprite2D" parent="." index="3"]
+texture = ExtResource("2_15c71")
+offset = Vector2(-26, -14)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Manuka" index="0"]
+autoplay = "idle"
+libraries = {
+"": SubResource("AnimationLibrary_2j4q8")
+}

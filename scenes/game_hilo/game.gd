@@ -76,4 +76,4 @@ func game_finished():
 		"play": GameState.now() + 240, # 4 minutes
 	}
 	
-	SceneManager.change_scene("flowershop")
+	SceneManager.change_scene("home")

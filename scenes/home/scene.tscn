@@ -1,0 +1,212 @@
+[gd_scene load_steps=22 format=3 uid="uid://dkaal7dxlbvqy"]
+
+[ext_resource type="Script" path="res://scenes/home/scene.gd" id="1_oq1jp"]
+[ext_resource type="PackedScene" uid="uid://lhxe71vragto" path="res://scenes/home/ui/controls/UiControls.tscn" id="2_all1x"]
+[ext_resource type="PackedScene" uid="uid://cvkideptcxtuk" path="res://scenes/home/ui/stats/StatusPanel.tscn" id="3_mh4k8"]
+[ext_resource type="Resource" uid="uid://cmpo574c33e4r" path="res://scenes/home/food.tres" id="3_ou7nj"]
+[ext_resource type="SpriteFrames" uid="uid://cxt5213k5mxo3" path="res://scenes/home/environment.tres" id="4_4si2r"]
+[ext_resource type="PackedScene" uid="uid://bvtoltqxhmabq" path="res://scenes/home/pet.tscn" id="5_kljsm"]
+[ext_resource type="Shader" path="res://ui/outline2D.gdshader" id="6_uvsj3"]
+[ext_resource type="Script" path="res://scenes/home/FoodDrop.gd" id="8_vpc07"]
+[ext_resource type="Texture2D" uid="uid://cpldtuyo8o40s" path="res://theme/fox/pet/pet_bath_0.png" id="14_p2om1"]
+[ext_resource type="Texture2D" uid="uid://c847oliuyrwbs" path="res://theme/fox/pet/pet_bath_1.png" id="15_2t1cd"]
+[ext_resource type="Texture2D" uid="uid://w8mhvqq6mwar" path="res://theme/fox/pet/pet_bath_3.png" id="16_e02nt"]
+[ext_resource type="Texture2D" uid="uid://tsn4w2wvry4e" path="res://theme/fox/pet/pet_bath_4.png" id="17_fyg34"]
+[ext_resource type="Texture2D" uid="uid://cmaf4nq2rssdm" path="res://theme/fox/pet/pet_bath_2.png" id="18_6mk5h"]
+[ext_resource type="Texture2D" uid="uid://b8euciit3mbak" path="res://theme/fox/pet/manuka.png" id="19_f3lmb"]
+[ext_resource type="PackedScene" uid="uid://07vynairarcd" path="res://scenes/home/ui/transition/Transition.tscn" id="20_cauwi"]
+
+[sub_resource type="ShaderMaterial" id="15"]
+shader = ExtResource("6_uvsj3")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/width = 1.0
+shader_parameter/pattern = 0
+shader_parameter/inside = false
+shader_parameter/add_margins = true
+
+[sub_resource type="SpriteFrames" id="2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"lights_off",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"lights_on",
+"speed": 8.0
+}]
+
+[sub_resource type="SpriteFrames" id="16"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_p2om1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_2t1cd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_e02nt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_2t1cd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_p2om1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_fyg34")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_6mk5h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_6mk5h")
+}],
+"loop": true,
+"name": &"default",
+"speed": 20.0
+}]
+
+[sub_resource type="Animation" id="17"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="18"]
+resource_name = "idle"
+length = 1.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [-8.0, -12.0, -6.0, -8.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4ja2s"]
+_data = {
+"RESET": SubResource("17"),
+"idle": SubResource("18")
+}
+
+[node name="ShopScene" type="Node2D" groups=["scene"]]
+script = ExtResource("1_oq1jp")
+
+[node name="UIControls" parent="." instance=ExtResource("2_all1x")]
+unique_name_in_owner = true
+foods = ExtResource("3_ou7nj")
+
+[node name="StatusPanel" parent="UIControls" instance=ExtResource("3_mh4k8")]
+unique_name_in_owner = true
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 1.0
+offset_top = 32.0
+offset_right = 98.0
+offset_bottom = 141.0
+
+[node name="ShopView" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Background" type="AnimatedSprite2D" parent="ShopView"]
+sprite_frames = ExtResource("4_4si2r")
+animation = &"lights_on"
+centered = false
+
+[node name="Pet" parent="ShopView" instance=ExtResource("5_kljsm")]
+
+[node name="LeftBound" type="Node2D" parent="ShopView"]
+unique_name_in_owner = true
+position = Vector2(54, 75)
+
+[node name="RightBound" type="Node2D" parent="ShopView"]
+unique_name_in_owner = true
+position = Vector2(104, 75)
+
+[node name="FoodDrop" type="AnimatedSprite2D" parent="ShopView"]
+unique_name_in_owner = true
+material = SubResource("15")
+position = Vector2(105, -39)
+animation = &""
+script = ExtResource("8_vpc07")
+
+[node name="Foreground" type="AnimatedSprite2D" parent="ShopView"]
+sprite_frames = SubResource("2")
+animation = &"lights_on"
+frame = 3
+centered = false
+
+[node name="WashScene" type="Node2D" parent="."]
+process_mode = 3
+visible = false
+
+[node name="Background" type="Sprite2D" parent="WashScene"]
+centered = false
+
+[node name="Fox" type="Node2D" parent="WashScene"]
+position = Vector2(81, 75)
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="WashScene/Fox"]
+position = Vector2(0, -19)
+sprite_frames = SubResource("16")
+autoplay = "default"
+
+[node name="Manuka" type="Sprite2D" parent="WashScene/Fox"]
+texture = ExtResource("19_f3lmb")
+offset = Vector2(-26, -14)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="WashScene/Fox/Manuka"]
+autoplay = "idle"
+libraries = {
+"": SubResource("AnimationLibrary_4ja2s")
+}
+
+[node name="Transition" parent="." instance=ExtResource("20_cauwi")]
+visible = false
+offset_left = 0.0
+offset_right = 160.0
+
+[connection signal="action_pressed" from="UIControls" to="." method="_on_UIControls_action_pressed"]

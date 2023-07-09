@@ -1,0 +1,302 @@
+[gd_scene load_steps=27 format=3 uid="uid://lhxe71vragto"]
+
+[ext_resource type="Script" path="res://scenes/home/ui/controls/UiControls.gd" id="1_45cbp"]
+[ext_resource type="Theme" uid="uid://bfmrdx6ah36lt" path="res://ui/ui_theme.tres" id="2_fferf"]
+[ext_resource type="Shader" path="res://ui/scroll.gdshader" id="3_ogr13"]
+[ext_resource type="Texture2D" uid="uid://dsdtq1sgpro7c" path="res://ui/tiled_hud.png" id="4_publw"]
+[ext_resource type="PackedScene" path="res://scenes/home/ui/clock/Clock.tscn" id="5_i8es8"]
+[ext_resource type="Script" path="res://scenes/home/ui/clock/ClockLabel.gd" id="6_q1rh6"]
+[ext_resource type="Texture2D" uid="uid://c2q4hdkscev71" path="res://scenes/home/ui/stats/currency.png" id="7_rulgf"]
+[ext_resource type="FontFile" uid="uid://cu56gylq7usm7" path="res://ui/fonts/Minimum.ttf" id="8_wlrfu"]
+[ext_resource type="PackedScene" uid="uid://g71xw0hneqtu" path="res://scenes/home/ui/button/SimpleButton.tscn" id="9_of6ik"]
+[ext_resource type="Texture2D" uid="uid://doo0ne4mnp170" path="res://scenes/home/ui/icons/food_off.png" id="10_py2yk"]
+[ext_resource type="Texture2D" uid="uid://b3av5nghd1oym" path="res://scenes/home/ui/icons/light_off.png" id="11_g2ofe"]
+[ext_resource type="Texture2D" uid="uid://dg16d5sxlq2" path="res://scenes/home/ui/icons/light.png" id="12_5gnba"]
+[ext_resource type="Texture2D" uid="uid://mghjcjmci6w" path="res://scenes/home/ui/icons/game_off.png" id="13_vbprg"]
+[ext_resource type="Texture2D" uid="uid://bgqaqpgdref3y" path="res://scenes/home/ui/icons/game.png" id="14_cnj5s"]
+[ext_resource type="Texture2D" uid="uid://beq6kiu28xg50" path="res://scenes/home/ui/icons/medicine_off.png" id="15_eic8e"]
+[ext_resource type="Texture2D" uid="uid://cmx4k3sdv8ij3" path="res://scenes/home/ui/icons/medicine.png" id="16_edl3q"]
+[ext_resource type="Texture2D" uid="uid://b8dsdbqlsedxn" path="res://scenes/home/ui/icons/bath_off.png" id="17_s1fvx"]
+[ext_resource type="Texture2D" uid="uid://cppjgulejd8ik" path="res://scenes/home/ui/icons/bath.png" id="18_hbdn7"]
+[ext_resource type="Texture2D" uid="uid://b3kopqnjvl625" path="res://scenes/home/ui/icons/health.png" id="19_l15sr"]
+[ext_resource type="Texture2D" uid="uid://d05l35h2hfaj" path="res://scenes/home/ui/icons/gift.png" id="20_nltk7"]
+[ext_resource type="Texture2D" uid="uid://bjwbgisv8ipyv" path="res://scenes/home/ui/icons/back.png" id="21_n8h64"]
+[ext_resource type="Texture2D" uid="uid://cwatxh702dim0" path="res://scenes/home/ui/icons/details.png" id="25_pvy2p"]
+
+[sub_resource type="StyleBoxFlat" id="1"]
+content_margin_bottom = 0.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+expand_margin_bottom = 2.0
+
+[sub_resource type="ShaderMaterial" id="3"]
+shader = ExtResource("3_ogr13")
+shader_parameter/speed_x = 0.0
+shader_parameter/speed_y = -0.3
+
+[sub_resource type="FontFile" id="4"]
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+fallbacks = Array[Font]([ExtResource("8_wlrfu")])
+face_index = null
+embolden = null
+transform = null
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+
+[sub_resource type="StyleBoxFlat" id="2"]
+content_margin_top = 0.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_top = 2
+border_color = Color(0, 0, 0, 1)
+expand_margin_top = 2.0
+
+[node name="UIControls" type="CanvasLayer" groups=["ui:controls"]]
+script = ExtResource("1_45cbp")
+
+[node name="TopPanel" type="Panel" parent="."]
+texture_filter = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 30.0
+theme = ExtResource("2_fferf")
+theme_override_styles/panel = SubResource("1")
+
+[node name="TextureRect" type="TextureRect" parent="TopPanel"]
+show_behind_parent = true
+texture_repeat = 2
+material = SubResource("3")
+layout_mode = 0
+offset_right = 160.0
+offset_bottom = 30.0
+texture = ExtResource("4_publw")
+stretch_mode = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TopPanel"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 2.0
+offset_right = 156.0
+offset_bottom = 26.0
+theme_override_constants/separation = 2
+
+[node name="Clock" parent="TopPanel/HBoxContainer" instance=ExtResource("5_i8es8")]
+unique_name_in_owner = true
+layout_mode = 2
+toggle_mode = true
+
+[node name="PanelContainer" type="PanelContainer" parent="TopPanel/HBoxContainer"]
+custom_minimum_size = Vector2(74, 0)
+layout_mode = 2
+
+[node name="PetName" type="Label" parent="TopPanel/HBoxContainer/PanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Clover"
+
+[node name="CurrentTime" type="Label" parent="TopPanel/HBoxContainer/PanelContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+script = ExtResource("6_q1rh6")
+
+[node name="Control" type="Control" parent="TopPanel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HoneyCounter" type="PanelContainer" parent="TopPanel/HBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TopPanel/HBoxContainer/HoneyCounter"]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="TopPanel/HBoxContainer/HoneyCounter/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("7_rulgf")
+stretch_mode = 4
+
+[node name="HoneyCounter" type="Label" parent="TopPanel/HBoxContainer/HoneyCounter/HBoxContainer"]
+unique_name_in_owner = true
+modulate = Color(0.0588235, 0.0352941, 0.0352941, 1)
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+theme_override_fonts/font = SubResource("4")
+text = "0"
+
+[node name="BottomPanel" type="Panel" parent="."]
+texture_filter = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -30.0
+theme = ExtResource("2_fferf")
+theme_override_styles/panel = SubResource("2")
+
+[node name="TextureRect" type="TextureRect" parent="BottomPanel"]
+show_behind_parent = true
+texture_repeat = 2
+material = SubResource("3")
+layout_mode = 0
+offset_right = 160.0
+offset_bottom = 30.0
+texture = ExtResource("4_publw")
+stretch_mode = 1
+
+[node name="Controls" type="Control" parent="BottomPanel"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = 5.0
+offset_top = 9.0
+offset_right = 151.0
+offset_bottom = 24.0
+
+[node name="Food" parent="BottomPanel/Controls" instance=ExtResource("9_of6ik")]
+layout_mode = 0
+toggle_mode = false
+bind_to_timer = "eat"
+
+[node name="icon_off" parent="BottomPanel/Controls/Food" index="0"]
+texture = ExtResource("10_py2yk")
+
+[node name="Light" parent="BottomPanel/Controls" instance=ExtResource("9_of6ik")]
+layout_mode = 0
+offset_left = 16.0
+offset_right = 31.0
+
+[node name="icon_off" parent="BottomPanel/Controls/Light" index="0"]
+texture = ExtResource("11_g2ofe")
+
+[node name="icon_on" parent="BottomPanel/Controls/Light" index="1"]
+texture = ExtResource("12_5gnba")
+
+[node name="Game" parent="BottomPanel/Controls" instance=ExtResource("9_of6ik")]
+layout_mode = 0
+offset_left = 32.0
+offset_right = 47.0
+toggle_mode = false
+bind_to_timer = "play"
+
+[node name="icon_off" parent="BottomPanel/Controls/Game" index="0"]
+show_behind_parent = false
+texture = ExtResource("13_vbprg")
+
+[node name="icon_on" parent="BottomPanel/Controls/Game" index="1"]
+show_behind_parent = false
+texture = ExtResource("14_cnj5s")
+
+[node name="border" parent="BottomPanel/Controls/Game" index="2"]
+show_behind_parent = false
+
+[node name="Cure" parent="BottomPanel/Controls" instance=ExtResource("9_of6ik")]
+layout_mode = 0
+offset_left = 48.0
+offset_right = 63.0
+toggle_mode = false
+bind_to_timer = "medicine"
+
+[node name="icon_off" parent="BottomPanel/Controls/Cure" index="0"]
+show_behind_parent = false
+texture = ExtResource("15_eic8e")
+
+[node name="icon_on" parent="BottomPanel/Controls/Cure" index="1"]
+show_behind_parent = false
+texture = ExtResource("16_edl3q")
+
+[node name="border" parent="BottomPanel/Controls/Cure" index="2"]
+show_behind_parent = false
+
+[node name="Bath" parent="BottomPanel/Controls" instance=ExtResource("9_of6ik")]
+layout_mode = 0
+offset_left = 64.0
+offset_right = 79.0
+toggle_mode = false
+bind_to_timer = "bathe"
+
+[node name="icon_off" parent="BottomPanel/Controls/Bath" index="0"]
+show_behind_parent = false
+texture = ExtResource("17_s1fvx")
+
+[node name="icon_on" parent="BottomPanel/Controls/Bath" index="1"]
+show_behind_parent = false
+texture = ExtResource("18_hbdn7")
+
+[node name="border" parent="BottomPanel/Controls/Bath" index="2"]
+show_behind_parent = false
+
+[node name="Health" parent="BottomPanel/Controls" instance=ExtResource("9_of6ik")]
+layout_mode = 0
+offset_left = 80.0
+offset_right = 95.0
+toggle_mode = false
+
+[node name="icon_off" parent="BottomPanel/Controls/Health" index="0"]
+show_behind_parent = false
+texture = ExtResource("19_l15sr")
+
+[node name="icon_on" parent="BottomPanel/Controls/Health" index="1"]
+show_behind_parent = false
+texture = ExtResource("19_l15sr")
+
+[node name="border" parent="BottomPanel/Controls/Health" index="2"]
+show_behind_parent = false
+
+[node name="Gift" parent="BottomPanel/Controls" instance=ExtResource("9_of6ik")]
+layout_mode = 0
+offset_left = 127.0
+offset_right = 142.0
+toggle_mode = false
+
+[node name="icon_off" parent="BottomPanel/Controls/Gift" index="0"]
+show_behind_parent = false
+texture = ExtResource("20_nltk7")
+
+[node name="icon_on" parent="BottomPanel/Controls/Gift" index="1"]
+show_behind_parent = false
+texture = ExtResource("20_nltk7")
+
+[node name="border" parent="BottomPanel/Controls/Gift" index="2"]
+show_behind_parent = false
+
+[node name="Back" parent="BottomPanel/Controls" instance=ExtResource("9_of6ik")]
+visible = false
+layout_mode = 0
+toggle_mode = false
+
+[node name="icon_off" parent="BottomPanel/Controls/Back" index="0"]
+texture = ExtResource("21_n8h64")
+
+[node name="icon_on" parent="BottomPanel/Controls/Back" index="1"]
+texture = ExtResource("21_n8h64")
+
+[node name="Details" parent="BottomPanel/Controls" instance=ExtResource("9_of6ik")]
+visible = false
+layout_mode = 0
+offset_left = 25.0
+offset_right = 40.0
+toggle_mode = false
+submenu = "stats"
+
+[node name="icon_off" parent="BottomPanel/Controls/Details" index="0"]
+texture = null
+
+[node name="icon_on" parent="BottomPanel/Controls/Details" index="1"]
+texture = ExtResource("25_pvy2p")
+
+[editable path="BottomPanel/Controls/Food"]
+[editable path="BottomPanel/Controls/Light"]
+[editable path="BottomPanel/Controls/Game"]
+[editable path="BottomPanel/Controls/Cure"]
+[editable path="BottomPanel/Controls/Bath"]
+[editable path="BottomPanel/Controls/Health"]
+[editable path="BottomPanel/Controls/Gift"]
+[editable path="BottomPanel/Controls/Back"]
+[editable path="BottomPanel/Controls/Details"]

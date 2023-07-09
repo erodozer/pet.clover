@@ -115,7 +115,7 @@ func game_finished():
 		"play": GameState.now() + 300, # 5 minutes
 	}
 	
-	SceneManager.change_scene("flowershop")
+	SceneManager.change_scene("home")
 
 func _swap(a: Control, b: Control):
 	var tween = create_tween()

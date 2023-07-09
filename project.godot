@@ -16,11 +16,17 @@ config/features=PackedStringArray("4.1")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/show_image=false
 config/icon="res://icon.png"
+config/name.pet_ham="Hamagotchi"
+config/pet_name="Clover"
+config/pet_name.pet_ham="Ham"
+config/theme="fox"
+config/theme.pet_ham="ham"
 
 [autoload]
 
 GameState="*res://GameState.gd"
 NoClick="*res://ui/NoClick.tscn"
+PetTheme="*res://Theme.gd"
 
 [debug]
 

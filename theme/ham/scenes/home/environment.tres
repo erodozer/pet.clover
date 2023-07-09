@@ -1,0 +1,22 @@
+[gd_resource type="SpriteFrames" load_steps=2 format=3 uid="uid://svfs2mjfw8lo"]
+
+[ext_resource type="Texture2D" uid="uid://b7746xitar61t" path="res://theme/ham/scenes/home/environment/lights_on_00.png" id="1_td5g7"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_td5g7")
+}],
+"loop": false,
+"name": &"lights_off",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_td5g7")
+}],
+"loop": false,
+"name": &"lights_on",
+"speed": 8.0
+}]

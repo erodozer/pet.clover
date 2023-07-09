@@ -101,7 +101,7 @@ func _on_BuyButton_pressed():
 			GameState.reset(true, false, false)
 		"reset.game":
 			GameState.reset(true, true, true)
-			SceneManager.change_scene("flowershop")
+			SceneManager.change_scene("home")
 		_:
 			GameState.unlocks = {
 				item.flag: true,
@@ -110,4 +110,4 @@ func _on_BuyButton_pressed():
 	select_item(true, item)
 
 func _on_Back_pressed():
-	SceneManager.change_scene("flowershop")
+	SceneManager.change_scene("home")

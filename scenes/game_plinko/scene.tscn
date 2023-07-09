@@ -2,7 +2,7 @@
 
 [ext_resource type="Shader" path="res://ui/scroll.gdshader" id="1"]
 [ext_resource type="FontFile" uid="uid://3heiwkvujho0" path="res://ui/fonts/EarlyGameBoySTD.ttf" id="2"]
-[ext_resource type="Texture2D" uid="uid://st2lqyxx0u6x" path="res://scenes/game_match/background.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://st2lqyxx0u6x" path="res://ui/background.png" id="3"]
 [ext_resource type="Texture2D" uid="uid://df8hw8q5hoxpk" path="res://ui/panel.png" id="4"]
 [ext_resource type="Texture2D" uid="uid://c1r6hwy43w8pn" path="res://scenes/game_plinko/ball.png" id="5"]
 [ext_resource type="Texture2D" uid="uid://tdhk2gooh12p" path="res://scenes/game_plinko/peg.png" id="6"]

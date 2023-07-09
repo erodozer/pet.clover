@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="FoodMenu" load_steps=2 format=3 uid="uid://cmpo574c33e4r"]
+
+[ext_resource type="Script" path="res://food/FoodMenu.gd" id="1_0s8ae"]
+
+[resource]
+script = ExtResource("1_0s8ae")
+items = Array[Resource("res://food/FoodResource.gd")]([])

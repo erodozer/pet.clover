@@ -1,0 +1,14 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://cxt5213k5mxo3"]
+
+[resource]
+animations = [{
+"frames": [],
+"loop": false,
+"name": &"lights_off",
+"speed": 8.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"lights_on",
+"speed": 8.0
+}]

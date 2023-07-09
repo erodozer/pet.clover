@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="FoodResource" load_steps=2 format=3 uid="uid://cr3edaouje7ce"]
+
+[ext_resource type="Script" path="res://food/FoodResource.gd" id="1_wlatj"]
+
+[resource]
+script = ExtResource("1_wlatj")
+hungry = 30.0
+boredom = 0.0
+cooldown = 30.0
+unlock = ""
