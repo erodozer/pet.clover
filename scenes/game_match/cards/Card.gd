@@ -1,6 +1,6 @@
 extends Button
 
-@export var shape = "square": set = _set_card_shape
+@export_enum("circle", "square", "star", "triangle") var shape = "square": set = _set_card_shape
 
 @onready var front = get_node("%Front")
 @onready var back = get_node("%Back")

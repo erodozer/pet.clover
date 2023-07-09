@@ -1,10 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://dpqj4v03iq3ed"]
+[gd_scene load_steps=11 format=3 uid="uid://dpqj4v03iq3ed"]
 
 [ext_resource type="Script" path="res://scenes/game_match/game.gd" id="1"]
-[ext_resource type="PackedScene" path="res://scenes/game_match/cards/Card.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://dd78sx7uk8fsq" path="res://scenes/game_match/cards/Card.tscn" id="2"]
 [ext_resource type="Texture2D" uid="uid://st2lqyxx0u6x" path="res://ui/background.png" id="3"]
-[ext_resource type="SpriteFrames" path="res://pet/frames.tres" id="4"]
-[ext_resource type="Texture2D" uid="uid://df8hw8q5hoxpk" path="res://ui/panel.png" id="5"]
+[ext_resource type="SpriteFrames" uid="uid://dushx8aen3ymk" path="res://pet/frames.tres" id="4"]
 [ext_resource type="Shader" path="res://ui/scroll.gdshader" id="6"]
 [ext_resource type="FontFile" uid="uid://3heiwkvujho0" path="res://ui/fonts/EarlyGameBoySTD.ttf" id="7"]
 
@@ -13,40 +12,21 @@ shader = ExtResource("6")
 shader_parameter/speed_x = 1.0
 shader_parameter/speed_y = null
 
-[sub_resource type="FontFile" id="7"]
-fallbacks = Array[Font]([ExtResource("7")])
-face_index = null
-embolden = null
-transform = null
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
-cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+[sub_resource type="LabelSettings" id="LabelSettings_1de60"]
+font = ExtResource("7")
+shadow_size = 0
+shadow_color = Color(0, 0, 0, 1)
 
-[sub_resource type="StyleBoxTexture" id="8"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 5.0
-content_margin_bottom = 4.0
-texture = ExtResource("5")
-axis_stretch_horizontal = 1
-axis_stretch_vertical = 1
-region_rect = Rect2(0, 0, 16, 16)
+[sub_resource type="LabelSettings" id="LabelSettings_3gk0t"]
+font = ExtResource("7")
+font_color = Color(0, 0, 0, 1)
+shadow_size = 0
+shadow_color = Color(1, 1, 1, 1)
 
-[sub_resource type="Theme" id="6"]
-Label/colors/font_color = Color(0, 0, 0, 1)
-Label/colors/font_color_shadow = Color(0, 0, 0, 1)
-Label/colors/font_outline_modulate = Color(0, 0, 0, 1)
-Label/constants/line_spacing = 0
-Label/constants/shadow_as_outline = 0
-Label/constants/shadow_offset_x = 0
-Label/constants/shadow_offset_y = 0
-Label/fonts/font = SubResource("7")
-Label/styles/normal = null
-Panel/styles/panel = SubResource("8")
-PanelContainer/styles/panel = SubResource("8")
+[sub_resource type="LabelSettings" id="LabelSettings_v5077"]
+font = ExtResource("7")
+shadow_size = 0
+shadow_color = Color(0, 0, 0, 1)
 
 [node name="MatchGame" type="Node" groups=["scene"]]
 script = ExtResource("1")
@@ -135,7 +115,6 @@ offset_top = 18.0
 offset_bottom = 18.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("6")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control"]
 layout_mode = 0
@@ -152,12 +131,14 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
 text = "Matches"
+label_settings = SubResource("LabelSettings_1de60")
 
 [node name="MatchCount" type="Label" parent="Control/HBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 text = "00"
+label_settings = SubResource("LabelSettings_3gk0t")
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Control/HBoxContainer"]
 layout_mode = 2
@@ -168,16 +149,17 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
 text = "Turns"
+label_settings = SubResource("LabelSettings_v5077")
 
 [node name="TurnCount" type="Label" parent="Control/HBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(16, 0)
 layout_mode = 2
 text = "00"
+label_settings = SubResource("LabelSettings_3gk0t")
 
 [node name="Fox" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(80, 124)
 sprite_frames = ExtResource("4")
 animation = &"sit"
-frame = 3

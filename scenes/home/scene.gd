@@ -21,7 +21,7 @@ func _on_TwitchIntegration_chat_command(action):
 		"lights on":
 			_toggle_lights(true)
 		"food", "give food", "food nuggie", "give nuggie":
-			_drop_food("nuggie")
+			_drop_food()
 		"give soju", "food soju":
 			_drop_food("soju")
 		"give fries", "food fries":
@@ -31,7 +31,7 @@ func _on_TwitchIntegration_chat_command(action):
 		"heal", "cure", "give medicine":
 			_give_medicine()
 		
-func _on_UIControls_action_pressed(action_type, is_pressed):
+func _on_UIControls_action_pressed(action_type, is_pressed, meta = null):
 	if not accepting_actions:
 		return
 		
@@ -39,7 +39,9 @@ func _on_UIControls_action_pressed(action_type, is_pressed):
 		"light":
 			_toggle_lights(is_pressed)
 		"food":
-			_drop_food()
+			_drop_food(
+				meta if meta != null else menu.foods.items[0]
+			)
 		"cure":
 			_give_medicine()
 		"bath":
@@ -67,6 +69,8 @@ func _ready():
 	var catch_up = clamp((GameState.now() - GameState.timers.update) / float(GameState.UPDATE_FREQ), 0, 300.0)
 	for _i in range(catch_up):
 		GameState.execute_turn()
+		
+	%WashScene/Pet/Sprite2D.play()
 	
 func _show_stats():
 	accepting_actions = false
@@ -221,8 +225,7 @@ func _drop_food(food_type = null):
 	NoClick.visible = true
 	
 	fox.pause = true
-	food.food = food_type
-	var can_drop = await food.drop()
+	var can_drop = await food.drop(food_type)
 	if can_drop:
 		await fox.move_to(food.position, 30.0)
 		await food.eat()

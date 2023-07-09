@@ -109,7 +109,7 @@ func save_data():
 	if now() < save_sync:
 		return
 	
-	var save_game = FileAccess.open("user://clover.save", FileAccess.WRITE)
+	var save_game = FileAccess.open("user://pet.save", FileAccess.WRITE)
 	save_game.store_line(
 		JSON.stringify({
 			"stats": stats,

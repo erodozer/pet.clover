@@ -6,7 +6,7 @@ signal action_pressed(action_type, is_pressed)
 
 @export var foods: FoodMenu
 @onready var clock = get_node("%Clock")
-@onready var label = get_node("%Label")
+@onready var label = get_node("%PetName")
 @onready var clock_label = get_node("%CurrentTime")
 
 # Called when the node enters the scene tree for the first time.
@@ -27,7 +27,7 @@ func _ready():
 	GameState.connect("stats_changed", Callable(self, "_update_stats"))
 	%Controls/Light.button_pressed = GameState.lights_on
 	
-	%PetName.text = ProjectSettings.get("application/config/pet_name")
+	label.text = ProjectSettings.get("application/config/pet_name")
 
 func show_submenu(submenu):
 	for button in get_node("%Controls").get_children():
@@ -52,7 +52,7 @@ func _on_clock_toggled():
 	
 func set_hint_text(text):
 	if not text:
-		label.text = "Clover"
+		label.text = ProjectSettings.get_setting_with_override("application/config/pet_name")
 	else:
 		label.text = text
 

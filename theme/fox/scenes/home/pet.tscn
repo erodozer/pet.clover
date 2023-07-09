@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bv46ilktqwvii"]
 
-[ext_resource type="PackedScene" uid="uid://dbq16g4ghgxw6" path="res://scenes/home/pet/PetBase.tscn" id="1_54871"]
+[ext_resource type="PackedScene" uid="uid://dbq16g4ghgxw6" path="res://pet/PetBase.tscn" id="1_54871"]
 [ext_resource type="Texture2D" uid="uid://b8euciit3mbak" path="res://theme/fox/pet/manuka.png" id="2_15c71"]
 [ext_resource type="SpriteFrames" uid="uid://dvsf10nj0d0in" path="res://theme/fox/pet/frames.tres" id="2_d8j4u"]
 

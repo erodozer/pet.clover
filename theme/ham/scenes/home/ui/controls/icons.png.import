@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://doo0ne4mnp170"
-path="res://.godot/imported/food_off.png-e45527cf47a6ff7cae4318d7168ba1af.ctex"
+uid="uid://3yajfim0n2hw"
+path="res://.godot/imported/icons.png-066a1bd91ebbe1912d912d798dca03f0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/home/ui/icons/food_off.png"
-dest_files=["res://.godot/imported/food_off.png-e45527cf47a6ff7cae4318d7168ba1af.ctex"]
+source_file="res://theme/ham/scenes/home/ui/controls/icons.png"
+dest_files=["res://.godot/imported/icons.png-066a1bd91ebbe1912d912d798dca03f0.ctex"]
 
 [params]
 

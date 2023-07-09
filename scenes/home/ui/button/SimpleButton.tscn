@@ -1,6 +1,5 @@
-[gd_scene load_steps=12 format=3 uid="uid://g71xw0hneqtu"]
+[gd_scene load_steps=11 format=3 uid="uid://g71xw0hneqtu"]
 
-[ext_resource type="Texture2D" uid="uid://dno0u50xp0qnn" path="res://scenes/home/ui/icons/food.png" id="1"]
 [ext_resource type="Script" path="res://scenes/home/ui/button/SimpleButton.gd" id="2"]
 [ext_resource type="Texture2D" uid="uid://bpj60jt8rmttc" path="res://scenes/home/ui/button/icon_2.png" id="3"]
 [ext_resource type="Texture2D" uid="uid://ccu72mg08x0l2" path="res://scenes/home/ui/button/icon_1.png" id="4"]
@@ -66,13 +65,11 @@ script = ExtResource("2")
 [node name="icon_off" type="Sprite2D" parent="."]
 show_behind_parent = true
 position = Vector2(-1, -1)
-texture = ExtResource("1")
 centered = false
 
 [node name="icon_on" type="Sprite2D" parent="."]
 show_behind_parent = true
 position = Vector2(-1, -1)
-texture = ExtResource("1")
 centered = false
 
 [node name="border" type="AnimatedSprite2D" parent="."]

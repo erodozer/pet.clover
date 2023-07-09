@@ -1,0 +1,44 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://dushx8aen3ymk"]
+
+[resource]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"bath",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"sick",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"sit",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"sleep",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"study",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"yelp",
+"speed": 8.0
+}]

@@ -1,10 +1,15 @@
-[gd_resource type="SpriteFrames" load_steps=28 format=3 uid="uid://dvsf10nj0d0in"]
+[gd_resource type="SpriteFrames" load_steps=33 format=3 uid="uid://dvsf10nj0d0in"]
 
 [ext_resource type="Texture2D" uid="uid://gpbiwyi3yupr" path="res://theme/fox/pet/pet_idle_0.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://cpldtuyo8o40s" path="res://theme/fox/pet/pet_bath_0.png" id="1_f8fmj"]
 [ext_resource type="Texture2D" uid="uid://d04hw5gxux1j8" path="res://theme/fox/pet/pet_idle_2.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://c847oliuyrwbs" path="res://theme/fox/pet/pet_bath_1.png" id="2_ygeqb"]
 [ext_resource type="Texture2D" uid="uid://gbbw6fvgrdeq" path="res://theme/fox/pet/pet_walk_2.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://cmaf4nq2rssdm" path="res://theme/fox/pet/pet_bath_2.png" id="3_ar843"]
 [ext_resource type="Texture2D" uid="uid://cv60pdbq1d0i" path="res://theme/fox/pet/pet_idle_1.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://w8mhvqq6mwar" path="res://theme/fox/pet/pet_bath_3.png" id="4_j1ys5"]
 [ext_resource type="Texture2D" uid="uid://gcm6ha2dr25u" path="res://theme/fox/pet/pet_idle_3.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://tsn4w2wvry4e" path="res://theme/fox/pet/pet_bath_4.png" id="5_04a23"]
 [ext_resource type="Texture2D" uid="uid://17oro7wmwdnm" path="res://theme/fox/pet/pet_walk_1.png" id="6"]
 [ext_resource type="Texture2D" uid="uid://br5vveeujowqk" path="res://theme/fox/pet/pet_sit_0.png" id="7"]
 [ext_resource type="Texture2D" uid="uid://bclccdo1f0oe1" path="res://theme/fox/pet/pet_sit_1.png" id="8"]
@@ -30,6 +35,35 @@
 
 [resource]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_f8fmj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ygeqb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_j1ys5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ygeqb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_f8fmj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_04a23")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ar843")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ar843")
+}],
+"loop": true,
+"name": &"bath",
+"speed": 20.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("1")
@@ -109,7 +143,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"sit",
-"speed": 5.0
+"speed": 20.0
 }, {
 "frames": [{
 "duration": 1.0,

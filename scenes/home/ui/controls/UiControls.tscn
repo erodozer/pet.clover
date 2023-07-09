@@ -1,27 +1,15 @@
-[gd_scene load_steps=27 format=3 uid="uid://lhxe71vragto"]
+[gd_scene load_steps=32 format=3 uid="uid://lhxe71vragto"]
 
 [ext_resource type="Script" path="res://scenes/home/ui/controls/UiControls.gd" id="1_45cbp"]
 [ext_resource type="Theme" uid="uid://bfmrdx6ah36lt" path="res://ui/ui_theme.tres" id="2_fferf"]
 [ext_resource type="Shader" path="res://ui/scroll.gdshader" id="3_ogr13"]
 [ext_resource type="Texture2D" uid="uid://dsdtq1sgpro7c" path="res://ui/tiled_hud.png" id="4_publw"]
-[ext_resource type="PackedScene" path="res://scenes/home/ui/clock/Clock.tscn" id="5_i8es8"]
+[ext_resource type="PackedScene" uid="uid://r0g0xsty3gr7" path="res://scenes/home/ui/clock/Clock.tscn" id="5_i8es8"]
 [ext_resource type="Script" path="res://scenes/home/ui/clock/ClockLabel.gd" id="6_q1rh6"]
 [ext_resource type="Texture2D" uid="uid://c2q4hdkscev71" path="res://scenes/home/ui/stats/currency.png" id="7_rulgf"]
 [ext_resource type="FontFile" uid="uid://cu56gylq7usm7" path="res://ui/fonts/Minimum.ttf" id="8_wlrfu"]
 [ext_resource type="PackedScene" uid="uid://g71xw0hneqtu" path="res://scenes/home/ui/button/SimpleButton.tscn" id="9_of6ik"]
-[ext_resource type="Texture2D" uid="uid://doo0ne4mnp170" path="res://scenes/home/ui/icons/food_off.png" id="10_py2yk"]
-[ext_resource type="Texture2D" uid="uid://b3av5nghd1oym" path="res://scenes/home/ui/icons/light_off.png" id="11_g2ofe"]
-[ext_resource type="Texture2D" uid="uid://dg16d5sxlq2" path="res://scenes/home/ui/icons/light.png" id="12_5gnba"]
-[ext_resource type="Texture2D" uid="uid://mghjcjmci6w" path="res://scenes/home/ui/icons/game_off.png" id="13_vbprg"]
-[ext_resource type="Texture2D" uid="uid://bgqaqpgdref3y" path="res://scenes/home/ui/icons/game.png" id="14_cnj5s"]
-[ext_resource type="Texture2D" uid="uid://beq6kiu28xg50" path="res://scenes/home/ui/icons/medicine_off.png" id="15_eic8e"]
-[ext_resource type="Texture2D" uid="uid://cmx4k3sdv8ij3" path="res://scenes/home/ui/icons/medicine.png" id="16_edl3q"]
-[ext_resource type="Texture2D" uid="uid://b8dsdbqlsedxn" path="res://scenes/home/ui/icons/bath_off.png" id="17_s1fvx"]
-[ext_resource type="Texture2D" uid="uid://cppjgulejd8ik" path="res://scenes/home/ui/icons/bath.png" id="18_hbdn7"]
-[ext_resource type="Texture2D" uid="uid://b3kopqnjvl625" path="res://scenes/home/ui/icons/health.png" id="19_l15sr"]
-[ext_resource type="Texture2D" uid="uid://d05l35h2hfaj" path="res://scenes/home/ui/icons/gift.png" id="20_nltk7"]
-[ext_resource type="Texture2D" uid="uid://bjwbgisv8ipyv" path="res://scenes/home/ui/icons/back.png" id="21_n8h64"]
-[ext_resource type="Texture2D" uid="uid://cwatxh702dim0" path="res://scenes/home/ui/icons/details.png" id="25_pvy2p"]
+[ext_resource type="Texture2D" uid="uid://bunxtk64ph182" path="res://scenes/home/ui/controls/icons.png" id="10_8nnr7"]
 
 [sub_resource type="StyleBoxFlat" id="1"]
 content_margin_bottom = 0.0
@@ -56,6 +44,74 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 border_width_top = 2
 border_color = Color(0, 0, 0, 1)
 expand_margin_top = 2.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ylq6"]
+atlas = ExtResource("10_8nnr7")
+region = Rect2(17, 34, 17, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o1c06"]
+atlas = ExtResource("10_8nnr7")
+region = Rect2(0, 34, 17, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ng3dl"]
+atlas = ExtResource("10_8nnr7")
+region = Rect2(17, 102, 17, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fmu1m"]
+atlas = ExtResource("10_8nnr7")
+region = Rect2(0, 102, 17, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_060sw"]
+atlas = ExtResource("10_8nnr7")
+region = Rect2(17, 51, 17, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n8jfr"]
+atlas = ExtResource("10_8nnr7")
+region = Rect2(0, 51, 17, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3nurj"]
+atlas = ExtResource("10_8nnr7")
+region = Rect2(17, 136, 17, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n5vuj"]
+atlas = ExtResource("10_8nnr7")
+region = Rect2(0, 136, 17, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iw4xr"]
+atlas = ExtResource("10_8nnr7")
+region = Rect2(17, 17, 17, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xwxqk"]
+atlas = ExtResource("10_8nnr7")
+region = Rect2(0, 17, 17, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jjy0l"]
+atlas = ExtResource("10_8nnr7")
+region = Rect2(0, 85, 17, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ckev"]
+atlas = ExtResource("10_8nnr7")
+region = Rect2(0, 85, 17, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xf5gp"]
+atlas = ExtResource("10_8nnr7")
+region = Rect2(0, 68, 17, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bciqx"]
+atlas = ExtResource("10_8nnr7")
+region = Rect2(0, 68, 17, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xl5pa"]
+atlas = ExtResource("10_8nnr7")
+region = Rect2(0, 0, 17, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3qeh8"]
+atlas = ExtResource("10_8nnr7")
+region = Rect2(0, 0, 17, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fpuxr"]
+atlas = ExtResource("10_8nnr7")
+region = Rect2(17, 85, 17, 17)
 
 [node name="UIControls" type="CanvasLayer" groups=["ui:controls"]]
 script = ExtResource("1_45cbp")
@@ -165,7 +221,10 @@ toggle_mode = false
 bind_to_timer = "eat"
 
 [node name="icon_off" parent="BottomPanel/Controls/Food" index="0"]
-texture = ExtResource("10_py2yk")
+texture = SubResource("AtlasTexture_0ylq6")
+
+[node name="icon_on" parent="BottomPanel/Controls/Food" index="1"]
+texture = SubResource("AtlasTexture_o1c06")
 
 [node name="Light" parent="BottomPanel/Controls" instance=ExtResource("9_of6ik")]
 layout_mode = 0
@@ -173,10 +232,10 @@ offset_left = 16.0
 offset_right = 31.0
 
 [node name="icon_off" parent="BottomPanel/Controls/Light" index="0"]
-texture = ExtResource("11_g2ofe")
+texture = SubResource("AtlasTexture_ng3dl")
 
 [node name="icon_on" parent="BottomPanel/Controls/Light" index="1"]
-texture = ExtResource("12_5gnba")
+texture = SubResource("AtlasTexture_fmu1m")
 
 [node name="Game" parent="BottomPanel/Controls" instance=ExtResource("9_of6ik")]
 layout_mode = 0
@@ -187,11 +246,11 @@ bind_to_timer = "play"
 
 [node name="icon_off" parent="BottomPanel/Controls/Game" index="0"]
 show_behind_parent = false
-texture = ExtResource("13_vbprg")
+texture = SubResource("AtlasTexture_060sw")
 
 [node name="icon_on" parent="BottomPanel/Controls/Game" index="1"]
 show_behind_parent = false
-texture = ExtResource("14_cnj5s")
+texture = SubResource("AtlasTexture_n8jfr")
 
 [node name="border" parent="BottomPanel/Controls/Game" index="2"]
 show_behind_parent = false
@@ -205,11 +264,11 @@ bind_to_timer = "medicine"
 
 [node name="icon_off" parent="BottomPanel/Controls/Cure" index="0"]
 show_behind_parent = false
-texture = ExtResource("15_eic8e")
+texture = SubResource("AtlasTexture_3nurj")
 
 [node name="icon_on" parent="BottomPanel/Controls/Cure" index="1"]
 show_behind_parent = false
-texture = ExtResource("16_edl3q")
+texture = SubResource("AtlasTexture_n5vuj")
 
 [node name="border" parent="BottomPanel/Controls/Cure" index="2"]
 show_behind_parent = false
@@ -223,11 +282,11 @@ bind_to_timer = "bathe"
 
 [node name="icon_off" parent="BottomPanel/Controls/Bath" index="0"]
 show_behind_parent = false
-texture = ExtResource("17_s1fvx")
+texture = SubResource("AtlasTexture_iw4xr")
 
 [node name="icon_on" parent="BottomPanel/Controls/Bath" index="1"]
 show_behind_parent = false
-texture = ExtResource("18_hbdn7")
+texture = SubResource("AtlasTexture_xwxqk")
 
 [node name="border" parent="BottomPanel/Controls/Bath" index="2"]
 show_behind_parent = false
@@ -240,11 +299,11 @@ toggle_mode = false
 
 [node name="icon_off" parent="BottomPanel/Controls/Health" index="0"]
 show_behind_parent = false
-texture = ExtResource("19_l15sr")
+texture = SubResource("AtlasTexture_jjy0l")
 
 [node name="icon_on" parent="BottomPanel/Controls/Health" index="1"]
 show_behind_parent = false
-texture = ExtResource("19_l15sr")
+texture = SubResource("AtlasTexture_1ckev")
 
 [node name="border" parent="BottomPanel/Controls/Health" index="2"]
 show_behind_parent = false
@@ -257,11 +316,11 @@ toggle_mode = false
 
 [node name="icon_off" parent="BottomPanel/Controls/Gift" index="0"]
 show_behind_parent = false
-texture = ExtResource("20_nltk7")
+texture = SubResource("AtlasTexture_xf5gp")
 
 [node name="icon_on" parent="BottomPanel/Controls/Gift" index="1"]
 show_behind_parent = false
-texture = ExtResource("20_nltk7")
+texture = SubResource("AtlasTexture_bciqx")
 
 [node name="border" parent="BottomPanel/Controls/Gift" index="2"]
 show_behind_parent = false
@@ -272,10 +331,10 @@ layout_mode = 0
 toggle_mode = false
 
 [node name="icon_off" parent="BottomPanel/Controls/Back" index="0"]
-texture = ExtResource("21_n8h64")
+texture = SubResource("AtlasTexture_xl5pa")
 
 [node name="icon_on" parent="BottomPanel/Controls/Back" index="1"]
-texture = ExtResource("21_n8h64")
+texture = SubResource("AtlasTexture_3qeh8")
 
 [node name="Details" parent="BottomPanel/Controls" instance=ExtResource("9_of6ik")]
 visible = false
@@ -285,11 +344,8 @@ offset_right = 40.0
 toggle_mode = false
 submenu = "stats"
 
-[node name="icon_off" parent="BottomPanel/Controls/Details" index="0"]
-texture = null
-
 [node name="icon_on" parent="BottomPanel/Controls/Details" index="1"]
-texture = ExtResource("25_pvy2p")
+texture = SubResource("AtlasTexture_fpuxr")
 
 [editable path="BottomPanel/Controls/Food"]
 [editable path="BottomPanel/Controls/Light"]

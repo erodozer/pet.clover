@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://culiykbuti4o1"
-path="res://.godot/imported/m_0.png-02e550c4ba506f8761b9cabe8489a26a.ctex"
+uid="uid://c6ieg5w204ejf"
+path="res://.godot/imported/panel.png-04631082f31c5006d34475c1d7352884.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/home/ui/clock/m_0.png"
-dest_files=["res://.godot/imported/m_0.png-02e550c4ba506f8761b9cabe8489a26a.ctex"]
+source_file="res://theme/ham/ui/panel.png"
+dest_files=["res://.godot/imported/panel.png-04631082f31c5006d34475c1d7352884.ctex"]
 
 [params]
 

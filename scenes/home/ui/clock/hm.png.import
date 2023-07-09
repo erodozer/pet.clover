@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dno0u50xp0qnn"
-path="res://.godot/imported/food.png-2429eefc076c1c5388dca24c94102c06.ctex"
+uid="uid://5i7t27h6klad"
+path="res://.godot/imported/hm.png-599ecf4aceb888581adee5b7e057721d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/home/ui/icons/food.png"
-dest_files=["res://.godot/imported/food.png-2429eefc076c1c5388dca24c94102c06.ctex"]
+source_file="res://scenes/home/ui/clock/hm.png"
+dest_files=["res://.godot/imported/hm.png-599ecf4aceb888581adee5b7e057721d.ctex"]
 
 [params]
 

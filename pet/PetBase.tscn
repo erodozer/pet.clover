@@ -1,44 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://dbq16g4ghgxw6"]
 
-[ext_resource type="Script" path="res://scenes/home/pet/Pet.gd" id="1_d3eim"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_7xgrd"]
-animations = [{
-"frames": [],
-"loop": true,
-"name": &"idle",
-"speed": 5.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"sick",
-"speed": 5.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"sit",
-"speed": 5.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"sleep",
-"speed": 5.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"study",
-"speed": 5.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"walk",
-"speed": 5.0
-}, {
-"frames": [],
-"loop": false,
-"name": &"yelp",
-"speed": 8.0
-}]
+[ext_resource type="Script" path="res://pet/Pet.gd" id="1_l0g1b"]
+[ext_resource type="SpriteFrames" uid="uid://dushx8aen3ymk" path="res://pet/frames.tres" id="2_df35p"]
 
 [sub_resource type="Gradient" id="10"]
 offsets = PackedFloat32Array(0.246377, 1)
@@ -68,11 +31,11 @@ process_mode = 3
 texture_filter = 1
 texture_repeat = 1
 position = Vector2(81, 75)
-script = ExtResource("1_d3eim")
+script = ExtResource("1_l0g1b")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -19)
-sprite_frames = SubResource("SpriteFrames_7xgrd")
+sprite_frames = ExtResource("2_df35p")
 animation = &"idle"
 
 [node name="Dirty" type="Node2D" parent="."]
