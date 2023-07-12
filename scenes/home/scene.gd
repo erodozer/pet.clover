@@ -54,10 +54,6 @@ func _on_UIControls_action_pressed(action_type, is_pressed, meta = null):
 			SceneManager.change_scene("unlockshop")
 	
 func _ready():
-	# var pet = PetTheme.load("home/pet.tscn").instantiate()
-	# fox.replace_by(pet)
-	# fox = pet
-	
 	var left = get_node("%LeftBound").position.x
 	var right = get_node("%RightBound").position.x
 	fox.left_bound = left
@@ -70,6 +66,7 @@ func _ready():
 	for _i in range(catch_up):
 		GameState.execute_turn()
 		
+	fox.pause = false
 	%WashScene/Pet/Sprite2D.play()
 	
 func _show_stats():
@@ -228,6 +225,7 @@ func _drop_food(food_type = null):
 	var can_drop = await food.drop(food_type)
 	if can_drop:
 		await fox.move_to(food.position, 30.0)
+		fox.eat()
 		await food.eat()
 	fox.pause = false
 	

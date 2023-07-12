@@ -4,8 +4,8 @@
 [ext_resource type="Shader" path="res://ui/scroll.gdshader" id="2"]
 [ext_resource type="Script" path="res://scenes/game_hilo/game.gd" id="3"]
 [ext_resource type="Texture2D" uid="uid://st2lqyxx0u6x" path="res://ui/background.png" id="4"]
-[ext_resource type="PackedScene" path="res://scenes/game_hilo/cards/Card.tscn" id="5"]
-[ext_resource type="SpriteFrames" path="res://pet/frames.tres" id="6"]
+[ext_resource type="PackedScene" uid="uid://b3ng0b53lovo5" path="res://scenes/game_hilo/cards/Card.tscn" id="5"]
+[ext_resource type="SpriteFrames" uid="uid://dushx8aen3ymk" path="res://pet/frames.tres" id="6"]
 [ext_resource type="Theme" uid="uid://bfmrdx6ah36lt" path="res://ui/ui_theme.tres" id="7"]
 
 [sub_resource type="ShaderMaterial" id="1"]
@@ -166,4 +166,3 @@ unique_name_in_owner = true
 position = Vector2(80, 124)
 sprite_frames = ExtResource("6")
 animation = &"sit"
-frame = 3

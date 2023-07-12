@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dkaal7dxlbvqy"]
+[gd_scene load_steps=15 format=3 uid="uid://dkaal7dxlbvqy"]
 
 [ext_resource type="Script" path="res://scenes/home/scene.gd" id="1_oq1jp"]
 [ext_resource type="PackedScene" uid="uid://lhxe71vragto" path="res://scenes/home/ui/controls/UiControls.tscn" id="2_all1x"]
@@ -19,6 +19,19 @@ shader_parameter/width = 1.0
 shader_parameter/pattern = 0
 shader_parameter/inside = false
 shader_parameter/add_margins = true
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ke7tu"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"eat",
+"speed": 5.0
+}]
 
 [sub_resource type="SpriteFrames" id="2"]
 animations = [{
@@ -96,7 +109,8 @@ position = Vector2(104, 75)
 unique_name_in_owner = true
 material = SubResource("15")
 position = Vector2(105, -39)
-animation = &""
+sprite_frames = SubResource("SpriteFrames_ke7tu")
+animation = &"eat"
 script = ExtResource("8_vpc07")
 
 [node name="Foreground" type="AnimatedSprite2D" parent="ShopView"]

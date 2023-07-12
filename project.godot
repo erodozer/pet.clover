@@ -26,7 +26,6 @@ config/theme.pet_ham="ham"
 
 GameState="*res://GameState.gd"
 NoClick="*res://ui/NoClick.tscn"
-PetTheme="*res://Theme.gd"
 
 [debug]
 
@@ -50,6 +49,7 @@ enabled=PackedStringArray()
 [gui]
 
 fonts/dynamic_fonts/use_oversampling=false
+theme/default_font_subpixel_positioning=0
 common/drop_mouse_on_gui_input_disabled=true
 
 [importer_defaults]

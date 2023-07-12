@@ -1,6 +1,34 @@
-[gd_resource type="Resource" script_class="FoodResource" load_steps=2 format=3 uid="uid://cr3edaouje7ce"]
+[gd_resource type="Resource" script_class="FoodResource" load_steps=6 format=3 uid="uid://cr3edaouje7ce"]
 
+[ext_resource type="Texture2D" uid="uid://dlixrfnccfn20" path="res://theme/ham/food/seed/01.png" id="1_r3x6n"]
 [ext_resource type="Script" path="res://food/FoodResource.gd" id="1_wlatj"]
+[ext_resource type="Texture2D" uid="uid://b58xoyfsfwbyt" path="res://theme/ham/food/seed/02.png" id="2_wko5n"]
+[ext_resource type="Texture2D" uid="uid://bc4j53nwash01" path="res://theme/ham/food/seed/03.png" id="3_wt8pk"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_frmtd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_r3x6n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_wko5n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_wt8pk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_r3x6n")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"eat",
+"speed": 5.0
+}]
 
 [resource]
 script = ExtResource("1_wlatj")
@@ -8,3 +36,4 @@ hungry = 30.0
 boredom = 0.0
 cooldown = 30.0
 unlock = ""
+animation = SubResource("SpriteFrames_frmtd")

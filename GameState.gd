@@ -38,8 +38,6 @@ var THEME = "ham"
 signal stats_changed(stats)
 signal timers_changed(timers)
 
-
-
 func _ready():
 	if FileAccess.file_exists("user://pet.save"):
 		var save_game = FileAccess.open("user://pet.save", FileAccess.READ)
@@ -52,6 +50,8 @@ func _ready():
 		self.stats = data.get("stats", {})
 		self.timers = data.get("timers", {})
 		self.unlocks = data.get("unlocks", {})
+		
+	await AppSkin.loaded()
 		
 	await get_tree().process_frame
 	SceneManager.change_scene("home")

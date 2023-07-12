@@ -38,6 +38,9 @@ color_ramp = SubResource("11")
 [node name="Sprite2D" parent="." index="0"]
 position = Vector2(0, -21)
 sprite_frames = ExtResource("2_0bcv0")
+animation = &"study:correct"
+frame = 16
+frame_progress = 1.0
 
 [node name="Particles" parent="Dirty" index="0"]
 process_material = SubResource("ParticleProcessMaterial_lnt1j")

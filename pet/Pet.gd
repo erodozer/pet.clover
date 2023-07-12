@@ -54,6 +54,9 @@ func move_to(target: Vector2, padding = 0):
 	sprite.scale.x = facing
 	sprite.play("idle")
 	
+func eat():
+	sprite.play("eat")
+	
 func _wander():
 	# move action
 	var next = randf_range(left_bound, right_bound)

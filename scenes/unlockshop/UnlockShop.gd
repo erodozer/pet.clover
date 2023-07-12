@@ -50,7 +50,7 @@ const UNLOCKS = [
 	{
 		"flag": "reset.cooldowns",
 		"name": "Reset Timers",
-		"price": 10000,
+		"price": 1000,
 		"description": "Reset all activity cooldowns"
 	},
 	{
