@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ShopResource" load_steps=2 format=3 uid="uid://d1eqhbuhxqwaj"]
+
+[ext_resource type="Script" path="res://resources/ShopResource.gd" id="1_m0iv3"]
+
+[resource]
+script = ExtResource("1_m0iv3")
+flag = "food.soju"
+display_name = "Y Soju"
+description = "Give Clover a treat. Not filling, but improves mood"
+cost = 60000

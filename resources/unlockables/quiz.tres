@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ShopResource" load_steps=2 format=3 uid="uid://cu1hik6js58br"]
+
+[ext_resource type="Script" path="res://resources/ShopResource.gd" id="1_8tbg6"]
+
+[resource]
+script = ExtResource("1_8tbg6")
+flag = "game.quiz"
+display_name = "M. Quiz"
+description = "Flex your brain in a race against time"
+cost = 40000

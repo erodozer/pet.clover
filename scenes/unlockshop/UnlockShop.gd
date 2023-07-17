@@ -4,74 +4,19 @@ extends Control
 # a dynamic set of resources, but because of
 # how small and simple this app is, might
 # as well keep it hard coded as a dictionary
-const UNLOCKS = [
-	{
-		"flag": "game.hilo",
-		"name": "High Low",
-		"price": 25000,
-		"description": "Play High-Low with Clover"
-	},
-	{
-		"flag": "food.fries",
-		"name": "F Fries",
-		"price": 30000,
-		"description": "A large order of fries.  Fattens up the fox quickly."
-	},
-#	{
-#		"flag": "food.ramen",
-#		"name": "Ramen",
-#		"price": 50000,
-#		"description": "Warm soup to fill up the fox. Helps them feel better"
-#	},
-	{
-		"flag": "bath.soap",
-		"name": "Pink Soap",
-		"price": 40000,
-		"description": "Better soap for cleaning the fox."
-	},
-	{
-		"flag": "game.plinko",
-		"name": "Plinko",
-		"price": 40000,
-		"description": "Sometimes Clover will want to play Plinko with you"
-	},
-	{
-		"flag": "food.soju",
-		"name": "Y Soju",
-		"price": 60000,
-		"description": "Give Clover a treat. Not filling, but improves mood"
-	},
-#	{
-#		"flag": "game.gacha",
-#		"name": "Gacha",
-#		"price": 150000,
-#		"description": "Let the fox do a few pulls for some SSR rewards"
-#	},
-	{
-		"flag": "reset.cooldowns",
-		"name": "Reset Timers",
-		"price": 1000,
-		"description": "Reset all activity cooldowns"
-	},
-	{
-		"flag": "reset.game",
-		"name": "Reset Game",
-		"price": 0,
-		"description": "Start from zero, unlock everything again."
-	},
-]
+@export var UNLOCKS: ShopMenu
 
 var group = ButtonGroup.new()
 
 func _ready():
-	for i in UNLOCKS:
+	for i in UNLOCKS.items:
 		var btn = preload("./ItemButton.tscn").instantiate()
 		btn.set_meta("item", i)
 		btn.button_group = group
 		btn.connect("toggled", Callable(self, "select_item").bind(i))
 		get_node("%Unlockables").add_child(btn)
-		btn.get_node("%Label").text = i.name
-		btn.get_node("%Price").text = "%d" % i.price
+		btn.get_node("%Label").text = i.display_name
+		btn.get_node("%Price").text = "%d" % i.cost
 		
 	GameState.connect("stats_changed", Callable(self, "_update_money"))
 	_update_money(GameState.stats)
@@ -85,18 +30,26 @@ func _update_money(stats):
 		
 func select_item(_pressed, item):
 	get_node("%ItemDescription").text = item.description
-	get_node("%BuyButton").disabled = item.price > GameState.stats.honey or GameState.unlocks.get(item.flag, false)
+	get_node("%BuyButton").disabled = item.cost > GameState.stats.honey or GameState.unlocks.get(item.flag, false)
 
 func _on_BuyButton_pressed():
 	var item = group.get_pressed_button().get_meta("item")
-	if item.price > GameState.stats.honey:
+	if item.cost > GameState.stats.honey:
 		return
 		
 	GameState.stats = {
-		"honey": GameState.stats.honey - item.price
+		"honey": GameState.stats.honey - item.cost
 	}
 	
 	match item.flag:
+		"pet.feed":
+			GameState.stats = {
+				"hungry": 100
+			}
+		"pet.overfeed":
+			GameState.stats = {
+				"hungry": 250
+			}
 		"reset.cooldowns":
 			GameState.reset(true, false, false)
 		"reset.game":

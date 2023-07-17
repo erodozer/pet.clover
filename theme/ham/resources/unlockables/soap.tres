@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ShopResource" load_steps=2 format=3 uid="uid://d3h7d3337ta1w"]
+
+[ext_resource type="Script" path="res://resources/ShopResource.gd" id="1_vuovr"]
+
+[resource]
+script = ExtResource("1_vuovr")
+flag = "bath.soap"
+display_name = "Deluxe Spa"
+description = "Enjoy the best treatment"
+cost = 40000

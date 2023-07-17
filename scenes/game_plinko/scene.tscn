@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://tdhk2gooh12p" path="res://scenes/game_plinko/peg.png" id="6"]
 [ext_resource type="Texture2D" uid="uid://4r6aj7a546u1" path="res://scenes/game_plinko/bucket_walk_0.png" id="7"]
 [ext_resource type="Texture2D" uid="uid://b2fu40ukoi4ti" path="res://scenes/game_plinko/bucket_walk_1.png" id="8"]
-[ext_resource type="SpriteFrames" path="res://pet/frames.tres" id="9"]
+[ext_resource type="SpriteFrames" uid="uid://dushx8aen3ymk" path="res://pet/frames.tres" id="9"]
 [ext_resource type="Script" path="res://scenes/game_plinko/game.gd" id="10"]
 
 [sub_resource type="ShaderMaterial" id="20"]
@@ -53,7 +53,7 @@ PanelContainer/styles/panel = SubResource("19")
 
 [sub_resource type="PhysicsMaterial" id="31"]
 friction = 0.5
-bounce = 0.8
+bounce = 0.3
 
 [sub_resource type="CircleShape2D" id="26"]
 radius = 4.3
@@ -81,6 +81,7 @@ animations = [{
 }]
 
 [sub_resource type="PhysicsMaterial" id="22"]
+bounce = 0.4
 absorbent = true
 
 [sub_resource type="SegmentShape2D" id="23"]
@@ -95,7 +96,7 @@ size = Vector2(1, 1)
 
 [sub_resource type="PhysicsMaterial" id="27"]
 friction = 0.65
-bounce = 0.41
+bounce = 0.11
 
 [sub_resource type="SegmentShape2D" id="28"]
 b = Vector2(0, 400)
@@ -109,10 +110,10 @@ bounce = 1.0
 absorbent = true
 
 [sub_resource type="RectangleShape2D" id="29"]
-size = Vector2(100, 10)
+size = Vector2(179, 10)
 
 [sub_resource type="RectangleShape2D" id="33"]
-size = Vector2(100, 7)
+size = Vector2(164, 7)
 
 [node name="Plinko" type="Node" groups=["scene"]]
 script = ExtResource("10")
@@ -180,7 +181,9 @@ text = "00"
 unique_name_in_owner = true
 position = Vector2(82, -55)
 collision_layer = 5
+mass = 0.2
 physics_material_override = SubResource("31")
+gravity_scale = 0.2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
 shape = SubResource("26")
@@ -193,7 +196,7 @@ unique_name_in_owner = true
 z_index = 1
 position = Vector2(80, 146)
 sprite_frames = ExtResource("9")
-animation = &"idle"
+animation = &"walk"
 offset = Vector2(8, 0)
 
 [node name="Bucket" type="Node2D" parent="Fox"]
@@ -428,7 +431,7 @@ texture = ExtResource("6")
 physics_material_override = SubResource("32")
 
 [node name="Floor" type="CollisionShape2D" parent="Floor"]
-position = Vector2(80, 175)
+position = Vector2(82.5, 175)
 shape = SubResource("29")
 
 [node name="FloorCatch" type="Area2D" parent="."]
@@ -438,6 +441,7 @@ collision_mask = 4
 linear_damp = 1000.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FloorCatch"]
+position = Vector2(2, 0)
 shape = SubResource("33")
 
 [node name="Inputs" type="Control" parent="."]

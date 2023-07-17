@@ -21,6 +21,8 @@ config/pet_name="Clover"
 config/pet_name.pet_ham="Ham"
 config/theme="fox"
 config/theme.pet_ham="ham"
+gameplay/pet_weight_minimum=5.0
+gameplay/pet_weight_maximum=25.0
 
 [autoload]
 

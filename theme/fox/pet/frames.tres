@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=33 format=3 uid="uid://dvsf10nj0d0in"]
+[gd_resource type="SpriteFrames" load_steps=28 format=3 uid="uid://dvsf10nj0d0in"]
 
 [ext_resource type="Texture2D" uid="uid://gpbiwyi3yupr" path="res://theme/fox/pet/pet_idle_0.png" id="1"]
 [ext_resource type="Texture2D" uid="uid://cpldtuyo8o40s" path="res://theme/fox/pet/pet_bath_0.png" id="1_f8fmj"]
@@ -17,12 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://c8aucfvnpoogu" path="res://theme/fox/pet/pet_yelp_3.png" id="10"]
 [ext_resource type="Texture2D" uid="uid://b2nevw1dn18he" path="res://theme/fox/pet/pet_yelp_1.png" id="11"]
 [ext_resource type="Texture2D" uid="uid://ydn6aadhxldl" path="res://theme/fox/pet/pet_yelp_2.png" id="12"]
-[ext_resource type="Texture2D" uid="uid://c1m6ltumci6vp" path="res://theme/fox/pet/pet_sick_4.png" id="13"]
-[ext_resource type="Texture2D" uid="uid://dwg1gipt2lf04" path="res://theme/fox/pet/pet_sick_5.png" id="14"]
-[ext_resource type="Texture2D" uid="uid://d20uklm5ly61l" path="res://theme/fox/pet/pet_sick_7.png" id="15"]
 [ext_resource type="Texture2D" uid="uid://cevi5cpa50ai1" path="res://theme/fox/pet/pet_sick_1.png" id="16"]
-[ext_resource type="Texture2D" uid="uid://b3rm7rdvisqhq" path="res://theme/fox/pet/pet_sick_3.png" id="17"]
-[ext_resource type="Texture2D" uid="uid://bllglofp07l80" path="res://theme/fox/pet/pet_sick_2.png" id="18"]
 [ext_resource type="Texture2D" uid="uid://4rem7oljf25t" path="res://theme/fox/pet/pet_sleep_2.png" id="19"]
 [ext_resource type="Texture2D" uid="uid://b4y1sswoejggk" path="res://theme/fox/pet/pet_sleep_1.png" id="20"]
 [ext_resource type="Texture2D" uid="uid://cv73ioillmpjk" path="res://theme/fox/pet/pet_sleep_0.png" id="21"]
@@ -111,39 +106,6 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": ExtResource("16")
-}, {
-"duration": 1.0,
-"texture": ExtResource("18")
-}, {
-"duration": 1.0,
-"texture": ExtResource("17")
-}, {
-"duration": 1.0,
-"texture": ExtResource("13")
-}, {
-"duration": 1.0,
-"texture": ExtResource("14")
-}, {
-"duration": 1.0,
-"texture": ExtResource("15")
-}, {
-"duration": 1.0,
-"texture": ExtResource("16")
-}, {
-"duration": 1.0,
-"texture": ExtResource("16")
-}, {
-"duration": 1.0,
-"texture": ExtResource("16")
-}, {
-"duration": 1.0,
-"texture": ExtResource("16")
-}, {
-"duration": 1.0,
-"texture": ExtResource("16")
-}, {
 "duration": 1.0,
 "texture": ExtResource("16")
 }],

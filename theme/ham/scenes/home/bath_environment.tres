@@ -1,3 +1,14 @@
-[gd_resource type="SpriteFrames" format=3 uid="uid://ctl1kb1i1akb3"]
+[gd_resource type="SpriteFrames" load_steps=2 format=3 uid="uid://ctl1kb1i1akb3"]
+
+[ext_resource type="Texture2D" uid="uid://bjl7d0hmp0iv8" path="res://theme/ham/scenes/home/environment/bath_01.png" id="1_0sg1l"]
 
 [resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_0sg1l")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

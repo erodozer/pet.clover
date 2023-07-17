@@ -83,8 +83,8 @@ func _update_unlocks(change):
 
 func _update_stats(change):
 	stats = {
-		"hungry": clamp(change.get("hungry", stats.hungry), 0.0, 200.0),
-		"weight": clamp(change.get("weight", stats.weight), 5.0, 25.0),
+		"hungry": clamp(change.get("hungry", stats.hungry), 0.0, 250.0),
+		"weight": clamp(change.get("weight", stats.weight), 0.0, 100.0),
 		"boredom": clamp(change.get("boredom", stats.boredom), 0.0, 100.0),
 		"dirty": clamp(change.get("dirty", stats.dirty), 0.0, 100.0),
 		"tired": clamp(change.get("tired", stats.tired), 0.0, 100.0),
@@ -104,6 +104,9 @@ func _update_timers(change):
 		"update": change.get("update", timers.update),
 	}
 	emit_signal("timers_changed", timers)
+	
+func is_overfed():
+	return stats.weight >= 80
 
 func save_data():
 	if now() < save_sync:
@@ -147,10 +150,10 @@ func execute_turn():
 	
 	# increase weight when overfed
 	if stats.hungry > 150.0:
-		change.weight += 0.01
+		change.weight += 1.0
 	# lose weight when starving
 	elif stats.hungry < 40:
-		change.weight -= 0.01
+		change.weight -= 0.05
 		
 	# cover tiredness and sickness by sleeping
 	if stats.is_asleep:
@@ -205,11 +208,11 @@ func honey_score():
 		happy += 1.0
 		
 	# produce less honey when unhealthy weight
-	if stats.weight < 7.0:
+	if stats.weight < 20.0:
 		happy -= 2.0
-	elif stats.weight < 9.0:
+	elif stats.weight < 40.0:
 		happy -= 0.5
-	elif stats.weight > 15.0:
+	elif stats.weight > 80.0:
 		happy -= 1.0
 	
 	# produce significantly less when sick
@@ -259,7 +262,7 @@ func reset(reset_timers = true, reset_stats = true, hard = false):
 	if reset_stats:
 		stats = {
 			"hungry": 100.0,
-			"weight": 12.4,
+			"weight": 60.0,
 			"boredom": 0.0,
 			"dirty": 0.0,
 			"happy": 100.0,

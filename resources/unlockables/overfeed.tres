@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ShopResource" load_steps=2 format=3 uid="uid://3i7d8oqwx13j"]
+
+[ext_resource type="Script" path="res://resources/ShopResource.gd" id="1_2wr1p"]
+
+[resource]
+script = ExtResource("1_2wr1p")
+flag = "pet.overfeed"
+display_name = "Overfeed"
+description = "Stuff your pet to their max weight"
+cost = 20000

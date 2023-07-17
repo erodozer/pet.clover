@@ -17,7 +17,7 @@ func _ready():
 		var button = preload("../button/SimpleButton.tscn").instantiate()
 		button.get_node("icon_on").texture = food.icon
 		button.submenu = "food"
-		button.unlockable = food.unlock
+		button.unlockable = food.unlock.flag if food.unlock else ""
 		button.visible = false
 		get_node("%Controls").add_child(button)
 	

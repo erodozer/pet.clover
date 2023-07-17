@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="FoodMenu" load_steps=3 format=3 uid="uid://bcdb4mtirhoua"]
+
+[ext_resource type="Script" path="res://resources/FoodMenu.gd" id="1_lcrgj"]
+[ext_resource type="Resource" uid="uid://cr3edaouje7ce" path="res://theme/ham/resources/food/seed.tres" id="1_pya3o"]
+
+[resource]
+script = ExtResource("1_lcrgj")
+items = Array[Resource("res://resources/FoodResource.gd")]([ExtResource("1_pya3o")])

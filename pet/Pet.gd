@@ -3,7 +3,7 @@ extends Node2D
 var left_bound
 var right_bound
 
-@onready var sprite = get_node("Sprite2D")
+@onready var sprite: AnimatedSprite2D = get_node("Sprite2D")
 @onready var dirty = get_node("Dirty")
 
 var tween: Tween
@@ -11,9 +11,16 @@ var pause = false: set = set_paused
 
 var next_action = 0
 
+var idle_anims = []
+
 func _ready():
 	GameState.connect("stats_changed", Callable(self, "_update_stats"))
 	(get_node("FollowCamera") as Camera2D).make_current()
+	
+	for i in sprite.sprite_frames.get_animation_names():
+		if i.begins_with("idle") and i != "idle:overfed":
+			idle_anims.append(i)
+	
 	
 func _update_stats(stats):
 	dirty.visible = false
@@ -47,32 +54,51 @@ func move_to(target: Vector2, padding = 0):
 	
 	var facing_dest = sign(position.x - destination)
 	sprite.scale.x = facing_dest
-	sprite.play("walk")
+	if GameState.is_overfed() and sprite.sprite_frames.has_animation("walk:overfed"):
+		sprite.play("walk:overfed")
+	else:
+		sprite.play("walk")
 	
 	# wait for clover to get to the food
 	await tween.finished
 	sprite.scale.x = facing
-	sprite.play("idle")
+	
+	if GameState.is_overfed() and sprite.sprite_frames.has_animation("idle:overfed"):
+		sprite.play("idle:overfed")
+	else:
+		sprite.play("idle")
 	
 func eat():
-	sprite.play("eat")
+	if GameState.is_overfed() and sprite.sprite_frames.has_animation("eat:overfed"):
+		sprite.play("eat:overfed")
+	else:
+		sprite.play("eat")
 	
 func _wander():
-	# move action
-	var next = randf_range(left_bound, right_bound)
+	$Sickness.visible = false
 	
-	next_action = GameState.now() + randf_range(2.0, 10.0)
-	move_to(Vector2(next, 0.0))
+	# chance to just switch to a different idle anim
+	if randf() < 0.35:
+		next_action = GameState.now() + randf_range(4.0, 10.0)
+		sprite.play(idle_anims[randi() % len(idle_anims)])
+	else:
+		next_action = GameState.now() + randf_range(3.0, 12.0)
+	
+		# move action
+		var next = randf_range(left_bound, right_bound)	
+		move_to(Vector2(next, 0.0))
 	
 func _rest():
 	if pause:
 		return
+	$Sickness.visible = false
 	sprite.play("sleep")
 	sprite.scale.x = 1.0
 
 func _sick():
 	if pause:
 		return
+	$Sickness.visible = true
 	sprite.play("sick")
 	sprite.scale.x = 1.0
 	

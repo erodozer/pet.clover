@@ -35,7 +35,14 @@ func _update_stats(stats):
 	
 	get_node("%Mood").text = mood
 
-	get_node("%Weight").text = "%.1f lbs" % stats.weight
+	get_node("%Weight").text = "%.1f lbs" % [
+		inverse_lerp(
+			ProjectSettings.get_setting_with_override("application/gameplay/pet_weight_minimum"),
+			ProjectSettings.get_setting_with_override("application/gameplay/pet_weight_maximum"),
+			clamp(stats.weight / 100.0, 0.0, 1.0)
+		)
+	]
+		
 	get_node("%LifeMeter").value = inverse_lerp(0.0, 100.0, stats.hungry) * 5.0
 	get_node("%HappyMeter").value = inverse_lerp(0.0, 10.0, GameState.honey_score()) * 5.0
 	get_node("%Age").text = "%02dd %02dh %02dm" % [

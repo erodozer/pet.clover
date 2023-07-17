@@ -14,21 +14,13 @@ func _ready():
 func _process(delta):
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		var mouse_pos = get_viewport().get_mouse_position().x
-		if mouse_pos < fox.position.x - 2 and fox.position.x > 20:
+		if mouse_pos < get_viewport().size.x * .4:
 			fox.position.x -= 40 * delta
 			fox.scale.x = 1
-		elif mouse_pos > fox.position.x + 2 and fox.position.x < 140:
+		elif mouse_pos > get_viewport().size.x * .4:
 			fox.position.x += 40 * delta
 			fox.scale.x = -1
 			
-		if fox.animation != "walk":
-			fox.play("walk")
-			fox.get_node("Bucket/Sprite2D").play("walk")
-			
-	elif fox.animation != "idle":
-		fox.play("idle")
-		fox.get_node("Bucket/Sprite2D").play("idle")
-
 func game_finished():
 	await get_tree().create_timer(3.0).timeout
 	
