@@ -104,6 +104,13 @@ func game_finished():
 		score = 100.0
 	elif turns == matches:
 		score = 150.0
+
+	NoClick.show()
+	%Results/%Currency.text = "+%d" % [score * 10]
+	%Results/%Happiness.text = "%d" % [score]
+	%Results/%AnimationPlayer.play("show")
+	await %Results/%AnimationPlayer.animation_finished
+	NoClick.hide()
 	
 	GameState.stats = {
 		# boredom goes down relative to speed of success

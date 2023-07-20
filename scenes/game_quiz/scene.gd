@@ -25,12 +25,12 @@ func _start():
 func game_finished():
 	var honey = 100 * correct
 	var boredom = (10 * correct) - (5 * incorrect)
-	%Currency.text = "+%d" % [honey]
-	%Happiness.text = "%d" % [boredom]
 	
 	NoClick.show()
-	$AnimationPlayer.play("Results")
-	await $AnimationPlayer.animation_finished
+	%Results/%Currency.text = "+%d" % [honey]
+	%Results/%Happiness.text = "%d" % [boredom]
+	%Results/%AnimationPlayer.play("show")
+	await %Results/%AnimationPlayer.animation_finished
 	NoClick.hide()
 	
 	GameState.stats = {

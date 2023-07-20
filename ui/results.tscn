@@ -1,0 +1,105 @@
+[gd_scene load_steps=10 format=3 uid="uid://tyd6hlyrgac7"]
+
+[ext_resource type="Theme" uid="uid://bfmrdx6ah36lt" path="res://ui/ui_theme.tres" id="1_7c27p"]
+[ext_resource type="FontFile" uid="uid://cu56gylq7usm7" path="res://ui/fonts/Minimum.ttf" id="2_blhfa"]
+[ext_resource type="Texture2D" uid="uid://c2q4hdkscev71" path="res://scenes/home/ui/stats/currency.png" id="3_j6273"]
+[ext_resource type="Texture2D" uid="uid://b2l8td6ax26uf" path="res://scenes/home/ui/stats/fun.png" id="4_p0rs3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_nnjco"]
+font = ExtResource("2_blhfa")
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m34cc"]
+atlas = ExtResource("4_p0rs3")
+region = Rect2(0, 0, 6, 6)
+
+[sub_resource type="Animation" id="Animation_vv5wa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(41.5, -72)]
+}
+
+[sub_resource type="Animation" id="Animation_hhocl"]
+resource_name = "show"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(41.5, -72), Vector2(41.5, 40)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jn1fn"]
+_data = {
+"RESET": SubResource("Animation_vv5wa"),
+"show": SubResource("Animation_hhocl")
+}
+
+[node name="Results" type="CanvasLayer"]
+
+[node name="Results" type="PanelContainer" parent="."]
+offset_left = 41.5
+offset_top = -72.0
+offset_right = 118.5
+offset_bottom = -8.0
+theme = ExtResource("1_7c27p")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Results"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Results/VBoxContainer"]
+layout_mode = 2
+text = "Results"
+label_settings = SubResource("LabelSettings_nnjco")
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="Results/VBoxContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="TextureRect" type="TextureRect" parent="Results/VBoxContainer/GridContainer"]
+layout_mode = 2
+texture = ExtResource("3_j6273")
+stretch_mode = 5
+
+[node name="Currency" type="Label" parent="Results/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "+1000"
+label_settings = SubResource("LabelSettings_nnjco")
+horizontal_alignment = 1
+
+[node name="TextureRect2" type="TextureRect" parent="Results/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+texture = SubResource("AtlasTexture_m34cc")
+stretch_mode = 5
+
+[node name="Happiness" type="Label" parent="Results/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "+100"
+label_settings = SubResource("LabelSettings_nnjco")
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Results"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_jn1fn")
+}

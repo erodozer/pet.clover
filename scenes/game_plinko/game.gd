@@ -31,6 +31,13 @@ func game_finished():
 	if balls_caught == BALLS_TOTAL:
 		score = 200
 	
+	NoClick.show()
+	%Results/%Currency.text = "+%d" % [score * 10]
+	%Results/%Happiness.text = "%d" % [score]
+	%Results/%AnimationPlayer.play("show")
+	await %Results/%AnimationPlayer.animation_finished
+	NoClick.hide()
+	
 	GameState.stats = {
 		# boredom goes down relative to speed of success
 		"boredom": GameState.stats.boredom - score,
