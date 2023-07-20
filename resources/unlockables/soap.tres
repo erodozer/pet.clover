@@ -6,5 +6,5 @@
 script = ExtResource("1_1nc7n")
 flag = "bath.soap"
 display_name = "Pink Soap"
-description = "Better soap for cleaning the fox."
+description = "Better soap for cleaning your pet"
 cost = 40000

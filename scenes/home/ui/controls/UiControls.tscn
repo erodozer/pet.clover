@@ -1,7 +1,9 @@
-[gd_scene load_steps=32 format=3 uid="uid://lhxe71vragto"]
+[gd_scene load_steps=34 format=3 uid="uid://lhxe71vragto"]
 
 [ext_resource type="Script" path="res://scenes/home/ui/controls/UiControls.gd" id="1_45cbp"]
 [ext_resource type="Theme" uid="uid://bfmrdx6ah36lt" path="res://ui/ui_theme.tres" id="2_fferf"]
+[ext_resource type="Resource" uid="uid://cmpo574c33e4r" path="res://config/food.tres" id="2_vkbdu"]
+[ext_resource type="Resource" uid="uid://b3yej05h7jmeh" path="res://config/games.tres" id="3_dyl7m"]
 [ext_resource type="Shader" path="res://ui/scroll.gdshader" id="3_ogr13"]
 [ext_resource type="Texture2D" uid="uid://dsdtq1sgpro7c" path="res://ui/tiled_hud.png" id="4_publw"]
 [ext_resource type="PackedScene" uid="uid://r0g0xsty3gr7" path="res://scenes/home/ui/clock/Clock.tscn" id="5_i8es8"]
@@ -44,6 +46,18 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 border_width_top = 2
 border_color = Color(0, 0, 0, 1)
 expand_margin_top = 2.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xl5pa"]
+atlas = ExtResource("10_8nnr7")
+region = Rect2(0, 0, 17, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3qeh8"]
+atlas = ExtResource("10_8nnr7")
+region = Rect2(0, 0, 17, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fpuxr"]
+atlas = ExtResource("10_8nnr7")
+region = Rect2(17, 85, 17, 17)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0ylq6"]
 atlas = ExtResource("10_8nnr7")
@@ -101,20 +115,10 @@ region = Rect2(0, 68, 17, 17)
 atlas = ExtResource("10_8nnr7")
 region = Rect2(0, 68, 17, 17)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xl5pa"]
-atlas = ExtResource("10_8nnr7")
-region = Rect2(0, 0, 17, 17)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3qeh8"]
-atlas = ExtResource("10_8nnr7")
-region = Rect2(0, 0, 17, 17)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fpuxr"]
-atlas = ExtResource("10_8nnr7")
-region = Rect2(17, 85, 17, 17)
-
 [node name="UIControls" type="CanvasLayer" groups=["ui:controls"]]
 script = ExtResource("1_45cbp")
+foods = ExtResource("2_vkbdu")
+games = ExtResource("3_dyl7m")
 
 [node name="TopPanel" type="Panel" parent="."]
 texture_filter = 1
@@ -207,16 +211,39 @@ offset_bottom = 30.0
 texture = ExtResource("4_publw")
 stretch_mode = 1
 
-[node name="Controls" type="Control" parent="BottomPanel"]
+[node name="Controls" type="HBoxContainer" parent="BottomPanel"]
 unique_name_in_owner = true
-anchors_preset = 0
+layout_mode = 0
 offset_left = 5.0
 offset_top = 9.0
 offset_right = 151.0
 offset_bottom = 24.0
+theme_override_constants/separation = 1
+
+[node name="Back" parent="BottomPanel/Controls" instance=ExtResource("9_of6ik")]
+visible = false
+custom_minimum_size = Vector2(32, 15)
+layout_mode = 2
+toggle_mode = false
+
+[node name="icon_off" parent="BottomPanel/Controls/Back" index="0"]
+texture = SubResource("AtlasTexture_xl5pa")
+
+[node name="icon_on" parent="BottomPanel/Controls/Back" index="1"]
+texture = SubResource("AtlasTexture_3qeh8")
+
+[node name="Details" parent="BottomPanel/Controls" instance=ExtResource("9_of6ik")]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+toggle_mode = false
+submenu = "stats"
+
+[node name="icon_on" parent="BottomPanel/Controls/Details" index="1"]
+texture = SubResource("AtlasTexture_fpuxr")
 
 [node name="Food" parent="BottomPanel/Controls" instance=ExtResource("9_of6ik")]
-layout_mode = 0
+layout_mode = 2
 toggle_mode = false
 bind_to_timer = "eat"
 
@@ -227,9 +254,7 @@ texture = SubResource("AtlasTexture_0ylq6")
 texture = SubResource("AtlasTexture_o1c06")
 
 [node name="Light" parent="BottomPanel/Controls" instance=ExtResource("9_of6ik")]
-layout_mode = 0
-offset_left = 16.0
-offset_right = 31.0
+layout_mode = 2
 
 [node name="icon_off" parent="BottomPanel/Controls/Light" index="0"]
 texture = SubResource("AtlasTexture_ng3dl")
@@ -238,9 +263,7 @@ texture = SubResource("AtlasTexture_ng3dl")
 texture = SubResource("AtlasTexture_fmu1m")
 
 [node name="Game" parent="BottomPanel/Controls" instance=ExtResource("9_of6ik")]
-layout_mode = 0
-offset_left = 32.0
-offset_right = 47.0
+layout_mode = 2
 toggle_mode = false
 bind_to_timer = "play"
 
@@ -256,9 +279,7 @@ texture = SubResource("AtlasTexture_n8jfr")
 show_behind_parent = false
 
 [node name="Cure" parent="BottomPanel/Controls" instance=ExtResource("9_of6ik")]
-layout_mode = 0
-offset_left = 48.0
-offset_right = 63.0
+layout_mode = 2
 toggle_mode = false
 bind_to_timer = "medicine"
 
@@ -274,9 +295,7 @@ texture = SubResource("AtlasTexture_n5vuj")
 show_behind_parent = false
 
 [node name="Bath" parent="BottomPanel/Controls" instance=ExtResource("9_of6ik")]
-layout_mode = 0
-offset_left = 64.0
-offset_right = 79.0
+layout_mode = 2
 toggle_mode = false
 bind_to_timer = "bathe"
 
@@ -292,9 +311,7 @@ texture = SubResource("AtlasTexture_xwxqk")
 show_behind_parent = false
 
 [node name="Health" parent="BottomPanel/Controls" instance=ExtResource("9_of6ik")]
-layout_mode = 0
-offset_left = 80.0
-offset_right = 95.0
+layout_mode = 2
 toggle_mode = false
 
 [node name="icon_off" parent="BottomPanel/Controls/Health" index="0"]
@@ -309,9 +326,8 @@ texture = SubResource("AtlasTexture_1ckev")
 show_behind_parent = false
 
 [node name="Gift" parent="BottomPanel/Controls" instance=ExtResource("9_of6ik")]
-layout_mode = 0
-offset_left = 127.0
-offset_right = 142.0
+layout_mode = 2
+size_flags_horizontal = 10
 toggle_mode = false
 
 [node name="icon_off" parent="BottomPanel/Controls/Gift" index="0"]
@@ -325,28 +341,8 @@ texture = SubResource("AtlasTexture_bciqx")
 [node name="border" parent="BottomPanel/Controls/Gift" index="2"]
 show_behind_parent = false
 
-[node name="Back" parent="BottomPanel/Controls" instance=ExtResource("9_of6ik")]
-visible = false
-layout_mode = 0
-toggle_mode = false
-
-[node name="icon_off" parent="BottomPanel/Controls/Back" index="0"]
-texture = SubResource("AtlasTexture_xl5pa")
-
-[node name="icon_on" parent="BottomPanel/Controls/Back" index="1"]
-texture = SubResource("AtlasTexture_3qeh8")
-
-[node name="Details" parent="BottomPanel/Controls" instance=ExtResource("9_of6ik")]
-visible = false
-layout_mode = 0
-offset_left = 25.0
-offset_right = 40.0
-toggle_mode = false
-submenu = "stats"
-
-[node name="icon_on" parent="BottomPanel/Controls/Details" index="1"]
-texture = SubResource("AtlasTexture_fpuxr")
-
+[editable path="BottomPanel/Controls/Back"]
+[editable path="BottomPanel/Controls/Details"]
 [editable path="BottomPanel/Controls/Food"]
 [editable path="BottomPanel/Controls/Light"]
 [editable path="BottomPanel/Controls/Game"]
@@ -354,5 +350,3 @@ texture = SubResource("AtlasTexture_fpuxr")
 [editable path="BottomPanel/Controls/Bath"]
 [editable path="BottomPanel/Controls/Health"]
 [editable path="BottomPanel/Controls/Gift"]
-[editable path="BottomPanel/Controls/Back"]
-[editable path="BottomPanel/Controls/Details"]

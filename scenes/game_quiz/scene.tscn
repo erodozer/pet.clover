@@ -133,59 +133,12 @@ animations = [{
 "speed": 14.0
 }]
 
-[sub_resource type="LabelSettings" id="LabelSettings_nnjco"]
-font = ExtResource("16_u36rc")
-font_color = Color(0, 0, 0, 1)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_m34cc"]
-atlas = ExtResource("18_ecy7g")
-region = Rect2(0, 0, 6, 6)
-
-[sub_resource type="LabelSettings" id="LabelSettings_2lji4"]
-line_spacing = 0.0
-font = ExtResource("16_u36rc")
-font_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_k72ga"]
-line_spacing = -1.0
-font = ExtResource("19_jm60g")
-font_color = Color(0, 0, 0, 1)
-shadow_size = 0
-
-[sub_resource type="Animation" id="Animation_avwe2"]
-resource_name = "Show"
-length = 4.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("HelpText:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = false
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4, 3.2, 3.8),
-"transitions": PackedFloat32Array(0.5, 1, 0.5, 1),
-"update": 0,
-"values": [Vector2(159, 100), Vector2(0, 100), Vector2(0, 100), Vector2(-161, 100)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("VBoxContainer:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = false
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 3.5, 4),
-"transitions": PackedFloat32Array(1, 0.5, 1),
-"update": 0,
-"values": [Vector2(0, 146), Vector2(0, 146), Vector2(0, 77)]
-}
-
 [sub_resource type="Animation" id="Animation_hvg3v"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("HelpText:position")
+tracks/0/path = NodePath("Control/HelpText:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -197,7 +150,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Results:position")
+tracks/1/path = NodePath("Control/Results:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -209,7 +162,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("VBoxContainer:position")
+tracks/2/path = NodePath("Control/VBoxContainer:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -225,7 +178,7 @@ length = 3.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Results:position")
+tracks/0/path = NodePath("Control/Results:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
@@ -235,12 +188,59 @@ tracks/0/keys = {
 "values": [Vector2(41.5, -72), Vector2(41.5, 40)]
 }
 
+[sub_resource type="Animation" id="Animation_avwe2"]
+resource_name = "Show"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/HelpText:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 3.2, 3.8),
+"transitions": PackedFloat32Array(0.5, 1, 0.5, 1),
+"update": 0,
+"values": [Vector2(159, 100), Vector2(0, 100), Vector2(0, 100), Vector2(-161, 100)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/VBoxContainer:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3.5, 4),
+"transitions": PackedFloat32Array(1, 0.5, 1),
+"update": 0,
+"values": [Vector2(0, 146), Vector2(0, 146), Vector2(0, 77)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_b1v38"]
 _data = {
 "RESET": SubResource("Animation_hvg3v"),
 "Results": SubResource("Animation_14ibh"),
 "Show": SubResource("Animation_avwe2")
 }
+
+[sub_resource type="LabelSettings" id="LabelSettings_2lji4"]
+line_spacing = 0.0
+font = ExtResource("16_u36rc")
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_nnjco"]
+font = ExtResource("16_u36rc")
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m34cc"]
+atlas = ExtResource("18_ecy7g")
+region = Rect2(0, 0, 6, 6)
+
+[sub_resource type="LabelSettings" id="LabelSettings_k72ga"]
+line_spacing = -1.0
+font = ExtResource("19_jm60g")
+font_color = Color(0, 0, 0, 1)
+shadow_size = 0
 
 [node name="QuizScene" type="Node" groups=["scene"]]
 script = ExtResource("1_qr2k3")
@@ -286,8 +286,90 @@ position = Vector2(130, 77)
 sprite_frames = ExtResource("7_nflc0")
 animation = &"study"
 
-[node name="Results" type="PanelContainer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_b1v38")
+}
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 0
+offset_top = 146.0
+offset_right = 160.0
+offset_bottom = 213.0
+theme_override_constants/separation = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("8_xl5uv")
+
+[node name="TimeLeft" type="Label" parent="Control/VBoxContainer/PanelContainer"]
 unique_name_in_owner = true
+layout_mode = 2
+text = "T-30"
+label_settings = SubResource("LabelSettings_2lji4")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Answers" type="GridContainer" parent="Control/VBoxContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("8_xl5uv")
+theme_override_constants/h_separation = 2
+theme_override_constants/v_separation = 2
+columns = 2
+
+[node name="Button" type="Button" parent="Control/VBoxContainer/MarginContainer/Answers"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_fonts/font = ExtResource("9_i5a83")
+toggle_mode = true
+text = " "
+
+[node name="Button2" type="Button" parent="Control/VBoxContainer/MarginContainer/Answers"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_fonts/font = ExtResource("9_i5a83")
+toggle_mode = true
+text = " "
+
+[node name="Button3" type="Button" parent="Control/VBoxContainer/MarginContainer/Answers"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_fonts/font = ExtResource("9_i5a83")
+toggle_mode = true
+text = " "
+
+[node name="Button4" type="Button" parent="Control/VBoxContainer/MarginContainer/Answers"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_fonts/font = ExtResource("9_i5a83")
+toggle_mode = true
+text = " "
+
+[node name="Results" type="PanelContainer" parent="Control"]
+unique_name_in_owner = true
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -301,25 +383,25 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("8_xl5uv")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Results"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Results"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Results/VBoxContainer"]
+[node name="Label" type="Label" parent="Control/Results/VBoxContainer"]
 layout_mode = 2
 text = "Results"
 label_settings = SubResource("LabelSettings_nnjco")
 horizontal_alignment = 1
 
-[node name="GridContainer" type="GridContainer" parent="Results/VBoxContainer"]
+[node name="GridContainer" type="GridContainer" parent="Control/Results/VBoxContainer"]
 layout_mode = 2
 columns = 2
 
-[node name="TextureRect" type="TextureRect" parent="Results/VBoxContainer/GridContainer"]
+[node name="TextureRect" type="TextureRect" parent="Control/Results/VBoxContainer/GridContainer"]
 layout_mode = 2
 texture = ExtResource("17_qttxj")
 stretch_mode = 5
 
-[node name="Currency" type="Label" parent="Results/VBoxContainer/GridContainer"]
+[node name="Currency" type="Label" parent="Control/Results/VBoxContainer/GridContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -327,103 +409,28 @@ text = "+1000"
 label_settings = SubResource("LabelSettings_nnjco")
 horizontal_alignment = 1
 
-[node name="TextureRect2" type="TextureRect" parent="Results/VBoxContainer/GridContainer"]
+[node name="TextureRect2" type="TextureRect" parent="Control/Results/VBoxContainer/GridContainer"]
 custom_minimum_size = Vector2(0, 12)
 layout_mode = 2
 texture = SubResource("AtlasTexture_m34cc")
 stretch_mode = 5
 
-[node name="Happiness" type="Label" parent="Results/VBoxContainer/GridContainer"]
+[node name="Happiness" type="Label" parent="Control/Results/VBoxContainer/GridContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "+100"
 label_settings = SubResource("LabelSettings_nnjco")
 horizontal_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 2.0
-offset_bottom = 69.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_constants/separation = 0
-
-[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme = ExtResource("8_xl5uv")
-
-[node name="TimeLeft" type="Label" parent="VBoxContainer/PanelContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "T-30"
-label_settings = SubResource("LabelSettings_2lji4")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 2
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
-
-[node name="Answers" type="GridContainer" parent="VBoxContainer/MarginContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-theme = ExtResource("8_xl5uv")
-theme_override_constants/h_separation = 2
-theme_override_constants/v_separation = 2
-columns = 2
-
-[node name="Button" type="Button" parent="VBoxContainer/MarginContainer/Answers"]
-layout_mode = 2
-size_flags_horizontal = 3
-focus_mode = 0
-theme_override_fonts/font = ExtResource("9_i5a83")
-toggle_mode = true
-text = " "
-
-[node name="Button2" type="Button" parent="VBoxContainer/MarginContainer/Answers"]
-layout_mode = 2
-size_flags_horizontal = 3
-focus_mode = 0
-theme_override_fonts/font = ExtResource("9_i5a83")
-toggle_mode = true
-text = " "
-
-[node name="Button3" type="Button" parent="VBoxContainer/MarginContainer/Answers"]
-layout_mode = 2
-size_flags_horizontal = 3
-focus_mode = 0
-theme_override_fonts/font = ExtResource("9_i5a83")
-toggle_mode = true
-text = " "
-
-[node name="Button4" type="Button" parent="VBoxContainer/MarginContainer/Answers"]
-layout_mode = 2
-size_flags_horizontal = 3
-focus_mode = 0
-theme_override_fonts/font = ExtResource("9_i5a83")
-toggle_mode = true
-text = " "
-
-[node name="HelpText" type="PanelContainer" parent="."]
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="HelpText" type="PanelContainer" parent="Control"]
+layout_mode = 0
 offset_left = 159.0
-offset_top = -44.0
-offset_right = 159.0
-grow_horizontal = 2
-grow_vertical = 0
+offset_top = 100.0
+offset_right = 319.0
+offset_bottom = 148.0
 theme = ExtResource("8_xl5uv")
 
-[node name="RichTextLabel" type="Label" parent="HelpText"]
+[node name="RichTextLabel" type="Label" parent="Control/HelpText"]
 layout_mode = 2
 size_flags_vertical = 1
 text = "Answer correctly = +100$
@@ -432,8 +439,3 @@ label_settings = SubResource("LabelSettings_k72ga")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_b1v38")
-}

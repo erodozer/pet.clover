@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" path="res://scenes/home/scene.gd" id="1_oq1jp"]
 [ext_resource type="PackedScene" uid="uid://lhxe71vragto" path="res://scenes/home/ui/controls/UiControls.tscn" id="2_all1x"]
-[ext_resource type="Resource" uid="uid://cmpo574c33e4r" path="res://resources/food/food.tres" id="3_4h8d3"]
 [ext_resource type="PackedScene" uid="uid://cvkideptcxtuk" path="res://scenes/home/ui/stats/StatusPanel.tscn" id="3_mh4k8"]
 [ext_resource type="SpriteFrames" uid="uid://cxt5213k5mxo3" path="res://scenes/home/environment.tres" id="4_4si2r"]
 [ext_resource type="PackedScene" uid="uid://bvtoltqxhmabq" path="res://scenes/home/pet.tscn" id="5_kljsm"]
@@ -19,6 +18,8 @@ shader_parameter/width = 1.0
 shader_parameter/pattern = 0
 shader_parameter/inside = false
 shader_parameter/add_margins = true
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m0315"]
 
 [sub_resource type="SpriteFrames" id="2"]
 animations = [{
@@ -62,7 +63,6 @@ script = ExtResource("1_oq1jp")
 
 [node name="UIControls" parent="." instance=ExtResource("2_all1x")]
 unique_name_in_owner = true
-foods = ExtResource("3_4h8d3")
 
 [node name="StatusPanel" parent="UIControls" instance=ExtResource("3_mh4k8")]
 unique_name_in_owner = true
@@ -96,7 +96,7 @@ position = Vector2(104, 75)
 unique_name_in_owner = true
 material = SubResource("15")
 position = Vector2(105, -39)
-animation = &""
+sprite_frames = SubResource("SpriteFrames_m0315")
 script = ExtResource("8_vpc07")
 
 [node name="Foreground" type="AnimatedSprite2D" parent="ShopView"]

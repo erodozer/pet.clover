@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="GameResource" load_steps=5 format=3 uid="uid://d2c6ppo3srw81"]
+
+[ext_resource type="Script" path="res://resources/GameResource.gd" id="2_50uok"]
+[ext_resource type="Texture2D" uid="uid://bunxtk64ph182" path="res://scenes/home/ui/controls/icons.png" id="2_i2frl"]
+[ext_resource type="Resource" uid="uid://cnibaxqe5jqba" path="res://resources/unlockables/plinko.tres" id="4_76qgu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q7aaj"]
+atlas = ExtResource("2_i2frl")
+region = Rect2(17, 153, 17, 17)
+
+[resource]
+script = ExtResource("2_50uok")
+game = "plinko"
+unlock = ExtResource("4_76qgu")
+icon = SubResource("AtlasTexture_q7aaj")

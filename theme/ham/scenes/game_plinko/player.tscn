@@ -1,0 +1,84 @@
+[gd_scene load_steps=9 format=3 uid="uid://qovq0oo36b1l"]
+
+[ext_resource type="SpriteFrames" uid="uid://b681768c6hkug" path="res://theme/ham/pet/frames.tres" id="1_mvw7e"]
+[ext_resource type="Texture2D" uid="uid://4r6aj7a546u1" path="res://scenes/game_plinko/bucket_walk_0.png" id="2_66hnn"]
+[ext_resource type="Texture2D" uid="uid://b2fu40ukoi4ti" path="res://scenes/game_plinko/bucket_walk_1.png" id="3_bemf0"]
+
+[sub_resource type="SpriteFrames" id="34"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_66hnn")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_66hnn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_bemf0")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="PhysicsMaterial" id="22"]
+bounce = 0.4
+absorbent = true
+
+[sub_resource type="SegmentShape2D" id="23"]
+b = Vector2(0, 15)
+
+[sub_resource type="SegmentShape2D" id="24"]
+a = Vector2(0, -1)
+b = Vector2(0, 13)
+
+[sub_resource type="RectangleShape2D" id="25"]
+size = Vector2(1, 1)
+
+[node name="Pet" type="Node2D"]
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+z_index = 1
+position = Vector2(-3, -7)
+sprite_frames = ExtResource("1_mvw7e")
+animation = &"walk"
+offset = Vector2(8, 0)
+
+[node name="Bucket" type="Node2D" parent="."]
+z_index = 1
+position = Vector2(0, -17)
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="Bucket"]
+position = Vector2(0, 1)
+sprite_frames = SubResource("34")
+animation = &"idle"
+
+[node name="BucketWalls" type="StaticBody2D" parent="Bucket"]
+physics_material_override = SubResource("22")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bucket/BucketWalls"]
+position = Vector2(-7, -8)
+shape = SubResource("23")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Bucket/BucketWalls"]
+position = Vector2(7, -8)
+shape = SubResource("23")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Bucket/BucketWalls"]
+position = Vector2(-6, 7)
+rotation = -1.5708
+shape = SubResource("24")
+
+[node name="BucketCatch" type="Area2D" parent="Bucket"]
+position = Vector2(0, 1)
+collision_layer = 2
+collision_mask = 4
+linear_damp = 30.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bucket/BucketCatch"]
+shape = SubResource("25")

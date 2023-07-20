@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="FoodResource" load_steps=16 format=3 uid="uid://c2ede81dygvky"]
+[gd_resource type="Resource" script_class="FoodResource" load_steps=17 format=3 uid="uid://c2ede81dygvky"]
 
 [ext_resource type="Texture2D" uid="uid://b577e8brupfeg" path="res://theme/ham/resources/food/yaoi/01.png" id="1_1fn74"]
 [ext_resource type="Texture2D" uid="uid://bk5i6e751edtw" path="res://theme/ham/resources/food/yaoi/02.png" id="2_pow0i"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://bpbwr4tujqvs2" path="res://theme/ham/resources/food/yaoi/10.png" id="10_f3k8x"]
 [ext_resource type="Texture2D" uid="uid://btjarlwyunc6r" path="res://theme/ham/resources/food/yaoi/11.png" id="11_m3tfe"]
 [ext_resource type="Texture2D" uid="uid://b40i6ytho5mrs" path="res://theme/ham/resources/food/yaoi/12.png" id="12_gwter"]
+[ext_resource type="Texture2D" uid="uid://dc6l61mtkfxfh" path="res://theme/ham/resources/food/yaoi/icon.png" id="13_xmxgt"]
 [ext_resource type="Resource" uid="uid://diucbp20w8rbd" path="res://theme/ham/resources/unlockables/yaoi.tres" id="14_atybg"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_s8dmo"]
@@ -61,6 +62,12 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("1_1fn74")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_1fn74")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_1fn74")
 }],
 "loop": false,
 "name": &"eat",
@@ -70,7 +77,8 @@ animations = [{
 [resource]
 script = ExtResource("4_f62ug")
 hungry = 30.0
-boredom = 0.0
-cooldown = 30.0
+boredom = -50.0
+cooldown = 45.0
 unlock = ExtResource("14_atybg")
+icon = ExtResource("13_xmxgt")
 animation = SubResource("SpriteFrames_s8dmo")

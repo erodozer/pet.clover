@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://ddmydicggypot"]
+[gd_scene load_steps=33 format=3 uid="uid://ddmydicggypot"]
 
 [ext_resource type="Shader" path="res://ui/scroll.gdshader" id="1"]
 [ext_resource type="FontFile" uid="uid://3heiwkvujho0" path="res://ui/fonts/EarlyGameBoySTD.ttf" id="2"]
@@ -6,15 +6,150 @@
 [ext_resource type="Texture2D" uid="uid://df8hw8q5hoxpk" path="res://ui/panel.png" id="4"]
 [ext_resource type="Texture2D" uid="uid://c1r6hwy43w8pn" path="res://scenes/game_plinko/ball.png" id="5"]
 [ext_resource type="Texture2D" uid="uid://tdhk2gooh12p" path="res://scenes/game_plinko/peg.png" id="6"]
-[ext_resource type="Texture2D" uid="uid://4r6aj7a546u1" path="res://scenes/game_plinko/bucket_walk_0.png" id="7"]
-[ext_resource type="Texture2D" uid="uid://b2fu40ukoi4ti" path="res://scenes/game_plinko/bucket_walk_1.png" id="8"]
-[ext_resource type="SpriteFrames" uid="uid://dushx8aen3ymk" path="res://pet/frames.tres" id="9"]
+[ext_resource type="PackedScene" uid="uid://d14rf1d0alf80" path="res://scenes/game_plinko/player.tscn" id="7_rjre5"]
+[ext_resource type="Theme" uid="uid://bfmrdx6ah36lt" path="res://ui/ui_theme.tres" id="7_t0i7x"]
+[ext_resource type="FontFile" uid="uid://cu56gylq7usm7" path="res://ui/fonts/Minimum.ttf" id="8_m7j13"]
+[ext_resource type="Texture2D" uid="uid://c2q4hdkscev71" path="res://scenes/home/ui/stats/currency.png" id="9_qom70"]
 [ext_resource type="Script" path="res://scenes/game_plinko/game.gd" id="10"]
+[ext_resource type="Texture2D" uid="uid://b2l8td6ax26uf" path="res://scenes/home/ui/stats/fun.png" id="10_m16g1"]
+[ext_resource type="FontFile" uid="uid://ymu18ty2r2n8" path="res://ui/fonts/PolygonPixel5x7Standard.ttf" id="11_xqeou"]
 
 [sub_resource type="ShaderMaterial" id="20"]
 shader = ExtResource("1")
 shader_parameter/speed_x = 1.0
 shader_parameter/speed_y = null
+
+[sub_resource type="PhysicsMaterial" id="31"]
+friction = 0.5
+bounce = 0.3
+
+[sub_resource type="CircleShape2D" id="26"]
+radius = 4.3
+
+[sub_resource type="PhysicsMaterial" id="27"]
+friction = 0.65
+bounce = 0.11
+
+[sub_resource type="SegmentShape2D" id="28"]
+b = Vector2(0, 400)
+
+[sub_resource type="CircleShape2D" id="30"]
+radius = 4.0
+
+[sub_resource type="PhysicsMaterial" id="32"]
+rough = true
+bounce = 1.0
+absorbent = true
+
+[sub_resource type="RectangleShape2D" id="29"]
+size = Vector2(179, 10)
+
+[sub_resource type="RectangleShape2D" id="33"]
+size = Vector2(164, 7)
+
+[sub_resource type="Animation" id="Animation_hvg3v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/HelpText:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(159, 100)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/Results:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(41.5, -72)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/VBoxContainer:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 146)]
+}
+
+[sub_resource type="Animation" id="Animation_14ibh"]
+resource_name = "Results"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Results:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(41.5, -72), Vector2(41.5, 40)]
+}
+
+[sub_resource type="Animation" id="Animation_avwe2"]
+resource_name = "Show"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/HelpText:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 3.2, 3.8),
+"transitions": PackedFloat32Array(0.5, 1, 0.5, 1),
+"update": 0,
+"values": [Vector2(159, 100), Vector2(0, 100), Vector2(0, 100), Vector2(-161, 100)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/VBoxContainer:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3.5, 4),
+"transitions": PackedFloat32Array(1, 0.5, 1),
+"update": 0,
+"values": [Vector2(0, 146), Vector2(0, 146), Vector2(0, 77)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8hpli"]
+_data = {
+"RESET": SubResource("Animation_hvg3v"),
+"Results": SubResource("Animation_14ibh"),
+"Show": SubResource("Animation_avwe2")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_ds61f"]
+font = ExtResource("8_m7j13")
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sqf8g"]
+atlas = ExtResource("10_m16g1")
+region = Rect2(0, 0, 6, 6)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ch6bb"]
+line_spacing = -1.0
+font = ExtResource("11_xqeou")
+font_color = Color(0, 0, 0, 1)
+shadow_size = 0
 
 [sub_resource type="FontFile" id="5"]
 fallbacks = Array[Font]([ExtResource("2")])
@@ -51,70 +186,6 @@ Label/styles/normal = null
 Panel/styles/panel = SubResource("19")
 PanelContainer/styles/panel = SubResource("19")
 
-[sub_resource type="PhysicsMaterial" id="31"]
-friction = 0.5
-bounce = 0.3
-
-[sub_resource type="CircleShape2D" id="26"]
-radius = 4.3
-
-[sub_resource type="SpriteFrames" id="34"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("7")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("7")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8")
-}],
-"loop": true,
-"name": &"walk",
-"speed": 5.0
-}]
-
-[sub_resource type="PhysicsMaterial" id="22"]
-bounce = 0.4
-absorbent = true
-
-[sub_resource type="SegmentShape2D" id="23"]
-b = Vector2(0, 15)
-
-[sub_resource type="SegmentShape2D" id="24"]
-a = Vector2(0, -1)
-b = Vector2(0, 13)
-
-[sub_resource type="RectangleShape2D" id="25"]
-size = Vector2(1, 1)
-
-[sub_resource type="PhysicsMaterial" id="27"]
-friction = 0.65
-bounce = 0.11
-
-[sub_resource type="SegmentShape2D" id="28"]
-b = Vector2(0, 400)
-
-[sub_resource type="CircleShape2D" id="30"]
-radius = 4.0
-
-[sub_resource type="PhysicsMaterial" id="32"]
-rough = true
-bounce = 1.0
-absorbent = true
-
-[sub_resource type="RectangleShape2D" id="29"]
-size = Vector2(179, 10)
-
-[sub_resource type="RectangleShape2D" id="33"]
-size = Vector2(164, 7)
-
 [node name="Plinko" type="Node" groups=["scene"]]
 script = ExtResource("10")
 
@@ -126,56 +197,6 @@ anchor_bottom = 1.0
 texture = ExtResource("3")
 expand_mode = 1
 stretch_mode = 1
-
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = 32.0
-offset_bottom = 32.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = SubResource("21")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
-layout_mode = 0
-anchor_right = 1.0
-anchor_bottom = 1.0
-alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/HBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Control/HBoxContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_constants/shadow_offset_x = 1
-theme_override_constants/shadow_offset_y = 1
-text = "Balls"
-
-[node name="BallCount" type="Label" parent="Control/HBoxContainer/HBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(20, 0)
-layout_mode = 2
-text = "00"
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="Control/HBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Control/HBoxContainer/HBoxContainer2"]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_constants/shadow_offset_x = 1
-theme_override_constants/shadow_offset_y = 1
-text = "Caught"
-
-[node name="CatchCount" type="Label" parent="Control/HBoxContainer/HBoxContainer2"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(16, 0)
-layout_mode = 2
-text = "00"
 
 [node name="Ball" type="RigidBody2D" parent="."]
 unique_name_in_owner = true
@@ -191,46 +212,9 @@ shape = SubResource("26")
 [node name="Sprite2D" type="Sprite2D" parent="Ball"]
 texture = ExtResource("5")
 
-[node name="Fox" type="AnimatedSprite2D" parent="."]
+[node name="Fox" parent="." instance=ExtResource("7_rjre5")]
 unique_name_in_owner = true
-z_index = 1
-position = Vector2(80, 146)
-sprite_frames = ExtResource("9")
-animation = &"walk"
-offset = Vector2(8, 0)
-
-[node name="Bucket" type="Node2D" parent="Fox"]
-position = Vector2(0, -17)
-
-[node name="Sprite2D" type="AnimatedSprite2D" parent="Fox/Bucket"]
-position = Vector2(0, 1)
-sprite_frames = SubResource("34")
-animation = &"idle"
-
-[node name="BucketWalls" type="StaticBody2D" parent="Fox/Bucket"]
-physics_material_override = SubResource("22")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Fox/Bucket/BucketWalls"]
-position = Vector2(-7, -8)
-shape = SubResource("23")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Fox/Bucket/BucketWalls"]
-position = Vector2(7, -8)
-shape = SubResource("23")
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="Fox/Bucket/BucketWalls"]
-position = Vector2(-6, 7)
-rotation = -1.5708
-shape = SubResource("24")
-
-[node name="BucketCatch" type="Area2D" parent="Fox/Bucket"]
-position = Vector2(0, 1)
-collision_layer = 2
-collision_mask = 4
-linear_damp = 30.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Fox/Bucket/BucketCatch"]
-shape = SubResource("25")
+position = Vector2(81, 144)
 
 [node name="Board" type="StaticBody2D" parent="."]
 physics_material_override = SubResource("27")
@@ -248,7 +232,6 @@ position = Vector2(21, 20)
 shape = SubResource("30")
 
 [node name="Sprite2D" type="Sprite2D" parent="Board/Peg"]
-position = Vector2(1, 1)
 texture = ExtResource("6")
 
 [node name="Peg2" type="CollisionShape2D" parent="Board"]
@@ -256,7 +239,6 @@ position = Vector2(51, 20)
 shape = SubResource("30")
 
 [node name="Sprite2D" type="Sprite2D" parent="Board/Peg2"]
-position = Vector2(1, 1)
 texture = ExtResource("6")
 
 [node name="Peg3" type="CollisionShape2D" parent="Board"]
@@ -264,7 +246,6 @@ position = Vector2(81, 20)
 shape = SubResource("30")
 
 [node name="Sprite2D" type="Sprite2D" parent="Board/Peg3"]
-position = Vector2(1, 1)
 texture = ExtResource("6")
 
 [node name="Peg4" type="CollisionShape2D" parent="Board"]
@@ -280,7 +261,6 @@ position = Vector2(141, 20)
 shape = SubResource("30")
 
 [node name="Sprite2D" type="Sprite2D" parent="Board/Peg5"]
-position = Vector2(1, 1)
 texture = ExtResource("6")
 
 [node name="Peg6" type="CollisionShape2D" parent="Board"]
@@ -288,7 +268,6 @@ position = Vector2(21, 95)
 shape = SubResource("30")
 
 [node name="Sprite2D" type="Sprite2D" parent="Board/Peg6"]
-position = Vector2(1, 1)
 texture = ExtResource("6")
 
 [node name="Peg7" type="CollisionShape2D" parent="Board"]
@@ -296,7 +275,6 @@ position = Vector2(51, 95)
 shape = SubResource("30")
 
 [node name="Sprite2D" type="Sprite2D" parent="Board/Peg7"]
-position = Vector2(1, 1)
 texture = ExtResource("6")
 
 [node name="Peg8" type="CollisionShape2D" parent="Board"]
@@ -304,7 +282,6 @@ position = Vector2(81, 95)
 shape = SubResource("30")
 
 [node name="Sprite2D" type="Sprite2D" parent="Board/Peg8"]
-position = Vector2(1, 1)
 texture = ExtResource("6")
 
 [node name="Peg9" type="CollisionShape2D" parent="Board"]
@@ -312,7 +289,6 @@ position = Vector2(111, 95)
 shape = SubResource("30")
 
 [node name="Sprite2D" type="Sprite2D" parent="Board/Peg9"]
-position = Vector2(1, 1)
 texture = ExtResource("6")
 
 [node name="Peg10" type="CollisionShape2D" parent="Board"]
@@ -320,7 +296,6 @@ position = Vector2(141, 95)
 shape = SubResource("30")
 
 [node name="Sprite2D" type="Sprite2D" parent="Board/Peg10"]
-position = Vector2(1, 1)
 texture = ExtResource("6")
 
 [node name="Peg11" type="CollisionShape2D" parent="Board"]
@@ -328,7 +303,6 @@ position = Vector2(36, 76)
 shape = SubResource("30")
 
 [node name="Sprite2D" type="Sprite2D" parent="Board/Peg11"]
-position = Vector2(1, 1)
 texture = ExtResource("6")
 
 [node name="Peg12" type="CollisionShape2D" parent="Board"]
@@ -336,7 +310,6 @@ position = Vector2(66, 76)
 shape = SubResource("30")
 
 [node name="Sprite2D" type="Sprite2D" parent="Board/Peg12"]
-position = Vector2(1, 1)
 texture = ExtResource("6")
 
 [node name="Peg13" type="CollisionShape2D" parent="Board"]
@@ -344,7 +317,6 @@ position = Vector2(96, 76)
 shape = SubResource("30")
 
 [node name="Sprite2D" type="Sprite2D" parent="Board/Peg13"]
-position = Vector2(1, 1)
 texture = ExtResource("6")
 
 [node name="Peg14" type="CollisionShape2D" parent="Board"]
@@ -352,7 +324,6 @@ position = Vector2(126, 76)
 shape = SubResource("30")
 
 [node name="Sprite2D" type="Sprite2D" parent="Board/Peg14"]
-position = Vector2(1, 1)
 texture = ExtResource("6")
 
 [node name="Peg15" type="CollisionShape2D" parent="Board"]
@@ -360,7 +331,6 @@ position = Vector2(36, 40)
 shape = SubResource("30")
 
 [node name="Sprite2D" type="Sprite2D" parent="Board/Peg15"]
-position = Vector2(1, 1)
 texture = ExtResource("6")
 
 [node name="Peg16" type="CollisionShape2D" parent="Board"]
@@ -368,7 +338,6 @@ position = Vector2(66, 40)
 shape = SubResource("30")
 
 [node name="Sprite2D" type="Sprite2D" parent="Board/Peg16"]
-position = Vector2(1, 1)
 texture = ExtResource("6")
 
 [node name="Peg17" type="CollisionShape2D" parent="Board"]
@@ -376,7 +345,6 @@ position = Vector2(96, 40)
 shape = SubResource("30")
 
 [node name="Sprite2D" type="Sprite2D" parent="Board/Peg17"]
-position = Vector2(1, 1)
 texture = ExtResource("6")
 
 [node name="Peg18" type="CollisionShape2D" parent="Board"]
@@ -384,7 +352,6 @@ position = Vector2(126, 40)
 shape = SubResource("30")
 
 [node name="Sprite2D" type="Sprite2D" parent="Board/Peg18"]
-position = Vector2(1, 1)
 texture = ExtResource("6")
 
 [node name="Peg19" type="CollisionShape2D" parent="Board"]
@@ -392,7 +359,6 @@ position = Vector2(21, 58)
 shape = SubResource("30")
 
 [node name="Sprite2D" type="Sprite2D" parent="Board/Peg19"]
-position = Vector2(1, 1)
 texture = ExtResource("6")
 
 [node name="Peg20" type="CollisionShape2D" parent="Board"]
@@ -400,7 +366,6 @@ position = Vector2(51, 58)
 shape = SubResource("30")
 
 [node name="Sprite2D" type="Sprite2D" parent="Board/Peg20"]
-position = Vector2(1, 1)
 texture = ExtResource("6")
 
 [node name="Peg21" type="CollisionShape2D" parent="Board"]
@@ -444,29 +409,148 @@ linear_damp = 1000.0
 position = Vector2(2, 0)
 shape = SubResource("33")
 
-[node name="Inputs" type="Control" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8hpli")
+}
+
+[node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 1
 
-[node name="MoveLeft" type="Control" parent="Inputs"]
-custom_minimum_size = Vector2(60, 0)
-anchors_preset = 0
-anchor_bottom = 1.0
-mouse_default_cursor_shape = 2
+[node name="Results" type="PanelContainer" parent="Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -38.5
+offset_top = -144.0
+offset_right = 38.5
+offset_bottom = -80.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("7_t0i7x")
 
-[node name="MoveRight" type="Control" parent="Inputs"]
-custom_minimum_size = Vector2(60, 0)
-anchors_preset = 0
-anchor_left = 1.0
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Results"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/Results/VBoxContainer"]
+layout_mode = 2
+text = "Results"
+label_settings = SubResource("LabelSettings_ds61f")
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="Control/Results/VBoxContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control/Results/VBoxContainer/GridContainer"]
+layout_mode = 2
+texture = ExtResource("9_qom70")
+stretch_mode = 5
+
+[node name="Currency" type="Label" parent="Control/Results/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "+1000"
+label_settings = SubResource("LabelSettings_ds61f")
+horizontal_alignment = 1
+
+[node name="TextureRect2" type="TextureRect" parent="Control/Results/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+texture = SubResource("AtlasTexture_sqf8g")
+stretch_mode = 5
+
+[node name="Happiness" type="Label" parent="Control/Results/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "+100"
+label_settings = SubResource("LabelSettings_ds61f")
+horizontal_alignment = 1
+
+[node name="HelpText" type="PanelContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
 anchor_right = 1.0
-offset_left = -60.0
-offset_bottom = 144.0
-mouse_default_cursor_shape = 2
+anchor_bottom = 1.0
+offset_left = 159.0
+offset_top = -44.0
+offset_right = 159.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("7_t0i7x")
+
+[node name="RichTextLabel" type="Label" parent="Control/HelpText"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Catch all the balls"
+label_settings = SubResource("LabelSettings_ch6bb")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Info" type="Control" parent="Control"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("21")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/Info"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/Info/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/Info/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+text = "Balls"
+
+[node name="BallCount" type="Label" parent="Control/Info/HBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+text = "00"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control/Info/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/Info/HBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+text = "Caught"
+
+[node name="CatchCount" type="Label" parent="Control/Info/HBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(16, 0)
+layout_mode = 2
+text = "00"
 
 [connection signal="body_entered" from="Fox/Bucket/BucketCatch" to="." method="_on_BucketCatch_body_entered"]
 [connection signal="body_entered" from="FloorCatch" to="." method="_on_FloorCatch_body_entered"]
+
+[editable path="Fox"]

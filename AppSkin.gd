@@ -21,7 +21,6 @@ AppSkin
 	forced theme caching and just remember to reload the assets regularly.
 """
 extends Node
-class_name AppSkin
 
 const GROUP_NAME = "app_skin"
 
@@ -44,7 +43,7 @@ var loading = true
 
 func _ready():
 	add_to_group(GROUP_NAME)
-	apply("ham")
+	apply()
 	
 func apply(theme = ProjectSettings.get_setting_with_override("application/config/theme")):
 	loading = true
@@ -60,6 +59,7 @@ func apply(theme = ProjectSettings.get_setting_with_override("application/config
 			res.take_over_path(path)
 			if hold_cache:
 				_theme_files.append(res)
+			print("replacing %s" % path)
 			
 	loading = false
 	theme_applied.emit()

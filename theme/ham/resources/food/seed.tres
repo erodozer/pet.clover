@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="FoodResource" load_steps=13 format=3 uid="uid://cr3edaouje7ce"]
+[gd_resource type="Resource" script_class="FoodResource" load_steps=14 format=3 uid="uid://cr3edaouje7ce"]
 
 [ext_resource type="Texture2D" uid="uid://dlixrfnccfn20" path="res://theme/ham/resources/food/seed/01.png" id="1_r3x6n"]
 [ext_resource type="Script" path="res://resources/FoodResource.gd" id="1_wlatj"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://dqeqicsgj3qsu" path="res://theme/ham/resources/food/seed/eat_06.png" id="9_83kps"]
 [ext_resource type="Texture2D" uid="uid://bidlxjvhne5fc" path="res://theme/ham/resources/food/seed/eat_07.png" id="10_iahh3"]
 [ext_resource type="Texture2D" uid="uid://p0tstu87edwk" path="res://theme/ham/resources/food/seed/eat_08.png" id="10_lhxl7"]
+[ext_resource type="Texture2D" uid="uid://chad24ca1bj4a" path="res://theme/ham/resources/food/seed/icon.png" id="11_lch2t"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_frmtd"]
 animations = [{
@@ -96,7 +97,8 @@ animations = [{
 
 [resource]
 script = ExtResource("1_wlatj")
-hungry = 30.0
+hungry = 50.0
 boredom = 0.0
 cooldown = 30.0
+icon = ExtResource("11_lch2t")
 animation = SubResource("SpriteFrames_frmtd")

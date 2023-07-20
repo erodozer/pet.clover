@@ -13,11 +13,12 @@ func _ready():
 
 func _process(delta):
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		var width = get_viewport().get_visible_rect().size.x
 		var mouse_pos = get_viewport().get_mouse_position().x
-		if mouse_pos < get_viewport().size.x * .4:
+		if mouse_pos < fox.position.x - 2 and fox.position.x > 6:
 			fox.position.x -= 40 * delta
 			fox.scale.x = 1
-		elif mouse_pos > get_viewport().size.x * .4:
+		elif mouse_pos > fox.position.x + 2 and fox.position.x < width - 6:
 			fox.position.x += 40 * delta
 			fox.scale.x = -1
 			

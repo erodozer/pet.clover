@@ -5,7 +5,7 @@ var left_bound
 var right_bound
 
 func drop(f: FoodResource):
-	if f.unlock and not GameState.unlocks.get(f.unlock):
+	if f.unlock and not GameState.unlocks.get(f.unlock.flag, false):
 		await get_tree().process_frame
 		return false
 		

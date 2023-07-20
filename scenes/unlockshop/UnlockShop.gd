@@ -16,8 +16,8 @@ func _ready():
 		btn.connect("toggled", Callable(self, "select_item").bind(i))
 		get_node("%Unlockables").add_child(btn)
 		btn.get_node("%Label").text = i.display_name
-		btn.get_node("%Price").text = "%d" % i.cost
-		
+		btn.get_node("%Price").text = "%d" % i.cost if not GameState.unlocks.get(i.flag, false) else "SOLD"
+
 	GameState.connect("stats_changed", Callable(self, "_update_money"))
 	_update_money(GameState.stats)
 	
@@ -61,6 +61,11 @@ func _on_BuyButton_pressed():
 			}
 			
 	select_item(true, item)
+	GameState.save_data()
+	
+	for btn in get_node("%Unlockables").get_children():
+		var i = btn.get_meta("item")
+		btn.get_node("%Price").text = "%d" % i.cost if not GameState.unlocks.get(i.flag, false) else "SOLD"
 
 func _on_Back_pressed():
 	SceneManager.change_scene("home")

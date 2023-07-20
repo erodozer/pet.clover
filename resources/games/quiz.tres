@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="GameResource" load_steps=5 format=3 uid="uid://b8nvexwy3ql31"]
+
+[ext_resource type="Script" path="res://resources/GameResource.gd" id="2_s8gjr"]
+[ext_resource type="Texture2D" uid="uid://bunxtk64ph182" path="res://scenes/home/ui/controls/icons.png" id="2_vnr52"]
+[ext_resource type="Resource" uid="uid://cu1hik6js58br" path="res://resources/unlockables/quiz.tres" id="3_5mn0o"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jpvax"]
+atlas = ExtResource("2_vnr52")
+region = Rect2(17, 170, 17, 17)
+
+[resource]
+script = ExtResource("2_s8gjr")
+game = "quiz"
+unlock = ExtResource("3_5mn0o")
+icon = SubResource("AtlasTexture_jpvax")

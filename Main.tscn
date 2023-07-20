@@ -1,17 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://bfpqbgb4s444m"]
+[gd_scene load_steps=5 format=3 uid="uid://bfpqbgb4s444m"]
 
 [ext_resource type="PackedScene" uid="uid://dfpyhauugxath" path="res://addons/simple-scene-manager/SceneManager.tscn" id="1_7e46e"]
-[ext_resource type="Script" path="res://AppSkin.gd" id="2_4h085"]
 [ext_resource type="PackedScene" uid="uid://cmfr6463oc3to" path="res://addons/twitch/tmi.tscn" id="2_u2l37"]
 [ext_resource type="PackedScene" uid="uid://bp2l4iy86r03u" path="res://twitch/twitch_config.tscn" id="4_pk1io"]
 [ext_resource type="Texture2D" uid="uid://dl8n7hbuaqrlf" path="res://ui/transition/dot.png" id="5_qb2ks"]
 
 [node name="SceneManager" instance=ExtResource("1_7e46e")]
 
-[node name="Skin" type="Node" parent="." index="0"]
-script = ExtResource("2_4h085")
-
-[node name="Twitch" parent="." index="1" instance=ExtResource("2_u2l37")]
+[node name="Twitch" parent="." index="0" instance=ExtResource("2_u2l37")]
 unique_name_in_owner = true
 
 [node name="TwitchConfig" parent="Twitch" index="6" instance=ExtResource("4_pk1io")]
@@ -19,3 +15,4 @@ unique_name_in_owner = true
 
 [node name="Fader" parent="Transition" index="0"]
 texture = ExtResource("5_qb2ks")
+stretch_mode = 0

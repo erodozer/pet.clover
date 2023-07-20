@@ -6,5 +6,5 @@
 script = ExtResource("1_rlhmf")
 flag = "game.plinko"
 display_name = "Plinko"
-description = "Sometimes Clover will want to play Plinko with you"
+description = "Help your pet catch the falling balls"
 cost = 25000

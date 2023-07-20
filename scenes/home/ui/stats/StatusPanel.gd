@@ -20,10 +20,10 @@ func _update_stats(stats):
 	var mood = "Happy"
 	if stats.hungry < 50.0:
 		mood = "Hungry"
-	if stats.weight < 7.0:
+	if stats.weight < 20.0:
 		mood = "Malnurished"
-	if stats.weight > 20.0:
-		mood = "Chungus"
+	if stats.weight > 80.0:
+		mood = "Overweight"
 	if stats.boredom > 70.0:
 		mood = "Bored"
 	if stats.dirty > 50.0:
@@ -35,12 +35,13 @@ func _update_stats(stats):
 	
 	get_node("%Mood").text = mood
 
-	get_node("%Weight").text = "%.1f lbs" % [
-		inverse_lerp(
+	get_node("%Weight").text = "%.1f %s" % [
+		lerp(
 			ProjectSettings.get_setting_with_override("application/gameplay/pet_weight_minimum"),
 			ProjectSettings.get_setting_with_override("application/gameplay/pet_weight_maximum"),
 			clamp(stats.weight / 100.0, 0.0, 1.0)
-		)
+		),
+		ProjectSettings.get_setting_with_override("application/gameplay/pet_weight_unit"),
 	]
 		
 	get_node("%LifeMeter").value = inverse_lerp(0.0, 100.0, stats.hungry) * 5.0

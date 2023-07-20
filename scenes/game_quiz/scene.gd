@@ -9,9 +9,6 @@ signal selected(choice)
 var correct = 0
 var incorrect = 0
 
-func _ready():
-	_start()
-
 func _start():
 	$AnimationPlayer.play("Show")
 	await $AnimationPlayer.animation_finished

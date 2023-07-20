@@ -6,7 +6,8 @@ extends Button
 
 @export_enum("None", "eat", "bathe", "play", "medicine") var bind_to_timer = "None"
 @export_enum("None", "food", "game", "stats") var submenu = "None"
-@export var unlockable: String
+@export var unlocked: bool = true
+@export var item: Resource = null
 
 func _ready():
 	connect("focus_entered", Callable(self, "_on_focus_entered"))
@@ -47,4 +48,4 @@ func _on_focus_exited():
 
 func _process(_delta):
 	if bind_to_timer != "None":
-		disable_action(not GameState.can_act(bind_to_timer, unlockable))
+		disable_action(not GameState.can_act(bind_to_timer) && unlocked)

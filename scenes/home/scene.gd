@@ -39,15 +39,13 @@ func _on_UIControls_action_pressed(action_type, is_pressed, meta = null):
 		"light":
 			_toggle_lights(is_pressed)
 		"food":
-			_drop_food(
-				meta if meta != null else menu.foods.items[0]
-			)
+			_drop_food(meta)
 		"cure":
 			_give_medicine()
 		"bath":
 			_bathe()
 		"game":
-			_game()
+			_game(meta)
 		"health":
 			_show_stats()
 		"gift":
@@ -62,12 +60,12 @@ func _ready():
 	food.right_bound = right
 	
 	# backfill processing for while the player was away
-	var catch_up = clamp((GameState.now() - GameState.timers.update) / float(GameState.UPDATE_FREQ), 0, 300.0)
-	for _i in range(catch_up):
-		GameState.execute_turn()
+	# var catch_up = clamp((GameState.now() - GameState.timers.update) / float(GameState.UPDATE_FREQ), 0, 300.0)
+	# for _i in range(catch_up):
+	# 	GameState.execute_turn()
 		
 	fox.pause = false
-	%WashScene/Pet/Sprite2D.play()
+	%WashScene/Pet/Sprite2D.play("bath")
 	
 func _show_stats():
 	accepting_actions = false
@@ -126,21 +124,33 @@ func _toggle_lights(lights_on):
 	GameState.lights_on = lights_on
 	accepting_actions = true
 
-func _game():
-	accepting_actions = false
-	var games = ["game_match"]
-	
-	# add unlockable games
-	if GameState.unlocks.get("game.plinko", false):
-		games.append("game_plinko")
-	if GameState.unlocks.get("game.hilo", false):
-		games.append("game_hilo")
-	if GameState.unlocks.get("game.quiz", false):
-		games.append("game_quiz")
+func _game(game):
+	if not GameState.can_act("eat"):
+		return
 		
-	var game = games[randi() % len(games)]
+	accepting_actions = false
 	
-	SceneManager.change_scene(game)
+	if not game:
+		game = menu.games.default
+		if len(menu.games.unlocked) > 1:
+			menu.show_submenu("game")
+			var result = await menu.action_pressed
+			var action = result[2]
+			
+			if action == null:
+				menu.show_menu()
+				accepting_actions = true
+				return
+			game = action
+			menu.show_menu()
+			
+	# pause processing while lookin for food
+	NoClick.visible = true
+	
+	SceneManager.change_scene("game_" + game.game)
+	
+	NoClick.visible = false
+	accepting_actions = true
 
 func _bathe():
 	if not GameState.can_act("bathe"):
@@ -152,8 +162,13 @@ func _bathe():
 	
 	fox.pause = true
 	
+	var wash = get_node("WashScene")
+	var wash_bg = wash.get_node("Background") as AnimatedSprite2D
+	var scenes = wash_bg.sprite_frames.get_animation_names()
+	wash_bg.play(scenes[randi() % len(scenes)])
+	
 	await get_node("Transition").fade_in()
-	get_node("WashScene").visible = true
+	wash.visible = true
 	get_node("ShopView").visible = false
 	await get_node("Transition").fade_out()
 
@@ -173,7 +188,7 @@ func _bathe():
 	
 	await get_tree().create_timer(3.0).timeout
 	await get_node("Transition").fade_in()
-	get_node("WashScene").visible = false
+	wash.visible = false
 	get_node("ShopView").visible = true
 	await get_node("Transition").fade_out()
 	
@@ -204,14 +219,13 @@ func _drop_food(food_type = null):
 	accepting_actions = false
 	
 	if not food_type:
-		food_type = "nuggie"
-		if GameState.unlocks.get("food.fries", false) or \
-		  GameState.unlocks.get("food.soju", false):
+		food_type = menu.foods.default
+		if len(menu.foods.unlocked) > 1:
 			menu.show_submenu("food")
 			var result = await menu.action_pressed
-			var action = result[0]
+			var action = result[2]
 			
-			if action == "back":
+			if action == null:
 				menu.show_menu()
 				accepting_actions = true
 				return
