@@ -17,7 +17,7 @@ var death_timer = 0
 
 var stats = {
 	"hungry": 100.0,
-	"weight": 12.4,
+	"weight": 60.0,
 	"boredom": 0.0,
 	"dirty": 0.0,
 	"happy": 100.0,
@@ -33,25 +33,29 @@ var lights_on = true
 var unlocks = {}: set = _update_unlocks
 
 var TWITCH_ENABLED = false
+var THEME = "ham"
 
 signal stats_changed(stats)
 signal timers_changed(timers)
 
 func _ready():
-	if not FileAccess.file_exists("user://clover.save"):
-		return # no save yet
+	if FileAccess.file_exists("user://pet.save"):
+		var save_game = FileAccess.open("user://pet.save", FileAccess.READ)
+		# save files are a single line json
+		var test_json_conv = JSON.new()
+		test_json_conv.parse(save_game.get_line())
+		var data = test_json_conv.get_data()
+		save_game.close()
+		
+		self.stats = data.get("stats", {})
+		self.timers = data.get("timers", {})
+		self.unlocks = data.get("unlocks", {})
+		
+	await AppSkin.loaded()
+		
+	await get_tree().process_frame
+	SceneManager.change_scene("home")
 	
-	var save_game = FileAccess.open("user://clover.save", FileAccess.READ)
-	# save files are a single line json
-	var test_json_conv = JSON.new()
-	test_json_conv.parse(save_game.get_line())
-	var data = test_json_conv.get_data()
-	save_game.close()
-	
-	self.stats = data.get("stats", {})
-	self.timers = data.get("timers", {})
-	self.unlocks = data.get("unlocks", {})
-
 func now() -> float:
 	return Time.get_unix_time_from_system()
 
@@ -69,18 +73,12 @@ func can_act(action, unlockable = null):
 	return now() > next_allowed
 
 func _update_unlocks(change):
-	unlocks = {
-		"bath.soap": change.get("bath.soap", unlocks.get("bath.soap", false)),
-		"game.plinko": change.get("game.plinko", unlocks.get("game.plinko", false)),
-		"game.hilo": change.get("game.hilo", unlocks.get("game.hilo", false)),
-		"food.fries": change.get("food.fries", unlocks.get("food.fries", false)),
-		"food.soju": change.get("food.soju", unlocks.get("food.soju", false)),
-	}
+	unlocks.merge(change, true)
 
 func _update_stats(change):
 	stats = {
-		"hungry": clamp(change.get("hungry", stats.hungry), 0.0, 200.0),
-		"weight": clamp(change.get("weight", stats.weight), 5.0, 25.0),
+		"hungry": clamp(change.get("hungry", stats.hungry), 0.0, 250.0),
+		"weight": clamp(change.get("weight", stats.weight), 0.0, 100.0),
 		"boredom": clamp(change.get("boredom", stats.boredom), 0.0, 100.0),
 		"dirty": clamp(change.get("dirty", stats.dirty), 0.0, 100.0),
 		"tired": clamp(change.get("tired", stats.tired), 0.0, 100.0),
@@ -100,12 +98,15 @@ func _update_timers(change):
 		"update": change.get("update", timers.update),
 	}
 	emit_signal("timers_changed", timers)
+	
+func is_overfed():
+	return stats.weight >= 80
 
 func save_data():
 	if now() < save_sync:
 		return
 	
-	var save_game = FileAccess.open("user://clover.save", FileAccess.WRITE)
+	var save_game = FileAccess.open("user://pet.save", FileAccess.WRITE)
 	save_game.store_line(
 		JSON.stringify({
 			"stats": stats,
@@ -122,7 +123,7 @@ func execute_turn():
 	
 	if TWITCH_ENABLED and stats.is_asleep:
 		change.hungry -= 0.05
-		change.dirty += 0.01
+		change.dirty += 0.0
 		change.boredom += 0.0
 		change.tired += 0.0
 	elif TWITCH_ENABLED:
@@ -132,7 +133,7 @@ func execute_turn():
 		change.tired += 0.04
 	elif stats.is_asleep:
 		change.hungry -= 0.05
-		change.dirty += 0.05
+		change.dirty += 0.0
 		change.boredom += 0.0
 		change.tired += 0.0
 	else:
@@ -143,10 +144,10 @@ func execute_turn():
 	
 	# increase weight when overfed
 	if stats.hungry > 150.0:
-		change.weight += 0.01
+		change.weight += 1.0
 	# lose weight when starving
 	elif stats.hungry < 40:
-		change.weight -= 0.01
+		change.weight -= 0.05
 		
 	# cover tiredness and sickness by sleeping
 	if stats.is_asleep:
@@ -156,17 +157,18 @@ func execute_turn():
 		# wake up if lights are on
 		if lights_on:
 			change.is_asleep = false
-	elif stats.sick > 50.0:
+	else:
+		# get sick from not being clean
+		if stats.dirty > 70.0:
+			change.sick += 0.2
+		elif stats.dirty > 90.0:
+			change.sick += 0.4
+		elif stats.dirty < 20.0:
+			change.sick -= 0.2
+		
+	if stats.sick > 50.0:
 		change.tired += 0.1
 		
-	# get sick from not being clean
-	if stats.dirty > 70.0:
-		change.sick += 0.2
-	elif stats.dirty > 90.0:
-		change.sick += 0.4
-	elif stats.dirty < 20.0:
-		change.sick -= 0.2
-	
 	# go to bed when lights off and tired
 	if stats.tired > 45 and not lights_on:
 		change.is_asleep = true
@@ -201,11 +203,11 @@ func honey_score():
 		happy += 1.0
 		
 	# produce less honey when unhealthy weight
-	if stats.weight < 7.0:
+	if stats.weight < 20.0:
 		happy -= 2.0
-	elif stats.weight < 9.0:
+	elif stats.weight < 40.0:
 		happy -= 0.5
-	elif stats.weight > 15.0:
+	elif stats.weight > 80.0:
 		happy -= 1.0
 	
 	# produce significantly less when sick
@@ -255,7 +257,7 @@ func reset(reset_timers = true, reset_stats = true, hard = false):
 	if reset_stats:
 		stats = {
 			"hungry": 100.0,
-			"weight": 12.4,
+			"weight": 60.0,
 			"boredom": 0.0,
 			"dirty": 0.0,
 			"happy": 100.0,

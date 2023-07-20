@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ShopResource" load_steps=2 format=3 uid="uid://cec3vgn6hmlcs"]
+
+[ext_resource type="Script" path="res://resources/ShopResource.gd" id="1_ub4ik"]
+
+[resource]
+script = ExtResource("1_ub4ik")
+flag = "reset.cooldowns"
+display_name = "Reset Timers"
+description = "Reset all activity cooldowns"
+cost = 1000

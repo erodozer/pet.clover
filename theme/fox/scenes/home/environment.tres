@@ -1,0 +1,43 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://j7o3fn7wbxmo"]
+
+[ext_resource type="Texture2D" uid="uid://3lhyut1muef7" path="res://theme/fox/scenes/home/environment/background_lightson.png" id="1_r6irb"]
+[ext_resource type="Texture2D" uid="uid://81r25y72s447" path="res://theme/fox/scenes/home/environment/background_lights_01.png" id="2_bmjyc"]
+[ext_resource type="Texture2D" uid="uid://ct2j6c85c1u1f" path="res://theme/fox/scenes/home/environment/background_lights_02.png" id="3_bjono"]
+[ext_resource type="Texture2D" uid="uid://cag0wj5bbjsak" path="res://theme/fox/scenes/home/environment/background_lightsoff.png" id="4_52q20"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_r6irb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_bmjyc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_bjono")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_52q20")
+}],
+"loop": false,
+"name": &"lights_off",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_52q20")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_bjono")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_bmjyc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_r6irb")
+}],
+"loop": false,
+"name": &"lights_on",
+"speed": 8.0
+}]

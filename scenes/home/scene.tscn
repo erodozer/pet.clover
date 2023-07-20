@@ -1,0 +1,130 @@
+[gd_scene load_steps=14 format=3 uid="uid://dkaal7dxlbvqy"]
+
+[ext_resource type="Script" path="res://scenes/home/scene.gd" id="1_oq1jp"]
+[ext_resource type="PackedScene" uid="uid://lhxe71vragto" path="res://scenes/home/ui/controls/UiControls.tscn" id="2_all1x"]
+[ext_resource type="PackedScene" uid="uid://cvkideptcxtuk" path="res://scenes/home/ui/stats/StatusPanel.tscn" id="3_mh4k8"]
+[ext_resource type="SpriteFrames" uid="uid://cxt5213k5mxo3" path="res://scenes/home/environment.tres" id="4_4si2r"]
+[ext_resource type="PackedScene" uid="uid://bvtoltqxhmabq" path="res://scenes/home/pet.tscn" id="5_kljsm"]
+[ext_resource type="Shader" path="res://ui/outline2D.gdshader" id="6_uvsj3"]
+[ext_resource type="Script" path="res://scenes/home/FoodDrop.gd" id="8_vpc07"]
+[ext_resource type="SpriteFrames" uid="uid://bb0oo3x5m0thd" path="res://scenes/home/bath_environment.tres" id="9_op16t"]
+[ext_resource type="SpriteFrames" uid="uid://dushx8aen3ymk" path="res://pet/frames.tres" id="9_v1iox"]
+[ext_resource type="PackedScene" uid="uid://07vynairarcd" path="res://scenes/home/ui/transition/Transition.tscn" id="20_cauwi"]
+
+[sub_resource type="ShaderMaterial" id="15"]
+shader = ExtResource("6_uvsj3")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/width = 1.0
+shader_parameter/pattern = 0
+shader_parameter/inside = false
+shader_parameter/add_margins = true
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m0315"]
+
+[sub_resource type="SpriteFrames" id="2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"lights_off",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"lights_on",
+"speed": 8.0
+}]
+
+[node name="ShopScene" type="Node2D" groups=["scene"]]
+script = ExtResource("1_oq1jp")
+
+[node name="UIControls" parent="." instance=ExtResource("2_all1x")]
+unique_name_in_owner = true
+
+[node name="StatusPanel" parent="UIControls" instance=ExtResource("3_mh4k8")]
+unique_name_in_owner = true
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 1.0
+offset_top = 32.0
+offset_right = 98.0
+offset_bottom = 141.0
+
+[node name="ShopView" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Background" type="AnimatedSprite2D" parent="ShopView"]
+sprite_frames = ExtResource("4_4si2r")
+animation = &"lights_off"
+centered = false
+
+[node name="Pet" parent="ShopView" instance=ExtResource("5_kljsm")]
+
+[node name="LeftBound" type="Node2D" parent="ShopView"]
+unique_name_in_owner = true
+position = Vector2(54, 75)
+
+[node name="RightBound" type="Node2D" parent="ShopView"]
+unique_name_in_owner = true
+position = Vector2(104, 75)
+
+[node name="FoodDrop" type="AnimatedSprite2D" parent="ShopView"]
+unique_name_in_owner = true
+material = SubResource("15")
+position = Vector2(105, -39)
+sprite_frames = SubResource("SpriteFrames_m0315")
+script = ExtResource("8_vpc07")
+
+[node name="Foreground" type="AnimatedSprite2D" parent="ShopView"]
+sprite_frames = SubResource("2")
+animation = &"lights_on"
+frame = 3
+centered = false
+
+[node name="WashScene" type="Node2D" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+visible = false
+
+[node name="Background" type="AnimatedSprite2D" parent="WashScene"]
+sprite_frames = ExtResource("9_op16t")
+centered = false
+
+[node name="Pet" type="Node2D" parent="WashScene"]
+position = Vector2(81, 75)
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="WashScene/Pet"]
+position = Vector2(0, -19)
+sprite_frames = ExtResource("9_v1iox")
+animation = &"bath"
+
+[node name="Transition" parent="." instance=ExtResource("20_cauwi")]
+visible = false
+offset_left = 0.0
+offset_right = 160.0
+
+[connection signal="action_pressed" from="UIControls" to="." method="_on_UIControls_action_pressed"]

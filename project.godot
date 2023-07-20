@@ -16,9 +16,23 @@ config/features=PackedStringArray("4.1")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/show_image=false
 config/icon="res://icon.png"
+config/name.pet_ham="Hamagotchi"
+config/theme="fox"
+config/theme.pet_ham="ham"
+gameplay/pet_weight_minimum=5.0
+gameplay/pet_weight_maximum=25.0
+gameplay/pet_name="Clover"
+gameplay/pet_name.pet_ham="Ham"
+gameplay/pet_weight_unit="lbs"
+gameplay/pet_weight_maximum.pet_ham=60.0
+gameplay/pet_weight_minimum.pet_ham=20.0
+gameplay/pet_weight_unit.pet_ham="g"
+config/icon.pet_ham="res://theme/ham/icon.png"
+config/windows_native_icon.pet_ham="res://theme/ham/icon.ico"
 
 [autoload]
 
+AppSkin="*res://AppSkin.gd"
 GameState="*res://GameState.gd"
 NoClick="*res://ui/NoClick.tscn"
 
@@ -44,6 +58,7 @@ enabled=PackedStringArray()
 [gui]
 
 fonts/dynamic_fonts/use_oversampling=false
+theme/default_font_subpixel_positioning=0
 common/drop_mouse_on_gui_input_disabled=true
 
 [importer_defaults]

@@ -65,6 +65,13 @@ func _on_flip(card):
 		
 func game_finished():
 	var score = clamp(20 * matches, 10, 100.0)
+
+	NoClick.show()
+	%Results/%Currency.text = "+%d" % [score * 7]
+	%Results/%Happiness.text = "%d" % [score * .7]
+	%Results/%AnimationPlayer.play("show")
+	await %Results/%AnimationPlayer.animation_finished
+	NoClick.hide()
 	
 	GameState.stats = {
 		# boredom goes down relative to speed of success
@@ -76,4 +83,4 @@ func game_finished():
 		"play": GameState.now() + 240, # 4 minutes
 	}
 	
-	SceneManager.change_scene("flowershop")
+	SceneManager.change_scene("home")

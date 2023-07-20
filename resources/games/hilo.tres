@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="GameResource" load_steps=5 format=3 uid="uid://0wjtnjgxtbfc"]
+
+[ext_resource type="Script" path="res://resources/GameResource.gd" id="1_7b478"]
+[ext_resource type="Texture2D" uid="uid://bunxtk64ph182" path="res://scenes/home/ui/controls/icons.png" id="2_ig8pd"]
+[ext_resource type="Resource" uid="uid://crmqj1g0wo1he" path="res://resources/unlockables/hilo.tres" id="3_koof0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kpikm"]
+atlas = ExtResource("2_ig8pd")
+region = Rect2(0, 170, 17, 17)
+
+[resource]
+script = ExtResource("1_7b478")
+game = "hilo"
+unlock = ExtResource("3_koof0")
+icon = SubResource("AtlasTexture_kpikm")

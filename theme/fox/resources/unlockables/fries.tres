@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ShopResource" load_steps=2 format=3 uid="uid://ciesmoo3h50u1"]
+
+[ext_resource type="Script" path="res://resources/ShopResource.gd" id="1_usxkg"]
+
+[resource]
+script = ExtResource("1_usxkg")
+flag = "food.fries"
+display_name = "F Fries"
+description = "A large order of fries.  Fattens up the fox quickly."
+cost = 30000

@@ -13,22 +13,15 @@ func _ready():
 
 func _process(delta):
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		var width = get_viewport().get_visible_rect().size.x
 		var mouse_pos = get_viewport().get_mouse_position().x
-		if mouse_pos < fox.position.x - 2 and fox.position.x > 20:
+		if mouse_pos < fox.position.x - 2 and fox.position.x > 6:
 			fox.position.x -= 40 * delta
 			fox.scale.x = 1
-		elif mouse_pos > fox.position.x + 2 and fox.position.x < 140:
+		elif mouse_pos > fox.position.x + 2 and fox.position.x < width - 6:
 			fox.position.x += 40 * delta
 			fox.scale.x = -1
 			
-		if fox.animation != "walk":
-			fox.play("walk")
-			fox.get_node("Bucket/Sprite2D").play("walk")
-			
-	elif fox.animation != "idle":
-		fox.play("idle")
-		fox.get_node("Bucket/Sprite2D").play("idle")
-
 func game_finished():
 	await get_tree().create_timer(3.0).timeout
 	
@@ -37,6 +30,13 @@ func game_finished():
 	# perfect score bonus
 	if balls_caught == BALLS_TOTAL:
 		score = 200
+	
+	NoClick.show()
+	%Results/%Currency.text = "+%d" % [score * 10]
+	%Results/%Happiness.text = "%d" % [score]
+	%Results/%AnimationPlayer.play("show")
+	await %Results/%AnimationPlayer.animation_finished
+	NoClick.hide()
 	
 	GameState.stats = {
 		# boredom goes down relative to speed of success
@@ -48,7 +48,7 @@ func game_finished():
 		"play": GameState.now() + 300, # 5 minutes
 	}
 	
-	SceneManager.change_scene("flowershop")
+	SceneManager.change_scene("home")
 
 func spawn_ball():
 	balls_left -= 1

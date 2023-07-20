@@ -1,0 +1,104 @@
+[gd_resource type="Resource" script_class="FoodResource" load_steps=14 format=3 uid="uid://cr3edaouje7ce"]
+
+[ext_resource type="Texture2D" uid="uid://dlixrfnccfn20" path="res://theme/ham/resources/food/seed/01.png" id="1_r3x6n"]
+[ext_resource type="Script" path="res://resources/FoodResource.gd" id="1_wlatj"]
+[ext_resource type="Texture2D" uid="uid://b58xoyfsfwbyt" path="res://theme/ham/resources/food/seed/02.png" id="2_wko5n"]
+[ext_resource type="Texture2D" uid="uid://bc4j53nwash01" path="res://theme/ham/resources/food/seed/03.png" id="3_wt8pk"]
+[ext_resource type="Texture2D" uid="uid://dh7ixqai1g6n5" path="res://theme/ham/resources/food/seed/eat_01.png" id="4_68sff"]
+[ext_resource type="Texture2D" uid="uid://d3xdhrmtxnu6i" path="res://theme/ham/resources/food/seed/eat_03.png" id="6_kikp4"]
+[ext_resource type="Texture2D" uid="uid://b2uyftgs1ye7b" path="res://theme/ham/resources/food/seed/eat_04.png" id="7_438aa"]
+[ext_resource type="Texture2D" uid="uid://b8qbrpvbawmx2" path="res://theme/ham/resources/food/seed/eat_05.png" id="8_s7a0k"]
+[ext_resource type="Texture2D" uid="uid://dqeqicsgj3qsu" path="res://theme/ham/resources/food/seed/eat_06.png" id="9_83kps"]
+[ext_resource type="Texture2D" uid="uid://bidlxjvhne5fc" path="res://theme/ham/resources/food/seed/eat_07.png" id="10_iahh3"]
+[ext_resource type="Texture2D" uid="uid://p0tstu87edwk" path="res://theme/ham/resources/food/seed/eat_08.png" id="10_lhxl7"]
+[ext_resource type="Texture2D" uid="uid://chad24ca1bj4a" path="res://theme/ham/resources/food/seed/icon.png" id="11_lch2t"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_frmtd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_r3x6n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_wko5n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_wt8pk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_r3x6n")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_r3x6n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_68sff")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_kikp4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_438aa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_s7a0k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_438aa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_s7a0k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_s7a0k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_s7a0k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_83kps")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_83kps")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_83kps")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_iahh3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_iahh3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_iahh3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_lhxl7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_lhxl7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_lhxl7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_lhxl7")
+}],
+"loop": false,
+"name": &"eat",
+"speed": 12.0
+}]
+
+[resource]
+script = ExtResource("1_wlatj")
+hungry = 50.0
+boredom = 0.0
+cooldown = 30.0
+icon = ExtResource("11_lch2t")
+animation = SubResource("SpriteFrames_frmtd")

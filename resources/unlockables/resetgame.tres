@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ShopResource" load_steps=2 format=3 uid="uid://bm23jlwt4gmsk"]
+
+[ext_resource type="Script" path="res://resources/ShopResource.gd" id="1_xjasc"]
+
+[resource]
+script = ExtResource("1_xjasc")
+flag = "reset.game"
+display_name = "Reset Game"
+description = "Start from zero, unlock everything again."
+cost = 0

@@ -1,0 +1,215 @@
+[gd_resource type="SpriteFrames" load_steps=28 format=3 uid="uid://dvsf10nj0d0in"]
+
+[ext_resource type="Texture2D" uid="uid://gpbiwyi3yupr" path="res://theme/fox/pet/pet_idle_0.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://cpldtuyo8o40s" path="res://theme/fox/pet/pet_bath_0.png" id="1_f8fmj"]
+[ext_resource type="Texture2D" uid="uid://d04hw5gxux1j8" path="res://theme/fox/pet/pet_idle_2.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://c847oliuyrwbs" path="res://theme/fox/pet/pet_bath_1.png" id="2_ygeqb"]
+[ext_resource type="Texture2D" uid="uid://gbbw6fvgrdeq" path="res://theme/fox/pet/pet_walk_2.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://cmaf4nq2rssdm" path="res://theme/fox/pet/pet_bath_2.png" id="3_ar843"]
+[ext_resource type="Texture2D" uid="uid://cv60pdbq1d0i" path="res://theme/fox/pet/pet_idle_1.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://w8mhvqq6mwar" path="res://theme/fox/pet/pet_bath_3.png" id="4_j1ys5"]
+[ext_resource type="Texture2D" uid="uid://gcm6ha2dr25u" path="res://theme/fox/pet/pet_idle_3.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://tsn4w2wvry4e" path="res://theme/fox/pet/pet_bath_4.png" id="5_04a23"]
+[ext_resource type="Texture2D" uid="uid://17oro7wmwdnm" path="res://theme/fox/pet/pet_walk_1.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://br5vveeujowqk" path="res://theme/fox/pet/pet_sit_0.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://bclccdo1f0oe1" path="res://theme/fox/pet/pet_sit_1.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://dmd6asuq36cm2" path="res://theme/fox/pet/pet_sit_2.png" id="9"]
+[ext_resource type="Texture2D" uid="uid://c8aucfvnpoogu" path="res://theme/fox/pet/pet_yelp_3.png" id="10"]
+[ext_resource type="Texture2D" uid="uid://b2nevw1dn18he" path="res://theme/fox/pet/pet_yelp_1.png" id="11"]
+[ext_resource type="Texture2D" uid="uid://ydn6aadhxldl" path="res://theme/fox/pet/pet_yelp_2.png" id="12"]
+[ext_resource type="Texture2D" uid="uid://cevi5cpa50ai1" path="res://theme/fox/pet/pet_sick_1.png" id="16"]
+[ext_resource type="Texture2D" uid="uid://4rem7oljf25t" path="res://theme/fox/pet/pet_sleep_2.png" id="19"]
+[ext_resource type="Texture2D" uid="uid://b4y1sswoejggk" path="res://theme/fox/pet/pet_sleep_1.png" id="20"]
+[ext_resource type="Texture2D" uid="uid://cv73ioillmpjk" path="res://theme/fox/pet/pet_sleep_0.png" id="21"]
+[ext_resource type="Texture2D" uid="uid://fm100fnw1x3p" path="res://theme/fox/pet/pet_sleep_5.png" id="22"]
+[ext_resource type="Texture2D" uid="uid://1h60x45d3in6" path="res://theme/fox/pet/pet_sleep_6.png" id="23"]
+[ext_resource type="Texture2D" uid="uid://cuuebftu8oext" path="res://theme/fox/pet/pet_sleep_8.png" id="24"]
+[ext_resource type="Texture2D" uid="uid://ceqrtxg6lymuw" path="res://theme/fox/pet/pet_sleep_7.png" id="25"]
+[ext_resource type="Texture2D" uid="uid://dqknp61wbap5q" path="res://theme/fox/pet/pet_sleep_3.png" id="26"]
+[ext_resource type="Texture2D" uid="uid://dxb8xvnr2swu" path="res://theme/fox/pet/pet_sleep_4.png" id="27"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_f8fmj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ygeqb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_j1ys5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ygeqb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_f8fmj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_04a23")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ar843")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ar843")
+}],
+"loop": true,
+"name": &"bath",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5")
+}],
+"loop": true,
+"name": &"eat",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("16")
+}],
+"loop": true,
+"name": &"sick",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8")
+}],
+"loop": true,
+"name": &"sit",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("21")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21")
+}],
+"loop": true,
+"name": &"sleep",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7")
+}],
+"loop": true,
+"name": &"study",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11")
+}],
+"loop": false,
+"name": &"yelp",
+"speed": 8.0
+}]

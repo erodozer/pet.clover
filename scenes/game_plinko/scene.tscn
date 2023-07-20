@@ -1,20 +1,47 @@
-[gd_scene load_steps=28 format=3 uid="uid://ddmydicggypot"]
+[gd_scene load_steps=22 format=3 uid="uid://ddmydicggypot"]
 
 [ext_resource type="Shader" path="res://ui/scroll.gdshader" id="1"]
 [ext_resource type="FontFile" uid="uid://3heiwkvujho0" path="res://ui/fonts/EarlyGameBoySTD.ttf" id="2"]
-[ext_resource type="Texture2D" uid="uid://st2lqyxx0u6x" path="res://scenes/game_match/background.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://st2lqyxx0u6x" path="res://ui/background.png" id="3"]
 [ext_resource type="Texture2D" uid="uid://df8hw8q5hoxpk" path="res://ui/panel.png" id="4"]
 [ext_resource type="Texture2D" uid="uid://c1r6hwy43w8pn" path="res://scenes/game_plinko/ball.png" id="5"]
 [ext_resource type="Texture2D" uid="uid://tdhk2gooh12p" path="res://scenes/game_plinko/peg.png" id="6"]
-[ext_resource type="Texture2D" uid="uid://4r6aj7a546u1" path="res://scenes/game_plinko/bucket_walk_0.png" id="7"]
-[ext_resource type="Texture2D" uid="uid://b2fu40ukoi4ti" path="res://scenes/game_plinko/bucket_walk_1.png" id="8"]
-[ext_resource type="SpriteFrames" path="res://pet/frames.tres" id="9"]
+[ext_resource type="PackedScene" uid="uid://d14rf1d0alf80" path="res://scenes/game_plinko/player.tscn" id="7_rjre5"]
+[ext_resource type="PackedScene" uid="uid://tyd6hlyrgac7" path="res://ui/results.tscn" id="9_2wcx0"]
 [ext_resource type="Script" path="res://scenes/game_plinko/game.gd" id="10"]
 
 [sub_resource type="ShaderMaterial" id="20"]
 shader = ExtResource("1")
 shader_parameter/speed_x = 1.0
 shader_parameter/speed_y = null
+
+[sub_resource type="PhysicsMaterial" id="31"]
+friction = 0.5
+bounce = 0.3
+
+[sub_resource type="CircleShape2D" id="26"]
+radius = 4.3
+
+[sub_resource type="PhysicsMaterial" id="27"]
+friction = 0.65
+bounce = 0.11
+
+[sub_resource type="SegmentShape2D" id="28"]
+b = Vector2(0, 400)
+
+[sub_resource type="CircleShape2D" id="30"]
+radius = 4.0
+
+[sub_resource type="PhysicsMaterial" id="32"]
+rough = true
+bounce = 1.0
+absorbent = true
+
+[sub_resource type="RectangleShape2D" id="29"]
+size = Vector2(179, 10)
+
+[sub_resource type="RectangleShape2D" id="33"]
+size = Vector2(164, 7)
 
 [sub_resource type="FontFile" id="5"]
 fallbacks = Array[Font]([ExtResource("2")])
@@ -51,69 +78,6 @@ Label/styles/normal = null
 Panel/styles/panel = SubResource("19")
 PanelContainer/styles/panel = SubResource("19")
 
-[sub_resource type="PhysicsMaterial" id="31"]
-friction = 0.5
-bounce = 0.8
-
-[sub_resource type="CircleShape2D" id="26"]
-radius = 4.3
-
-[sub_resource type="SpriteFrames" id="34"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("7")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("7")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8")
-}],
-"loop": true,
-"name": &"walk",
-"speed": 5.0
-}]
-
-[sub_resource type="PhysicsMaterial" id="22"]
-absorbent = true
-
-[sub_resource type="SegmentShape2D" id="23"]
-b = Vector2(0, 15)
-
-[sub_resource type="SegmentShape2D" id="24"]
-a = Vector2(0, -1)
-b = Vector2(0, 13)
-
-[sub_resource type="RectangleShape2D" id="25"]
-size = Vector2(1, 1)
-
-[sub_resource type="PhysicsMaterial" id="27"]
-friction = 0.65
-bounce = 0.41
-
-[sub_resource type="SegmentShape2D" id="28"]
-b = Vector2(0, 400)
-
-[sub_resource type="CircleShape2D" id="30"]
-radius = 4.0
-
-[sub_resource type="PhysicsMaterial" id="32"]
-rough = true
-bounce = 1.0
-absorbent = true
-
-[sub_resource type="RectangleShape2D" id="29"]
-size = Vector2(100, 10)
-
-[sub_resource type="RectangleShape2D" id="33"]
-size = Vector2(100, 7)
-
 [node name="Plinko" type="Node" groups=["scene"]]
 script = ExtResource("10")
 
@@ -126,61 +90,13 @@ texture = ExtResource("3")
 expand_mode = 1
 stretch_mode = 1
 
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = 32.0
-offset_bottom = 32.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = SubResource("21")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
-layout_mode = 0
-anchor_right = 1.0
-anchor_bottom = 1.0
-alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/HBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Control/HBoxContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_constants/shadow_offset_x = 1
-theme_override_constants/shadow_offset_y = 1
-text = "Balls"
-
-[node name="BallCount" type="Label" parent="Control/HBoxContainer/HBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(20, 0)
-layout_mode = 2
-text = "00"
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="Control/HBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Control/HBoxContainer/HBoxContainer2"]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_constants/shadow_offset_x = 1
-theme_override_constants/shadow_offset_y = 1
-text = "Caught"
-
-[node name="CatchCount" type="Label" parent="Control/HBoxContainer/HBoxContainer2"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(16, 0)
-layout_mode = 2
-text = "00"
-
 [node name="Ball" type="RigidBody2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(82, -55)
 collision_layer = 5
+mass = 0.2
 physics_material_override = SubResource("31")
+gravity_scale = 0.2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
 shape = SubResource("26")
@@ -188,46 +104,9 @@ shape = SubResource("26")
 [node name="Sprite2D" type="Sprite2D" parent="Ball"]
 texture = ExtResource("5")
 
-[node name="Fox" type="AnimatedSprite2D" parent="."]
+[node name="Fox" parent="." instance=ExtResource("7_rjre5")]
 unique_name_in_owner = true
-z_index = 1
-position = Vector2(80, 146)
-sprite_frames = ExtResource("9")
-animation = &"idle"
-offset = Vector2(8, 0)
-
-[node name="Bucket" type="Node2D" parent="Fox"]
-position = Vector2(0, -17)
-
-[node name="Sprite2D" type="AnimatedSprite2D" parent="Fox/Bucket"]
-position = Vector2(0, 1)
-sprite_frames = SubResource("34")
-animation = &"idle"
-
-[node name="BucketWalls" type="StaticBody2D" parent="Fox/Bucket"]
-physics_material_override = SubResource("22")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Fox/Bucket/BucketWalls"]
-position = Vector2(-7, -8)
-shape = SubResource("23")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Fox/Bucket/BucketWalls"]
-position = Vector2(7, -8)
-shape = SubResource("23")
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="Fox/Bucket/BucketWalls"]
-position = Vector2(-6, 7)
-rotation = -1.5708
-shape = SubResource("24")
-
-[node name="BucketCatch" type="Area2D" parent="Fox/Bucket"]
-position = Vector2(0, 1)
-collision_layer = 2
-collision_mask = 4
-linear_damp = 30.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Fox/Bucket/BucketCatch"]
-shape = SubResource("25")
+position = Vector2(81, 144)
 
 [node name="Board" type="StaticBody2D" parent="."]
 physics_material_override = SubResource("27")
@@ -245,7 +124,6 @@ position = Vector2(21, 20)
 shape = SubResource("30")
 
 [node name="Sprite2D" type="Sprite2D" parent="Board/Peg"]
-position = Vector2(1, 1)
 texture = ExtResource("6")
 
 [node name="Peg2" type="CollisionShape2D" parent="Board"]
@@ -253,7 +131,6 @@ position = Vector2(51, 20)
 shape = SubResource("30")
 
 [node name="Sprite2D" type="Sprite2D" parent="Board/Peg2"]
-position = Vector2(1, 1)
 texture = ExtResource("6")
 
 [node name="Peg3" type="CollisionShape2D" parent="Board"]
@@ -261,7 +138,6 @@ position = Vector2(81, 20)
 shape = SubResource("30")
 
 [node name="Sprite2D" type="Sprite2D" parent="Board/Peg3"]
-position = Vector2(1, 1)
 texture = ExtResource("6")
 
 [node name="Peg4" type="CollisionShape2D" parent="Board"]
@@ -277,7 +153,6 @@ position = Vector2(141, 20)
 shape = SubResource("30")
 
 [node name="Sprite2D" type="Sprite2D" parent="Board/Peg5"]
-position = Vector2(1, 1)
 texture = ExtResource("6")
 
 [node name="Peg6" type="CollisionShape2D" parent="Board"]
@@ -285,7 +160,6 @@ position = Vector2(21, 95)
 shape = SubResource("30")
 
 [node name="Sprite2D" type="Sprite2D" parent="Board/Peg6"]
-position = Vector2(1, 1)
 texture = ExtResource("6")
 
 [node name="Peg7" type="CollisionShape2D" parent="Board"]
@@ -293,7 +167,6 @@ position = Vector2(51, 95)
 shape = SubResource("30")
 
 [node name="Sprite2D" type="Sprite2D" parent="Board/Peg7"]
-position = Vector2(1, 1)
 texture = ExtResource("6")
 
 [node name="Peg8" type="CollisionShape2D" parent="Board"]
@@ -301,7 +174,6 @@ position = Vector2(81, 95)
 shape = SubResource("30")
 
 [node name="Sprite2D" type="Sprite2D" parent="Board/Peg8"]
-position = Vector2(1, 1)
 texture = ExtResource("6")
 
 [node name="Peg9" type="CollisionShape2D" parent="Board"]
@@ -309,7 +181,6 @@ position = Vector2(111, 95)
 shape = SubResource("30")
 
 [node name="Sprite2D" type="Sprite2D" parent="Board/Peg9"]
-position = Vector2(1, 1)
 texture = ExtResource("6")
 
 [node name="Peg10" type="CollisionShape2D" parent="Board"]
@@ -317,7 +188,6 @@ position = Vector2(141, 95)
 shape = SubResource("30")
 
 [node name="Sprite2D" type="Sprite2D" parent="Board/Peg10"]
-position = Vector2(1, 1)
 texture = ExtResource("6")
 
 [node name="Peg11" type="CollisionShape2D" parent="Board"]
@@ -325,7 +195,6 @@ position = Vector2(36, 76)
 shape = SubResource("30")
 
 [node name="Sprite2D" type="Sprite2D" parent="Board/Peg11"]
-position = Vector2(1, 1)
 texture = ExtResource("6")
 
 [node name="Peg12" type="CollisionShape2D" parent="Board"]
@@ -333,7 +202,6 @@ position = Vector2(66, 76)
 shape = SubResource("30")
 
 [node name="Sprite2D" type="Sprite2D" parent="Board/Peg12"]
-position = Vector2(1, 1)
 texture = ExtResource("6")
 
 [node name="Peg13" type="CollisionShape2D" parent="Board"]
@@ -341,7 +209,6 @@ position = Vector2(96, 76)
 shape = SubResource("30")
 
 [node name="Sprite2D" type="Sprite2D" parent="Board/Peg13"]
-position = Vector2(1, 1)
 texture = ExtResource("6")
 
 [node name="Peg14" type="CollisionShape2D" parent="Board"]
@@ -349,7 +216,6 @@ position = Vector2(126, 76)
 shape = SubResource("30")
 
 [node name="Sprite2D" type="Sprite2D" parent="Board/Peg14"]
-position = Vector2(1, 1)
 texture = ExtResource("6")
 
 [node name="Peg15" type="CollisionShape2D" parent="Board"]
@@ -357,7 +223,6 @@ position = Vector2(36, 40)
 shape = SubResource("30")
 
 [node name="Sprite2D" type="Sprite2D" parent="Board/Peg15"]
-position = Vector2(1, 1)
 texture = ExtResource("6")
 
 [node name="Peg16" type="CollisionShape2D" parent="Board"]
@@ -365,7 +230,6 @@ position = Vector2(66, 40)
 shape = SubResource("30")
 
 [node name="Sprite2D" type="Sprite2D" parent="Board/Peg16"]
-position = Vector2(1, 1)
 texture = ExtResource("6")
 
 [node name="Peg17" type="CollisionShape2D" parent="Board"]
@@ -373,7 +237,6 @@ position = Vector2(96, 40)
 shape = SubResource("30")
 
 [node name="Sprite2D" type="Sprite2D" parent="Board/Peg17"]
-position = Vector2(1, 1)
 texture = ExtResource("6")
 
 [node name="Peg18" type="CollisionShape2D" parent="Board"]
@@ -381,7 +244,6 @@ position = Vector2(126, 40)
 shape = SubResource("30")
 
 [node name="Sprite2D" type="Sprite2D" parent="Board/Peg18"]
-position = Vector2(1, 1)
 texture = ExtResource("6")
 
 [node name="Peg19" type="CollisionShape2D" parent="Board"]
@@ -389,7 +251,6 @@ position = Vector2(21, 58)
 shape = SubResource("30")
 
 [node name="Sprite2D" type="Sprite2D" parent="Board/Peg19"]
-position = Vector2(1, 1)
 texture = ExtResource("6")
 
 [node name="Peg20" type="CollisionShape2D" parent="Board"]
@@ -397,7 +258,6 @@ position = Vector2(51, 58)
 shape = SubResource("30")
 
 [node name="Sprite2D" type="Sprite2D" parent="Board/Peg20"]
-position = Vector2(1, 1)
 texture = ExtResource("6")
 
 [node name="Peg21" type="CollisionShape2D" parent="Board"]
@@ -428,7 +288,7 @@ texture = ExtResource("6")
 physics_material_override = SubResource("32")
 
 [node name="Floor" type="CollisionShape2D" parent="Floor"]
-position = Vector2(80, 175)
+position = Vector2(82.5, 175)
 shape = SubResource("29")
 
 [node name="FloorCatch" type="Area2D" parent="."]
@@ -438,31 +298,63 @@ collision_mask = 4
 linear_damp = 1000.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FloorCatch"]
+position = Vector2(2, 0)
 shape = SubResource("33")
 
-[node name="Inputs" type="Control" parent="."]
+[node name="Info" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 15
+anchors_preset = 14
+anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 0.5
+offset_top = 32.0
+offset_bottom = 32.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 1
+theme = SubResource("21")
 
-[node name="MoveLeft" type="Control" parent="Inputs"]
-custom_minimum_size = Vector2(60, 0)
-anchors_preset = 0
-anchor_bottom = 1.0
-mouse_default_cursor_shape = 2
-
-[node name="MoveRight" type="Control" parent="Inputs"]
-custom_minimum_size = Vector2(60, 0)
-anchors_preset = 0
-anchor_left = 1.0
+[node name="HBoxContainer" type="HBoxContainer" parent="Info"]
+layout_mode = 0
 anchor_right = 1.0
-offset_left = -60.0
-offset_bottom = 144.0
-mouse_default_cursor_shape = 2
+anchor_bottom = 1.0
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Info/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Info/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+text = "Balls"
+
+[node name="BallCount" type="Label" parent="Info/HBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+text = "00"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Info/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Info/HBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+text = "Caught"
+
+[node name="CatchCount" type="Label" parent="Info/HBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(16, 0)
+layout_mode = 2
+text = "00"
+
+[node name="Results" parent="." instance=ExtResource("9_2wcx0")]
+unique_name_in_owner = true
 
 [connection signal="body_entered" from="Fox/Bucket/BucketCatch" to="." method="_on_BucketCatch_body_entered"]
 [connection signal="body_entered" from="FloorCatch" to="." method="_on_FloorCatch_body_entered"]
+
+[editable path="Fox"]

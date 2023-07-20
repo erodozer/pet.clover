@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ShopResource" load_steps=2 format=3 uid="uid://crmqj1g0wo1he"]
+
+[ext_resource type="Script" path="res://resources/ShopResource.gd" id="1_q3c5y"]
+
+[resource]
+script = ExtResource("1_q3c5y")
+flag = "game.hilo"
+display_name = "High-Low"
+description = "Play High-Low with Clover"
+cost = 25000

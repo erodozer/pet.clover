@@ -1,14 +1,15 @@
-[gd_scene load_steps=13 format=3 uid="uid://dwd6y6e61botn"]
+[gd_scene load_steps=15 format=3 uid="uid://dwd6y6e61botn"]
 
 [ext_resource type="Theme" uid="uid://bfmrdx6ah36lt" path="res://ui/ui_theme.tres" id="1"]
 [ext_resource type="FontFile" uid="uid://cu56gylq7usm7" path="res://ui/fonts/Minimum.ttf" id="2"]
 [ext_resource type="Shader" path="res://ui/scroll.gdshader" id="3"]
-[ext_resource type="Texture2D" uid="uid://c2q4hdkscev71" path="res://scenes/flowershop/ui/stats/honey_drop.png" id="4"]
-[ext_resource type="Texture2D" uid="uid://dsdtq1sgpro7c" path="res://scenes/flowershop/ui/controls/tiled_bg.png" id="5"]
-[ext_resource type="Texture2D" uid="uid://bjwbgisv8ipyv" path="res://scenes/flowershop/ui/icons/back.png" id="6"]
+[ext_resource type="Resource" uid="uid://b3rqh3dqowews" path="res://config/shop.tres" id="3_k86xm"]
+[ext_resource type="Texture2D" uid="uid://c2q4hdkscev71" path="res://scenes/home/ui/stats/currency.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://dsdtq1sgpro7c" path="res://ui/tiled_hud.png" id="5"]
 [ext_resource type="Script" path="res://scenes/unlockshop/UnlockShop.gd" id="7"]
 [ext_resource type="Texture2D" uid="uid://p7ybyhakw5kv" path="res://scenes/unlockshop/panel.png" id="8"]
-[ext_resource type="PackedScene" uid="uid://g71xw0hneqtu" path="res://scenes/flowershop/ui/button/SimpleButton.tscn" id="9"]
+[ext_resource type="PackedScene" uid="uid://g71xw0hneqtu" path="res://scenes/home/ui/button/SimpleButton.tscn" id="9"]
+[ext_resource type="Texture2D" uid="uid://bunxtk64ph182" path="res://scenes/home/ui/controls/icons.png" id="9_3ouqi"]
 
 [sub_resource type="ShaderMaterial" id="5"]
 shader = ExtResource("3")
@@ -27,17 +28,14 @@ cache/0/16/0/underline_thickness = 0.0
 cache/0/16/0/scale = 1.0
 cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 
-[sub_resource type="FontFile" id="4"]
-fallbacks = Array[Font]([ExtResource("2")])
-face_index = null
-embolden = null
-transform = null
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
-cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+[sub_resource type="LabelSettings" id="LabelSettings_82sba"]
+line_spacing = -4.0
+font = ExtResource("2")
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7qdh2"]
+atlas = ExtResource("9_3ouqi")
+region = Rect2(0, 0, 17, 17)
 
 [node name="UnlockShop" type="Control" groups=["scene"]]
 texture_filter = 1
@@ -50,6 +48,7 @@ grow_vertical = 2
 mouse_filter = 1
 theme = ExtResource("1")
 script = ExtResource("7")
+UNLOCKS = ExtResource("3_k86xm")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 show_behind_parent = true
@@ -93,6 +92,7 @@ layout_mode = 2
 
 [node name="Icon" type="TextureRect" parent="HoneyCounter/HBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 4
 texture = ExtResource("4")
 stretch_mode = 4
 
@@ -146,8 +146,9 @@ size_flags_horizontal = 3
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 5
-theme_override_fonts/font = SubResource("4")
 text = "Sometimes the Fox will want to play Plinko with you"
+label_settings = SubResource("LabelSettings_82sba")
+autowrap_mode = 2
 clip_text = true
 
 [node name="BuyButton" type="Button" parent="VBoxContainer/MarginContainer/HBoxContainer"]
@@ -165,11 +166,8 @@ offset_right = 19.0
 offset_bottom = 19.0
 toggle_mode = false
 
-[node name="icon_off" parent="Back" index="0"]
-texture = ExtResource("6")
-
 [node name="icon_on" parent="Back" index="1"]
-texture = ExtResource("6")
+texture = SubResource("AtlasTexture_7qdh2")
 
 [connection signal="pressed" from="VBoxContainer/MarginContainer/HBoxContainer/BuyButton" to="." method="_on_BuyButton_pressed"]
 [connection signal="pressed" from="Back" to="." method="_on_Back_pressed"]

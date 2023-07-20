@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ShopResource" load_steps=2 format=3 uid="uid://diucbp20w8rbd"]
+
+[ext_resource type="Script" path="res://resources/ShopResource.gd" id="1_b4fhe"]
+
+[resource]
+script = ExtResource("1_b4fhe")
+flag = "food.yaoi"
+display_name = "BL Weekly"
+description = "Ham's favorite manga"
+cost = 30000

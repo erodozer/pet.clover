@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ShopResource" load_steps=2 format=3 uid="uid://ylanugfo0dbw"]
+
+[ext_resource type="Script" path="res://resources/ShopResource.gd" id="1_inn2l"]
+
+[resource]
+script = ExtResource("1_inn2l")
+flag = "pet.feed"
+display_name = "Autofeed"
+description = "Resets pet's hunger and weight"
+cost = 40000

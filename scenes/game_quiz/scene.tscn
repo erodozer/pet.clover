@@ -1,0 +1,354 @@
+[gd_scene load_steps=27 format=3 uid="uid://dxekr2d6at65e"]
+
+[ext_resource type="Script" path="res://scenes/game_quiz/scene.gd" id="1_qr2k3"]
+[ext_resource type="Shader" path="res://ui/scroll.gdshader" id="2_cjsqv"]
+[ext_resource type="Texture2D" uid="uid://3dxq834h1ba5" path="res://theme/ham/ui/background.png" id="3_aisqa"]
+[ext_resource type="Texture2D" uid="uid://drp3osp875lkm" path="res://scenes/game_quiz/chalkboard.png" id="4_6jufy"]
+[ext_resource type="FontFile" uid="uid://dss7ucu2bmaek" path="res://ui/fonts/ThinSans.ttf" id="5_peayf"]
+[ext_resource type="Texture2D" uid="uid://pf2xixj5j6ai" path="res://scenes/game_quiz/teacher.png" id="6_4drss"]
+[ext_resource type="SpriteFrames" uid="uid://b681768c6hkug" path="res://theme/ham/pet/frames.tres" id="7_nflc0"]
+[ext_resource type="Texture2D" uid="uid://5sw8456k0ti6" path="res://scenes/game_quiz/teacher_c_01.png" id="7_y70qn"]
+[ext_resource type="Texture2D" uid="uid://bamli7nk8nk73" path="res://scenes/game_quiz/teacher_c_02.png" id="8_eq7lb"]
+[ext_resource type="Theme" uid="uid://bfmrdx6ah36lt" path="res://ui/ui_theme.tres" id="8_xl5uv"]
+[ext_resource type="Texture2D" uid="uid://b3nvxppufttsj" path="res://scenes/game_quiz/teacher_c_03.png" id="9_514d5"]
+[ext_resource type="FontFile" uid="uid://3heiwkvujho0" path="res://ui/fonts/EarlyGameBoySTD.ttf" id="9_i5a83"]
+[ext_resource type="Texture2D" uid="uid://e1a803t4nwyy" path="res://scenes/game_quiz/teacher_i_01.png" id="10_wp5y2"]
+[ext_resource type="Texture2D" uid="uid://i0rmodgwjpv0" path="res://scenes/game_quiz/teacher_i_02.png" id="11_37dgh"]
+[ext_resource type="Texture2D" uid="uid://bc1wsl85o21lk" path="res://scenes/game_quiz/teacher_i_03.png" id="12_ytg6r"]
+[ext_resource type="FontFile" uid="uid://cu56gylq7usm7" path="res://ui/fonts/Minimum.ttf" id="16_u36rc"]
+[ext_resource type="PackedScene" uid="uid://tyd6hlyrgac7" path="res://ui/results.tscn" id="17_s8nwv"]
+[ext_resource type="FontFile" uid="uid://ymu18ty2r2n8" path="res://ui/fonts/PolygonPixel5x7Standard.ttf" id="19_jm60g"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_klptx"]
+shader = ExtResource("2_cjsqv")
+shader_parameter/speed_x = 1.0
+shader_parameter/speed_y = null
+
+[sub_resource type="LabelSettings" id="LabelSettings_37oyr"]
+font = ExtResource("5_peayf")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e2pg8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_4drss")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_y70qn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_eq7lb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_514d5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_514d5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_514d5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_eq7lb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_y70qn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_4drss")
+}],
+"loop": false,
+"name": &"correct",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_4drss")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_4drss")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_wp5y2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_37dgh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_ytg6r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_ytg6r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_ytg6r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_ytg6r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_ytg6r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_ytg6r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_ytg6r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_ytg6r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_ytg6r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_ytg6r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_ytg6r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_ytg6r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_ytg6r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_37dgh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_wp5y2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_4drss")
+}],
+"loop": false,
+"name": &"incorrect",
+"speed": 14.0
+}]
+
+[sub_resource type="Animation" id="Animation_hvg3v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/HelpText:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(159, 100)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/VBoxContainer:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 146)]
+}
+
+[sub_resource type="Animation" id="Animation_avwe2"]
+resource_name = "Show"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/HelpText:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 3.2, 3.8),
+"transitions": PackedFloat32Array(0.5, 1, 0.5, 1),
+"update": 0,
+"values": [Vector2(159, 100), Vector2(0, 100), Vector2(0, 100), Vector2(-161, 100)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/VBoxContainer:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3.5, 4),
+"transitions": PackedFloat32Array(1, 0.5, 1),
+"update": 0,
+"values": [Vector2(0, 146), Vector2(0, 146), Vector2(0, 77)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b1v38"]
+_data = {
+"RESET": SubResource("Animation_hvg3v"),
+"Show": SubResource("Animation_avwe2")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_2lji4"]
+line_spacing = 0.0
+font = ExtResource("16_u36rc")
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_k72ga"]
+line_spacing = -1.0
+font = ExtResource("19_jm60g")
+font_color = Color(0, 0, 0, 1)
+shadow_size = 0
+
+[node name="QuizScene" type="Node" groups=["scene"]]
+script = ExtResource("1_qr2k3")
+
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 30.0
+one_shot = true
+
+[node name="Background" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_klptx")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource("3_aisqa")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Chalkboard" type="Sprite2D" parent="."]
+position = Vector2(97, 42)
+texture = ExtResource("4_6jufy")
+
+[node name="Question" type="Label" parent="Chalkboard"]
+unique_name_in_owner = true
+offset_left = -45.0
+offset_top = -19.0
+offset_right = 46.0
+offset_bottom = 18.0
+text = "8 / 4 = 2"
+label_settings = SubResource("LabelSettings_37oyr")
+horizontal_alignment = 1
+vertical_alignment = 1
+visible_characters_behavior = 1
+
+[node name="Teacher" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(33, 69)
+sprite_frames = SubResource("SpriteFrames_e2pg8")
+
+[node name="Pet" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(130, 77)
+sprite_frames = ExtResource("7_nflc0")
+animation = &"study"
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 160.0
+offset_bottom = 144.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_b1v38")
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 0
+offset_top = 146.0
+offset_right = 160.0
+offset_bottom = 213.0
+theme_override_constants/separation = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("8_xl5uv")
+
+[node name="TimeLeft" type="Label" parent="Control/VBoxContainer/PanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "T-30"
+label_settings = SubResource("LabelSettings_2lji4")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Answers" type="GridContainer" parent="Control/VBoxContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("8_xl5uv")
+theme_override_constants/h_separation = 2
+theme_override_constants/v_separation = 2
+columns = 2
+
+[node name="Button" type="Button" parent="Control/VBoxContainer/MarginContainer/Answers"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_fonts/font = ExtResource("9_i5a83")
+toggle_mode = true
+text = " "
+
+[node name="Button2" type="Button" parent="Control/VBoxContainer/MarginContainer/Answers"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_fonts/font = ExtResource("9_i5a83")
+toggle_mode = true
+text = " "
+
+[node name="Button3" type="Button" parent="Control/VBoxContainer/MarginContainer/Answers"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_fonts/font = ExtResource("9_i5a83")
+toggle_mode = true
+text = " "
+
+[node name="Button4" type="Button" parent="Control/VBoxContainer/MarginContainer/Answers"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_fonts/font = ExtResource("9_i5a83")
+toggle_mode = true
+text = " "
+
+[node name="HelpText" type="PanelContainer" parent="Control"]
+layout_mode = 0
+offset_left = 159.0
+offset_top = 100.0
+offset_right = 319.0
+offset_bottom = 148.0
+theme = ExtResource("8_xl5uv")
+
+[node name="RichTextLabel" type="Label" parent="Control/HelpText"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Answer correctly = +100$
+Incorrect = -3 second"
+label_settings = SubResource("LabelSettings_k72ga")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Results" parent="." instance=ExtResource("17_s8nwv")]
+unique_name_in_owner = true
