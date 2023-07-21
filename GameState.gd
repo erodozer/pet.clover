@@ -73,7 +73,10 @@ func can_act(action, unlockable = null):
 	return now() > next_allowed
 
 func _update_unlocks(change):
-	unlocks.merge(change, true)
+	if change.is_empty():
+		unlocks.clear()
+	else:
+		unlocks.merge(change, true)
 
 func _update_stats(change):
 	stats = {
@@ -148,6 +151,11 @@ func execute_turn():
 	# lose weight when starving
 	elif stats.hungry < 40:
 		change.weight -= 0.05
+	# return to healthy weight when moderately full
+	elif stats.hungry > 80 and stats.weight < 40.0:
+		change.weight += 0.5
+	elif stats.hungry > 60 and stats.weight < 25.0:
+		change.weight += 0.5
 		
 	# cover tiredness and sickness by sleeping
 	if stats.is_asleep:
@@ -159,9 +167,9 @@ func execute_turn():
 			change.is_asleep = false
 	else:
 		# get sick from not being clean
-		if stats.dirty > 70.0:
+		if stats.dirty > 30.0:
 			change.sick += 0.2
-		elif stats.dirty > 90.0:
+		elif stats.dirty > 60.0:
 			change.sick += 0.4
 		elif stats.dirty < 20.0:
 			change.sick -= 0.2
@@ -182,7 +190,7 @@ func execute_turn():
 	
 	# punish the fox for not producing honey
 	if score <= 1.0 and death_timer <= 0:
-		death_timer = now() + 300
+		death_timer = now() + 500
 	elif score > 1.0:
 		death_timer = 0
 	
@@ -242,7 +250,7 @@ func honey_score():
 	return clamp(happy, 0.0, 15.0)
 	
 func is_dead():
-	return death_timer and now() > death_timer
+	return death_timer > 0 and now() > death_timer
 	
 func reset(reset_timers = true, reset_stats = true, hard = false):
 	if reset_timers:

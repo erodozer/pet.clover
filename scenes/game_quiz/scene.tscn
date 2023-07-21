@@ -248,6 +248,11 @@ position = Vector2(130, 77)
 sprite_frames = ExtResource("7_nflc0")
 animation = &"study"
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_b1v38")
+}
+
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
@@ -257,12 +262,6 @@ offset_right = 160.0
 offset_bottom = 144.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Control"]
-root_node = NodePath("../..")
-libraries = {
-"": SubResource("AnimationLibrary_b1v38")
-}
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control"]
 custom_minimum_size = Vector2(160, 0)

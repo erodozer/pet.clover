@@ -67,6 +67,8 @@ func _ready():
 	fox.pause = false
 	%WashScene/Pet/Sprite2D.play("bath")
 	
+	NoClick.hide()
+	
 func _show_stats():
 	accepting_actions = false
 	# pause processing while bathing
