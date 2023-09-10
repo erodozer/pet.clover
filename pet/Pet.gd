@@ -66,7 +66,7 @@ func move_to(target: Vector2, padding = 0):
 	if GameState.is_overfed() and sprite.sprite_frames.has_animation("idle:overfed"):
 		sprite.play("idle:overfed")
 	else:
-		sprite.play("idle")
+		sprite.play(idle_anims[randi() % len(idle_anims)])
 	
 func eat():
 	if GameState.is_overfed() and sprite.sprite_frames.has_animation("eat:overfed"):
