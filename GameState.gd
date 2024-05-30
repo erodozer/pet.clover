@@ -253,6 +253,7 @@ func reset(reset_timers = true, reset_stats = true, hard = false):
 			"medicine": 0,
 			"update": now() + UPDATE_FREQ,
 		}
+		death_timer = 0
 
 	if reset_stats:
 		stats = {
@@ -275,3 +276,7 @@ func _process(_delta):
 	# autosave
 	save_data()
 	
+func _input(event):
+	if event.is_action_pressed("free_money"):
+		stats.honey += 10000
+		

@@ -142,7 +142,7 @@ func _game(game):
 				accepting_actions = true
 				return
 			game = action
-			menu.show_menu()
+			menu.show_menu("Game")
 			
 	# pause processing while lookin for food
 	NoClick.visible = true
@@ -226,11 +226,11 @@ func _drop_food(food_type = null):
 			var action = result[2]
 			
 			if action == null:
-				menu.show_menu()
+				menu.show_menu("Food")
 				accepting_actions = true
 				return
 			food_type = action
-			menu.show_menu()
+			menu.show_menu("Food")
 			
 	# pause processing while lookin for food
 	NoClick.visible = true
@@ -252,6 +252,7 @@ func _process(_delta):
 	
 	if GameState.is_dead():
 		GameState.reset()
+		set_process(false)
 		SceneManager.change_scene("home")
 
 func _on_twitch_command(type, event):

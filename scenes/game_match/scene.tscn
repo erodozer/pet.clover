@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dpqj4v03iq3ed"]
+[gd_scene load_steps=13 format=3 uid="uid://dpqj4v03iq3ed"]
 
 [ext_resource type="Script" path="res://scenes/game_match/game.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://dd78sx7uk8fsq" path="res://scenes/game_match/cards/Card.tscn" id="2"]
@@ -7,6 +7,7 @@
 [ext_resource type="Shader" path="res://ui/scroll.gdshader" id="6"]
 [ext_resource type="FontFile" uid="uid://3heiwkvujho0" path="res://ui/fonts/EarlyGameBoySTD.ttf" id="7"]
 [ext_resource type="PackedScene" uid="uid://tyd6hlyrgac7" path="res://ui/results.tscn" id="7_00jjb"]
+[ext_resource type="PackedScene" uid="uid://b2wsuygqtasn6" path="res://ui/pointer/pointer.tscn" id="8_tguy3"]
 
 [sub_resource type="ShaderMaterial" id="1"]
 shader = ExtResource("6")
@@ -171,3 +172,10 @@ animation = &"sit"
 
 [node name="Results" parent="." instance=ExtResource("7_00jjb")]
 unique_name_in_owner = true
+
+[node name="Pointer" parent="." instance=ExtResource("8_tguy3")]
+unique_name_in_owner = true
+offset_left = -79.0
+offset_top = 28.0
+offset_right = -79.0
+offset_bottom = 28.0

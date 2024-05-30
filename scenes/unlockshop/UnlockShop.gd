@@ -6,34 +6,43 @@ extends Control
 # as well keep it hard coded as a dictionary
 @export var UNLOCKS: ShopMenu
 
-var group = ButtonGroup.new()
+var selected
 
 func _ready():
 	for i in UNLOCKS.items:
 		var btn = preload("./ItemButton.tscn").instantiate()
 		btn.set_meta("item", i)
-		btn.button_group = group
-		btn.connect("toggled", Callable(self, "select_item").bind(i))
+		btn.focus_entered.connect(select_item.bind(i))
 		get_node("%Unlockables").add_child(btn)
 		btn.get_node("%Label").text = i.display_name
 		btn.get_node("%Price").text = "%d" % i.cost if not GameState.unlocks.get(i.flag, false) else "SOLD"
-
-	GameState.connect("stats_changed", Callable(self, "_update_money"))
+		
+	GameState.stats_changed.connect(_update_money)
 	_update_money(GameState.stats)
 	
-	get_node("%Unlockables").get_child(0).button_pressed = true
+	var first = get_node("%Unlockables").get_child(0)
+	first.grab_focus()
+	
+func _unhandled_input(event):
+	if event.is_action_pressed("ui_cancel"):
+		_on_Back_pressed()
+		accept_event()	
+	if event.is_action_pressed("ui_select"):
+		_on_BuyButton_pressed()
+		accept_event()
 	
 func _update_money(stats):
 	var honey = stats.honey
 	
 	get_node("%HoneyCounter").text = "%d" % honey
 		
-func select_item(_pressed, item):
+func select_item(item):
 	get_node("%ItemDescription").text = item.description
 	get_node("%BuyButton").disabled = item.cost > GameState.stats.honey or GameState.unlocks.get(item.flag, false)
+	selected = item
 
 func _on_BuyButton_pressed():
-	var item = group.get_pressed_button().get_meta("item")
+	var item = selected
 	if item.cost > GameState.stats.honey:
 		return
 		
@@ -60,7 +69,7 @@ func _on_BuyButton_pressed():
 				item.flag: true,
 			}
 			
-	select_item(true, item)
+	select_item(item)
 	GameState.save_data()
 	
 	for btn in get_node("%Unlockables").get_children():

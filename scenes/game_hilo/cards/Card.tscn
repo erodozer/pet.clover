@@ -1,23 +1,28 @@
-[gd_scene load_steps=7 format=3 uid="uid://b3ng0b53lovo5"]
+[gd_scene load_steps=9 format=3 uid="uid://b3ng0b53lovo5"]
 
 [ext_resource type="FontFile" uid="uid://4kfjpn6tatod" path="res://ui/fonts/HelvetiPixel.ttf" id="1"]
 [ext_resource type="Texture2D" uid="uid://d2w4ifbdduh33" path="res://scenes/game_hilo/cards/card_back.png" id="2_kp40l"]
 [ext_resource type="Script" path="res://scenes/game_hilo/cards/Card.gd" id="3"]
 [ext_resource type="Texture2D" uid="uid://3jac50i3bimx" path="res://scenes/game_hilo/cards/card_front.png" id="4"]
+[ext_resource type="FontFile" uid="uid://dss7ucu2bmaek" path="res://ui/fonts/ThinSans.ttf" id="5_dduca"]
 
 [sub_resource type="StyleBoxEmpty" id="1"]
 
 [sub_resource type="FontFile" id="2"]
 fallbacks = Array[Font]([ExtResource("1")])
-face_index = null
-embolden = null
-transform = null
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
 cache/0/16/0/underline_thickness = 0.0
 cache/0/16/0/scale = 1.0
 cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_at3bx"]
+font = ExtResource("5_dduca")
+font_color = Color(0, 0, 0, 1)
 
 [node name="Card" type="Button"]
 custom_minimum_size = Vector2(22, 31)
@@ -45,7 +50,6 @@ texture = ExtResource("2_kp40l")
 
 [node name="Front" type="TextureRect" parent="."]
 unique_name_in_owner = true
-visible = false
 layout_mode = 0
 offset_left = -1.0
 offset_right = 23.0
@@ -62,3 +66,6 @@ offset_bottom = -1.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = SubResource("2")
 text = "3"
+label_settings = SubResource("LabelSettings_at3bx")
+horizontal_alignment = 1
+vertical_alignment = 1

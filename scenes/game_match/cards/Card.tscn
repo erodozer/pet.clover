@@ -38,3 +38,7 @@ offset_left = -1.0
 offset_right = 23.0
 offset_bottom = 32.0
 texture = ExtResource("1")
+
+[node name="PointerAnchor" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(2, 17)

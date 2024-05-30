@@ -26,13 +26,10 @@ shader_parameter/speed_x = 0.0
 shader_parameter/speed_y = -0.3
 
 [sub_resource type="FontFile" id="4"]
+fallbacks = Array[Font]([ExtResource("8_wlrfu")])
 subpixel_positioning = 0
 msdf_pixel_range = 14
 msdf_size = 128
-fallbacks = Array[Font]([ExtResource("8_wlrfu")])
-face_index = null
-embolden = null
-transform = null
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
@@ -149,6 +146,7 @@ theme_override_constants/separation = 2
 [node name="Clock" parent="TopPanel/HBoxContainer" instance=ExtResource("5_i8es8")]
 unique_name_in_owner = true
 layout_mode = 2
+focus_mode = 0
 toggle_mode = true
 
 [node name="PanelContainer" type="PanelContainer" parent="TopPanel/HBoxContainer"]

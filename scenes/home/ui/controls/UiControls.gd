@@ -36,10 +36,13 @@ func _ready():
 		get_node("%Controls").add_child(button)
 	
 	for button in get_node("%Controls").get_children():
-		button.connect("pressed", Callable(self, "_on_button_press").bind(button))
-	clock.connect("pressed", Callable(self, "_on_clock_toggled"))
-	GameState.connect("stats_changed", Callable(self, "_update_stats"))
+		button.pressed.connect(_on_button_press.bind(button))
+	
+	clock.pressed.connect(_on_clock_toggled)
+	GameState.stats_changed.connect(_update_stats)
 	%Controls/Light.button_pressed = GameState.lights_on
+	
+	%Controls/Food.grab_focus()
 	
 	label.text = ProjectSettings.get_setting_with_override("application/gameplay/pet_name")
 
@@ -48,14 +51,20 @@ func show_submenu(submenu):
 		button.visible = button.submenu == submenu and button.unlocked
 		
 	get_node("%Controls/Back").visible = true
+	get_node("%Controls/Back").grab_focus()
 	
-func show_menu():
+func show_menu(submenu = "Food"):
 	for button in get_node("%Controls").get_children():
 		button.visible = button.submenu == "None"
 	get_node("%Controls/Back").visible = false
+	get_node("%Controls/" + submenu).grab_focus()
 
 func _on_button_press(button):
-	emit_signal("action_pressed", button.name.to_lower(), button.button_pressed, button.item)
+	action_pressed.emit(
+		button.name.to_lower(),
+		button.button_pressed,
+		button.item
+	)
 
 func _on_clock_toggled():
 	await get_tree().process_frame # wait a frame

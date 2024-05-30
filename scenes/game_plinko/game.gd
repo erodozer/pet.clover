@@ -4,6 +4,7 @@ extends Node
 @onready var ball = get_node("%Ball")
 
 const BALLS_TOTAL = 3
+const MOVE_SPEED = 80
 
 var balls_left = BALLS_TOTAL
 var balls_caught = 0
@@ -12,15 +13,20 @@ func _ready():
 	spawn_ball()
 
 func _process(delta):
+	var move: Vector2 = Vector2.ZERO
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		var width = get_viewport().get_visible_rect().size.x
 		var mouse_pos = get_viewport().get_mouse_position().x
 		if mouse_pos < fox.position.x - 2 and fox.position.x > 6:
-			fox.position.x -= 40 * delta
-			fox.scale.x = 1
+			move.x = -1
 		elif mouse_pos > fox.position.x + 2 and fox.position.x < width - 6:
-			fox.position.x += 40 * delta
-			fox.scale.x = -1
+			move.x = 1
+	else:
+		move = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	
+	fox.position.x += move.x * delta * MOVE_SPEED
+	if move.x != 0:
+		fox.scale.x = -sign(move.x)
 			
 func game_finished():
 	await get_tree().create_timer(3.0).timeout
@@ -54,6 +60,7 @@ func spawn_ball():
 	balls_left -= 1
 	if balls_left < 0:
 		game_finished()
+		ball.queue_free()
 		return
 		
 	remove_child(ball)

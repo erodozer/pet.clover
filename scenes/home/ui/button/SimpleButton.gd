@@ -19,6 +19,12 @@ func disable_action(state):
 	off_icon.visible = state
 	on_icon.visible = not state
 	mouse_default_cursor_shape = CURSOR_ARROW if state else CURSOR_POINTING_HAND
+	if has_focus() and state:
+		var next = find_valid_focus_neighbor(SIDE_RIGHT)
+		if not next:
+			next = find_valid_focus_neighbor(SIDE_LEFT)
+		if next:
+			next.grab_focus()
 	focus_mode = FOCUS_NONE if state else FOCUS_ALL
 	set_disabled(state)
 	
@@ -32,10 +38,6 @@ func _toggled(is_pressed):
 func _on_mouse_entered():
 	if not disabled:
 		grab_focus()
-
-func _on_mouse_exited():
-	if has_focus():
-		call_deferred("release_focus")
 
 func _on_focus_entered():
 	border_tex.play("on")

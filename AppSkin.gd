@@ -22,31 +22,22 @@ AppSkin
 """
 extends Node
 
-const GROUP_NAME = "app_skin"
-
-static func instance():
-	return Engine.get_main_loop().get_first_node_in_group(GROUP_NAME)
-	
-static func loaded():
-	while instance() == null:
-		await Engine.get_main_loop().process_frame
-	
-	if instance().loading:
-		await instance().theme_applied
+func loaded():	
+	if _loading:
+		await theme_applied
 
 @export var hold_cache = true
 const overrides = [".png", ".tscn", ".tres", ".json", ".res"]
 var _theme_files = []
 
 signal theme_applied
-var loading = true
+var _loading = true
 
 func _ready():
-	add_to_group(GROUP_NAME)
 	apply()
 	
 func apply(theme = ProjectSettings.get_setting_with_override("application/config/theme")):
-	loading = true
+	_loading = true
 	
 	var gdsh = preload("res://addons/godash/godash.gd")
 	
@@ -61,7 +52,7 @@ func apply(theme = ProjectSettings.get_setting_with_override("application/config
 				_theme_files.append(res)
 			print("replacing %s" % path)
 			
-	loading = false
+	_loading = false
 	theme_applied.emit()
 	
 func _exit_tree():

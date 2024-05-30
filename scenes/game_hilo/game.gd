@@ -12,7 +12,7 @@ signal guessed(direction)
 func _ready():
 	randomize()
 	for i in get_node("%Guesses").get_children():
-		i.connect("pressed", Callable(self, "_on_flip").bind(i))
+		i.pressed.connect(_on_flip.bind(i))
 	get_node("%TurnCount").text = "%02d" % turns
 	get_node("%MatchCount").text = "%02d" % matches
 
@@ -35,6 +35,7 @@ func _game():
 		get_node("%TheirCard").button_pressed = true
 		
 		get_node("%Guesses").visible = true
+		get_node("%Guesses/High").grab_focus()
 		var d = await self.guessed
 		get_node("%Guesses").visible = false
 		

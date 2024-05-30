@@ -109,6 +109,7 @@ func generate_question():
 		btn.modulate = Color.WHITE
 		btn.text = "%d" % choice
 		
+	%Answers.get_child(0).grab_focus()
 	%Question.visible_ratio = 0.0
 	tween.tween_property(%Question, "visible_ratio", 1.0, 0.5)
 	

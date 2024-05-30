@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bfpqbgb4s444m"]
+
+[ext_resource type="PackedScene" uid="uid://dfpyhauugxath" path="res://addons/simple-scene-manager/SceneManager.tscn" id="1_405bw"]
+[ext_resource type="Texture2D" uid="uid://dl8n7hbuaqrlf" path="res://ui/transition/dot.png" id="2_g7nop"]
+
+[node name="SceneManager" instance=ExtResource("1_405bw")]
+process_mode = 1
+
+[node name="Transition" parent="." index="0"]
+process_mode = 3
+
+[node name="Fader" parent="Transition" index="0"]
+texture = ExtResource("2_g7nop")
+stretch_mode = 0

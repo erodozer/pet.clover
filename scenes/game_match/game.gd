@@ -13,7 +13,8 @@ var matches = 0
 
 func _ready():
 	for i in cards:
-		i.connect("toggled", Callable(self, "_on_flip").bind(i))
+		i.toggled.connect(_on_flip.bind(i))
+		i.focus_entered.connect(%Pointer.move_to_control.bind(i))
 
 func _start():
 	NoClick.visible = true
@@ -46,6 +47,8 @@ func _start():
 	started = true
 	
 	NoClick.visible = false
+	
+	%Cards.get_child(0).grab_focus()
 		
 func _on_flip(show, card):
 	if not started:
@@ -106,6 +109,7 @@ func game_finished():
 		score = 150.0
 
 	NoClick.show()
+	%Pointer.visible = false
 	%Results/%Currency.text = "+%d" % [score * 10]
 	%Results/%Happiness.text = "%d" % [score]
 	%Results/%AnimationPlayer.play("show")

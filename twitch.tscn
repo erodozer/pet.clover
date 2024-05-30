@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://cv5yuldgqn3t2"]
+
+[ext_resource type="Script" path="res://addons/tmi/tmi.gd" id="1_ns3yf"]
+[ext_resource type="Script" path="res://addons/tmi/services/oauth.gd" id="2_pe1h1"]
+[ext_resource type="PackedScene" uid="uid://bp2l4iy86r03u" path="res://twitch/twitch_config.tscn" id="3_sgbam"]
+
+[node name="Twitch" type="Node"]
+unique_name_in_owner = true
+script = ExtResource("1_ns3yf")
+
+[node name="OAuth" type="Node" parent="."]
+script = ExtResource("2_pe1h1")
+
+[node name="TwitchConfig2" parent="." instance=ExtResource("3_sgbam")]
+unique_name_in_owner = true
