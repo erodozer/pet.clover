@@ -1,6 +1,6 @@
 extends Node
 
-signal selected(choice)
+signal selected(choice, btn)
 
 @onready var clock = %Timer
 @onready var time_label = %TimeLeft
@@ -9,18 +9,17 @@ signal selected(choice)
 var correct = 0
 var incorrect = 0
 
+func _ready():
+	clock.timeout.connect(game_finished)
+	
+	for btn in %Answers.get_children():
+		btn.pressed.connect(_on_button_pressed.bind(btn))
+			
 func _start():
 	$AnimationPlayer.play("Show")
 	await $AnimationPlayer.animation_finished
 	
 	generate_question()
-	
-	clock.timeout.connect(game_finished)
-	
-	for btn in %Answers.get_children():
-		(btn as Button).button_group = btn_group
-		
-	btn_group.pressed.connect(_on_button_pressed)
 	
 func game_finished():
 	var honey = 100 * correct
@@ -108,6 +107,8 @@ func generate_question():
 		btn.set_meta("answer", choice)
 		btn.modulate = Color.WHITE
 		btn.text = "%d" % choice
+		btn.disabled = false
+		btn.focus_mode = Control.FOCUS_ALL
 		
 	%Answers.get_child(0).grab_focus()
 	%Question.visible_ratio = 0.0
@@ -118,14 +119,18 @@ func generate_question():
 	if clock.is_stopped():
 		clock.start(30)
 	NoClick.hide()
-		
-	var user_answer = await selected
 	
+	var result = await selected
+
 	NoClick.show()
 	clock.paused = true
+	for btn in %Answers.get_children():
+		btn.disabled = false
+		btn.focus_mode = Control.FOCUS_NONE
+
+	var user_answer = result[0]
 	if user_answer != answer:
-		btn_group.get_pressed_button().modulate = Color.RED
-		btn_group.get_pressed_button().button_pressed = false
+		result[1].modulate = Color.RED
 		incorrect += 1
 		%Pet.play("study:incorrect")
 		%Teacher.play("incorrect")
@@ -138,8 +143,7 @@ func generate_question():
 			game_finished()
 			return
 	else:
-		btn_group.get_pressed_button().modulate = Color.GREEN
-		btn_group.get_pressed_button().button_pressed = false
+		result[1].modulate = Color.GREEN
 		correct += 1
 		%Pet.play("study:correct")
 		%Teacher.play("correct")
@@ -151,8 +155,8 @@ func generate_question():
 		
 	call_deferred("generate_question")
 	
-func _on_button_pressed(option):
-	selected.emit(option.get_meta("answer"))
+func _on_button_pressed(option: Button):
+	selected.emit(option.get_meta("answer"), option)
 
 func _process(_delta):
 	time_label.text = "T-%02d" % [int(clock.time_left)]

@@ -36,7 +36,15 @@ func _game():
 		
 		get_node("%Guesses").visible = true
 		get_node("%Guesses/High").grab_focus()
+		for btn in %Guesses.get_children():
+			btn.disabled = false
+			btn.focus_mode = Control.FOCUS_ALL
+
 		var d = await self.guessed
+		for btn in %Guesses.get_children():
+			btn.disabled = true
+			btn.focus_mode = Control.FOCUS_NONE
+
 		get_node("%Guesses").visible = false
 		
 		get_node("%YourCard").button_pressed = true
@@ -72,6 +80,9 @@ func game_finished():
 	%Results/%Happiness.text = "%d" % [score * .7]
 	%Results/%AnimationPlayer.play("show")
 	await %Results/%AnimationPlayer.animation_finished
+	for btn in %Guesses.get_children():
+		btn.disabled = true
+		btn.focus_mode = Control.FOCUS_NONE
 	NoClick.hide()
 	
 	GameState.stats = {

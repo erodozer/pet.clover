@@ -1,6 +1,7 @@
 extends Node
 
 const PICK_COUNT = 2
+const SWAP_LIMIT = 20
 
 @onready var cards = get_node("%Cards").get_children()
 @onready var fox = get_node("%Fox")
@@ -28,12 +29,13 @@ func _start():
 	await get_tree().create_timer(3.0).timeout
 	
 	for i in cards:
+		i.set_meta("matched", false)
 		i.set_pressed(false)  # show all the cards
 	
 	await get_tree().create_timer(0.5).timeout
 	
 	# start swapping cards
-	var swaps = 10 + randi() % 30
+	var swaps = randi_range(10, SWAP_LIMIT)
 	while swaps > 0:
 		var a = randi() % len(cards)
 		var b = randi() % len(cards)
@@ -48,7 +50,14 @@ func _start():
 	
 	NoClick.visible = false
 	
-	%Cards.get_child(0).grab_focus()
+	var zero_idx = %Cards.get_child(0)
+	for btn in %Cards.get_children():
+		btn.disabled = false
+		btn.focus_mode = Control.FOCUS_ALL
+		if btn.position.distance_to(Vector2.ZERO) < zero_idx.position.distance_to(Vector2.ZERO):
+			zero_idx = btn
+			
+	zero_idx.grab_focus()
 		
 func _on_flip(show, card):
 	if not started:
@@ -61,7 +70,8 @@ func _on_flip(show, card):
 		
 	if len(selected) < PICK_COUNT:
 		return
-		
+
+	%Pointer.visible = false
 	turns += 1
 	
 	var target_shape = selected[0].shape
@@ -70,12 +80,17 @@ func _on_flip(show, card):
 		matched = i.shape == target_shape
 	
 	NoClick.visible = true
+	for btn in %Cards.get_children():
+		btn.disabled = true
+		btn.focus_mode = Control.FOCUS_NONE
 		
 	if matched:
 		matches += 1
 		fox.play("yelp")
 		await fox.animation_finished
 		fox.play("sit")
+		for btn in selected:
+			btn.set_meta("matched", true)
 	else:
 		await get_tree().create_timer(0.8).timeout
 		for i in selected:
@@ -88,10 +103,17 @@ func _on_flip(show, card):
 	
 	await get_tree().create_timer(0.3).timeout
 	NoClick.visible = false
-	
+
 	if matches == len(cards) / 2:
 		await get_tree().create_timer(0.8).timeout
 		game_finished()
+	else:
+		%Pointer.visible = true
+		for btn in %Cards.get_children():
+			if btn.get_meta("matched") == false:
+				btn.disabled = false
+			btn.focus_mode = Control.FOCUS_ALL
+		card.grab_focus()
 		
 func game_finished():
 	var score = 100.0

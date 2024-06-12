@@ -303,28 +303,24 @@ columns = 2
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("9_i5a83")
-toggle_mode = true
 text = " "
 
 [node name="Button2" type="Button" parent="Control/VBoxContainer/MarginContainer/Answers"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("9_i5a83")
-toggle_mode = true
 text = " "
 
 [node name="Button3" type="Button" parent="Control/VBoxContainer/MarginContainer/Answers"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("9_i5a83")
-toggle_mode = true
 text = " "
 
 [node name="Button4" type="Button" parent="Control/VBoxContainer/MarginContainer/Answers"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("9_i5a83")
-toggle_mode = true
 text = " "
 
 [node name="HelpText" type="PanelContainer" parent="Control"]
