@@ -22,6 +22,8 @@ AppSkin
 """
 extends Node
 
+var gdsh = preload("res://addons/godash/godash.gd")
+	
 func loaded():
 	if _loading:
 		await theme_applied
@@ -32,14 +34,13 @@ var _theme_files = []
 
 signal theme_applied
 var _loading = true
+var _theme = ""
 
 func _ready():
 	apply()
 	
 func apply(theme = ProjectSettings.get_setting_with_override("application/config/theme")):
 	_loading = true
-	
-	var gdsh = preload("res://addons/godash/godash.gd")
 	
 	# overlays active theme contents onto the game's resources
 	# unfortunately 
@@ -53,8 +54,11 @@ func apply(theme = ProjectSettings.get_setting_with_override("application/config
 			print("replacing %s" % path)
 			
 	_loading = false
+	_theme = theme
 	theme_applied.emit()
 	
 func _exit_tree():
 	_theme_files = []
 	
+func enumerate_dir(path: String, ext = "tres") -> Array:
+	return gdsh.enumerate_dir("res://theme/%s/%s" % [_theme, path.substr(len("res://"))], ext)

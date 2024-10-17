@@ -1,0 +1,532 @@
+[gd_scene load_steps=21 format=3 uid="uid://buu2wbhdyk8kn"]
+
+[ext_resource type="PackedScene" uid="uid://b2wsuygqtasn6" path="res://ui/pointer/pointer.tscn" id="1_aik24"]
+[ext_resource type="Shader" path="res://ui/scroll.gdshader" id="1_elpb3"]
+[ext_resource type="Script" path="res://scenes/game_gacha/scene.gd" id="1_oewvr"]
+[ext_resource type="Texture2D" uid="uid://st2lqyxx0u6x" path="res://ui/background.png" id="2_qmini"]
+[ext_resource type="SpriteFrames" uid="uid://dushx8aen3ymk" path="res://pet/frames.tres" id="3_85fpq"]
+[ext_resource type="Theme" uid="uid://bfmrdx6ah36lt" path="res://ui/ui_theme.tres" id="4_ahtvm"]
+[ext_resource type="LabelSettings" uid="uid://cgpbl3g12jyp5" path="res://ui/fonts/bold.tres" id="5_1g2ms"]
+[ext_resource type="Texture2D" uid="uid://3dn1f8ym544e" path="res://scenes/game_gacha/card_back.png" id="6_mkyku"]
+[ext_resource type="Texture2D" uid="uid://jgnijk2go4ar" path="res://scenes/game_gacha/booster.png" id="7_5o654"]
+[ext_resource type="FontFile" uid="uid://3heiwkvujho0" path="res://ui/fonts/EarlyGameBoySTD.ttf" id="8_k2wfb"]
+[ext_resource type="PackedScene" uid="uid://tyd6hlyrgac7" path="res://ui/results.tscn" id="8_q31ew"]
+[ext_resource type="Texture2D" uid="uid://c2q4hdkscev71" path="res://scenes/home/ui/stats/currency.png" id="10_mnm25"]
+[ext_resource type="FontFile" uid="uid://ossjr40b5ax6" path="res://ui/fonts/SymphonyoftheNightfont.ttf" id="12_lalol"]
+[ext_resource type="AudioStream" uid="uid://g8t7u8if4o0j" path="res://scenes/game_gacha/open.wav" id="14_xcw7r"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_twl4i"]
+shader = ExtResource("1_elpb3")
+shader_parameter/speed_x = 1.0
+shader_parameter/speed_y = null
+
+[sub_resource type="LabelSettings" id="LabelSettings_uril4"]
+font = ExtResource("12_lalol")
+shadow_size = 0
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_n3la4"]
+font = ExtResource("8_k2wfb")
+font_size = 24
+font_color = Color(1, 1, 0, 1)
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 4
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(0, 1)
+
+[sub_resource type="Animation" id="Animation_eh8in"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/Purchase:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(74, 29)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UI/Pointer:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("UI/Pity:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(-2),
+"update": 0,
+"values": [Vector2(72, 128)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BoosterPack:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(36, 65)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BoosterPack/TearLine:self_modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("BoosterPack/TearLine:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(-2),
+"update": 0,
+"values": [Vector2(0, -19)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("BoosterPack/Booster2:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.5),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("BoosterPack/Booster2:self_modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(2),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("BoosterPack/CardBack:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.5),
+"update": 0,
+"values": [Vector2(0, -2)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Fox:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(33, 110)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("UI/Label2:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(73, 11)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("UI/ScoreLabel:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 144)]
+}
+
+[sub_resource type="Animation" id="Animation_846ea"]
+resource_name = "select"
+length = 1.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/Purchase:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector2(74, 29), Vector2(193, 29)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UI/Pity:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector2(72, 128), Vector2(72, 152)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("UI/Pointer:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BoosterPack:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector2(36, 65), Vector2(80, 65)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BoosterPack/TearLine:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.25, 0.5),
+"transitions": PackedFloat32Array(-2, 0.5),
+"update": 0,
+"values": [Vector2(0, -19), Vector2(48, -19)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("BoosterPack/TearLine:self_modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.35, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("BoosterPack/Booster2:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.55, 0.9),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 32)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("BoosterPack/Booster2:self_modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.65, 0.9),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("BoosterPack/CardBack:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(1.1, 1.35),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(0, -2), Vector2(0, -96)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Fox:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector2(33, 110), Vector2(80, 110)]
+}
+tracks/10/type = "audio"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("AnimationPlayer/AudioStreamPlayer")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("14_xcw7r")
+}],
+"times": PackedFloat32Array(0.2)
+}
+tracks/10/use_blend = true
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("UI/Label2:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(73, 11), Vector2(198, 11)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("UI/ScoreLabel:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 1.15, 1.35),
+"transitions": PackedFloat32Array(1, 0.5, 0.5),
+"update": 0,
+"values": [Vector2(0, 144), Vector2(0, 144), Vector2(0, 114)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_iwt84"]
+_data = {
+"RESET": SubResource("Animation_eh8in"),
+"select": SubResource("Animation_846ea")
+}
+
+[node name="GachaScene" type="Node" groups=["scene"]]
+script = ExtResource("1_oewvr")
+
+[node name="Background" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_twl4i")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource("2_qmini")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Fox" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(33, 110)
+sprite_frames = ExtResource("3_85fpq")
+animation = &"sit"
+
+[node name="BoosterPack" type="Node2D" parent="."]
+position = Vector2(36, 65)
+
+[node name="CardBack" type="Sprite2D" parent="BoosterPack"]
+position = Vector2(0, -2)
+texture = ExtResource("6_mkyku")
+
+[node name="Booster2" type="Sprite2D" parent="BoosterPack"]
+texture = ExtResource("7_5o654")
+region_enabled = true
+region_rect = Rect2(0, 9, 28, 29)
+
+[node name="TearLine" type="Sprite2D" parent="BoosterPack"]
+position = Vector2(0, -19)
+texture = ExtResource("7_5o654")
+region_enabled = true
+region_rect = Rect2(0, 0, 28, 9)
+
+[node name="UI" type="Control" parent="."]
+custom_minimum_size = Vector2(160, 144)
+layout_mode = 3
+anchors_preset = 0
+theme = ExtResource("4_ahtvm")
+
+[node name="Purchase" type="GridContainer" parent="UI"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 74.0
+offset_top = -43.0
+offset_right = 158.0
+offset_bottom = 70.0
+grow_vertical = 2
+columns = 3
+
+[node name="Button" type="Button" parent="UI/Purchase"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("8_k2wfb")
+text = "3"
+metadata/buy = 3
+metadata/cost = 1000
+
+[node name="Label" type="Label" parent="UI/Purchase"]
+layout_mode = 2
+text = "1000"
+label_settings = ExtResource("5_1g2ms")
+
+[node name="TextureRect" type="TextureRect" parent="UI/Purchase"]
+layout_mode = 2
+texture = ExtResource("10_mnm25")
+stretch_mode = 3
+
+[node name="Button2" type="Button" parent="UI/Purchase"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("8_k2wfb")
+text = "5"
+metadata/buy = 5
+metadata/cost = 1500
+
+[node name="Label2" type="Label" parent="UI/Purchase"]
+layout_mode = 2
+text = "1500"
+label_settings = ExtResource("5_1g2ms")
+
+[node name="TextureRect2" type="TextureRect" parent="UI/Purchase"]
+layout_mode = 2
+texture = ExtResource("10_mnm25")
+stretch_mode = 3
+
+[node name="Button3" type="Button" parent="UI/Purchase"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("8_k2wfb")
+text = "10"
+metadata/buy = 10
+metadata/cost = 2500
+
+[node name="Label3" type="Label" parent="UI/Purchase"]
+layout_mode = 2
+text = "3000"
+label_settings = ExtResource("5_1g2ms")
+
+[node name="TextureRect3" type="TextureRect" parent="UI/Purchase"]
+layout_mode = 2
+texture = ExtResource("10_mnm25")
+stretch_mode = 3
+
+[node name="Button4" type="Button" parent="UI/Purchase"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("8_k2wfb")
+text = "0"
+metadata/buy = 0
+metadata/cost = 0
+
+[node name="Label4" type="Label" parent="UI/Purchase"]
+layout_mode = 2
+text = "Back"
+label_settings = ExtResource("5_1g2ms")
+
+[node name="TextureRect4" type="TextureRect" parent="UI/Purchase"]
+layout_mode = 2
+texture = ExtResource("10_mnm25")
+stretch_mode = 3
+
+[node name="Pity" type="Label" parent="UI"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 72.0
+offset_top = 128.0
+offset_right = 156.0
+offset_bottom = 140.0
+text = "Pity 0 of 10"
+label_settings = ExtResource("5_1g2ms")
+horizontal_alignment = 2
+
+[node name="Pointer" parent="UI" instance=ExtResource("1_aik24")]
+follow_focus = true
+
+[node name="Label2" type="Label" parent="UI"]
+layout_mode = 0
+offset_left = 73.0
+offset_top = 11.0
+offset_right = 151.0
+offset_bottom = 23.0
+text = "Buy Cards"
+label_settings = SubResource("LabelSettings_uril4")
+
+[node name="ScoreLabel" type="Label" parent="UI"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -80.0
+offset_right = 80.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "0.00 GG"
+label_settings = SubResource("LabelSettings_n3la4")
+horizontal_alignment = 1
+
+[node name="Results" parent="." instance=ExtResource("8_q31ew")]
+unique_name_in_owner = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_iwt84")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="AnimationPlayer"]

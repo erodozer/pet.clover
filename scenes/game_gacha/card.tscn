@@ -1,0 +1,61 @@
+[gd_scene load_steps=4 format=3 uid="uid://b35mfps0ans6r"]
+
+[ext_resource type="Texture2D" uid="uid://dw5y4ilwq0wfs" path="res://scenes/game_gacha/card_front.png" id="1_2duhv"]
+[ext_resource type="FontFile" uid="uid://3heiwkvujho0" path="res://ui/fonts/EarlyGameBoySTD.ttf" id="2_73a57"]
+[ext_resource type="AudioStream" uid="uid://e4yhjbjl33kt" path="res://scenes/game_gacha/drop.wav" id="3_f3jch"]
+
+[node name="Card" type="VBoxContainer"]
+custom_minimum_size = Vector2(32, 42)
+anchors_preset = -1
+offset_left = -12.0
+offset_right = 12.0
+offset_bottom = 42.0
+pivot_offset = Vector2(12, 0)
+theme_override_constants/separation = -2
+
+[node name="Base" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("1_2duhv")
+stretch_mode = 3
+
+[node name="Face" type="TextureRect" parent="Base"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch_mode = 3
+
+[node name="IsNew" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/normal_font = ExtResource("2_73a57")
+bbcode_enabled = true
+text = "[center][rainbow]NEW[/rainbow][/center]"
+fit_content = true
+
+[node name="IsBest" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/normal_font = ExtResource("2_73a57")
+bbcode_enabled = true
+text = "[center][rainbow]BEST[/rainbow][/center]"
+fit_content = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_f3jch")

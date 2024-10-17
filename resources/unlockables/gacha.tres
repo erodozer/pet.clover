@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ShopResource" load_steps=2 format=3 uid="uid://4jbi7bvix4ht"]
+
+[ext_resource type="Script" path="res://resources/ShopResource.gd" id="1_6703f"]
+
+[resource]
+script = ExtResource("1_6703f")
+flag = "game.gacha"
+display_name = "Gacha"
+description = "Take a chance and collect rare cards"
+cost = 90000
