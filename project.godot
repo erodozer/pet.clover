@@ -30,6 +30,9 @@ config/icon.pet_ham="res://theme/ham/icon.png"
 config/windows_native_icon.pet_ham="res://theme/ham/icon.ico"
 config/theme="fox"
 tmi/log_level="info"
+config/name.pet_grem="Gremgotchi"
+config/theme.pet_grem="grem"
+gameplay/pet_name.pet_grem="Grem"
 config/theme.pet_fox="fox"
 
 [autoload]
