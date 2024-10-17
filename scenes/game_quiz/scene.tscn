@@ -1,20 +1,14 @@
-[gd_scene load_steps=27 format=3 uid="uid://dxekr2d6at65e"]
+[gd_scene load_steps=20 format=3 uid="uid://dxekr2d6at65e"]
 
 [ext_resource type="Script" path="res://scenes/game_quiz/scene.gd" id="1_qr2k3"]
 [ext_resource type="Shader" path="res://ui/scroll.gdshader" id="2_cjsqv"]
-[ext_resource type="Texture2D" uid="uid://3dxq834h1ba5" path="res://theme/ham/ui/background.png" id="3_aisqa"]
+[ext_resource type="Texture2D" uid="uid://st2lqyxx0u6x" path="res://ui/background.png" id="3_vinvc"]
 [ext_resource type="Texture2D" uid="uid://drp3osp875lkm" path="res://scenes/game_quiz/chalkboard.png" id="4_6jufy"]
 [ext_resource type="FontFile" uid="uid://dss7ucu2bmaek" path="res://ui/fonts/ThinSans.ttf" id="5_peayf"]
-[ext_resource type="Texture2D" uid="uid://pf2xixj5j6ai" path="res://scenes/game_quiz/teacher.png" id="6_4drss"]
-[ext_resource type="SpriteFrames" uid="uid://b681768c6hkug" path="res://theme/ham/pet/frames.tres" id="7_nflc0"]
-[ext_resource type="Texture2D" uid="uid://5sw8456k0ti6" path="res://scenes/game_quiz/teacher_c_01.png" id="7_y70qn"]
-[ext_resource type="Texture2D" uid="uid://bamli7nk8nk73" path="res://scenes/game_quiz/teacher_c_02.png" id="8_eq7lb"]
+[ext_resource type="SpriteFrames" uid="uid://k7kyvg3kirl0" path="res://scenes/game_quiz/teacher.tres" id="6_lorc0"]
 [ext_resource type="Theme" uid="uid://bfmrdx6ah36lt" path="res://ui/ui_theme.tres" id="8_xl5uv"]
-[ext_resource type="Texture2D" uid="uid://b3nvxppufttsj" path="res://scenes/game_quiz/teacher_c_03.png" id="9_514d5"]
 [ext_resource type="FontFile" uid="uid://3heiwkvujho0" path="res://ui/fonts/EarlyGameBoySTD.ttf" id="9_i5a83"]
-[ext_resource type="Texture2D" uid="uid://e1a803t4nwyy" path="res://scenes/game_quiz/teacher_i_01.png" id="10_wp5y2"]
-[ext_resource type="Texture2D" uid="uid://i0rmodgwjpv0" path="res://scenes/game_quiz/teacher_i_02.png" id="11_37dgh"]
-[ext_resource type="Texture2D" uid="uid://bc1wsl85o21lk" path="res://scenes/game_quiz/teacher_i_03.png" id="12_ytg6r"]
+[ext_resource type="SpriteFrames" uid="uid://dushx8aen3ymk" path="res://pet/frames.tres" id="13_meh8h"]
 [ext_resource type="FontFile" uid="uid://cu56gylq7usm7" path="res://ui/fonts/Minimum.ttf" id="16_u36rc"]
 [ext_resource type="PackedScene" uid="uid://tyd6hlyrgac7" path="res://ui/results.tscn" id="17_s8nwv"]
 [ext_resource type="FontFile" uid="uid://ymu18ty2r2n8" path="res://ui/fonts/PolygonPixel5x7Standard.ttf" id="19_jm60g"]
@@ -26,111 +20,6 @@ shader_parameter/speed_y = null
 
 [sub_resource type="LabelSettings" id="LabelSettings_37oyr"]
 font = ExtResource("5_peayf")
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_e2pg8"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("6_4drss")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_y70qn")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_eq7lb")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_514d5")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_514d5")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_514d5")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_eq7lb")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_y70qn")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_4drss")
-}],
-"loop": false,
-"name": &"correct",
-"speed": 12.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("6_4drss")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("6_4drss")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_wp5y2")
-}, {
-"duration": 1.0,
-"texture": ExtResource("11_37dgh")
-}, {
-"duration": 1.0,
-"texture": ExtResource("12_ytg6r")
-}, {
-"duration": 1.0,
-"texture": ExtResource("12_ytg6r")
-}, {
-"duration": 1.0,
-"texture": ExtResource("12_ytg6r")
-}, {
-"duration": 1.0,
-"texture": ExtResource("12_ytg6r")
-}, {
-"duration": 1.0,
-"texture": ExtResource("12_ytg6r")
-}, {
-"duration": 1.0,
-"texture": ExtResource("12_ytg6r")
-}, {
-"duration": 1.0,
-"texture": ExtResource("12_ytg6r")
-}, {
-"duration": 1.0,
-"texture": ExtResource("12_ytg6r")
-}, {
-"duration": 1.0,
-"texture": ExtResource("12_ytg6r")
-}, {
-"duration": 1.0,
-"texture": ExtResource("12_ytg6r")
-}, {
-"duration": 1.0,
-"texture": ExtResource("12_ytg6r")
-}, {
-"duration": 1.0,
-"texture": ExtResource("12_ytg6r")
-}, {
-"duration": 1.0,
-"texture": ExtResource("12_ytg6r")
-}, {
-"duration": 1.0,
-"texture": ExtResource("11_37dgh")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_wp5y2")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_4drss")
-}],
-"loop": false,
-"name": &"incorrect",
-"speed": 14.0
-}]
 
 [sub_resource type="Animation" id="Animation_hvg3v"]
 length = 0.001
@@ -181,8 +70,8 @@ tracks/1/path = NodePath("Control/VBoxContainer:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 3.5, 4),
-"transitions": PackedFloat32Array(1, 0.5, 1),
+"times": PackedFloat32Array(0, 3.7, 4),
+"transitions": PackedFloat32Array(1, -2, 1),
 "update": 0,
 "values": [Vector2(0, 146), Vector2(0, 146), Vector2(0, 77)]
 }
@@ -217,7 +106,7 @@ material = SubResource("ShaderMaterial_klptx")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource("3_aisqa")
+texture = ExtResource("3_vinvc")
 expand_mode = 1
 stretch_mode = 1
 
@@ -240,12 +129,12 @@ visible_characters_behavior = 1
 [node name="Teacher" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(33, 69)
-sprite_frames = SubResource("SpriteFrames_e2pg8")
+sprite_frames = ExtResource("6_lorc0")
 
 [node name="Pet" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(130, 77)
-sprite_frames = ExtResource("7_nflc0")
+sprite_frames = ExtResource("13_meh8h")
 animation = &"study"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -258,8 +147,6 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 160.0
-offset_bottom = 144.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -272,6 +159,7 @@ offset_bottom = 213.0
 theme_override_constants/separation = 0
 
 [node name="PanelContainer" type="PanelContainer" parent="Control/VBoxContainer"]
+custom_minimum_size = Vector2(36, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("8_xl5uv")
@@ -328,7 +216,7 @@ layout_mode = 0
 offset_left = 159.0
 offset_top = 100.0
 offset_right = 319.0
-offset_bottom = 148.0
+offset_bottom = 140.0
 theme = ExtResource("8_xl5uv")
 
 [node name="RichTextLabel" type="Label" parent="Control/HelpText"]

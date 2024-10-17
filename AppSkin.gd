@@ -22,7 +22,7 @@ AppSkin
 """
 extends Node
 
-func loaded():	
+func loaded():
 	if _loading:
 		await theme_applied
 
@@ -45,7 +45,7 @@ func apply(theme = ProjectSettings.get_setting_with_override("application/config
 	# unfortunately 
 	for res in gdsh.load_dir("res://theme/%s" % theme, overrides, true).values():
 		print("found: " + res.resource_path)
-		var path = "res://%s" % res.resource_path.substr(len("res://theme/%s/" % GameState.THEME))
+		var path = "res://%s" % res.resource_path.substr(len("res://theme/%s/" % theme))
 		if ResourceLoader.exists(path):
 			res.take_over_path(path)
 			if hold_cache:

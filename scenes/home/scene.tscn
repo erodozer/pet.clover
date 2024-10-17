@@ -78,6 +78,7 @@ offset_bottom = 141.0
 unique_name_in_owner = true
 
 [node name="Background" type="AnimatedSprite2D" parent="ShopView"]
+process_mode = 3
 sprite_frames = ExtResource("4_4si2r")
 animation = &"lights_off"
 centered = false
@@ -100,6 +101,7 @@ sprite_frames = SubResource("SpriteFrames_m0315")
 script = ExtResource("8_vpc07")
 
 [node name="Foreground" type="AnimatedSprite2D" parent="ShopView"]
+process_mode = 3
 sprite_frames = SubResource("2")
 animation = &"lights_on"
 frame = 3
@@ -118,6 +120,7 @@ centered = false
 position = Vector2(81, 75)
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="WashScene/Pet"]
+process_mode = 3
 position = Vector2(0, -19)
 sprite_frames = ExtResource("9_v1iox")
 animation = &"bath"

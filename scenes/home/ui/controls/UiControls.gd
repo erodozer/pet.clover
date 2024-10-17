@@ -80,4 +80,3 @@ func set_hint_text(text):
 
 func _update_stats(stats):
 	get_node("%HoneyCounter").text = "%0d" % int(stats.honey)
-

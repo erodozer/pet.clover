@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://eds21g6rcude"]
+
+[ext_resource type="Script" path="res://addons/tmi/tmi.gd" id="1_gb0fu"]
+[ext_resource type="PackedScene" uid="uid://bp2l4iy86r03u" path="res://twitch/twitch_config.tscn" id="2_8650l"]
+
+[node name="Twitch" type="Node"]
+script = ExtResource("1_gb0fu")
+
+[node name="TwitchConfig" parent="." instance=ExtResource("2_8650l")]

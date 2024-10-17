@@ -119,6 +119,7 @@ games = ExtResource("3_dyl7m")
 
 [node name="TopPanel" type="Panel" parent="."]
 texture_filter = 1
+clip_contents = true
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 30.0
@@ -191,6 +192,7 @@ text = "0"
 
 [node name="BottomPanel" type="Panel" parent="."]
 texture_filter = 1
+clip_contents = true
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
@@ -263,7 +265,7 @@ texture = SubResource("AtlasTexture_fmu1m")
 [node name="Game" parent="BottomPanel/Controls" instance=ExtResource("9_of6ik")]
 layout_mode = 2
 toggle_mode = false
-bind_to_timer = "play"
+bind_to_timer = "game"
 
 [node name="icon_off" parent="BottomPanel/Controls/Game" index="0"]
 show_behind_parent = false

@@ -150,6 +150,7 @@ clip_text = true
 
 [node name="BuyButton" type="Button" parent="VBoxContainer/MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 0

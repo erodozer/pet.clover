@@ -4,7 +4,7 @@ extends Button
 @onready var off_icon = get_node("icon_off")
 @onready var on_icon = get_node("icon_on")
 
-@export_enum("None", "eat", "bathe", "play", "medicine") var bind_to_timer = "None"
+@export_enum("None", GameState.GameActions.Eat, GameState.GameActions.Bathe, GameState.GameActions.Play, GameState.GameActions.Medicine) var bind_to_timer = "None"
 @export_enum("None", "food", "game", "stats") var submenu = "None"
 @export var unlocked: bool = true
 @export var item: Resource = null
@@ -28,12 +28,12 @@ func disable_action(state):
 	focus_mode = FOCUS_NONE if state else FOCUS_ALL
 	set_disabled(state)
 	
-func _toggled(is_pressed):
+func _toggled(t):
 	if not is_inside_tree():
 		return
 	
-	off_icon.visible = not is_pressed
-	on_icon.visible = is_pressed
+	off_icon.visible = not t
+	on_icon.visible = t
 
 func _on_mouse_entered():
 	if not disabled:

@@ -1,5 +1,14 @@
 extends Control
 
+@export var follow_focus: bool = false
+
+func _ready():
+	get_viewport().gui_focus_changed.connect(
+		func (ctl):
+			if follow_focus:
+				move_to_control(ctl)
+	)
+
 func move_to(global_pos: Vector2):
 	var t := create_tween()
 	var icon := get_node("TextureRect") as TextureRect

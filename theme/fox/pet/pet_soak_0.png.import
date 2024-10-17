@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/pet_soak_0.png-af857d9bd78410bc7c8c175e03b7aa
 
 [params]
 
-compress/mode=0
+compress/mode=3
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

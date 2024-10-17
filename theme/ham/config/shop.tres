@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="ShopMenu" load_steps=10 format=3 uid="uid://xrssryk47xoi"]
+[gd_resource type="Resource" script_class="ShopMenu" load_steps=11 format=3 uid="uid://xrssryk47xoi"]
 
+[ext_resource type="Script" path="res://resources/ShopResource.gd" id="1_cn2on"]
 [ext_resource type="Resource" uid="uid://diucbp20w8rbd" path="res://theme/ham/resources/unlockables/yaoi.tres" id="1_qbagp"]
 [ext_resource type="Resource" uid="uid://cu1hik6js58br" path="res://resources/unlockables/quiz.tres" id="2_y4a1l"]
 [ext_resource type="Resource" uid="uid://c62ljxf7cdmao" path="res://resources/unlockables/soap.tres" id="3_pu3h7"]
@@ -12,4 +13,4 @@
 
 [resource]
 script = ExtResource("8_dow61")
-items = Array[Resource("res://resources/ShopResource.gd")]([ExtResource("1_qbagp"), ExtResource("2_y4a1l"), ExtResource("3_pu3h7"), ExtResource("4_kcs52"), ExtResource("5_y2lve"), ExtResource("6_d1jjo"), ExtResource("6_gyykj"), ExtResource("7_24bxo")])
+items = Array[ExtResource("1_cn2on")]([ExtResource("1_qbagp"), ExtResource("2_y4a1l"), ExtResource("3_pu3h7"), ExtResource("4_kcs52"), ExtResource("5_y2lve"), ExtResource("6_d1jjo"), ExtResource("6_gyykj"), ExtResource("7_24bxo")])

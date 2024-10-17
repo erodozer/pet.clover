@@ -20,12 +20,9 @@ func _on_TwitchIntegration_chat_command(action):
 			_toggle_lights(false)
 		"lights on":
 			_toggle_lights(true)
-		"food", "give food", "food nuggie", "give nuggie":
-			_drop_food()
-		"give soju", "food soju":
-			_drop_food("soju")
-		"give fries", "food fries":
-			_drop_food("fries")
+		"food", "give food":
+			var choice = (menu.foods.unlocked as Array).pick_random()
+			_drop_food(choice)
 		"bath", "bathe", "wash":
 			_bathe()
 		"heal", "cure", "give medicine":
@@ -64,10 +61,15 @@ func _ready():
 	# for _i in range(catch_up):
 	# 	GameState.execute_turn()
 		
-	fox.pause = false
 	%WashScene/Pet/Sprite2D.play("bath")
 	
+	Twitch.command.connect(_on_twitch_command)
 	NoClick.hide()
+	
+func _setup(_params):
+	fox.pause = false
+	if not GameState.lights_on:
+		_toggle_lights(GameState.lights_on)
 	
 func _show_stats():
 	accepting_actions = false
@@ -127,7 +129,7 @@ func _toggle_lights(lights_on):
 	accepting_actions = true
 
 func _game(game):
-	if not GameState.can_act("eat"):
+	if not GameState.can_act(GameState.GameActions.Play):
 		return
 		
 	accepting_actions = false
@@ -155,7 +157,7 @@ func _game(game):
 	accepting_actions = true
 
 func _bathe():
-	if not GameState.can_act("bathe"):
+	if not GameState.can_act(GameState.GameActions.Bathe):
 		return
 	
 	accepting_actions = false
@@ -185,7 +187,7 @@ func _bathe():
 		}
 	
 	GameState.timers = {
-		"bathe": GameState.now() + BATH_COOLDOWN
+		GameState.GameActions.Bathe: GameState.now() + BATH_COOLDOWN
 	}
 	
 	await get_tree().create_timer(3.0).timeout
@@ -200,7 +202,7 @@ func _bathe():
 	accepting_actions = true
 	
 func _give_medicine():
-	if not GameState.can_act("medicine"):
+	if not GameState.can_act(GameState.GameActions.Medicine):
 		return
 		
 	accepting_actions = false
@@ -215,7 +217,7 @@ func _give_medicine():
 	accepting_actions = true
 	
 func _drop_food(food_type = null):
-	if not GameState.can_act("eat"):
+	if not GameState.can_act(GameState.GameActions.Eat):
 		return
 		
 	accepting_actions = false

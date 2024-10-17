@@ -145,7 +145,7 @@ func game_finished():
 		"honey": GameState.stats.honey + score * 10,
 	}
 	GameState.timers = {
-		"play": GameState.now() + 300, # 5 minutes
+		GameState.GameActions.Play: GameState.now() + 300, # 5 minutes
 	}
 	
 	SceneManager.change_scene("home")

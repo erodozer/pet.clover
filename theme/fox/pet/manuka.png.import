@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/manuka.png-3b45cbdb74e7fe1ed3602c5880c428d2.c
 
 [params]
 
-compress/mode=0
+compress/mode=3
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

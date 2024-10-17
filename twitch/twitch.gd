@@ -11,22 +11,19 @@ func _ready():
 	if conf == null:
 		return # could not parse config
 		
-	%TwitchChannel.text = conf.get("twitch", "")
-	var cred = TwitchCredentials.new()
-	cred.channel = %TwitchChannel.text
-	
-	tmi.credentials = cred
 	tmi.connection_status_changed.connect(_on_twitch_connection_status_changed)
 	
-	tmi.start()
-
-func _on_connect_button_pressed():
-	var cred = TwitchCredentials.new()
+	%TwitchChannel.text = conf.get("twitch", "")
+	var cred = TwitchCredentials.get_fallback_credentials()
 	cred.channel = %TwitchChannel.text
 	
 	tmi.credentials = cred
 	
-	tmi.start()
+func _on_connect_button_pressed():
+	var cred = TwitchCredentials.get_fallback_credentials()
+	cred.channel = %TwitchChannel.text
+	
+	tmi.login(cred)
 	
 	var conf = JSON.stringify({
 		"twitch": cred.channel
@@ -49,5 +46,4 @@ func _on_close_requested():
 	visible = false
 
 func _on_disconnect_button_pressed():
-	tmi.credentials = TwitchCredentials.new()
-	tmi.start()
+	tmi.login(TwitchCredentials.get_fallback_credentials())

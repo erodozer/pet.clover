@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/bath_01.png-5983ef80a645ffea6c0d33d4f55a322e.
 
 [params]
 
-compress/mode=0
+compress/mode=3
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

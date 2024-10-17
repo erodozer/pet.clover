@@ -5,6 +5,6 @@
 [resource]
 script = ExtResource("1_8tbg6")
 flag = "game.quiz"
-display_name = "M. Quiz"
+display_name = "Math Quiz"
 description = "Flex your brain in a race against time"
 cost = 40000

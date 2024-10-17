@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/pet_sleep_2.png-2a9e4242bffeb1ba667b933bf8084
 
 [params]
 
-compress/mode=0
+compress/mode=3
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

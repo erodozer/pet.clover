@@ -10,6 +10,9 @@ font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="FontFile" id="4"]
 fallbacks = Array[Font]([ExtResource("1")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
@@ -19,7 +22,7 @@ cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 
 [node name="Button" type="Button"]
 texture_filter = 1
-custom_minimum_size = Vector2(145, 20)
+custom_minimum_size = Vector2(130, 20)
 offset_right = 152.0
 offset_bottom = 20.0
 mouse_default_cursor_shape = 2

@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/nuggie_0.png-c02fa8f046dbf2c950cd5efe75c367f0
 
 [params]
 
-compress/mode=0
+compress/mode=3
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

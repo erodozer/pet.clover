@@ -53,7 +53,7 @@ texture = ExtResource("2_15c71")
 offset = Vector2(-26, -14)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Manuka" index="0"]
-autoplay = "idle"
 libraries = {
 "": SubResource("AnimationLibrary_2j4q8")
 }
+autoplay = "idle"

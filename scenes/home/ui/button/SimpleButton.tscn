@@ -5,15 +5,15 @@
 [ext_resource type="Texture2D" uid="uid://ccu72mg08x0l2" path="res://scenes/home/ui/button/icon_1.png" id="4"]
 [ext_resource type="Texture2D" uid="uid://btdfqdyr8xe8b" path="res://scenes/home/ui/button/icon_0.png" id="5"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xehc8"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6xfyj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o0xue"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hwv8u"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vlr5x"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o0xue"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6xfyj"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xehc8"]
 
 [sub_resource type="SpriteFrames" id="6"]
 animations = [{
@@ -52,11 +52,11 @@ custom_minimum_size = Vector2(15, 15)
 offset_right = 15.0
 offset_bottom = 15.0
 mouse_default_cursor_shape = 2
-theme_override_styles/normal = SubResource("StyleBoxEmpty_xehc8")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6xfyj")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_o0xue")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_hwv8u")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_vlr5x")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_o0xue")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_6xfyj")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_xehc8")
 toggle_mode = true
 shortcut_in_tooltip = false
 flat = true

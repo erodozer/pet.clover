@@ -4,11 +4,17 @@ extends Node
 const UPDATE_FREQ = 1.0
 const SAVE_FREQ = 60.0  # limit autosave frequency so we don't wear out drives
 
+class GameActions:
+	const Eat = "eat"
+	const Bathe = "bathe"
+	const Play = "game"
+	const Medicine = "medicine"
+
 var timers = {
-	"eat": 0,
-	"bathe": 0,
-	"play": 0,
-	"medicine": 0,
+	GameActions.Eat: 0,
+	GameActions.Bathe: 0,
+	GameActions.Play: 0,
+	GameActions.Medicine: 0,
 	"update": now(),
 } : set = _update_timers
 
@@ -32,8 +38,10 @@ var lights_on = true
 
 var unlocks = {}: set = _update_unlocks
 
+# holds whatever random additional data some self managed systems have
+var extra = {}
+
 var TWITCH_ENABLED = false
-var THEME = "ham"
 
 signal stats_changed(stats)
 signal timers_changed(timers)
@@ -50,12 +58,15 @@ func _ready():
 		self.stats = data.get("stats", {})
 		self.timers = data.get("timers", {})
 		self.unlocks = data.get("unlocks", {})
+		self.extra = data.get("extra", {})
 		
 	await AppSkin.loaded()
 		
 	await get_tree().process_frame
-	SceneManager.change_scene("home")
 	
+	if get_tree().current_scene.is_in_group("scene"):
+		SceneManager.change_scene(get_tree().current_scene.scene_file_path)
+
 func now() -> float:
 	return Time.get_unix_time_from_system()
 
@@ -94,10 +105,10 @@ func _update_stats(change):
 	
 func _update_timers(change):
 	timers = {
-		"eat": change.get("eat", timers.eat),
-		"bathe": change.get("bathe", timers.bathe),
-		"play": change.get("play", timers.play),
-		"medicine": change.get("medicine", timers.medicine),
+		GameState.GameActions.Eat: change.get(GameState.GameActions.Eat, timers.eat),
+		GameState.GameActions.Bathe: change.get(GameState.GameActions.Bathe, timers.bathe),
+		GameState.GameActions.Play: change.get(GameState.GameActions.Play, timers.game),
+		GameState.GameActions.Medicine: change.get(GameState.GameActions.Medicine, timers.medicine),
 		"update": change.get("update", timers.update),
 	}
 	emit_signal("timers_changed", timers)
@@ -115,6 +126,7 @@ func save_data():
 			"stats": stats,
 			"timers": timers,
 			"unlocks": unlocks,
+			"extra": extra,
 		})
 	)
 	save_game.close()
@@ -255,10 +267,10 @@ func is_dead():
 func reset(reset_timers = true, reset_stats = true, hard = false):
 	if reset_timers:
 		timers = {
-			"eat": 0,
-			"bathe": 0,
-			"play": 0,
-			"medicine": 0,
+			GameState.GameActions.Eat: 0,
+			GameState.GameActions.Bathe: 0,
+			GameState.GameActions.Play: 0,
+			GameState.GameActions.Medicine: 0,
 			"update": now() + UPDATE_FREQ,
 		}
 		death_timer = 0

@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/fries_1.png-26fcc056496f500513ee3ea08f9d74a2.
 
 [params]
 
-compress/mode=0
+compress/mode=3
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

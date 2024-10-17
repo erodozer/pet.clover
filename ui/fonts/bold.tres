@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://cgpbl3g12jyp5"]
+
+[ext_resource type="FontFile" uid="uid://3heiwkvujho0" path="res://ui/fonts/EarlyGameBoySTD.ttf" id="1_0jqpc"]
+
+[resource]
+font = ExtResource("1_0jqpc")
+shadow_size = 0
+shadow_color = Color(0, 0, 0, 1)

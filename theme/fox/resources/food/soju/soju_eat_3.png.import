@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/soju_eat_3.png-878ed137e1b3cd1450eeda2996a8bd
 
 [params]
 
-compress/mode=0
+compress/mode=3
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

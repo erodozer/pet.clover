@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/eat_07.png-78ae5b08c0f1b7892f85826869cb5598.c
 
 [params]
 
-compress/mode=0
+compress/mode=3
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
