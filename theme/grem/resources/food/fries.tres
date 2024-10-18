@@ -1,0 +1,79 @@
+[gd_resource type="Resource" script_class="FoodResource" load_steps=18 format=3 uid="uid://d3qx3r7b8x30u"]
+
+[ext_resource type="Texture2D" uid="uid://b25qswvxkomfh" path="res://theme/grem/resources/food/fries/fries_0.png" id="1_6m4m2"]
+[ext_resource type="Texture2D" uid="uid://bc3je8xjgl62j" path="res://theme/grem/resources/food/fries/fries_1.png" id="2_hbe22"]
+[ext_resource type="Texture2D" uid="uid://b1imbxcrttu61" path="res://theme/grem/resources/food/fries/fries_2.png" id="3_y32tr"]
+[ext_resource type="Texture2D" uid="uid://bi2qfvx0nctoe" path="res://theme/grem/resources/food/fries/fries_3.png" id="4_mapvf"]
+[ext_resource type="Texture2D" uid="uid://0aye7wbynruh" path="res://theme/grem/resources/food/fries/fries_4.png" id="5_l67uj"]
+[ext_resource type="Texture2D" uid="uid://cv8bxd6hkqfqo" path="res://theme/grem/resources/food/fries/fries_5.png" id="6_htohu"]
+[ext_resource type="Texture2D" uid="uid://bck4r4krw3mb3" path="res://theme/grem/resources/food/fries/fries_6.png" id="7_4ajc3"]
+[ext_resource type="Texture2D" uid="uid://cejl735us1w1h" path="res://theme/grem/resources/food/fries/fries_7.png" id="8_maoh7"]
+[ext_resource type="Texture2D" uid="uid://c3jrvyupprh5g" path="res://theme/grem/resources/food/fries/fries_eat_1.png" id="9_f8asw"]
+[ext_resource type="Texture2D" uid="uid://b0ctoc15210fw" path="res://theme/grem/resources/food/fries/fries_eat_2.png" id="10_myh4v"]
+[ext_resource type="Texture2D" uid="uid://dtnebm8ewla7v" path="res://theme/grem/resources/food/fries/fries_eat_3.png" id="11_dhwmj"]
+[ext_resource type="Texture2D" uid="uid://du4t8fsgrbor1" path="res://theme/grem/resources/food/fries/fries_eat_4.png" id="12_21tjf"]
+[ext_resource type="Texture2D" uid="uid://dsaj0wvxm5rnw" path="res://theme/grem/resources/food/fries/fries_eat_5.png" id="13_nfok2"]
+[ext_resource type="Texture2D" uid="uid://dbjxpo0bhux1v" path="res://theme/grem/resources/food/fries/icon.png" id="14_54nrd"]
+[ext_resource type="Script" path="res://resources/FoodResource.gd" id="15_nnxbr"]
+[ext_resource type="Resource" uid="uid://umasdboj3i8h" path="res://theme/grem/resources/unlockables/fries.tres" id="16_xai4f"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yyixg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_6m4m2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_hbe22")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_y32tr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_mapvf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_l67uj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_htohu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_4ajc3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_maoh7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_f8asw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_myh4v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_dhwmj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_21tjf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_nfok2")
+}],
+"loop": false,
+"name": &"eat",
+"speed": 3.0
+}]
+
+[resource]
+script = ExtResource("15_nnxbr")
+hungry = 150.0
+boredom = 0.0
+cooldown = 40.0
+unlock = ExtResource("16_xai4f")
+icon = ExtResource("14_54nrd")
+animation = SubResource("SpriteFrames_yyixg")

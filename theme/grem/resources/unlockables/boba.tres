@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ShopResource" load_steps=2 format=3 uid="uid://bpb2kbu1n36rs"]
+
+[ext_resource type="Script" path="res://resources/ShopResource.gd" id="1_ok3s8"]
+
+[resource]
+script = ExtResource("1_ok3s8")
+flag = "food.boba"
+display_name = "Bubble T."
+description = "Sweet treat that improves mood"
+cost = 30000

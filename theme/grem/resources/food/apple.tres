@@ -1,0 +1,89 @@
+[gd_resource type="Resource" script_class="FoodResource" load_steps=17 format=3 uid="uid://va3774412x40"]
+
+[ext_resource type="Texture2D" uid="uid://ddrhp2boi2b2o" path="res://theme/grem/resources/food/apple/apple_1.png" id="1_xj1sx"]
+[ext_resource type="Texture2D" uid="uid://r3a37rm2yv3s" path="res://theme/grem/resources/food/apple/apple_2.png" id="2_fetmr"]
+[ext_resource type="Texture2D" uid="uid://cq242lrnfel34" path="res://theme/grem/resources/food/apple/apple_3.png" id="3_1meui"]
+[ext_resource type="Texture2D" uid="uid://ccnmr3nauvmle" path="res://theme/grem/resources/food/apple/apple_4.png" id="4_2t6y7"]
+[ext_resource type="Texture2D" uid="uid://c4fybqr81vta6" path="res://theme/grem/resources/food/apple/apple_5.png" id="5_8hnud"]
+[ext_resource type="Texture2D" uid="uid://cymwek1rbenqg" path="res://theme/grem/resources/food/apple/apple_6.png" id="6_ohmyd"]
+[ext_resource type="Texture2D" uid="uid://bnkf0fjhblvsr" path="res://theme/grem/resources/food/apple/apple_7.png" id="7_58x1v"]
+[ext_resource type="Texture2D" uid="uid://cj25bnnonbfyr" path="res://theme/grem/resources/food/apple/apple_eat_1.png" id="8_hxukr"]
+[ext_resource type="Texture2D" uid="uid://c18xnuj3jcyqr" path="res://theme/grem/resources/food/apple/icon.png" id="8_lpqku"]
+[ext_resource type="Texture2D" uid="uid://c0wubs431rmln" path="res://theme/grem/resources/food/apple/apple_eat_2.png" id="9_mecd4"]
+[ext_resource type="Texture2D" uid="uid://c71m2cv6d8r7n" path="res://theme/grem/resources/food/apple/apple_eat_3.png" id="10_4ardh"]
+[ext_resource type="Texture2D" uid="uid://by1h21qivtgf4" path="res://theme/grem/resources/food/apple/apple_eat_4.png" id="11_xj7m3"]
+[ext_resource type="Script" path="res://resources/FoodResource.gd" id="12_0gvsd"]
+[ext_resource type="Texture2D" uid="uid://b8rju4xuony6v" path="res://theme/grem/resources/food/apple/apple_eat_5.png" id="12_5w3ii"]
+[ext_resource type="Texture2D" uid="uid://dk20ply5xn0hj" path="res://theme/grem/resources/food/apple/apple_eat_6.png" id="13_qivvo"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xeqxa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_xj1sx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_fetmr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_1meui")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_2t6y7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_8hnud")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ohmyd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_58x1v")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_xj1sx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_hxukr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_mecd4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_4ardh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_xj7m3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_5w3ii")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_qivvo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_5w3ii")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_qivvo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_5w3ii")
+}],
+"loop": false,
+"name": &"eat",
+"speed": 3.0
+}]
+
+[resource]
+script = ExtResource("12_0gvsd")
+hungry = 80.0
+boredom = 0.0
+cooldown = 20.0
+icon = ExtResource("8_lpqku")
+animation = SubResource("SpriteFrames_xeqxa")

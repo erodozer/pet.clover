@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ShopResource" load_steps=2 format=3 uid="uid://dvcaqafbm86ao"]
+
+[ext_resource type="Script" path="res://resources/ShopResource.gd" id="1_f0t6a"]
+
+[resource]
+script = ExtResource("1_f0t6a")
+flag = "bath.soap"
+display_name = "Shampoo"
+description = "Bathe grem more effectively"
+cost = 40000

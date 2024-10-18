@@ -1,43 +1,47 @@
-[gd_resource type="SpriteFrames" load_steps=9 format=3 uid="uid://bqljobyhnc1ta"]
+[gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://bqljobyhnc1ta"]
 
-[ext_resource type="Texture2D" uid="uid://pf2xixj5j6ai" path="res://scenes/game_quiz/teacher.png" id="1_3txdp"]
-[ext_resource type="Texture2D" uid="uid://5sw8456k0ti6" path="res://scenes/game_quiz/teacher_c_01.png" id="2_bu8u6"]
-[ext_resource type="Texture2D" uid="uid://bamli7nk8nk73" path="res://scenes/game_quiz/teacher_c_02.png" id="3_8386k"]
-[ext_resource type="Texture2D" uid="uid://b3nvxppufttsj" path="res://scenes/game_quiz/teacher_c_03.png" id="4_mruvc"]
+[ext_resource type="Texture2D" uid="uid://csq2h0vecipec" path="res://theme/grem/scenes/game_quiz/teacher_correct_1.png" id="2_kcwed"]
+[ext_resource type="Texture2D" uid="uid://dogypqxt5bp3b" path="res://theme/grem/scenes/game_quiz/teacher_correct_2.png" id="3_nyc2s"]
+[ext_resource type="Texture2D" uid="uid://dehmawqxn3cjh" path="res://theme/grem/scenes/game_quiz/teacher_correct_3.png" id="4_swwbs"]
 [ext_resource type="Texture2D" uid="uid://d1c2cb6ih5k0" path="res://theme/grem/scenes/game_quiz/teacher.png" id="5_88hgm"]
-[ext_resource type="Texture2D" uid="uid://e1a803t4nwyy" path="res://scenes/game_quiz/teacher_i_01.png" id="5_sdnm7"]
-[ext_resource type="Texture2D" uid="uid://i0rmodgwjpv0" path="res://scenes/game_quiz/teacher_i_02.png" id="6_pwluw"]
-[ext_resource type="Texture2D" uid="uid://bc1wsl85o21lk" path="res://scenes/game_quiz/teacher_i_03.png" id="7_diiii"]
+[ext_resource type="Texture2D" uid="uid://b587825guk2df" path="res://theme/grem/scenes/game_quiz/teacher_wrong_1.png" id="6_7o7y5"]
+[ext_resource type="Texture2D" uid="uid://f5b5128f6qe7" path="res://theme/grem/scenes/game_quiz/teacher_wrong_2.png" id="7_7txbi"]
 
 [resource]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_3txdp")
+"texture": ExtResource("5_88hgm")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_bu8u6")
+"texture": ExtResource("2_kcwed")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_8386k")
+"texture": ExtResource("3_nyc2s")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_mruvc")
+"texture": ExtResource("4_swwbs")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_mruvc")
+"texture": ExtResource("4_swwbs")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_mruvc")
+"texture": ExtResource("4_swwbs")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_8386k")
+"texture": ExtResource("4_swwbs")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_bu8u6")
+"texture": ExtResource("4_swwbs")
 }, {
 "duration": 1.0,
-"texture": ExtResource("1_3txdp")
+"texture": ExtResource("3_nyc2s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_kcwed")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_88hgm")
 }],
 "loop": false,
 "name": &"correct",
@@ -53,61 +57,46 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_3txdp")
+"texture": ExtResource("5_88hgm")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_sdnm7")
+"texture": ExtResource("6_7o7y5")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_pwluw")
+"texture": ExtResource("7_7txbi")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_diiii")
+"texture": ExtResource("7_7txbi")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_diiii")
+"texture": ExtResource("7_7txbi")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_diiii")
+"texture": ExtResource("7_7txbi")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_diiii")
+"texture": ExtResource("7_7txbi")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_diiii")
+"texture": ExtResource("7_7txbi")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_diiii")
+"texture": ExtResource("7_7txbi")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_diiii")
+"texture": ExtResource("7_7txbi")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_diiii")
+"texture": ExtResource("7_7txbi")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_diiii")
+"texture": ExtResource("7_7txbi")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_diiii")
+"texture": ExtResource("6_7o7y5")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_diiii")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_diiii")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_diiii")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_pwluw")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_sdnm7")
-}, {
-"duration": 1.0,
-"texture": ExtResource("1_3txdp")
+"texture": ExtResource("5_88hgm")
 }],
 "loop": false,
 "name": &"incorrect",
