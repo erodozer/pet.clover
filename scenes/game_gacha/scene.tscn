@@ -372,7 +372,8 @@ stretch_mode = 1
 unique_name_in_owner = true
 position = Vector2(33, 110)
 sprite_frames = ExtResource("3_85fpq")
-animation = &"sit"
+animation = &"idle"
+autoplay = "idle"
 
 [node name="BoosterPack" type="Node2D" parent="."]
 position = Vector2(36, 65)
@@ -489,6 +490,7 @@ stretch_mode = 3
 
 [node name="Pity" type="Label" parent="UI"]
 unique_name_in_owner = true
+layout_mode = 0
 offset_left = 72.0
 offset_top = 128.0
 offset_right = 156.0
@@ -498,6 +500,7 @@ label_settings = ExtResource("5_1g2ms")
 horizontal_alignment = 2
 
 [node name="Label2" type="Label" parent="UI"]
+layout_mode = 0
 offset_left = 73.0
 offset_top = 11.0
 offset_right = 151.0

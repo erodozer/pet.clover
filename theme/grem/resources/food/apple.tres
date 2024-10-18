@@ -65,15 +65,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("13_qivvo")
-}, {
-"duration": 1.0,
-"texture": ExtResource("12_5w3ii")
-}, {
-"duration": 1.0,
-"texture": ExtResource("13_qivvo")
-}, {
-"duration": 1.0,
-"texture": ExtResource("12_5w3ii")
 }],
 "loop": false,
 "name": &"eat",

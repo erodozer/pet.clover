@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="GameResource" load_steps=4 format=3 uid="uid://b5d6gr2dbc3w2"]
+
+[ext_resource type="Texture2D" uid="uid://d3ardee1a5sfh" path="res://theme/grem/scenes/home/ui/controls/icons.png" id="1_n3wnb"]
+[ext_resource type="Script" path="res://resources/GameResource.gd" id="2_wttne"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kpikm"]
+atlas = ExtResource("1_n3wnb")
+region = Rect2(0, 170, 17, 17)
+
+[resource]
+script = ExtResource("2_wttne")
+game = "hilo"
+icon = SubResource("AtlasTexture_kpikm")

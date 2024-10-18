@@ -34,6 +34,8 @@ config/name.pet_grem="Gremgotchi"
 config/theme.pet_grem="grem"
 gameplay/pet_name.pet_grem="Grem"
 config/theme.pet_fox="fox"
+config/icon.pet_grem="res://theme/grem/icon.png"
+config/windows_native_icon.pet_grem="res://theme/grem/gigi.ico"
 
 [autoload]
 

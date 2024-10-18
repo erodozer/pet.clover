@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="GameMenu" load_steps=6 format=3 uid="uid://bpcgxsyrld6k8"]
 
 [ext_resource type="Script" path="res://resources/GameResource.gd" id="1_8xoj6"]
-[ext_resource type="Resource" uid="uid://0wjtnjgxtbfc" path="res://resources/games/hilo.tres" id="2_4jjtf"]
-[ext_resource type="Resource" uid="uid://c2nufarxermn5" path="res://resources/games/gacha.tres" id="4_l3yum"]
-[ext_resource type="Resource" uid="uid://b8nvexwy3ql31" path="res://resources/games/quiz.tres" id="4_twd2a"]
+[ext_resource type="Resource" uid="uid://b5d6gr2dbc3w2" path="res://theme/grem/resources/games/hilo.tres" id="2_p0oh8"]
+[ext_resource type="Resource" uid="uid://dmouoxpcpaedm" path="res://theme/grem/resources/games/quiz.tres" id="3_0diqe"]
+[ext_resource type="Resource" uid="uid://db1jkwdb4dqfk" path="res://theme/grem/resources/games/gacha.tres" id="4_gb8u3"]
 [ext_resource type="Script" path="res://resources/GameMenu.gd" id="5_2162c"]
 
 [resource]
 script = ExtResource("5_2162c")
-items = Array[ExtResource("1_8xoj6")]([ExtResource("2_4jjtf"), ExtResource("4_twd2a"), ExtResource("4_l3yum")])
+items = Array[ExtResource("1_8xoj6")]([ExtResource("2_p0oh8"), ExtResource("3_0diqe"), ExtResource("4_gb8u3")])

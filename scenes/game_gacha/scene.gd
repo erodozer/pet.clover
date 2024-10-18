@@ -136,15 +136,15 @@ func _on_button_pressed(btn: Button):
 		var card = available_cards.pick_random()
 		cards.append({ "id": card.id, "rarity": rarity, "value": card.price, "face": card.image })
 	
-	var card_history = state.get("cards", {})
+	var card_history: Dictionary = state.get("cards", {})
 	
-	var records = cards.reduce(
+	var records: Dictionary = cards.reduce(
 		func (acc, card):
-			var seen = acc.get(card.id, card_history.get(card.id, -1))
+			var seen = acc.get(card.id, -1)
 			if card.rarity > seen:
 				acc[card.id] = card.rarity
 			return acc,
-		{}
+		card_history.duplicate(),
 	)
 	
 	var happiness = cards.reduce(
