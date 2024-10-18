@@ -136,6 +136,7 @@ unique_name_in_owner = true
 position = Vector2(130, 77)
 sprite_frames = ExtResource("13_meh8h")
 animation = &"study"
+autoplay = "study"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

@@ -180,7 +180,9 @@ func _on_button_pressed(btn: Button):
 	
 	render_deck(cards, records, card_history)
 
+	%Pet.play("dance")
 	await create_tween().tween_method(self.update_score, 0, score, 0.20 * amount).finished
+	%Pet.play("idle")
 	
 	await get_tree().create_timer(3.0).timeout
 	%Results/%Currency.text = "%d" % [score - cost]

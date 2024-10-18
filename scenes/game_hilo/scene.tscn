@@ -171,6 +171,7 @@ unique_name_in_owner = true
 position = Vector2(80, 124)
 sprite_frames = ExtResource("6")
 animation = &"sit"
+autoplay = "sit"
 
 [node name="Results" parent="." instance=ExtResource("8_2opkf")]
 unique_name_in_owner = true

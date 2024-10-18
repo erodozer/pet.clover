@@ -9,6 +9,11 @@ animations = [{
 }, {
 "frames": [],
 "loop": true,
+"name": &"dance",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
 "name": &"eat",
 "speed": 5.0
 }, {

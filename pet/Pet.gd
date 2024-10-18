@@ -11,7 +11,10 @@ var pause = false: set = set_paused
 
 var next_action = 0
 
-var idle_anims = []
+var anims = {
+	"idle": [],
+	"eat": []
+}
 
 func _ready():
 	GameState.connect("stats_changed", Callable(self, "_update_stats"))
@@ -19,8 +22,9 @@ func _ready():
 	
 	for i in sprite.sprite_frames.get_animation_names():
 		if i.begins_with("idle") and i != "idle:overfed":
-			idle_anims.append(i)
-	
+			anims.idle.append(i)
+		elif i.begins_with("eat") and i != "eat:overfed":
+			anims.eat.append(i)
 	
 func _update_stats(stats):
 	dirty.visible = false
@@ -66,13 +70,13 @@ func move_to(target: Vector2, padding = 0):
 	if GameState.is_overfed() and sprite.sprite_frames.has_animation("idle:overfed"):
 		sprite.play("idle:overfed")
 	else:
-		sprite.play(idle_anims[randi() % len(idle_anims)])
+		_play_random_anim("idle")
 	
 func eat():
 	if GameState.is_overfed() and sprite.sprite_frames.has_animation("eat:overfed"):
 		sprite.play("eat:overfed")
 	else:
-		sprite.play("eat")
+		_play_random_anim("eat")
 	
 func _wander():
 	$Sickness.visible = false
@@ -80,13 +84,19 @@ func _wander():
 	# chance to just switch to a different idle anim
 	if randf() < 0.35:
 		next_action = GameState.now() + randf_range(4.0, 10.0)
-		sprite.play(idle_anims[randi() % len(idle_anims)])
+		_play_random_anim("idle")
 	else:
 		next_action = GameState.now() + randf_range(3.0, 12.0)
 	
 		# move action
 		var next = randf_range(left_bound, right_bound)	
 		move_to(Vector2(next, 0.0))
+	
+func _play_random_anim(style):
+	if randf() < 0.5:
+		sprite.play(style)
+	else:
+		sprite.play(anims[style][randi() % len(anims[style])])
 	
 func _rest():
 	if pause:

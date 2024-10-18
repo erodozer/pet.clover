@@ -21,6 +21,9 @@ func _start():
 	
 func _game():
 	while turns > 0:
+		if not is_inside_tree():
+			return
+			
 		await get_tree().create_timer(0.5).timeout
 		get_node("%TheirCard").button_pressed = false
 		get_node("%YourCard").button_pressed = false
