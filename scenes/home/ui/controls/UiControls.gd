@@ -44,7 +44,7 @@ func _ready():
 	
 	%Controls/Food.grab_focus()
 	
-	label.text = ProjectSettings.get_setting_with_override("application/gameplay/pet_name")
+	set_hint_text("")
 
 func show_submenu(submenu):
 	for button in get_node("%Controls").get_children():
@@ -74,6 +74,7 @@ func _on_clock_toggled():
 	
 func set_hint_text(text):
 	if not text:
+		print(ProjectSettings.get_setting_with_override("application/gameplay/pet_name"))
 		label.text = ProjectSettings.get_setting_with_override("application/gameplay/pet_name")
 	else:
 		label.text = text

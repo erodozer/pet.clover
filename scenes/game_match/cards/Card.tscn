@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://b0hd4ahmi5fsn" path="res://scenes/game_match/cards/circle.png" id="1"]
 [ext_resource type="Texture2D" uid="uid://cnjt2i2sefdvb" path="res://scenes/game_match/cards/card_back.png" id="2"]
-[ext_resource type="Script" path="res://scenes/game_match/cards/Card.gd" id="3"]
+[ext_resource type="Script" uid="uid://u66t71dwy6v2" path="res://scenes/game_match/cards/Card.gd" id="3"]
 
 [sub_resource type="StyleBoxEmpty" id="1"]
 

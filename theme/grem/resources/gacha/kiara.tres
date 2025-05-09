@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="GachaCardResource" load_steps=2 format=3 uid="uid://c2seyk20pgd24"]
 
-[ext_resource type="Script" path="res://resources/GachaCardResource.gd" id="1_b3hha"]
+[ext_resource type="Script" uid="uid://crb3c2d1tsmi4" path="res://resources/GachaCardResource.gd" id="1_b3hha"]
 
 [resource]
 script = ExtResource("1_b3hha")

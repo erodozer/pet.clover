@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://c0wubs431rmln" path="res://theme/grem/resources/food/apple/apple_eat_2.png" id="9_mecd4"]
 [ext_resource type="Texture2D" uid="uid://c71m2cv6d8r7n" path="res://theme/grem/resources/food/apple/apple_eat_3.png" id="10_4ardh"]
 [ext_resource type="Texture2D" uid="uid://by1h21qivtgf4" path="res://theme/grem/resources/food/apple/apple_eat_4.png" id="11_xj7m3"]
-[ext_resource type="Script" path="res://resources/FoodResource.gd" id="12_0gvsd"]
+[ext_resource type="Script" uid="uid://7w43b6hsn11b" path="res://resources/FoodResource.gd" id="12_0gvsd"]
 [ext_resource type="Texture2D" uid="uid://b8rju4xuony6v" path="res://theme/grem/resources/food/apple/apple_eat_5.png" id="12_5w3ii"]
 [ext_resource type="Texture2D" uid="uid://dk20ply5xn0hj" path="res://theme/grem/resources/food/apple/apple_eat_6.png" id="13_qivvo"]
 

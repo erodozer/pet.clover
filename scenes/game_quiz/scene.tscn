@@ -1,7 +1,7 @@
 [gd_scene load_steps=20 format=3 uid="uid://dxekr2d6at65e"]
 
-[ext_resource type="Script" path="res://scenes/game_quiz/scene.gd" id="1_qr2k3"]
-[ext_resource type="Shader" path="res://ui/scroll.gdshader" id="2_cjsqv"]
+[ext_resource type="Script" uid="uid://cpjkwf5ah8yfv" path="res://scenes/game_quiz/scene.gd" id="1_qr2k3"]
+[ext_resource type="Shader" uid="uid://c4pt0ljhyev6h" path="res://ui/scroll.gdshader" id="2_cjsqv"]
 [ext_resource type="Texture2D" uid="uid://st2lqyxx0u6x" path="res://ui/background.png" id="3_vinvc"]
 [ext_resource type="Texture2D" uid="uid://drp3osp875lkm" path="res://scenes/game_quiz/chalkboard.png" id="4_6jufy"]
 [ext_resource type="FontFile" uid="uid://dss7ucu2bmaek" path="res://ui/fonts/ThinSans.ttf" id="5_peayf"]
@@ -16,7 +16,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_klptx"]
 shader = ExtResource("2_cjsqv")
 shader_parameter/speed_x = 1.0
-shader_parameter/speed_y = null
+shader_parameter/speed_y = 0.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_37oyr"]
 font = ExtResource("5_peayf")
@@ -78,8 +78,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_b1v38"]
 _data = {
-"RESET": SubResource("Animation_hvg3v"),
-"Show": SubResource("Animation_avwe2")
+&"RESET": SubResource("Animation_hvg3v"),
+&"Show": SubResource("Animation_avwe2")
 }
 
 [sub_resource type="LabelSettings" id="LabelSettings_2lji4"]

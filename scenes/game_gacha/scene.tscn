@@ -1,8 +1,8 @@
 [gd_scene load_steps=21 format=3 uid="uid://buu2wbhdyk8kn"]
 
 [ext_resource type="PackedScene" uid="uid://b2wsuygqtasn6" path="res://ui/pointer/pointer.tscn" id="1_aik24"]
-[ext_resource type="Shader" path="res://ui/scroll.gdshader" id="1_elpb3"]
-[ext_resource type="Script" path="res://scenes/game_gacha/scene.gd" id="1_oewvr"]
+[ext_resource type="Shader" uid="uid://c4pt0ljhyev6h" path="res://ui/scroll.gdshader" id="1_elpb3"]
+[ext_resource type="Script" uid="uid://br7hyhwy2l5v8" path="res://scenes/game_gacha/scene.gd" id="1_oewvr"]
 [ext_resource type="Texture2D" uid="uid://st2lqyxx0u6x" path="res://ui/background.png" id="2_qmini"]
 [ext_resource type="SpriteFrames" uid="uid://dushx8aen3ymk" path="res://pet/frames.tres" id="3_85fpq"]
 [ext_resource type="Theme" uid="uid://bfmrdx6ah36lt" path="res://ui/ui_theme.tres" id="4_ahtvm"]
@@ -18,7 +18,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_twl4i"]
 shader = ExtResource("1_elpb3")
 shader_parameter/speed_x = 1.0
-shader_parameter/speed_y = null
+shader_parameter/speed_y = 0.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_uril4"]
 font = ExtResource("12_lalol")
@@ -349,8 +349,8 @@ tracks/12/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_iwt84"]
 _data = {
-"RESET": SubResource("Animation_eh8in"),
-"select": SubResource("Animation_846ea")
+&"RESET": SubResource("Animation_eh8in"),
+&"select": SubResource("Animation_846ea")
 }
 
 [node name="GachaScene" type="Node" groups=["scene"]]

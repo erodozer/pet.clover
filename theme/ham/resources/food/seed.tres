@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="FoodResource" load_steps=14 format=3 uid="uid://cr3edaouje7ce"]
 
 [ext_resource type="Texture2D" uid="uid://dlixrfnccfn20" path="res://theme/ham/resources/food/seed/01.png" id="1_r3x6n"]
-[ext_resource type="Script" path="res://resources/FoodResource.gd" id="1_wlatj"]
+[ext_resource type="Script" uid="uid://7w43b6hsn11b" path="res://resources/FoodResource.gd" id="1_wlatj"]
 [ext_resource type="Texture2D" uid="uid://b58xoyfsfwbyt" path="res://theme/ham/resources/food/seed/02.png" id="2_wko5n"]
 [ext_resource type="Texture2D" uid="uid://bc4j53nwash01" path="res://theme/ham/resources/food/seed/03.png" id="3_wt8pk"]
 [ext_resource type="Texture2D" uid="uid://dh7ixqai1g6n5" path="res://theme/ham/resources/food/seed/eat_01.png" id="4_68sff"]

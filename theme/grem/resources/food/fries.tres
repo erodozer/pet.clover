@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://du4t8fsgrbor1" path="res://theme/grem/resources/food/fries/fries_eat_4.png" id="12_21tjf"]
 [ext_resource type="Texture2D" uid="uid://dsaj0wvxm5rnw" path="res://theme/grem/resources/food/fries/fries_eat_5.png" id="13_nfok2"]
 [ext_resource type="Texture2D" uid="uid://dbjxpo0bhux1v" path="res://theme/grem/resources/food/fries/icon.png" id="14_54nrd"]
-[ext_resource type="Script" path="res://resources/FoodResource.gd" id="15_nnxbr"]
+[ext_resource type="Script" uid="uid://7w43b6hsn11b" path="res://resources/FoodResource.gd" id="15_nnxbr"]
 [ext_resource type="Resource" uid="uid://umasdboj3i8h" path="res://theme/grem/resources/unlockables/fries.tres" id="16_xai4f"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_yyixg"]

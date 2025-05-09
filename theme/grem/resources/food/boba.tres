@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://ghmdg50rtq45" path="res://theme/grem/resources/food/boba/boba_eat_5.png" id="8_a1eq2"]
 [ext_resource type="Texture2D" uid="uid://dcyop72uprtuv" path="res://theme/grem/resources/food/boba/icon.png" id="9_rr5n3"]
 [ext_resource type="Resource" uid="uid://bpb2kbu1n36rs" path="res://theme/grem/resources/unlockables/boba.tres" id="11_k2e3h"]
-[ext_resource type="Script" path="res://resources/FoodResource.gd" id="12_jqji2"]
+[ext_resource type="Script" uid="uid://7w43b6hsn11b" path="res://resources/FoodResource.gd" id="12_jqji2"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cjcap"]
 animations = [{

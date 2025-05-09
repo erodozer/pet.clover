@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="GameResource" load_steps=5 format=3 uid="uid://db1jkwdb4dqfk"]
 
 [ext_resource type="Texture2D" uid="uid://d3ardee1a5sfh" path="res://theme/grem/scenes/home/ui/controls/icons.png" id="1_hyibd"]
-[ext_resource type="Script" path="res://resources/GameResource.gd" id="2_aeul4"]
+[ext_resource type="Script" uid="uid://bs3olmdbb4xck" path="res://resources/GameResource.gd" id="2_aeul4"]
 [ext_resource type="Resource" uid="uid://4jbi7bvix4ht" path="res://resources/unlockables/gacha.tres" id="3_t3yj7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6spao"]

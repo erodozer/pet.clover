@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c61kbfsrarrpf"]
 
-[ext_resource type="Script" path="res://ui/transition/transition.gd" id="1"]
+[ext_resource type="Script" uid="uid://kkx7ljo7ak4t" path="res://ui/transition/transition.gd" id="1"]
 [ext_resource type="Texture2D" path="res://ui/transition/out_anim.tres" id="2"]
 
 [node name="Transition" type="TextureRect"]

@@ -22,7 +22,7 @@ AppSkin
 """
 extends Node
 
-var gdsh = preload("res://addons/godash/godash.gd")
+const gdsh = preload("res://addons/godash/godash.gd")
 	
 func loaded():
 	if _loading:
@@ -38,20 +38,34 @@ var _theme = ""
 
 func _ready():
 	apply()
-	
+
+## overlays active theme contents onto the game's resources
 func apply(theme = ProjectSettings.get_setting_with_override("application/config/theme")):
 	_loading = true
 	
-	# overlays active theme contents onto the game's resources
-	# unfortunately 
-	for res in gdsh.load_dir("res://theme/%s" % theme, overrides, true).values():
+	print("Detecting theme: ", theme)
+	
+	var theme_filelist = "res://theme/%s.files.txt" % theme
+	
+	# exported projects can't iterate over folder paths in the res directory
+	# so when debugging, we'll be generating a txt file for the theme that keeps a list of all
+	# overridden resources.
+	if OS.has_feature("editor"):
+		var paths = gdsh.enumerate_dir("res://theme/%s" % theme, overrides, true)
+		var f = FileAccess.open(theme_filelist, FileAccess.WRITE)
+		f.store_string("\n".join(paths))
+		f.close()
+	
+	var filelist = FileAccess.get_file_as_string(theme_filelist).split("\n", false)
+	for path in filelist:
+		var res = ResourceLoader.load(path)
 		print("found: " + res.resource_path)
-		var path = "res://%s" % res.resource_path.substr(len("res://theme/%s/" % theme))
-		if ResourceLoader.exists(path):
-			res.take_over_path(path)
+		var source_path = "res://%s" % res.resource_path.substr(len("res://theme/%s/" % theme))
+		if ResourceLoader.exists(source_path):
+			res.take_over_path(source_path)
 			if hold_cache:
 				_theme_files.append(res)
-			print("replacing %s" % path)
+			print("replacing %s" % source_path)
 			
 	_loading = false
 	_theme = theme

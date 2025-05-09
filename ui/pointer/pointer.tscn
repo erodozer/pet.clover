@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://b2wsuygqtasn6"]
 
-[ext_resource type="Script" path="res://ui/pointer/pointer.gd" id="1"]
+[ext_resource type="Script" uid="uid://b4qs41ovrpnaj" path="res://ui/pointer/pointer.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://b462iv3k4brm4" path="res://ui/pointer/pointer.png" id="2"]
 
 [sub_resource type="Animation" id="1"]
@@ -54,9 +54,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_p7hia"]
 _data = {
-"RESET": SubResource("1"),
-"swing_down": SubResource("2"),
-"swing_up": SubResource("3")
+&"RESET": SubResource("1"),
+&"swing_down": SubResource("2"),
+&"swing_up": SubResource("3")
 }
 
 [node name="Pointer" type="Control"]

@@ -3,7 +3,7 @@
 [ext_resource type="Theme" uid="uid://nftx016qubrw" path="res://scenes/home/ui/stats/theme.tres" id="1_08kce"]
 [ext_resource type="Texture2D" uid="uid://25gh2odtifhv" path="res://scenes/home/ui/stats/heart.png" id="2"]
 [ext_resource type="Texture2D" uid="uid://b2l8td6ax26uf" path="res://scenes/home/ui/stats/fun.png" id="4"]
-[ext_resource type="Script" path="res://scenes/home/ui/stats/StatusPanel.gd" id="5"]
+[ext_resource type="Script" uid="uid://cxl15g5432h25" path="res://scenes/home/ui/stats/StatusPanel.gd" id="5"]
 
 [node name="PanelContainer" type="PanelContainer"]
 offset_right = 97.0
